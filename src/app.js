@@ -28,13 +28,20 @@ app.use(cors());
 app.use(mongoSanitize());
 app.use(xss());
 
-// Rate limiting
+// Rate limiting middleware
 const limiter = rateLimit({
-  windowMs: process.env.RATE_LIMIT_WINDOW_MS || 15 * 60 * 1000, // 15 minutes
-  max: process.env.RATE_LIMIT_MAX || 100, // limit each IP to 100 requests per windowMs
-  message: 'Too many requests from this IP, please try again later',
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: {
+    status: 'error',
+    message: 'Too many requests from this IP, please try again after 15 minutes',
+  },
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
-app.use('/api', limiter);
+
+// Apply rate limiting to all routes
+app.use(limiter);
 
 // Body parser
 app.use(express.json({ limit: process.env.BODY_LIMIT || '10kb' }));

@@ -1,6 +1,7 @@
 const Product = require('../models/product.model');
 const { AppError } = require('../middlewares/errorHandler');
 const logger = require('../utils/logger');
+const mongoose = require('mongoose');
 
 // Create new product
 exports.createProduct = async (req, res, next) => {
@@ -76,10 +77,23 @@ exports.getProducts = async (req, res, next) => {
 // Get single product
 exports.getProduct = async (req, res, next) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const { id } = req.params;
+
+    // Validate if id is provided
+    if (!id) {
+      return next(new AppError('Product ID is required', 400));
+    }
+
+    // Validate if id is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return next(new AppError('Invalid product ID format', 400));
+    }
+
+    const product = await Product.findById(id);
     if (!product) {
       return next(new AppError('Product not found', 404));
     }
+
     res.status(200).json({
       success: true,
       data: product,
