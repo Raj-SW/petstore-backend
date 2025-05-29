@@ -1,26 +1,11 @@
-const Product = require('../models/product');
-const Category = require('../models/category.model');
+const Product = require('../models/product.model');
 const { AppError } = require('../middlewares/errorHandler');
-const { uploadToCloudinary, deleteFromCloudinary } = require('../utils/cloudinary');
 const logger = require('../utils/logger');
 
 // Create new product
 exports.createProduct = async (req, res, next) => {
   try {
-    const { category } = req.body;
-
-    // Check if category exists
-    const categoryExists = await Category.findById(category);
-    if (!categoryExists) {
-      return next(new AppError('Category not found', 404));
-    }
-
-    // Create product
-    const product = await Product.create({
-      ...req.body,
-      createdBy: req.user.id,
-    });
-
+    const product = await Product.create(req.body);
     res.status(201).json({
       success: true,
       data: product,
@@ -40,17 +25,23 @@ exports.getProducts = async (req, res, next) => {
       category,
       minPrice,
       maxPrice,
+      minRating,
+      maxRating,
       search,
     } = req.query;
 
     // Build query
     const query = {};
-
-    if (category) query.category = category;
+    if (category) query.category = { $regex: `^${category}$`, $options: 'i' };
     if (minPrice || maxPrice) {
       query.price = {};
       if (minPrice) query.price.$gte = Number(minPrice);
-      if (maxPrice) query.price.$lte = Number(maxPrice);
+      if (maxPrice && isFinite(Number(maxPrice))) query.price.$lte = Number(maxPrice);
+    }
+    if (minRating || maxRating) {
+      query.rating = {};
+      if (minRating) query.rating.$gte = Number(minRating);
+      if (maxRating) query.rating.$lte = Number(maxRating);
     }
     if (search) {
       query.$or = [
@@ -85,14 +76,10 @@ exports.getProducts = async (req, res, next) => {
 // Get single product
 exports.getProduct = async (req, res, next) => {
   try {
-    const product = await Product.findById(req.params.id)
-      .populate('category', 'name')
-      .populate('reviews');
-
+    const product = await Product.findById(req.params.id);
     if (!product) {
       return next(new AppError('Product not found', 404));
     }
-
     res.status(200).json({
       success: true,
       data: product,
@@ -105,24 +92,10 @@ exports.getProduct = async (req, res, next) => {
 // Update product
 exports.updateProduct = async (req, res, next) => {
   try {
-    const product = await Product.findById(req.params.id);
-
+    const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!product) {
       return next(new AppError('Product not found', 404));
     }
-
-    // Check if category exists if it's being updated
-    if (req.body.category) {
-      const categoryExists = await Category.findById(req.body.category);
-      if (!categoryExists) {
-        return next(new AppError('Category not found', 404));
-      }
-    }
-
-    // Update product
-    Object.assign(product, req.body);
-    await product.save();
-
     res.status(200).json({
       success: true,
       data: product,
@@ -135,21 +108,10 @@ exports.updateProduct = async (req, res, next) => {
 // Delete product
 exports.deleteProduct = async (req, res, next) => {
   try {
-    const product = await Product.findById(req.params.id);
-
+    const product = await Product.findByIdAndDelete(req.params.id);
     if (!product) {
       return next(new AppError('Product not found', 404));
     }
-
-    // Delete product images from Cloudinary
-    if (product.images && product.images.length > 0) {
-      await Promise.all(product.images.map((image) => deleteFromCloudinary(image.publicId)));
-    }
-
-    // Soft delete by setting isActive to false
-    product.isActive = false;
-    await product.save();
-
     res.status(200).json({
       success: true,
       data: null,
