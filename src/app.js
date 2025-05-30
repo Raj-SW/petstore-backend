@@ -19,6 +19,7 @@ const orderRoutes = require('./routes/order.routes');
 const appointmentRoutes = require('./routes/appointment.routes');
 const paymentRoutes = require('./routes/payment.routes');
 const adminRoutes = require('./routes/admin.routes');
+const professionalRoutes = require('./routes/professionalRoutes');
 
 const app = express();
 
@@ -64,6 +65,7 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/appointments', appointmentRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/professionals', professionalRoutes);
 
 // Handle unhandled routes
 app.all('*', (req, res, next) => {
