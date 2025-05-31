@@ -249,3 +249,44 @@ exports.cancelAppointment = async (req, res, next) => {
     next(error);
   }
 };
+
+// Get appointments by professionalId (number)
+exports.getAppointmentsByProfessional = async (req, res, next) => {
+  try {
+    const { professionalId } = req.params;
+    const appointments = await Appointment.find({ professionalId: Number(professionalId) });
+    res.status(200).json({
+      success: true,
+      data: appointments,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Get appointments by ownerId (number)
+exports.getAppointmentsByOwner = async (req, res, next) => {
+  try {
+    const { ownerId } = req.params;
+    const appointments = await Appointment.find({ ownerId: Number(ownerId) });
+    res.status(200).json({
+      success: true,
+      data: appointments,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Get all appointments
+exports.getAllAppointments = async (req, res, next) => {
+  try {
+    const appointments = await Appointment.find();
+    res.status(200).json({
+      success: true,
+      data: appointments,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

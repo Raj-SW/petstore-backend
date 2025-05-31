@@ -1,5 +1,4 @@
 const express = require('express');
-const { protect, restrictTo } = require('../middlewares/auth');
 const {
   createAppointment,
   getAppointments,
@@ -8,23 +7,27 @@ const {
   cancelAppointment,
   getMyAppointments,
   getServiceProviderAppointments,
+  getAppointmentsByProfessional,
+  getAppointmentsByOwner,
+  getAllAppointments,
 } = require('../controllers/appointment.controller');
 const { validateAppointment } = require('../validators/appointment.validator');
 
 const router = express.Router();
 
-// All appointment routes require authentication
-router.use(protect);
+// Public routes to fetch appointments by professionalId or ownerId (number)
+router.get('/professional/:professionalId', getAppointmentsByProfessional);
+router.get('/owner/:ownerId', getAppointmentsByOwner);
 
-// Customer routes
+// Public route to fetch all appointments
+router.get('/', getAllAppointments);
+
+// All appointment routes are now public (no authentication)
 router.get('/my-appointments', getMyAppointments);
 router.post('/', validateAppointment, createAppointment);
 router.get('/:id', getAppointment);
 router.patch('/:id/cancel', cancelAppointment);
-
-// Service provider routes (vet/groomer)
-router.use(restrictTo('vet', 'groomer'));
 router.get('/provider/appointments', getServiceProviderAppointments);
 router.patch('/:id/status', updateAppointmentStatus);
 
-module.exports = router; 
+module.exports = router;

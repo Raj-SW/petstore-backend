@@ -3,20 +3,24 @@ const { AppError } = require('../middlewares/errorHandler');
 
 const validateAppointment = (req, res, next) => {
   const schema = Joi.object({
-    serviceProviderId: Joi.string().required(),
-    serviceType: Joi.string().valid('vet', 'groomer').required(),
-    pet: Joi.object({
-      name: Joi.string().required(),
-      species: Joi.string().required(),
-      breed: Joi.string(),
-      age: Joi.number().min(0),
-    }).required(),
-    date: Joi.date().min('now').required(),
-    timeSlot: Joi.object({
-      start: Joi.string().pattern(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/).required(),
-      end: Joi.string().pattern(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/).required(),
-    }).required(),
-    reason: Joi.string().required().min(10).max(500),
+    _id: Joi.number().required(),
+    title: Joi.string().required(),
+    datetimeISO: Joi.string().required(),
+    description: Joi.string().allow(''),
+    status: Joi.string().allow(''),
+    type: Joi.string().allow(''),
+    role: Joi.string().allow(''),
+    location: Joi.string().allow(''),
+    icon: Joi.string().uri().allow(''),
+    petId: Joi.number(),
+    petName: Joi.string().allow(''),
+    petType: Joi.string().allow(''),
+    ownerId: Joi.number(),
+    ownerName: Joi.string().allow(''),
+    duration: Joi.number(),
+    notes: Joi.string().allow(''),
+    professionalId: Joi.number(),
+    professionalName: Joi.string().allow(''),
   });
 
   const { error } = schema.validate(req.body);
@@ -28,9 +32,7 @@ const validateAppointment = (req, res, next) => {
 
 const validateAppointmentStatus = (req, res, next) => {
   const schema = Joi.object({
-    status: Joi.string()
-      .valid('accepted', 'rejected', 'completed', 'cancelled')
-      .required(),
+    status: Joi.string().valid('accepted', 'rejected', 'completed', 'cancelled').required(),
     notes: Joi.string().max(500),
   });
 
@@ -57,4 +59,4 @@ module.exports = {
   validateAppointment,
   validateAppointmentStatus,
   validateCancellation,
-}; 
+};
