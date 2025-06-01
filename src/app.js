@@ -7,8 +7,11 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const compression = require('compression');
 const morgan = require('morgan');
-const { errorHandler } = require('./middlewares/errorHandler');
+const { errorHandler, AppError } = require('./middlewares/errorHandler');
 const logger = require('./utils/logger');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const passport = require('./config/passport');
 
 // Import routes
 const authRoutes = require('./routes/auth.routes');
@@ -25,7 +28,12 @@ const app = express();
 
 // Security middleware
 app.use(helmet());
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  })
+);
 app.use(mongoSanitize());
 app.use(xss());
 
@@ -55,6 +63,32 @@ app.use(compression());
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev', { stream: logger.stream }));
 }
+
+// Session configuration
+const sessionConfig = {
+  secret: process.env.SESSION_SECRET || 'your-secret-key',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000, // 1 day
+  },
+};
+
+// Only add MongoDB store if MONGODB_URI is available
+if (process.env.MONGODB_URI) {
+  sessionConfig.store = MongoStore.create({
+    mongoUrl: process.env.MONGODB_URI,
+    ttl: 24 * 60 * 60, // 1 day
+  });
+}
+
+app.use(session(sessionConfig));
+
+// Initialize Passport and restore authentication state from session
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 app.use('/api/auth', authRoutes);

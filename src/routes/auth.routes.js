@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { protect } = require('../middlewares/auth');
 const {
-  register,
+  signup,
   login,
   logout,
   refreshToken,
@@ -10,6 +9,7 @@ const {
   resetPassword,
   verifyEmail,
   resendVerificationEmail,
+  getCurrentUser,
 } = require('../controllers/auth.controller');
 const {
   validateRegister,
@@ -17,9 +17,10 @@ const {
   validateForgotPassword,
   validateResetPassword,
 } = require('../validators/auth.validator');
+const { isAuthenticated } = require('../middlewares/auth.middleware');
 
 // Public routes
-router.post('/register', validateRegister, register);
+router.post('/signup', validateRegister, signup);
 router.post('/login', validateLogin, login);
 router.post('/forgot-password', validateForgotPassword, forgotPassword);
 router.post('/reset-password', validateResetPassword, resetPassword);
@@ -27,7 +28,9 @@ router.get('/verify-email/:token', verifyEmail);
 router.post('/resend-verification', resendVerificationEmail);
 
 // Protected routes
-router.post('/logout', protect, logout);
+router.use(isAuthenticated); // Apply authentication middleware to all routes below
+router.get('/me', getCurrentUser);
+router.get('/logout', logout);
 router.post('/refresh-token', refreshToken);
 
-module.exports = router; 
+module.exports = router;

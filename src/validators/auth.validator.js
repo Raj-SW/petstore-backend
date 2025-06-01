@@ -8,9 +8,7 @@ const validateRegister = (req, res, next) => {
     password: Joi.string()
       .required()
       .min(8)
-      .pattern(
-        new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])')
-      )
+      .pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])'))
       .message(
         'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
       ),
@@ -54,9 +52,7 @@ const validateResetPassword = (req, res, next) => {
     password: Joi.string()
       .required()
       .min(8)
-      .pattern(
-        new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])')
-      )
+      .pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])'))
       .message(
         'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
       ),
@@ -74,4 +70,4 @@ module.exports = {
   validateLogin,
   validateForgotPassword,
   validateResetPassword,
-}; 
+};

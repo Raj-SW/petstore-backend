@@ -4,6 +4,8 @@ const { AppError } = require('../middlewares/errorHandler');
 const User = require('../models/user.model');
 const { sendEmail } = require('../utils/email');
 const logger = require('../utils/logger');
+const bcrypt = require('bcryptjs');
+const passport = require('passport');
 
 // Generate tokens
 const generateTokens = (user) => {
@@ -13,9 +15,9 @@ const generateTokens = (user) => {
 };
 
 // Register new user
-exports.register = async (req, res, next) => {
+exports.signup = async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, role = 'customer' } = req.body;
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
@@ -23,47 +25,27 @@ exports.register = async (req, res, next) => {
       return next(new AppError('Email already registered', 400));
     }
 
-    // Create verification token
-    const verificationToken = crypto.randomBytes(32).toString('hex');
-    const verificationExpires = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
-
     // Create user
     const user = await User.create({
       name,
       email,
       password,
-      emailVerificationToken: verificationToken,
-      emailVerificationExpires: verificationExpires,
+      role,
     });
 
-    // Generate tokens
-    const { accessToken, refreshToken } = generateTokens(user);
-
-    // Send verification email
-    const verificationUrl = `${req.protocol}://${req.get(
-      'host'
-    )}/api/auth/verify-email/${verificationToken}`;
-
-    await sendEmail({
-      email: user.email,
-      subject: 'Email Verification',
-      message: `Please verify your email by clicking: ${verificationUrl}`,
-    });
-
-    // Remove sensitive data
+    // Remove password from response
     user.password = undefined;
-    user.emailVerificationToken = undefined;
-    user.emailVerificationExpires = undefined;
 
-    res.status(201).json({
-      status: 'success',
-      data: {
-        user,
-        tokens: {
-          accessToken,
-          refreshToken,
-        },
-      },
+    // Log in the user after registration
+    req.login(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      res.status(201).json({
+        success: true,
+        message: 'Registration successful',
+        data: user,
+      });
     });
   } catch (error) {
     next(error);
@@ -71,48 +53,59 @@ exports.register = async (req, res, next) => {
 };
 
 // Login user
-exports.login = async (req, res, next) => {
-  try {
-    const { email, password } = req.body;
-
-    // Check if user exists
-    const user = await User.findOne({ email }).select('+password');
+exports.login = (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
     if (!user) {
-      return next(new AppError('Invalid email or password', 401));
+      return next(new AppError(info.message || 'Invalid credentials', 401));
     }
 
-    // Check password
-    const isPasswordCorrect = await user.comparePassword(password);
-    if (!isPasswordCorrect) {
-      return next(new AppError('Invalid email or password', 401));
-    }
-
-    // Generate tokens
-    const { accessToken, refreshToken } = generateTokens(user);
-
-    // Remove sensitive data
-    user.password = undefined;
-
-    res.status(200).json({
-      status: 'success',
-      data: {
-        user,
-        tokens: {
-          accessToken,
-          refreshToken,
-        },
-      },
+    req.login(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      // Remove password from response
+      user.password = undefined;
+      res.status(200).json({
+        success: true,
+        message: 'Login successful',
+        data: user,
+      });
     });
-  } catch (error) {
-    next(error);
-  }
+  })(req, res, next);
 };
 
 // Logout user
-exports.logout = async (req, res) => {
+exports.logout = (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.status(200).json({
+      success: true,
+      message: 'Logged out successfully',
+    });
+  });
+};
+
+// Get current user
+exports.getCurrentUser = (req, res) => {
+  if (!req.user) {
+    return res.status(401).json({
+      success: false,
+      message: 'Not authenticated',
+    });
+  }
+
+  // Remove password from response
+  const user = { ...req.user.toObject() };
+  delete user.password;
+
   res.status(200).json({
-    status: 'success',
-    message: 'Logged out successfully',
+    success: true,
+    data: user,
   });
 };
 
@@ -138,10 +131,8 @@ exports.refreshToken = async (req, res, next) => {
     const tokens = generateTokens(user);
 
     res.status(200).json({
-      status: 'success',
-      data: {
-        tokens,
-      },
+      success: true,
+      data: tokens,
     });
   } catch (error) {
     next(new AppError('Invalid refresh token', 401));
@@ -174,7 +165,7 @@ exports.forgotPassword = async (req, res, next) => {
     });
 
     res.status(200).json({
-      status: 'success',
+      success: true,
       message: 'Password reset email sent',
     });
   } catch (error) {
@@ -196,14 +187,18 @@ exports.resetPassword = async (req, res, next) => {
       return next(new AppError('Invalid or expired reset token', 400));
     }
 
+    // Hash new password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     // Update password
-    user.password = password;
+    user.password = hashedPassword;
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save();
 
     res.status(200).json({
-      status: 'success',
+      success: true,
       message: 'Password reset successful',
     });
   } catch (error) {
@@ -232,7 +227,7 @@ exports.verifyEmail = async (req, res, next) => {
     await user.save();
 
     res.status(200).json({
-      status: 'success',
+      success: true,
       message: 'Email verified successfully',
     });
   } catch (error) {
@@ -272,7 +267,7 @@ exports.resendVerificationEmail = async (req, res, next) => {
     });
 
     res.status(200).json({
-      status: 'success',
+      success: true,
       message: 'Verification email sent',
     });
   } catch (error) {

@@ -3,19 +3,14 @@ const logger = require('../utils/logger');
 
 const connectDB = async () => {
   try {
-    const options = {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000,
-      socketTimeoutMS: 45000,
-      family: 4, // Use IPv4, skip trying IPv6
-    };
+    const conn = await mongoose.connect(
+      process.env.MONGODB_URI || 'mongodb://localhost:27017/petstore',
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }
+    );
 
-    if (!process.env.MONGODB_URI) {
-      throw new Error('MONGODB_URI is not defined in environment variables');
-    }
-
-    const conn = await mongoose.connect(process.env.MONGODB_URI, options);
     logger.info(`MongoDB Connected: ${conn.connection.host}`);
 
     // Handle connection events
@@ -39,7 +34,7 @@ const connectDB = async () => {
       }
     });
   } catch (error) {
-    logger.error(`Error connecting to MongoDB: ${error.message}`);
+    logger.error(`Error: ${error.message}`);
     process.exit(1);
   }
 };
