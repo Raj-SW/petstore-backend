@@ -31,4 +31,4 @@ router.post('/orders/:orderId/confirm', confirmPayment);
 router.use(restrictTo('admin'));
 router.post('/orders/:orderId/refund', processRefund);
 
-module.exports = router; 
+module.exports = router;

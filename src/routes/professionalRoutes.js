@@ -26,7 +26,7 @@ router.post(
   validateRequest(createProfessionalSchema),
   professionalController.createProfessional
 );
-router.put(
+router.patch(
   '/:id',
   validateRequest(updateProfessionalSchema),
   professionalController.updateProfessional

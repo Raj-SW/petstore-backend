@@ -32,4 +32,4 @@ router.get('/', getOrders);
 router.patch('/:id/status', validateUpdateOrderStatus, updateOrderStatus);
 router.patch('/:id/payment', validatePaymentStatus, updatePaymentStatus);
 
-module.exports = router; 
+module.exports = router;

@@ -18,12 +18,12 @@ const router = express.Router();
 router.get('/', getProducts);
 router.get('/:id', getProduct);
 
-// Protected routes (Admin only)
+// Admin-only routes
 router.use(protect, restrictTo('admin'));
 router.post('/', validateProduct, createProduct);
-router.put('/:id', validateProduct, updateProduct);
+router.patch('/:id', validateProduct, updateProduct);
 router.delete('/:id', deleteProduct);
-router.post('/:id/images', upload.array('images', 5), uploadProductImages);
+router.post('/:id/images', upload.array('images'), uploadProductImages);
 router.delete('/:id/images/:imageId', deleteProductImage);
 
 module.exports = router;

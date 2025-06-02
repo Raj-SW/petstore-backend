@@ -28,9 +28,8 @@ router.get('/verify-email/:token', verifyEmail);
 router.post('/resend-verification', resendVerificationEmail);
 
 // Protected routes
-router.use(isAuthenticated); // Apply authentication middleware to all routes below
-router.get('/me', getCurrentUser);
-router.get('/logout', logout);
-router.post('/refresh-token', refreshToken);
+router.post('/logout', isAuthenticated, logout);
+router.get('/me', isAuthenticated, getCurrentUser);
+router.post('/refresh-token', isAuthenticated, refreshToken);
 
 module.exports = router;

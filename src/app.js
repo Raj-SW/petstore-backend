@@ -23,6 +23,7 @@ const appointmentRoutes = require('./routes/appointment.routes');
 const paymentRoutes = require('./routes/payment.routes');
 const adminRoutes = require('./routes/admin.routes');
 const professionalRoutes = require('./routes/professionalRoutes');
+const reviewRoutes = require('./routes/review.routes');
 
 const app = express();
 
@@ -30,8 +31,10 @@ const app = express();
 app.use(helmet());
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: ['http://localhost:5173', process.env.CLIENT_URL].filter(Boolean),
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
 app.use(mongoSanitize());
@@ -100,6 +103,7 @@ app.use('/api/appointments', appointmentRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/professionals', professionalRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 // Handle unhandled routes
 app.all('*', (req, res, next) => {

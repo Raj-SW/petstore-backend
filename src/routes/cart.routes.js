@@ -20,10 +20,10 @@ const router = express.Router();
 router.use(protect);
 
 router.get('/', getCart);
-router.post('/items', validateAddToCart, addToCart);
-router.patch('/items/:productId', validateUpdateCartItem, updateCartItem);
-router.delete('/items/:productId', removeCartItem);
-router.post('/discount', validateApplyDiscount, applyDiscount);
-router.delete('/', clearCart);
+router.post('/', validateAddToCart, addToCart);
+router.patch('/:id', validateUpdateCartItem, updateCartItem);
+router.delete('/:id', removeCartItem);
+router.post('/apply-discount', validateApplyDiscount, applyDiscount);
+router.delete('/clear', clearCart);
 
-module.exports = router; 
+module.exports = router;

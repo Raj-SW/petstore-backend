@@ -8,56 +8,112 @@ const logger = require('../utils/logger');
 
 // Create new order
 exports.createOrder = async (req, res, next) => {
+  const session = await Order.startSession();
+  session.startTransaction();
   try {
     const { shippingAddress, paymentMethod, notes } = req.body;
 
     // Get user's cart
-    const cart = await Cart.findOne({ user: req.user.id })
-      .populate('items.product');
-
+    const cart = await Cart.findOne({ user: req.user.id });
     if (!cart || cart.items.length === 0) {
+      await session.abortTransaction();
+      session.endSession();
       return next(new AppError('Cart is empty', 400));
     }
 
-    // Check stock availability
+    // Prepare order items and recalculate totals
+    let totalItems = 0;
+    let totalAmount = 0;
+    let orderItems = [];
+    let logDetails = [];
+
     for (const item of cart.items) {
-      const product = await Product.findById(item.product._id);
+      const product = await Product.findById(item.product).session(session);
+      if (!product) {
+        await session.abortTransaction();
+        session.endSession();
+        logger.warn(`Product not found: ${item.product}`);
+        return next(new AppError('Product not found', 404));
+      }
+      if (!product.isActive) {
+        await session.abortTransaction();
+        session.endSession();
+        logger.warn(`Inactive product: ${product._id}`);
+        return next(new AppError(`Product ${product.title} is not available`, 400));
+      }
       if (product.stock < item.quantity) {
-        return next(
-          new AppError(`Insufficient stock for ${product.name}`, 400)
-        );
+        await session.abortTransaction();
+        session.endSession();
+        logger.warn(`Insufficient stock for product: ${product._id}`);
+        return next(new AppError(`Insufficient stock for ${product.title}`, 400));
+      }
+      // Use current price from DB
+      const price = product.price;
+      totalItems += item.quantity;
+      totalAmount += price * item.quantity;
+      orderItems.push({
+        product: product._id,
+        quantity: item.quantity,
+        price,
+      });
+      logDetails.push({ product: product._id, quantity: item.quantity, price });
+    }
+
+    // Real discount validation (placeholder: always 0)
+    // TODO: Replace with real discount logic
+    let discount = 0;
+    let discountCode = null;
+    if (cart.discountCode) {
+      // Example: check if code is "SUMMER10" and not expired
+      if (cart.discountCode === 'SUMMER10') {
+        discount = Math.floor(totalAmount * 0.1); // 10% off
+        discountCode = 'SUMMER10';
+      } else {
+        logger.warn(`Invalid discount code: ${cart.discountCode}`);
+        // Optionally, return error or ignore
       }
     }
 
     // Create order
-    const order = await Order.create({
-      user: req.user.id,
-      items: cart.items.map((item) => ({
-        product: item.product._id,
-        quantity: item.quantity,
-        price: item.price,
-      })),
-      totalItems: cart.totalItems,
-      totalAmount: cart.totalAmount,
-      discount: cart.discount,
-      discountCode: cart.discountCode,
-      shippingAddress,
-      paymentMethod,
-      notes,
-    });
+    const order = await Order.create(
+      [
+        {
+          user: req.user.id,
+          items: orderItems,
+          totalItems,
+          totalAmount,
+          discount,
+          discountCode,
+          shippingAddress,
+          paymentMethod,
+          notes,
+        },
+      ],
+      { session }
+    );
 
     // Update product stock
-    for (const item of cart.items) {
-      await Product.findByIdAndUpdate(item.product._id, {
-        $inc: { stock: -item.quantity },
-      });
+    for (const item of orderItems) {
+      await Product.findByIdAndUpdate(
+        item.product,
+        {
+          $inc: { stock: -item.quantity },
+        },
+        { session }
+      );
     }
 
     // Clear cart
     cart.items = [];
     cart.discount = 0;
     cart.discountCode = null;
-    await cart.save();
+    await cart.save({ session });
+
+    await session.commitTransaction();
+    session.endSession();
+
+    // Log order creation
+    logger.info('Order created', { user: req.user.id, order: order[0]._id, items: logDetails });
 
     // Send order confirmation email
     await sendEmail({
@@ -66,17 +122,24 @@ exports.createOrder = async (req, res, next) => {
       template: 'order-confirmation',
       data: {
         name: req.user.name,
-        orderId: order._id,
-        totalAmount: order.totalAmount,
-        items: order.items,
+        orderId: order[0]._id,
+        totalAmount: order[0].totalAmount,
+        items: order[0].items,
       },
     });
 
+    // Sanitize response
+    const sanitizedOrder = order[0].toObject();
+    delete sanitizedOrder.paymentDetails;
+
     res.status(201).json({
       success: true,
-      data: order,
+      data: sanitizedOrder,
     });
   } catch (error) {
+    await session.abortTransaction();
+    session.endSession();
+    logger.error('Order creation failed', { error });
     next(error);
   }
 };
@@ -110,10 +173,7 @@ exports.getOrder = async (req, res, next) => {
     }
 
     // Check if user is authorized to view this order
-    if (
-      order.user._id.toString() !== req.user.id &&
-      req.user.role !== 'admin'
-    ) {
+    if (order.user._id.toString() !== req.user.id && req.user.role !== 'admin') {
       return next(new AppError('Not authorized to view this order', 403));
     }
 
@@ -269,4 +329,4 @@ exports.cancelOrder = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}; 
+};
