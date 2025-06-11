@@ -1,5 +1,5 @@
 const express = require('express');
-const { protect, restrictTo } = require('../middlewares/auth');
+const { isAuthenticated, isAdmin } = require('../middlewares/auth.middleware');
 const {
   createProduct,
   getProducts,
@@ -19,7 +19,7 @@ router.get('/', getProducts);
 router.get('/:id', getProduct);
 
 // Admin-only routes
-router.use(protect, restrictTo('admin'));
+router.use(isAuthenticated, isAdmin);
 router.post('/', validateProduct, createProduct);
 router.patch('/:id', validateProduct, updateProduct);
 router.delete('/:id', deleteProduct);

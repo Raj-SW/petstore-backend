@@ -1,5 +1,5 @@
 const express = require('express');
-const { protect, restrictTo } = require('../middlewares/auth');
+const { isAuthenticated } = require('../middlewares/auth.middleware');
 const {
   createOrder,
   getOrders,
@@ -18,7 +18,7 @@ const {
 const router = express.Router();
 
 // All order routes require authentication
-router.use(protect);
+router.use(isAuthenticated);
 
 // Customer routes
 router.get('/my-orders', getMyOrders);
@@ -27,7 +27,6 @@ router.get('/:id', getOrder);
 router.patch('/:id/cancel', cancelOrder);
 
 // Admin routes
-router.use(restrictTo('admin'));
 router.get('/', getOrders);
 router.patch('/:id/status', validateUpdateOrderStatus, updateOrderStatus);
 router.patch('/:id/payment', validatePaymentStatus, updatePaymentStatus);

@@ -1,5 +1,5 @@
 const express = require('express');
-const { protect, restrictTo } = require('../middlewares/auth');
+const { isAuthenticated, isAdmin } = require('../middlewares/auth.middleware');
 const { validateAnalyticsPeriod } = require('../validators/admin.validator');
 const {
   getDashboardStats,
@@ -12,8 +12,8 @@ const {
 const router = express.Router();
 
 // All admin routes require authentication and admin role
-router.use(protect);
-router.use(restrictTo('admin'));
+router.use(isAuthenticated);
+router.use(isAdmin);
 
 // Dashboard routes
 router.get('/dashboard', getDashboardStats);

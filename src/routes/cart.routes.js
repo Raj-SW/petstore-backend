@@ -1,5 +1,5 @@
 const express = require('express');
-const { protect } = require('../middlewares/auth');
+const { isAuthenticated } = require('../middlewares/auth.middleware');
 const {
   getCart,
   addToCart,
@@ -17,7 +17,7 @@ const {
 const router = express.Router();
 
 // All cart routes require authentication
-router.use(protect);
+router.use(isAuthenticated);
 
 router.get('/', getCart);
 router.post('/', validateAddToCart, addToCart);

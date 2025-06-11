@@ -1,5 +1,5 @@
 const express = require('express');
-const { protect } = require('../middlewares/auth');
+const { isAuthenticated } = require('../middlewares/auth.middleware');
 const {
   getProfile,
   updateProfile,
@@ -11,7 +11,7 @@ const { validateUpdateProfile, validateChangePassword } = require('../validators
 const router = express.Router();
 
 // All user routes require authentication
-router.use(protect);
+router.use(isAuthenticated);
 
 // Get user profile
 router.get('/me', getProfile);

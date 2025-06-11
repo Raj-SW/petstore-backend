@@ -1,5 +1,5 @@
 const express = require('express');
-const { protect, restrictTo } = require('../middlewares/auth');
+const { isAuthenticated } = require('../middlewares/auth.middleware');
 const {
   initializePayment,
   confirmPayment,
@@ -21,14 +21,13 @@ router.post('/webhook/paypal', express.json(), (req, res, next) => {
 });
 
 // Protected routes
-router.use(protect);
+router.use(isAuthenticated);
 
 // Customer routes
 router.post('/orders/:orderId/initialize', initializePayment);
 router.post('/orders/:orderId/confirm', confirmPayment);
 
 // Admin routes
-router.use(restrictTo('admin'));
 router.post('/orders/:orderId/refund', processRefund);
 
 module.exports = router;

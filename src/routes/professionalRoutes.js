@@ -7,7 +7,7 @@ const {
   updateProfessionalSchema,
   querySchema,
 } = require('../validators/professionalValidator');
-const { protect, restrictTo } = require('../middlewares/auth');
+const { isAuthenticated } = require('../middlewares/auth.middleware');
 
 // Public routes
 router.get('/', validateRequest(querySchema, 'query'), professionalController.getAllProfessionals);
@@ -16,11 +16,9 @@ router.get('/role/:role', professionalController.getProfessionalsByRole);
 router.get('/:id', professionalController.getProfessional);
 
 // Protected routes (require authentication)
-router.use(protect);
+router.use(isAuthenticated);
 
 // Admin only routes
-router.use(restrictTo('admin'));
-
 router.post(
   '/',
   validateRequest(createProfessionalSchema),

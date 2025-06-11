@@ -1,3 +1,7 @@
+// DEPRECATED: This file is no longer used.
+// Session-based authentication is now enforced everywhere.
+// See auth.middleware.js for current logic.
+/*
 const jwt = require('jsonwebtoken');
 const { AppError } = require('./errorHandler');
 const User = require('../models/user.model');
@@ -40,3 +44,4 @@ module.exports = {
   protect,
   restrictTo,
 };
+*/

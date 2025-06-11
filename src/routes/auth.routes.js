@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 const {
   signup,
@@ -26,10 +27,10 @@ router.post('/forgot-password', validateForgotPassword, forgotPassword);
 router.post('/reset-password', validateResetPassword, resetPassword);
 router.get('/verify-email/:token', verifyEmail);
 router.post('/resend-verification', resendVerificationEmail);
+router.get('/me', getCurrentUser);
 
 // Protected routes
 router.post('/logout', isAuthenticated, logout);
-router.get('/me', isAuthenticated, getCurrentUser);
 router.post('/refresh-token', isAuthenticated, refreshToken);
 
 module.exports = router;

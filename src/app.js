@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
@@ -7,10 +6,10 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const compression = require('compression');
 const morgan = require('morgan');
-const { errorHandler, AppError } = require('./middlewares/errorHandler');
-const logger = require('./utils/logger');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const { errorHandler, AppError } = require('./middlewares/errorHandler');
+const logger = require('./utils/logger');
 const passport = require('./config/passport');
 
 // Import routes
@@ -24,6 +23,7 @@ const paymentRoutes = require('./routes/payment.routes');
 const adminRoutes = require('./routes/admin.routes');
 const professionalRoutes = require('./routes/professionalRoutes');
 const reviewRoutes = require('./routes/review.routes');
+const petRoutes = require('./routes/pet.routes');
 
 const app = express();
 
@@ -42,11 +42,11 @@ app.use(xss());
 
 // Rate limiting middleware
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 300, // Limit each IP to 300 requests per windowMs
   message: {
     status: 'error',
-    message: 'Too many requests from this IP, please try again after 15 minutes',
+    message: 'Too many requests from this IP, please try again after a minute',
   },
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
@@ -104,6 +104,7 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/professionals', professionalRoutes);
 app.use('/api/reviews', reviewRoutes);
+app.use('/api/pets', petRoutes);
 
 // Handle unhandled routes
 app.all('*', (req, res, next) => {
