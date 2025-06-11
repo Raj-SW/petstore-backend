@@ -5,6 +5,10 @@ const validateUpdateProfile = (req, res, next) => {
   const schema = Joi.object({
     name: Joi.string().min(2).max(50),
     email: Joi.string().email(),
+    phoneNumber: Joi.string()
+      .pattern(/^[0-9]{8}$/)
+      .message('Phone number must be 8 digits'),
+    address: Joi.string().min(5).max(200),
   });
 
   const { error } = schema.validate(req.body);

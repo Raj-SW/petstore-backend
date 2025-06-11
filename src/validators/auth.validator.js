@@ -1,71 +1,77 @@
 const Joi = require('joi');
 const { AppError } = require('../middlewares/errorHandler');
 
-const validateRegister = (req, res, next) => {
-  const schema = Joi.object({
-    name: Joi.string().required().min(2).max(50),
-    email: Joi.string().required().email(),
-    password: Joi.string()
-      .required()
-      .min(8)
-      .pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])'))
-      .message(
-        'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
-      ),
-  });
+const signupSchema = Joi.object({
+  name: Joi.string().required().trim(),
+  email: Joi.string().email().required().trim(),
+  phoneNumber: Joi.string()
+    .pattern(/^[0-9]{8}$/)
+    .required()
+    .trim(),
+  address: Joi.string().required().trim(),
+  password: Joi.string()
+    .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
+    .required()
+    .messages({
+      'string.pattern.base':
+        'Password must be at least 8 characters long and include one uppercase letter, one lowercase letter, one number, and one special character.',
+    }),
+  role: Joi.string()
+    .valid('customer', 'veterinarian', 'groomer', 'trainer', 'admin')
+    .default('customer'),
+});
 
-  const { error } = schema.validate(req.body);
+const loginSchema = Joi.object({
+  email: Joi.string().email().required().trim(),
+  password: Joi.string().required(),
+});
+
+const forgotPasswordSchema = Joi.object({
+  email: Joi.string().email().required().trim(),
+});
+
+const resetPasswordSchema = Joi.object({
+  token: Joi.string().required(),
+  password: Joi.string().min(8).required(),
+});
+
+const validateRegister = (req, res, next) => {
+  const { error } = signupSchema.validate(req.body);
   if (error) {
     return next(new AppError(error.details[0].message, 400));
   }
-  next();
+  return next();
 };
 
 const validateLogin = (req, res, next) => {
-  const schema = Joi.object({
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-  });
-
-  const { error } = schema.validate(req.body);
+  const { error } = loginSchema.validate(req.body);
   if (error) {
     return next(new AppError(error.details[0].message, 400));
   }
-  next();
+  return next();
 };
 
 const validateForgotPassword = (req, res, next) => {
-  const schema = Joi.object({
-    email: Joi.string().required().email(),
-  });
-
-  const { error } = schema.validate(req.body);
+  const { error } = forgotPasswordSchema.validate(req.body);
   if (error) {
     return next(new AppError(error.details[0].message, 400));
   }
-  next();
+  return next();
 };
 
 const validateResetPassword = (req, res, next) => {
-  const schema = Joi.object({
-    token: Joi.string().required(),
-    password: Joi.string()
-      .required()
-      .min(8)
-      .pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])'))
-      .message(
-        'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
-      ),
-  });
-
-  const { error } = schema.validate(req.body);
+  const { error } = resetPasswordSchema.validate(req.body);
   if (error) {
     return next(new AppError(error.details[0].message, 400));
   }
-  next();
+  return next();
 };
 
 module.exports = {
+  signupSchema,
+  loginSchema,
+  forgotPasswordSchema,
+  resetPasswordSchema,
   validateRegister,
   validateLogin,
   validateForgotPassword,

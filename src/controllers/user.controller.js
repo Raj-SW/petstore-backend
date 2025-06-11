@@ -18,7 +18,7 @@ exports.getProfile = async (req, res, next) => {
 // Update user profile
 exports.updateProfile = async (req, res, next) => {
   try {
-    const { name, email } = req.body;
+    const { name, email, phoneNumber, address } = req.body;
 
     // Don't allow password updates through this route
     if (req.body.password) {
@@ -27,9 +27,17 @@ exports.updateProfile = async (req, res, next) => {
       );
     }
 
+    // Check if email is already taken by another user
+    if (email) {
+      const existingUser = await User.findOne({ email, _id: { $ne: req.user.id } });
+      if (existingUser) {
+        return next(new AppError('Email is already in use', 400));
+      }
+    }
+
     const user = await User.findByIdAndUpdate(
       req.user.id,
-      { name, email },
+      { name, email, phoneNumber, address },
       { new: true, runValidators: true }
     ).select('-password');
 
