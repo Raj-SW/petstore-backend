@@ -23,7 +23,13 @@ const signupSchema = Joi.object({
 
 const loginSchema = Joi.object({
   email: Joi.string().email().required().trim(),
-  password: Joi.string().required(),
+  password: Joi.string()
+    .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
+    .required()
+    .messages({
+      'string.pattern.base':
+        'Password must be at least 8 characters long and include one uppercase letter, one lowercase letter, one number, and one special character.',
+    }),
 });
 
 const forgotPasswordSchema = Joi.object({

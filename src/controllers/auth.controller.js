@@ -1,11 +1,11 @@
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const passport = require('passport');
 const { AppError } = require('../middlewares/errorHandler');
 const User = require('../models/user.model');
 const { sendEmail } = require('../utils/email');
 const logger = require('../utils/logger');
-const bcrypt = require('bcryptjs');
-const passport = require('passport');
 
 // Generate tokens
 const generateTokens = (user) => {
@@ -15,9 +15,9 @@ const generateTokens = (user) => {
 };
 
 // Register new user
-exports.signup = async (req, res, next) => {
+const signup = async (req, res, next) => {
   try {
-    const { name, email, phoneNumber, address, password, role = 'customer' } = req.body;
+    const { name, email, phoneNumber, address, password } = req.body;
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
@@ -32,7 +32,7 @@ exports.signup = async (req, res, next) => {
       phoneNumber,
       address,
       password,
-      role,
+      role: 'customer',
     });
 
     // Remove password from response
@@ -45,7 +45,7 @@ exports.signup = async (req, res, next) => {
       }
       res.status(201).json({
         success: true,
-        message: 'Registration successful',
+        message: 'Registration successful. Try signing in now',
         data: user,
       });
     });
@@ -55,7 +55,7 @@ exports.signup = async (req, res, next) => {
 };
 
 // Login user
-exports.login = (req, res, next) => {
+const login = (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
     if (err) {
       return next(err);
@@ -80,7 +80,7 @@ exports.login = (req, res, next) => {
 };
 
 // Logout user
-exports.logout = (req, res, next) => {
+const logout = (req, res, next) => {
   req.logout((err) => {
     if (err) {
       return next(err);
@@ -93,7 +93,7 @@ exports.logout = (req, res, next) => {
 };
 
 // Get current user
-exports.getCurrentUser = (req, res) => {
+const getCurrentUser = (req, res) => {
   if (!req.user) {
     return res.status(401).json({
       success: false,
@@ -112,7 +112,7 @@ exports.getCurrentUser = (req, res) => {
 };
 
 // Refresh token
-exports.refreshToken = async (req, res, next) => {
+const refreshToken = async (req, res, next) => {
   try {
     const { refreshToken } = req.body;
 
@@ -142,7 +142,7 @@ exports.refreshToken = async (req, res, next) => {
 };
 
 // Forgot password
-exports.forgotPassword = async (req, res, next) => {
+const forgotPassword = async (req, res, next) => {
   try {
     const { email } = req.body;
 
@@ -176,7 +176,7 @@ exports.forgotPassword = async (req, res, next) => {
 };
 
 // Reset password
-exports.resetPassword = async (req, res, next) => {
+const resetPassword = async (req, res, next) => {
   try {
     const { token, password } = req.body;
 
@@ -209,7 +209,7 @@ exports.resetPassword = async (req, res, next) => {
 };
 
 // Verify email
-exports.verifyEmail = async (req, res, next) => {
+const verifyEmail = async (req, res, next) => {
   try {
     const { token } = req.params;
 
@@ -238,7 +238,7 @@ exports.verifyEmail = async (req, res, next) => {
 };
 
 // Resend verification email
-exports.resendVerificationEmail = async (req, res, next) => {
+const resendVerificationEmail = async (req, res, next) => {
   try {
     const { email } = req.body;
 
@@ -248,10 +248,10 @@ exports.resendVerificationEmail = async (req, res, next) => {
     }
 
     if (user.isEmailVerified) {
-      return next(new AppError('Email already verified', 400));
+      return next(new AppError('Email is already verified', 400));
     }
 
-    // Generate new verification token
+    // Generate verification token
     const verificationToken = crypto.randomBytes(32).toString('hex');
     user.emailVerificationToken = verificationToken;
     user.emailVerificationExpires = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
@@ -265,7 +265,7 @@ exports.resendVerificationEmail = async (req, res, next) => {
     await sendEmail({
       email: user.email,
       subject: 'Email Verification',
-      message: `Please verify your email by clicking: ${verificationUrl}`,
+      message: `Verify your email by clicking: ${verificationUrl}`,
     });
 
     res.status(200).json({
@@ -275,4 +275,16 @@ exports.resendVerificationEmail = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+module.exports = {
+  signup,
+  login,
+  logout,
+  getCurrentUser,
+  refreshToken,
+  forgotPassword,
+  resetPassword,
+  verifyEmail,
+  resendVerificationEmail,
 };

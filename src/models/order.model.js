@@ -88,18 +88,18 @@ const orderSchema = new mongoose.Schema(
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  }
+  },
 );
 
 // Virtual for final amount after discount
-orderSchema.virtual('finalAmount').get(function() {
+orderSchema.virtual('finalAmount').get(function () {
   return this.totalAmount - this.discount;
 });
 
 // Indexes for efficient querying
 orderSchema.index({ user: 1 });
 orderSchema.index({ status: 1 });
-orderSchema.index({ 'paymentStatus': 1 });
+orderSchema.index({ paymentStatus: 1 });
 orderSchema.index({ createdAt: -1 });
 
-module.exports = mongoose.model('Order', orderSchema); 
+module.exports = mongoose.model('Order', orderSchema);

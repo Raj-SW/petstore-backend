@@ -11,6 +11,7 @@ const MongoStore = require('connect-mongo');
 const { errorHandler, AppError } = require('./middlewares/errorHandler');
 const logger = require('./utils/logger');
 const passport = require('./config/passport');
+const { swaggerUi, specs } = require('./config/swagger');
 
 // Import routes
 const authRoutes = require('./routes/auth.routes');
@@ -21,7 +22,7 @@ const orderRoutes = require('./routes/order.routes');
 const appointmentRoutes = require('./routes/appointment.routes');
 const paymentRoutes = require('./routes/payment.routes');
 const adminRoutes = require('./routes/admin.routes');
-const professionalRoutes = require('./routes/professionalRoutes');
+const professionalRoutes = require('./routes/professional.routes');
 const reviewRoutes = require('./routes/review.routes');
 const petRoutes = require('./routes/pet.routes');
 
@@ -92,6 +93,17 @@ app.use(session(sessionConfig));
 // Initialize Passport and restore authentication state from session
 app.use(passport.initialize());
 app.use(passport.session());
+
+// API Documentation
+app.use(
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(specs, {
+    explorer: true,
+    customCss: '.swagger-ui .topbar { display: none }',
+    customSiteTitle: 'PetStore API Documentation',
+  })
+);
 
 // Routes
 app.use('/api/auth', authRoutes);

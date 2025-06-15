@@ -1,39 +1,39 @@
 const express = require('express');
-const {
-  createAppointment,
-  getAppointments,
-  getAppointment,
-  updateAppointmentStatus,
-  cancelAppointment,
-  getMyAppointments,
-  getServiceProviderAppointments,
-  getAppointmentsByProfessional,
-  getAppointmentsByOwner,
-  getAllAppointments,
-} = require('../controllers/appointment.controller');
-const { validateAppointment } = require('../validators/appointment.validator');
-const { isAuthenticated, isAdmin } = require('../middlewares/auth.middleware');
 
 const router = express.Router();
+const {
+  createAppointment,
+  getUserAppointments,
+  getProfessionalAppointments,
+  getAppointmentById,
+  updateAppointmentStatus,
+  deleteAppointment,
+  getPublicProfessionalAppointments,
+} = require('../controllers/appointment.controller');
+const { isAuthenticated, isServiceProvider } = require('../middlewares/auth.middleware');
 
-// Appointment Routes
-// Public: GET /professional/:professionalId
-// Protected (isAuthenticated): POST /, GET /my-appointments, GET /:id, PATCH /:id/status, PATCH /:id/cancel, GET /owner/:ownerId, GET /provider/appointments
-// Admin-only: GET /
+// Public route for getting professional's appointments
+router.get('/professional/:professionalId', getPublicProfessionalAppointments);
 
-// Public routes to fetch appointments by professionalId or ownerId (number)
-router.get('/professional/:professionalId', getAppointmentsByProfessional);
-router.get('/owner/:ownerId', getAppointmentsByOwner);
+// All routes require authentication
+router.use(isAuthenticated);
 
-// Public route to fetch all appointments
-router.get('/', getAllAppointments);
+// Create a new appointment (customers only)
+router.post('/', isAuthenticated, createAppointment);
 
-// Protected routes
-router.post('/', isAuthenticated, validateAppointment, createAppointment);
-router.get('/my-appointments', isAuthenticated, getMyAppointments);
-router.get('/:id', isAuthenticated, getAppointment);
-router.patch('/:id/status', isAuthenticated, updateAppointmentStatus);
-router.patch('/:id/cancel', isAuthenticated, cancelAppointment);
-router.get('/provider/appointments', isAuthenticated, getServiceProviderAppointments);
+// Get all appointments for the logged-in user (customers)
+router.get('/my-appointments', isAuthenticated, getUserAppointments);
+
+// Get professional's appointments (professionals only)
+router.get('/professional-appointments', isServiceProvider, getProfessionalAppointments);
+
+// Get a specific appointment by ID
+router.get('/:appointmentId', getAppointmentById);
+
+// Update appointment status
+router.patch('/:appointmentId/status', updateAppointmentStatus);
+
+// Cancel/Delete an appointment
+router.delete('/:appointmentId', deleteAppointment);
 
 module.exports = router;

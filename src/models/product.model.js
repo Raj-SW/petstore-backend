@@ -13,7 +13,7 @@ const productSchema = new mongoose.Schema(
     stock: Number,
     slug: String,
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 // Prevent OverwriteModelError in dev/hot-reload

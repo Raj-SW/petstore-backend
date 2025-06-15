@@ -4,7 +4,9 @@ const { AppError } = require('../middlewares/errorHandler');
 // Create a new pet
 exports.createPet = async (req, res, next) => {
   try {
-    const { name, breed, age, type, color, gender, description } = req.body;
+    const {
+      name, breed, age, type, color, gender, description,
+    } = req.body;
 
     // Validate required fields
     if (!name || !breed || !age || !type || !color || !gender) {
@@ -76,7 +78,9 @@ exports.getPet = async (req, res, next) => {
 // Update a pet
 exports.updatePet = async (req, res, next) => {
   try {
-    const { name, breed, age, type, color, gender, description } = req.body;
+    const {
+      name, breed, age, type, color, gender, description,
+    } = req.body;
 
     // Validate age if provided
     if (age !== undefined && (age < 0 || age > 30)) {
@@ -95,8 +99,10 @@ exports.updatePet = async (req, res, next) => {
 
     const updatedPet = await Pet.findByIdAndUpdate(
       req.params.id,
-      { name, breed, age, type, color, gender, description },
-      { new: true, runValidators: true }
+      {
+        name, breed, age, type, color, gender, description,
+      },
+      { new: true, runValidators: true },
     );
 
     res.status(200).json({

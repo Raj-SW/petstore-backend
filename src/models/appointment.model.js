@@ -1,64 +1,75 @@
 const mongoose = require('mongoose');
 
 const appointmentSchema = new mongoose.Schema({
-  _id: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
-  title: {
+  appointmentType: {
     type: String,
     required: true,
   },
-  datetimeISO: {
+  professionalId: {
     type: String,
+    ref: 'User',
+    required: true,
+  },
+  professionalName: {
+    type: String,
+    ref: 'User',
+    required: true,
+  },
+  professionalAddress: {
+    type: String,
+    required: true,
+  },
+  dateTime: {
+    type: Date,
+    required: true,
+  },
+  duration: {
+    type: Number, // Duration in minutes
     required: true,
   },
   description: {
     type: String,
+    required: true,
   },
-  status: {
-    type: String,
-  },
-  type: {
-    type: String,
-  },
-  role: {
-    type: String,
-  },
-  location: {
-    type: String,
-  },
-  icon: {
+  additionalNotes: {
     type: String,
   },
   petId: {
-    type: Number,
+    type: String,
+    ref: 'Pet',
+    required: true,
   },
   petName: {
     type: String,
+    ref: 'Pet',
+    required: true,
   },
-  petType: {
+  userId: {
     type: String,
+    ref: 'User',
+    required: true,
   },
-  ownerId: {
-    type: Number,
-  },
-  ownerName: {
+  status: {
     type: String,
+    enum: ['PENDING', 'CONFIRMED', 'CANCELLED', 'COMPLETED'],
+    default: 'PENDING',
   },
-  duration: {
-    type: Number,
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
-  notes: {
-    type: String,
-  },
-  professionalId: {
-    type: Number,
-  },
-  professionalName: {
-    type: String,
+  updatedAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 
-module.exports = mongoose.model('Appointment', appointmentSchema);
+// Update the updatedAt timestamp before saving
+appointmentSchema.pre('save', function (next) {
+  this.updatedAt = Date.now();
+  next();
+});
+
+const Appointment = mongoose.model('Appointment', appointmentSchema);
+
+module.exports = Appointment;

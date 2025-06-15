@@ -27,4 +27,4 @@ exports.sendEmail = async ({ email, subject, message }) => {
     logger.error('Error sending email:', error);
     throw new Error('Error sending email');
   }
-}; 
+};

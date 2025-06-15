@@ -10,7 +10,7 @@ exports.initializePayment = async (req, res, next) => {
   try {
     const { paymentMethod } = req.body;
     const order = await Order.findById(req.params.orderId);
-    
+
     if (!order) {
       return next(new AppError('Order not found', 404));
     }
@@ -41,7 +41,7 @@ exports.initializePayment = async (req, res, next) => {
       data: {
         ...paymentData,
         orderId: order._id,
-        paymentMethod
+        paymentMethod,
       },
     });
   } catch (error) {
@@ -82,7 +82,7 @@ exports.confirmPayment = async (req, res, next) => {
         transactionId: paymentResult.transactionId,
         paymentDate: paymentResult.paymentDate,
         amount: order.finalAmount,
-        paymentMethod
+        paymentMethod,
       };
       await order.save();
 
@@ -96,7 +96,7 @@ exports.confirmPayment = async (req, res, next) => {
           orderId: order._id,
           amount: order.finalAmount,
           transactionId: paymentResult.transactionId,
-          paymentMethod
+          paymentMethod,
         },
       });
     }
@@ -150,7 +150,7 @@ exports.processRefund = async (req, res, next) => {
         orderId: order._id,
         amount: order.finalAmount,
         refundId: refundResult.transactionId,
-        paymentMethod: order.paymentDetails.paymentMethod
+        paymentMethod: order.paymentDetails.paymentMethod,
       },
     });
 
@@ -176,7 +176,7 @@ exports.handleWebhook = async (req, res, next) => {
         event = stripe.webhooks.constructEvent(
           req.body,
           sig,
-          process.env.STRIPE_WEBHOOK_SECRET
+          process.env.STRIPE_WEBHOOK_SECRET,
         );
         result = await PaymentService.handleWebhookEvent(event);
       } catch (err) {
@@ -190,7 +190,7 @@ exports.handleWebhook = async (req, res, next) => {
       event = req.body;
       result = {
         type: event.event_type,
-        paymentIntentId: event.resource.id
+        paymentIntentId: event.resource.id,
       };
     } else {
       return next(new AppError('Invalid payment method', 400));
@@ -203,19 +203,19 @@ exports.handleWebhook = async (req, res, next) => {
 
       if (order) {
         switch (result.type) {
-          case 'payment_intent.succeeded':
-          case 'PAYMENT.CAPTURE.COMPLETED':
-            order.paymentStatus = 'completed';
-            break;
-          case 'payment_intent.payment_failed':
-          case 'PAYMENT.CAPTURE.DENIED':
-            order.paymentStatus = 'failed';
-            break;
-          case 'charge.refunded':
-          case 'PAYMENT.REFUND.COMPLETED':
-            order.paymentStatus = 'refunded';
-            order.status = 'cancelled';
-            break;
+        case 'payment_intent.succeeded':
+        case 'PAYMENT.CAPTURE.COMPLETED':
+          order.paymentStatus = 'completed';
+          break;
+        case 'payment_intent.payment_failed':
+        case 'PAYMENT.CAPTURE.DENIED':
+          order.paymentStatus = 'failed';
+          break;
+        case 'charge.refunded':
+        case 'PAYMENT.REFUND.COMPLETED':
+          order.paymentStatus = 'refunded';
+          order.status = 'cancelled';
+          break;
         }
         await order.save();
       }
@@ -225,4 +225,4 @@ exports.handleWebhook = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}; 
+};

@@ -1,6 +1,6 @@
+const bcrypt = require('bcryptjs');
 const User = require('../models/user.model');
 const { AppError } = require('../middlewares/errorHandler');
-const bcrypt = require('bcryptjs');
 
 // Get user profile
 exports.getProfile = async (req, res, next) => {
@@ -18,12 +18,14 @@ exports.getProfile = async (req, res, next) => {
 // Update user profile
 exports.updateProfile = async (req, res, next) => {
   try {
-    const { name, email, phoneNumber, address } = req.body;
+    const {
+      name, email, phoneNumber, address,
+    } = req.body;
 
     // Don't allow password updates through this route
     if (req.body.password) {
       return next(
-        new AppError('This route is not for password updates. Please use /change-password', 400)
+        new AppError('This route is not for password updates. Please use /change-password', 400),
       );
     }
 
@@ -37,8 +39,10 @@ exports.updateProfile = async (req, res, next) => {
 
     const user = await User.findByIdAndUpdate(
       req.user.id,
-      { name, email, phoneNumber, address },
-      { new: true, runValidators: true }
+      {
+        name, email, phoneNumber, address,
+      },
+      { new: true, runValidators: true },
     ).select('-password');
 
     res.status(200).json({

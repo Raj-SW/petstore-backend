@@ -37,7 +37,9 @@ describe('Order Controller - Checkout Scenarios', () => {
     await Order.deleteMany({});
     user = { name: 'Test User', email: 'testuser@example.com', password: 'Password123*' };
     cookie = await createUserAndLogin(agent, user);
-    product = await Product.create({ title: 'Dog Food', price: 50, stock: 10, isActive: true });
+    product = await Product.create({
+      title: 'Dog Food', price: 50, stock: 10, isActive: true,
+    });
   });
 
   afterAll(async () => {
@@ -297,7 +299,7 @@ describe('Order Controller - Checkout Scenarios', () => {
     const successCount = [res1, res2].filter((r) => r.status === 201).length;
     expect(successCount).toBe(1);
     const failCount = [res1, res2].filter(
-      (r) => r.status === 400 && /Insufficient stock/.test(r.body.message)
+      (r) => r.status === 400 && /Insufficient stock/.test(r.body.message),
     ).length;
     expect(failCount).toBe(1);
   });

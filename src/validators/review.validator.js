@@ -16,4 +16,4 @@ const validateReview = (req, res, next) => {
 
 module.exports = {
   validateReview,
-}; 
+};

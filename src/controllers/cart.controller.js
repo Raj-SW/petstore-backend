@@ -49,7 +49,7 @@ exports.addToCart = async (req, res, next) => {
 
     // Check if product already in cart
     const existingItem = cart.items.find(
-      (item) => item.product.toString() === productId
+      (item) => item.product.toString() === productId,
     );
 
     if (existingItem) {
@@ -89,7 +89,7 @@ exports.updateCartItem = async (req, res, next) => {
 
     // Check if product exists in cart
     const cartItem = cart.items.find(
-      (item) => item.product.toString() === productId
+      (item) => item.product.toString() === productId,
     );
     if (!cartItem) {
       return next(new AppError('Item not found in cart', 404));
@@ -128,7 +128,7 @@ exports.removeCartItem = async (req, res, next) => {
 
     // Remove item from cart
     cart.items = cart.items.filter(
-      (item) => item.product.toString() !== productId
+      (item) => item.product.toString() !== productId,
     );
 
     await cart.save();
@@ -191,4 +191,4 @@ exports.clearCart = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}; 
+};

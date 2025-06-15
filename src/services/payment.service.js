@@ -28,7 +28,7 @@ class PaymentService {
   static async confirmPayment(paymentIntentId) {
     try {
       const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
-      
+
       if (paymentIntent.status === 'succeeded') {
         return {
           status: 'completed',
@@ -36,7 +36,7 @@ class PaymentService {
           paymentDate: new Date(paymentIntent.created * 1000)
         };
       }
-      
+
       throw new AppError('Payment not successful', 400);
     } catch (error) {
       logger.error('Stripe payment confirmation failed:', error);

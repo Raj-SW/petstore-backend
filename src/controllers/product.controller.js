@@ -1,7 +1,7 @@
+const mongoose = require('mongoose');
 const Product = require('../models/product.model');
 const { AppError } = require('../middlewares/errorHandler');
 const logger = require('../utils/logger');
-const mongoose = require('mongoose');
 
 // Create new product
 exports.createProduct = async (req, res, next) => {

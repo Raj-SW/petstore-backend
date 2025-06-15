@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 
 const authRoutes = require('./auth.routes');
@@ -20,4 +21,4 @@ router.use('/orders', orderRoutes);
 router.use('/reviews', reviewRoutes);
 router.use('/admin', adminRoutes);
 
-module.exports = router; 
+module.exports = router;

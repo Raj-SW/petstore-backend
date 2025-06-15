@@ -46,7 +46,7 @@ exports.searchProducts = async (req, res, next) => {
     let sortQuery = {};
     if (sort) {
       const sortFields = sort.split(',');
-      sortFields.forEach(field => {
+      sortFields.forEach((field) => {
         const order = field.startsWith('-') ? -1 : 1;
         const fieldName = field.startsWith('-') ? field.slice(1) : field;
         sortQuery[fieldName] = order;
@@ -111,4 +111,4 @@ exports.getSuggestions = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}; 
+};

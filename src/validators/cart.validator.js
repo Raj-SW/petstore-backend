@@ -42,4 +42,4 @@ module.exports = {
   validateAddToCart,
   validateUpdateCartItem,
   validateApplyDiscount,
-}; 
+};

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-const { users, categories, products, appointments, orders } = require('./mockData');
+const {
+  users, categories, products, appointments, orders,
+} = require('./mockData');
 const User = require('../models/user');
 const Category = require('../models/category');
 const Product = require('../models/product');

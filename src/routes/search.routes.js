@@ -10,4 +10,4 @@ const router = express.Router();
 router.get('/products', searchProducts);
 router.get('/suggestions', getSuggestions);
 
-module.exports = router; 
+module.exports = router;

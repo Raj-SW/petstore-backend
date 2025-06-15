@@ -24,8 +24,8 @@ exports.createOrder = async (req, res, next) => {
     // Prepare order items and recalculate totals
     let totalItems = 0;
     let totalAmount = 0;
-    let orderItems = [];
-    let logDetails = [];
+    const orderItems = [];
+    const logDetails = [];
 
     for (const item of cart.items) {
       const product = await Product.findById(item.product).session(session);
@@ -48,7 +48,7 @@ exports.createOrder = async (req, res, next) => {
         return next(new AppError(`Insufficient stock for ${product.title}`, 400));
       }
       // Use current price from DB
-      const price = product.price;
+      const { price } = product;
       totalItems += item.quantity;
       totalAmount += price * item.quantity;
       orderItems.push({
@@ -89,7 +89,7 @@ exports.createOrder = async (req, res, next) => {
           notes,
         },
       ],
-      { session }
+      { session },
     );
 
     // Update product stock
@@ -99,7 +99,7 @@ exports.createOrder = async (req, res, next) => {
         {
           $inc: { stock: -item.quantity },
         },
-        { session }
+        { session },
       );
     }
 
@@ -205,7 +205,9 @@ exports.getMyOrders = async (req, res, next) => {
 // Update order status (admin only)
 exports.updateOrderStatus = async (req, res, next) => {
   try {
-    const { status, trackingNumber, estimatedDelivery, notes } = req.body;
+    const {
+      status, trackingNumber, estimatedDelivery, notes,
+    } = req.body;
 
     const order = await Order.findById(req.params.id);
     if (!order) {

@@ -41,7 +41,7 @@ const categorySchema = new mongoose.Schema(
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  }
+  },
 );
 
 // Virtual for subcategories
@@ -59,7 +59,7 @@ categorySchema.virtual('products', {
 });
 
 // Pre-save middleware to generate slug
-categorySchema.pre('save', function(next) {
+categorySchema.pre('save', function (next) {
   if (this.isModified('name')) {
     this.slug = this.name
       .toLowerCase()
@@ -74,4 +74,4 @@ categorySchema.index({ name: 1 });
 categorySchema.index({ slug: 1 });
 categorySchema.index({ parent: 1 });
 
-module.exports = mongoose.model('Category', categorySchema); 
+module.exports = mongoose.model('Category', categorySchema);

@@ -42,7 +42,7 @@ exports.createReview = async (req, res, next) => {
     const product = await Product.findById(productId);
     const reviews = await Review.find({ product: productId });
     const avgRating = reviews.reduce((acc, item) => acc + item.rating, 0) / reviews.length;
-    
+
     product.rating = avgRating;
     await product.save();
 
@@ -95,7 +95,7 @@ exports.updateReview = async (req, res, next) => {
     const product = await Product.findById(review.product);
     const reviews = await Review.find({ product: review.product });
     const avgRating = reviews.reduce((acc, item) => acc + item.rating, 0) / reviews.length;
-    
+
     product.rating = avgRating;
     await product.save();
 
@@ -130,7 +130,7 @@ exports.deleteReview = async (req, res, next) => {
     const avgRating = reviews.length > 0
       ? reviews.reduce((acc, item) => acc + item.rating, 0) / reviews.length
       : 0;
-    
+
     product.rating = avgRating;
     await product.save();
 
@@ -141,4 +141,4 @@ exports.deleteReview = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}; 
+};

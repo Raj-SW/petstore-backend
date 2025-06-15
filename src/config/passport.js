@@ -28,8 +28,8 @@ passport.use(
       } catch (error) {
         return done(error);
       }
-    }
-  )
+    },
+  ),
 );
 
 // Serialize user for the session
