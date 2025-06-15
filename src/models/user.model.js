@@ -34,12 +34,16 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['customer', 'veterinarian', 'groomer', 'trainer', 'admin'],
+      enum: ['customer', 'veterinarian', 'groomer', 'trainer', 'petTaxi', 'admin'],
       default: 'customer',
     },
     isEmailVerified: {
       type: Boolean,
       default: false,
+    },
+    profileImage: {
+      type: String,
+      trim: true,
     },
     passwordResetToken: String,
     passwordResetExpires: Date,
@@ -76,10 +80,7 @@ const userSchema = new mongoose.Schema(
         type: Number,
         default: 0,
       },
-      profileImage: {
-        type: String,
-        trim: true,
-      },
+
       availability: {
         type: Map,
         of: {
@@ -149,7 +150,7 @@ userSchema.methods.generateRefreshToken = function () {
 
 // Virtual to check if user is a professional
 userSchema.virtual('isProfessional').get(function () {
-  return ['veterinarian', 'groomer', 'trainer'].includes(this.role);
+  return ['veterinarian', 'groomer', 'trainer', 'petTaxi'].includes(this.role);
 });
 
 // Method to get professional data only
@@ -165,9 +166,8 @@ userSchema.methods.getProfessionalData = function () {
     phoneNumber: this.phoneNumber,
     address: this.address,
     role: this.role,
-    ...this.professionalInfo.toObject(),
-    createdAt: this.createdAt,
-    updatedAt: this.updatedAt,
+    profileImage: this.profileImage,
+    ...this.professionalInfo,
   };
 };
 
@@ -179,10 +179,9 @@ userSchema.methods.getCustomerData = function () {
     email: this.email,
     phoneNumber: this.phoneNumber,
     address: this.address,
+    profileImage: this.profileImage,
     role: this.role,
     isEmailVerified: this.isEmailVerified,
-    createdAt: this.createdAt,
-    updatedAt: this.updatedAt,
   };
 };
 
@@ -192,17 +191,6 @@ userSchema.statics.findProfessionals = function (query = {}) {
     role: { $in: ['veterinarian', 'groomer', 'trainer'] },
     ...query,
   });
-};
-
-// Static method to find available professionals
-userSchema.statics.findAvailableProfessionals = function (filters = {}) {
-  const query = {
-    role: { $in: ['veterinarian', 'groomer', 'trainer'] },
-    'professionalInfo.isActive': true,
-    ...filters,
-  };
-
-  return this.find(query);
 };
 
 const User = mongoose.model('User', userSchema);
