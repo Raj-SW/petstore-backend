@@ -247,8 +247,8 @@ exports.updateAppointmentStatus = async (req, res, next) => {
     }
 
     const appointment = await Appointment.findById(appointmentId).populate([
-      { path: 'professional', select: 'name email phoneNumber' },
-      { path: 'user', select: 'name email phoneNumber' },
+      { path: 'professionalId', select: 'name email phoneNumber' },
+      { path: 'userId', select: 'name email phoneNumber' },
       { path: 'petId', select: 'name' },
     ]);
 
@@ -256,22 +256,22 @@ exports.updateAppointmentStatus = async (req, res, next) => {
       return next(new AppError('Appointment not found', 404));
     }
 
-    // Check if user has permission to update this appointment
-    const isProfessional = appointment.professional._id.toString() === req.user._id.toString();
-    const isCustomer = appointment.user._id.toString() === req.user._id.toString();
+    // Check if user has permission to update this appointment;
+    const isProfessionalAssigned =
+      req.user._id.toString() === appointment.professionalId.toString();
+    const isProfessional = req.user.role === appointment.appointmentType;
     const isAdmin = req.user.role === 'admin';
-
-    if (!isProfessional && !isCustomer && !isAdmin) {
+    if (!isProfessionalAssigned && !isProfessional) {
       return next(new AppError('Access denied', 403));
     }
 
     // Business rules for status updates
     if (status === 'CONFIRMED' && !isProfessional && !isAdmin) {
-      return next(new AppError('Only professionals can confirm appointments', 403));
+      return next(new AppError('Only service providers can confirm appointments', 403));
     }
 
     if (status === 'COMPLETED' && !isProfessional && !isAdmin) {
-      return next(new AppError('Only professionals can mark appointments as completed', 403));
+      return next(new AppError('Only service providers can mark appointments as completed', 403));
     }
 
     appointment.status = status;
@@ -279,30 +279,32 @@ exports.updateAppointmentStatus = async (req, res, next) => {
 
     // Send notification email to both user and professional
     try {
-      // Email to user
+      // Email to customer
       await sendEmail({
-        to: appointment.user.email,
-        subject: `Appointment ${status.toLowerCase()}`,
-        template: 'appointmentStatusUpdate',
+        to: appointment.userId.email,
+        subject: `Your appointment with ${appointment.professionalId.name} is confirmed`,
+        template: 'appointmentStatusUpdateCustomer',
         data: {
-          recipientName: appointment.user.name,
-          appointmentType: appointment.appointmentType,
-          status: status.toLowerCase(),
-          dateTime: appointment.dateTime,
+          recipientName: appointment.userId.name,
+          vetName: appointment.professionalId.name,
           petName: appointment.petId.name,
+          description: appointment.description,
+          address: appointment.address,
+          dateTime: appointment.dateTime,
         },
       });
       // Email to professional
       await sendEmail({
-        to: appointment.professional.email,
-        subject: `Appointment ${status.toLowerCase()}`,
-        template: 'appointmentStatusUpdate',
+        to: appointment.professionalId.email,
+        subject: `You have confirmed an appointment with ${appointment.userId.name}`,
+        template: 'appointmentStatusUpdateProfessional',
         data: {
-          recipientName: appointment.professional.name,
-          appointmentType: appointment.appointmentType,
-          status: status.toLowerCase(),
-          dateTime: appointment.dateTime,
+          recipientName: appointment.professionalId.name,
+          customerName: appointment.userId.name,
           petName: appointment.petId.name,
+          description: appointment.description,
+          address: appointment.address,
+          dateTime: appointment.dateTime,
         },
       });
     } catch (emailError) {
