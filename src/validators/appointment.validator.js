@@ -3,46 +3,43 @@ const { AppError } = require('../middlewares/errorHandler');
 
 const appointmentSchema = Joi.object({
   appointmentType: Joi.string()
-    .valid('Veterinary', 'Grooming', 'Training', 'Other')
+    .valid('veterinarian', 'groomer', 'trainer', 'petTaxi', 'other')
     .required()
     .messages({
       'any.only': 'Invalid appointment type',
       'any.required': 'Appointment type is required',
     }),
 
+  professionalName: Joi.string().required().messages({
+    'any.required': 'Professional name is required',
+  }),
+
   professionalId: Joi.string().required().messages({
     'any.required': 'Professional ID is required',
   }),
 
-  dateTimeISO: Joi.string().required().messages({
+  dateTime: Joi.date().required().messages({
     'any.required': 'Appointment date and time is required',
+    'date.base': 'Invalid date format',
   }),
 
-  duration: Joi.number().min(15).max(240).required()
-    .messages({
-      'number.base': 'Duration must be a number',
-      'number.min': 'Duration must be at least 15 minutes',
-      'number.max': 'Duration cannot exceed 240 minutes',
-      'any.required': 'Duration is required',
-    }),
-
-  description: Joi.string().min(10).max(500).required()
-    .messages({
-      'string.base': 'Description must be a string',
-      'string.min': 'Description must be at least 10 characters long',
-      'string.max': 'Description cannot exceed 500 characters',
-      'any.required': 'Description is required',
-    }),
-
-  additionalNotes: Joi.string().max(1000).allow('').messages({
-    'string.max': 'Additional notes cannot exceed 1000 characters',
+  petName: Joi.string().required().messages({
+    'any.required': 'Pet name is required',
   }),
 
   petId: Joi.string().required().messages({
     'any.required': 'Pet ID is required',
   }),
-  ownerId: Joi.string().required().messages({
-    'any.required': 'Owner ID is required',
+
+  description: Joi.string().min(10).max(500).required().messages({
+    'string.base': 'Description must be a string',
+    'string.min': 'Description must be at least 10 characters long',
+    'string.max': 'Description cannot exceed 500 characters',
+    'any.required': 'Description is required',
+  }),
+
+  address: Joi.string().required().messages({
+    'any.required': 'Appointment address is required',
   }),
 });
 

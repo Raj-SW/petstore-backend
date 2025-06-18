@@ -27,14 +27,13 @@ exports.createAppointment = async (req, res, next) => {
 
     const {
       appointmentType,
+      professionalName,
       professionalId,
-      datetimeISO,
-      duration,
-      status,
-      location,
+      dateTime,
+      petName,
       petId,
       description,
-      notes,
+      address,
     } = req.body;
 
     // Validate ObjectIds
@@ -62,59 +61,90 @@ exports.createAppointment = async (req, res, next) => {
       return next(new AppError('Pet not found', 400));
     }
 
-    // Check if time slot is available
+    // Check if time slot is available for professional
     const existingAppointment = await Appointment.findOne({
-      professional: professionalId,
-      dateTime: new Date(datetimeISO),
+      professionalId,
+      dateTime: new Date(dateTime),
       status: { $in: ['PENDING', 'CONFIRMED'] },
     });
-
     if (existingAppointment) {
       return next(new AppError('This time slot is already booked', 400));
+    }
+
+    // Check if time slot is available for pet (double-booking prevention)
+    const petDoubleBooking = await Appointment.findOne({
+      petId,
+      dateTime: new Date(dateTime),
+      status: { $in: ['PENDING', 'CONFIRMED'] },
+    });
+    if (petDoubleBooking) {
+      return next(new AppError('This pet already has an appointment at this time', 400));
     }
 
     // Create appointment
     const appointment = new Appointment({
       appointmentType,
-      professional: professionalId,
-      professionalLocation: professional.professionalInfo.location?.address || location,
-      dateTime: new Date(datetimeISO),
-      duration,
+      professionalName,
+      professionalId,
+      dateTime: new Date(dateTime),
+      petName,
+      petId,
       description,
-      location,
-      additionalNotes: notes,
-      pet: petId,
+      address,
+      status: 'PENDING',
       user: req.user._id,
-      status: status || 'PENDING',
     });
 
     await appointment.save();
 
     // Populate the appointment with related data
     await appointment.populate([
-      { path: 'professional', select: 'name email phoneNumber role professionalInfo' },
-      { path: 'user', select: 'name email phoneNumber' },
-      { path: 'pet', select: 'name species breed age' },
+      { path: 'professionalId', select: 'name email phoneNumber role professionalInfo' },
+      { path: 'petId', select: 'name species breed age' },
+      { path: 'user', select: 'name email' },
     ]);
 
-    // Send confirmation email to customer
-    try {
-      await sendEmail({
-        to: req.user.email,
-        subject: 'Appointment Confirmation',
-        template: 'appointmentConfirmation',
-        data: {
-          customerName: req.user.name,
-          professionalName: professional.name,
-          appointmentType,
-          dateTime: appointment.dateTime,
-          petName: pet.name,
-        },
-      });
-    } catch (emailError) {
-      console.error('Failed to send confirmation email:', emailError);
-      // Don't fail the appointment creation if email fails
-    }
+    // Send emails asynchronously after saving
+    (async () => {
+      try {
+        // Email to professional
+        await sendEmail({
+          to: professional.email,
+          subject: 'New Appointment Request Received',
+          template: 'appointment-request',
+          data: {
+            professionalName: professional.name,
+            petName,
+            date: new Date(dateTime).toLocaleDateString(),
+            time: new Date(dateTime).toLocaleTimeString(),
+            description,
+            userName: req.user.name,
+            userEmail: req.user.email,
+            userPhone: req.user.phoneNumber,
+          },
+        });
+      } catch (emailError) {
+        console.error('Failed to send appointment request email to professional:', emailError);
+      }
+      try {
+        // Email to user
+        await sendEmail({
+          to: req.user.email,
+          subject: 'Appointment Request Sent',
+          template: 'appointment-confirmation',
+          data: {
+            userName: req.user.name,
+            petName,
+            date: new Date(dateTime).toLocaleDateString(),
+            time: new Date(dateTime).toLocaleTimeString(),
+            description,
+            professionalName: professional.name,
+          },
+        });
+      } catch (emailError) {
+        console.error('Failed to send appointment confirmation email to user:', emailError);
+      }
+    })();
 
     res.status(201).json({
       success: true,
@@ -247,19 +277,28 @@ exports.updateAppointmentStatus = async (req, res, next) => {
     appointment.status = status;
     await appointment.save();
 
-    // Send notification email
+    // Send notification email to both user and professional
     try {
-      const emailRecipient = isProfessional
-        ? appointment.user.email
-        : appointment.professional.email;
-      const recipientName = isProfessional ? appointment.user.name : appointment.professional.name;
-
+      // Email to user
       await sendEmail({
-        to: emailRecipient,
+        to: appointment.user.email,
         subject: `Appointment ${status.toLowerCase()}`,
         template: 'appointmentStatusUpdate',
         data: {
-          recipientName,
+          recipientName: appointment.user.name,
+          appointmentType: appointment.appointmentType,
+          status: status.toLowerCase(),
+          dateTime: appointment.dateTime,
+          petName: appointment.pet.name,
+        },
+      });
+      // Email to professional
+      await sendEmail({
+        to: appointment.professional.email,
+        subject: `Appointment ${status.toLowerCase()}`,
+        template: 'appointmentStatusUpdate',
+        data: {
+          recipientName: appointment.professional.name,
           appointmentType: appointment.appointmentType,
           status: status.toLowerCase(),
           dateTime: appointment.dateTime,

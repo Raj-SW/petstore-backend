@@ -4,49 +4,39 @@ const appointmentSchema = new mongoose.Schema({
   appointmentType: {
     type: String,
     required: true,
+    enum: ['veterinarian', 'groomer', 'trainer', 'petTaxi', 'other'],
+  },
+  professionalName: {
+    type: String,
+    required: true,
   },
   professionalId: {
     type: String,
     ref: 'User',
     required: true,
   },
-  professionalName: {
-    type: String,
-    ref: 'User',
-    required: true,
-  },
-  professionalAddress: {
-    type: String,
-    required: true,
-  },
   dateTime: {
     type: Date,
     required: true,
   },
-  duration: {
-    type: Number, // Duration in minutes
-    required: true,
-  },
-  description: {
+  petName: {
     type: String,
     required: true,
-  },
-  additionalNotes: {
-    type: String,
   },
   petId: {
     type: String,
     ref: 'Pet',
     required: true,
   },
-  petName: {
+
+  description: {
     type: String,
-    ref: 'Pet',
     required: true,
+    minlength: 10,
+    maxlength: 500,
   },
-  userId: {
+  address: {
     type: String,
-    ref: 'User',
     required: true,
   },
   status: {
@@ -61,6 +51,11 @@ const appointmentSchema = new mongoose.Schema({
   updatedAt: {
     type: Date,
     default: Date.now,
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
   },
 });
 
