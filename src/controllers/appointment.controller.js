@@ -162,7 +162,7 @@ exports.getUserAppointments = async (req, res, next) => {
     const { status, page = 1, limit = 10 } = req.query;
     const skip = (page - 1) * limit;
 
-    const query = { user: req.user._id };
+    const query = { userId: req.user._id };
     if (status) {
       query.status = status.toUpperCase();
     }
@@ -366,8 +366,8 @@ exports.deleteAppointment = async (req, res, next) => {
     validateObjectId(appointmentId, 'Appointment ID');
 
     const appointment = await Appointment.findById(appointmentId).populate([
-      { path: 'professional', select: 'name email' },
-      { path: 'user', select: 'name email' },
+      { path: 'professionalId', select: 'name email' },
+      { path: 'userId', select: 'name email' },
     ]);
 
     if (!appointment) {
@@ -375,7 +375,7 @@ exports.deleteAppointment = async (req, res, next) => {
     }
 
     // Check if user has permission to delete this appointment
-    const isCustomer = appointment.user._id.toString() === req.user._id.toString();
+    const isCustomer = appointment.userId._id.toString() === req.user._id.toString();
     const isAdmin = req.user.role === 'admin';
 
     if (!isCustomer && !isAdmin) {
