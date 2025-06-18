@@ -92,7 +92,7 @@ exports.createAppointment = async (req, res, next) => {
       description,
       address,
       status: 'PENDING',
-      user: req.user._id,
+      userId: req.user._id,
     });
 
     await appointment.save();
@@ -101,7 +101,7 @@ exports.createAppointment = async (req, res, next) => {
     await appointment.populate([
       { path: 'professionalId', select: 'name email phoneNumber role professionalInfo' },
       { path: 'petId', select: 'name species breed age' },
-      { path: 'user', select: 'name email' },
+      { path: 'userId', select: 'name email' },
     ]);
 
     // Send emails asynchronously after saving
@@ -169,8 +169,8 @@ exports.getUserAppointments = async (req, res, next) => {
 
     const appointments = await Appointment.find(query)
       .populate([
-        { path: 'professional', select: 'name email phoneNumber role professionalInfo' },
-        { path: 'pet', select: 'name species breed age' },
+        { path: 'professionalId', select: 'name email phoneNumber role ' },
+        { path: 'petId', select: 'name species breed age' },
       ])
       .sort({ dateTime: -1 })
       .skip(skip)
@@ -203,15 +203,15 @@ exports.getProfessionalAppointments = async (req, res, next) => {
     const { status, page = 1, limit = 10 } = req.query;
     const skip = (page - 1) * limit;
 
-    const query = { professional: req.user._id };
+    const query = { professionalId: req.user._id };
     if (status) {
       query.status = status.toUpperCase();
     }
 
     const appointments = await Appointment.find(query)
       .populate([
-        { path: 'user', select: 'name email phoneNumber address' },
-        { path: 'pet', select: 'name species breed age weight medicalHistory' },
+        { path: 'userId', select: 'name email phoneNumber address' },
+        { path: 'petId', select: 'name species breed age weight medicalHistory' },
       ])
       .sort({ dateTime: 1 })
       .skip(skip)
@@ -249,7 +249,7 @@ exports.updateAppointmentStatus = async (req, res, next) => {
     const appointment = await Appointment.findById(appointmentId).populate([
       { path: 'professional', select: 'name email phoneNumber' },
       { path: 'user', select: 'name email phoneNumber' },
-      { path: 'pet', select: 'name' },
+      { path: 'petId', select: 'name' },
     ]);
 
     if (!appointment) {
@@ -289,7 +289,7 @@ exports.updateAppointmentStatus = async (req, res, next) => {
           appointmentType: appointment.appointmentType,
           status: status.toLowerCase(),
           dateTime: appointment.dateTime,
-          petName: appointment.pet.name,
+          petName: appointment.petId.name,
         },
       });
       // Email to professional
@@ -302,7 +302,7 @@ exports.updateAppointmentStatus = async (req, res, next) => {
           appointmentType: appointment.appointmentType,
           status: status.toLowerCase(),
           dateTime: appointment.dateTime,
-          petName: appointment.pet.name,
+          petName: appointment.petId.name,
         },
       });
     } catch (emailError) {
@@ -328,9 +328,9 @@ exports.getAppointmentById = async (req, res, next) => {
     validateObjectId(appointmentId, 'Appointment ID');
 
     const appointment = await Appointment.findById(appointmentId).populate([
-      { path: 'professional', select: 'name email phoneNumber role professionalInfo' },
+      { path: 'professionalId', select: 'name email phoneNumber role professionalInfo' },
       { path: 'user', select: 'name email phoneNumber address' },
-      { path: 'pet', select: 'name species breed age weight medicalHistory' },
+      { path: 'petId', select: 'name species breed age weight medicalHistory' },
     ]);
 
     if (!appointment) {
@@ -389,22 +389,43 @@ exports.deleteAppointment = async (req, res, next) => {
     appointment.status = 'CANCELLED';
     await appointment.save();
 
-    // Notify professional
-    try {
-      await sendEmail({
-        to: appointment.professional.email,
-        subject: 'Appointment Cancelled',
-        template: 'appointmentCancellation',
-        data: {
-          professionalName: appointment.professional.name,
-          customerName: appointment.user.name,
-          appointmentType: appointment.appointmentType,
-          dateTime: appointment.dateTime,
-        },
-      });
-    } catch (emailError) {
-      console.error('Failed to send cancellation email:', emailError);
-    }
+    // Notify both user and professional
+    (async () => {
+      try {
+        // Email to user
+        await sendEmail({
+          to: appointment.user.email,
+          subject: 'Appointment Cancelled',
+          template: 'appointmentStatusUpdate',
+          data: {
+            recipientName: appointment.user.name,
+            appointmentType: appointment.appointmentType,
+            status: 'cancelled',
+            dateTime: appointment.dateTime,
+            petName: appointment.petId.name || (appointment.petId && appointment.petId.name),
+          },
+        });
+      } catch (emailError) {
+        console.error('Failed to send cancellation email to user:', emailError);
+      }
+      try {
+        // Email to professional
+        await sendEmail({
+          to: appointment.professional.email,
+          subject: 'Appointment Cancelled',
+          template: 'appointmentStatusUpdate',
+          data: {
+            recipientName: appointment.professional.name,
+            appointmentType: appointment.appointmentType,
+            status: 'cancelled',
+            dateTime: appointment.dateTime,
+            petName: appointment.petId.name || (appointment.petId && appointment.petId.name),
+          },
+        });
+      } catch (emailError) {
+        console.error('Failed to send cancellation email to professional:', emailError);
+      }
+    })();
 
     res.status(200).json({
       success: true,
