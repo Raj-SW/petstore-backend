@@ -243,7 +243,20 @@ exports.updateAppointmentStatus = async (req, res, next) => {
     // Validate ObjectId
     validateObjectId(appointmentId, 'Appointment ID');
 
-    if (!['PENDING', 'CONFIRMED', 'CANCELLED', 'COMPLETED'].includes(status)) {
+    if (
+      ![
+        'PENDING',
+        'CONFIRMED',
+        'CANCELLED',
+        'COMPLETED',
+        'IN_PROGRESS',
+        'PENDING_PAYMENT',
+        'PAID',
+        'PENDING_REVIEW',
+        'REVIEWED',
+        'REJECTED',
+      ].includes(status)
+    ) {
       return next(new AppError('Invalid status', 400));
     }
 
@@ -274,6 +287,9 @@ exports.updateAppointmentStatus = async (req, res, next) => {
     if (status === 'COMPLETED' && !isProfessional && !isAdmin) {
       return next(new AppError('Only service providers can mark appointments as completed', 403));
     }
+    if (status === appointment.status) {
+      return next(new AppError('Cannot update appointment to the same status', 400));
+    }
 
     appointment.status = status;
     await appointment.save();
@@ -283,7 +299,7 @@ exports.updateAppointmentStatus = async (req, res, next) => {
       // Email to customer
       await sendEmail({
         to: appointment.userId.email,
-        subject: `Your appointment with ${appointment.professionalId.name} is confirmed`,
+        subject: `Your appointment with ${appointment.professionalId.name} is ${status}`,
         template: 'appointmentStatusUpdateCustomer',
         data: {
           recipientName: appointment.userId.name,
@@ -297,7 +313,7 @@ exports.updateAppointmentStatus = async (req, res, next) => {
       // Email to professional
       await sendEmail({
         to: appointment.professionalId.email,
-        subject: `You have confirmed an appointment with ${appointment.userId.name}`,
+        subject: `You have ${status} an appointment with ${appointment.userId.name}`,
         template: 'appointmentStatusUpdateProfessional',
         data: {
           recipientName: appointment.professionalId.name,

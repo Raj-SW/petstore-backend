@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Appointment Confirmed</title>
+    <title>Appointment Status Update</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -21,6 +21,29 @@
       .content {
         padding: 20px 0;
       }
+      .status {
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        text-align: center;
+        font-weight: bold;
+      }
+      .status.confirmed {
+        background-color: #d4edda;
+        color: #155724;
+      }
+      .status.cancelled {
+        background-color: #fff3cd;
+        color: #856404;
+      }
+      .status.rejected {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+      .status.completed {
+        background-color: #cce5ff;
+        color: #004085;
+      }
       .footer {
         text-align: center;
         padding: 20px 0;
@@ -32,11 +55,29 @@
   <body>
     <div class="container">
       <div class="header">
-        <h1>Appointment Confirmed</h1>
+        <h1>Appointment Status Update</h1>
       </div>
       <div class="content">
         <p>Dear {{recipientName}},</p>
-        <p>Your appointment with <strong>{{vetName}}</strong> has been confirmed.</p>
+        <div class="status {{status}}">Appointment Status: {{status}}</div>
+        {{#if (eq status 'confirmed')}}
+        <p>
+          Your appointment with <strong>{{vetName}}</strong> has been <strong>confirmed</strong>.
+        </p>
+        {{else if (eq status 'cancelled')}}
+        <p>
+          Your appointment with <strong>{{vetName}}</strong> has been <strong>cancelled</strong>.
+        </p>
+        {{else if (eq status 'rejected')}}
+        <p>
+          Your appointment with <strong>{{vetName}}</strong> has been <strong>rejected</strong>.
+        </p>
+        {{else}}
+        <p>
+          Your appointment with <strong>{{vetName}}</strong> has been updated. Status:
+          <strong>{{status}}</strong>.
+        </p>
+        {{/if}}
         <p>
           <strong>Pet:</strong> {{petName}}<br />
           <strong>Description:</strong> {{description}}<br />
