@@ -6,6 +6,7 @@ const User = require('../models/user.model');
 const { AppError } = require('../middlewares/errorHandler');
 const { sendEmail } = require('../utils/email');
 const { validateAppointment } = require('../validators/appointment.validator');
+const logger = require('../utils/logger');
 
 // Helper function to validate ObjectId
 const validateObjectId = (id, fieldName = 'ID') => {
@@ -382,25 +383,25 @@ exports.deleteAppointment = async (req, res, next) => {
       return next(new AppError('Access denied', 403));
     }
 
-    // Don't allow deletion of completed appointments
-    if (appointment.status === 'COMPLETED') {
-      return next(new AppError('Cannot delete completed appointments', 400));
+    // Don't allow deletion of completed or already cancelled appointments
+    if (appointment.status === 'COMPLETED' || appointment.status === 'CANCELLED') {
+      return next(new AppError('Cannot cancel completed or already cancelled appointments', 400));
     }
 
     // Update status to cancelled instead of deleting
     appointment.status = 'CANCELLED';
     await appointment.save();
-
+    logger.info('Appointment cancelled successfully');
     // Notify both user and professional
     (async () => {
       try {
         // Email to user
         await sendEmail({
-          to: appointment.user.email,
+          to: appointment.userId.email,
           subject: 'Appointment Cancelled',
           template: 'appointmentStatusUpdate',
           data: {
-            recipientName: appointment.user.name,
+            recipientName: appointment.userId.name,
             appointmentType: appointment.appointmentType,
             status: 'cancelled',
             dateTime: appointment.dateTime,
@@ -413,11 +414,11 @@ exports.deleteAppointment = async (req, res, next) => {
       try {
         // Email to professional
         await sendEmail({
-          to: appointment.professional.email,
+          to: appointment.professionalId.email,
           subject: 'Appointment Cancelled',
           template: 'appointmentStatusUpdate',
           data: {
-            recipientName: appointment.professional.name,
+            recipientName: appointment.professionalId.name,
             appointmentType: appointment.appointmentType,
             status: 'cancelled',
             dateTime: appointment.dateTime,
