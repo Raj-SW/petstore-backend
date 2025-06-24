@@ -25,14 +25,14 @@ router.patch(
   '/:id/profile',
   isServiceProvider,
   validateRequest(updateProfessionalSchema),
-  professionalController.updateProfessional,
+  professionalController.updateProfessional
 );
 
 router.patch(
   '/:id/availability',
   isServiceProvider,
   validateRequest(availabilitySchema),
-  professionalController.setProfessionalAvailability,
+  professionalController.setProfessionalAvailability
 );
 
 router.patch('/:id/status', isServiceProvider, professionalController.toggleProfessionalStatus);
@@ -42,7 +42,7 @@ router.patch(
   '/:id/rating',
   isAdmin, // Only admin or system can update ratings directly
   validateRequest(ratingSchema),
-  professionalController.updateProfessionalRating,
+  professionalController.updateProfessionalRating
 );
 
 // General update route (for admin)
@@ -50,7 +50,7 @@ router.patch(
   '/:id',
   isAdmin,
   validateRequest(updateProfessionalSchema),
-  professionalController.updateProfessional,
+  professionalController.updateProfessional
 );
 
 module.exports = router;

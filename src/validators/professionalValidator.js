@@ -31,8 +31,7 @@ const availabilitySchema = Joi.object({
 });
 
 const serviceSchema = Joi.object({
-  name: Joi.string().required().trim().min(2)
-    .max(100),
+  name: Joi.string().required().trim().min(2).max(100),
   price: Joi.number().required().min(0),
   duration: Joi.number().required().min(15).max(480), // 15 minutes to 8 hours
   description: Joi.string().optional().trim().max(500),
@@ -50,8 +49,7 @@ const locationSchema = Joi.object({
 });
 
 const professionalInfoSchema = Joi.object({
-  specialization: Joi.string().optional().trim().min(2)
-    .max(100),
+  specialization: Joi.string().optional().trim().min(2).max(100),
   qualifications: Joi.array().items(Joi.string().trim()).optional(),
   experience: Joi.number().optional().min(0).max(50),
   rating: Joi.number().optional().min(0).max(5),
@@ -66,8 +64,7 @@ const professionalInfoSchema = Joi.object({
 
 const updateProfessionalSchema = Joi.object({
   // User fields
-  name: Joi.string().optional().trim().min(2)
-    .max(100),
+  name: Joi.string().optional().trim().min(2).max(100),
   phoneNumber: Joi.string()
     .optional()
     .pattern(/^\+?[\d\s-]{10,}$/),
@@ -79,7 +76,9 @@ const updateProfessionalSchema = Joi.object({
 
 const querySchema = Joi.object({
   specialization: Joi.string().optional(),
-  role: Joi.string().valid('veterinarian', 'groomer', 'trainer').optional(),
+  role: Joi.string()
+    .valid('veterinarian', 'groomer', 'trainer', 'other', 'all', 'petTaxi')
+    .optional(),
   rating: Joi.number().min(0).max(5).optional(),
   isActive: Joi.string().valid('true', 'false').optional(),
   city: Joi.string().optional(),
@@ -91,19 +90,18 @@ const querySchema = Joi.object({
       'professionalInfo.rating',
       'professionalInfo.experience',
       'professionalInfo.reviewCount',
-      'name',
+      'name'
     )
     .default('professionalInfo.rating'),
   sortOrder: Joi.string().valid('asc', 'desc').default('desc'),
 });
 
 const ratingSchema = Joi.object({
-  rating: Joi.number().required().min(1).max(5)
-    .messages({
-      'number.min': 'Rating must be at least 1',
-      'number.max': 'Rating must be at most 5',
-      'any.required': 'Rating is required',
-    }),
+  rating: Joi.number().required().min(1).max(5).messages({
+    'number.min': 'Rating must be at least 1',
+    'number.max': 'Rating must be at most 5',
+    'any.required': 'Rating is required',
+  }),
 });
 
 module.exports = {

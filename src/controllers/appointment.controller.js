@@ -466,7 +466,7 @@ exports.getPublicProfessionalAppointments = async (req, res, next) => {
     // Verify that the professional exists and is active
     const professional = await User.findOne({
       _id: professionalId,
-      role: { $in: ['veterinarian', 'groomer', 'trainer'] },
+      role: { $in: ['veterinarian', 'groomer', 'trainer', 'other', 'all', 'petTaxi'] },
     });
 
     if (!professional) {
@@ -481,10 +481,14 @@ exports.getPublicProfessionalAppointments = async (req, res, next) => {
     const appointments = await Appointment.find(query);
 
     const total = await Appointment.countDocuments(query);
-
+    let message = '';
+    if (appointments.length === 0) {
+      message = 'No appointments found';
+    }
     res.status(200).json({
       success: true,
       data: appointments,
+      message,
       pagination: {
         total,
       },

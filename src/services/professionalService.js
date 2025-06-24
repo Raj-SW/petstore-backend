@@ -22,24 +22,11 @@ class ProfessionalService {
    * @returns {Promise<Object>} - Professionals data with pagination info
    */
   async getAllProfessionals(filters = {}, pagination = {}, sorting = {}) {
-    const {
-      specialization,
-      role,
-      rating,
-      isActive,
-      city,
-      state,
-    } = filters;
+    const { specialization, role, rating, isActive, city, state } = filters;
 
-    const {
-      page = 1,
-      limit = 10,
-    } = pagination;
+    const { page = 1, limit = 10 } = pagination;
 
-    const {
-      sortBy = 'professionalInfo.rating',
-      sortOrder = 'desc',
-    } = sorting;
+    const { sortBy = 'professionalInfo.rating', sortOrder = 'desc' } = sorting;
 
     // Build query for professionals only
     const query = {
@@ -74,7 +61,9 @@ class ProfessionalService {
       .sort({ [sortBy]: sortOrder === 'desc' ? -1 : 1 })
       .skip(skip)
       .limit(parseInt(limit, 10))
-      .select('-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v');
+      .select(
+        '-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v'
+      );
 
     // Get total count for pagination
     const total = await User.countDocuments(query);
@@ -102,7 +91,9 @@ class ProfessionalService {
     const professional = await User.findOne({
       _id: professionalId,
       role: { $in: ['veterinarian', 'groomer', 'trainer'] },
-    }).select('-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v');
+    }).select(
+      '-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v'
+    );
 
     if (!professional) {
       throw new AppError('Professional not found', 404);
@@ -141,8 +132,10 @@ class ProfessionalService {
       {
         new: true,
         runValidators: true,
-      },
-    ).select('-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v');
+      }
+    ).select(
+      '-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v'
+    );
 
     if (!professional) {
       throw new AppError('Professional not found', 404);
@@ -157,14 +150,16 @@ class ProfessionalService {
    * @returns {Promise<Array>} - Array of professionals
    */
   async getProfessionalsByRole(role) {
-    if (!['veterinarian', 'groomer', 'trainer'].includes(role)) {
+    if (!['veterinarian', 'groomer', 'trainer', 'other', 'all', 'petTaxi'].includes(role)) {
       throw new AppError('Invalid professional role', 400);
     }
 
     const professionals = await User.find({
       role,
       'professionalInfo.isActive': true,
-    }).select('-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v');
+    }).select(
+      '-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v'
+    );
 
     return professionals.map((prof) => prof.getProfessionalData());
   }
@@ -175,9 +170,7 @@ class ProfessionalService {
    * @returns {Promise<Array>} - Available professionals
    */
   async getAvailableProfessionals(timeSlot) {
-    const {
-      day, time, role, specialization,
-    } = timeSlot;
+    const { day, time, role, specialization } = timeSlot;
 
     const query = {
       role: role || { $in: ['veterinarian', 'groomer', 'trainer'] },
@@ -188,8 +181,9 @@ class ProfessionalService {
       query['professionalInfo.specialization'] = new RegExp(specialization, 'i');
     }
 
-    const professionals = await User.find(query)
-      .select('-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v');
+    const professionals = await User.find(query).select(
+      '-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v'
+    );
 
     // Filter by availability if day and time are provided
     if (day && time) {
@@ -231,7 +225,7 @@ class ProfessionalService {
     const currentReviewCount = professional.professionalInfo.reviewCount || 0;
 
     // Calculate new average rating
-    const totalRating = (currentRating * currentReviewCount) + newRating;
+    const totalRating = currentRating * currentReviewCount + newRating;
     const newReviewCount = currentReviewCount + 1;
     const newAverageRating = totalRating / newReviewCount;
 
@@ -262,7 +256,15 @@ class ProfessionalService {
     }
 
     // Validate availability format
-    const validDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+    const validDays = [
+      'monday',
+      'tuesday',
+      'wednesday',
+      'thursday',
+      'friday',
+      'saturday',
+      'sunday',
+    ];
     const timeRegex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
 
     Object.keys(availability).forEach((day) => {
@@ -300,8 +302,10 @@ class ProfessionalService {
         role: { $in: ['veterinarian', 'groomer', 'trainer'] },
       },
       { 'professionalInfo.isActive': isActive },
-      { new: true },
-    ).select('-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v');
+      { new: true }
+    ).select(
+      '-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v'
+    );
 
     if (!professional) {
       throw new AppError('Professional not found', 404);
