@@ -29,20 +29,21 @@ const petRoutes = require('./routes/pet.routes');
 const app = express();
 
 // Security middleware
-app.use(helmet());
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+  })
+);
+
 app.use(
   cors({
-    origin: [
-      'http://localhost:5173',
-      process.env.CLIENT_URL,
-      process.env.VERCEL_FRONTEND_URL,
-      'https://petstore-frontend-git-main-raj-seetohuls-projects.vercel.app',
-    ].filter(Boolean),
+    origin: ['http://localhost:5173', process.env.VERCEL_FRONTEND_URL].filter(Boolean),
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
+
 app.options('*', cors());
 
 app.use(mongoSanitize());
