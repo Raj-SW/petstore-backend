@@ -36,12 +36,15 @@ app.use(
       'http://localhost:5173',
       process.env.CLIENT_URL,
       process.env.VERCEL_FRONTEND_URL,
+      'https://petstore-frontend-git-main-raj-seetohuls-projects.vercel.app',
     ].filter(Boolean),
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
+app.options('*', cors());
+
 app.use(mongoSanitize());
 app.use(xss());
 
@@ -58,7 +61,12 @@ const limiter = rateLimit({
 });
 
 // Apply rate limiting to all routes
-app.use(limiter);
+app.use((req, res, next) => {
+  if (req.method === 'OPTIONS') {
+    return next();
+  }
+  limiter(req, res, next);
+});
 
 // Body parser
 app.use(express.json({ limit: process.env.BODY_LIMIT || '10kb' }));
