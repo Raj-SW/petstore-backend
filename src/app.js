@@ -38,8 +38,9 @@ app.use(
 app.use(
   cors({
     origin: [
-      'https://petstore-frontend-git-main-raj-seetohuls-projects.vercel.app',
+       process.env.CLIENT_URL,
       process.env.VERCEL_FRONTEND_URL,
+      'http://localhost:5173',
     ].filter(Boolean),
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
@@ -92,6 +93,7 @@ const sessionConfig = {
   cookie: {
     secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
+    sameSite: 'none',
     maxAge: 24 * 60 * 60 * 1000, // 1 day
   },
 };
