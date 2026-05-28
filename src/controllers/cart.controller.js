@@ -7,7 +7,7 @@ const logger = require('../utils/logger');
 exports.getCart = async (req, res, next) => {
   try {
     let cart = await Cart.findOne({ user: req.user.id })
-      .populate('items.product', 'name price images stock');
+      .populate('items.product', 'name price images quantity');
 
     if (!cart) {
       cart = await Cart.create({ user: req.user.id });
@@ -90,6 +90,9 @@ exports.updateCartItem = async (req, res, next) => {
 
     // Check stock availability
     const product = await Product.findById(productId);
+    if (!product) {
+      return next(new AppError('Product not found', 404));
+    }
     if (product.quantity !== undefined && product.quantity < quantity) {
       return next(new AppError('Insufficient stock', 400));
     }

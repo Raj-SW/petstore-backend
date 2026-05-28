@@ -279,11 +279,7 @@ describe('Order Controller - Checkout Scenarios', () => {
   });
 
   // 9. Invalid status transition
-  it('should not allow invalid status transition', async () => {
-    // (Assume you have logic for valid transitions in your controller)
-    // This is a placeholder for when you implement it
-    expect(true).toBe(true);
-  });
+  it.todo('should not allow invalid status transition');
 
   // 10. Race condition (simulate concurrent orders)
   it('should not oversell stock in concurrent orders', async () => {
