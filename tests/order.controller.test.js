@@ -8,13 +8,37 @@ const Order = require('../src/models/order.model');
 
 // Helper to create a user and get auth cookie
 async function createUserAndLogin(agent, userData) {
-  await request(app).post('/api/auth/signup').send(userData);
+  await request(app).post('/api/auth/register').send(userData);
   const res = await agent.post('/api/auth/login').send({
     email: userData.email,
     password: userData.password,
   });
-  return res.headers['set-cookie'];
+  // set-cookie is an array of cookie strings; join them for use with .set('Cookie', ...)
+  const cookies = res.headers['set-cookie'];
+  return Array.isArray(cookies) ? cookies.join('; ') : cookies;
 }
+
+// Minimal valid user data matching the model's required fields
+const makeUser = (overrides = {}) => ({
+  name: 'Test User',
+  email: 'testuser@example.com',
+  phoneNumber: '12345678',
+  address: '123 Test St',
+  password: 'Password123*',
+  ...overrides,
+});
+
+// Minimal valid product data matching the model's required fields
+const makeProduct = (overrides = {}) => ({
+  name: 'Dog Food',
+  description: 'Premium dog food for all breeds',
+  price: 50,
+  quantity: 10,
+  categories: ['food'],
+  images: [{ url: 'http://example.com/img.jpg', publicId: 'img-1' }],
+  isActive: true,
+  ...overrides,
+});
 
 describe('Order Controller - Checkout Scenarios', () => {
   let agent;
@@ -35,11 +59,17 @@ describe('Order Controller - Checkout Scenarios', () => {
     await Product.deleteMany({});
     await Cart.deleteMany({});
     await Order.deleteMany({});
-    user = { name: 'Test User', email: 'testuser@example.com', password: 'Password123*' };
+
+    // Create an admin user to use as product creator
+    const adminUser = await User.create(makeUser({
+      email: 'admin@example.com',
+      role: 'admin',
+    }));
+
+    user = makeUser();
     cookie = await createUserAndLogin(agent, user);
-    product = await Product.create({
-      title: 'Dog Food', price: 50, stock: 10, isActive: true,
-    });
+
+    product = await Product.create(makeProduct({ createdBy: adminUser._id }));
   });
 
   afterAll(async () => {
@@ -118,12 +148,14 @@ describe('Order Controller - Checkout Scenarios', () => {
 
   // 4. Product inactive
   it('should fail if product is inactive', async () => {
-    const inactive = await Product.create({
-      title: 'Cat Toy',
-      price: 20,
-      stock: 5,
+    const adminUser = await User.findOne({ email: 'admin@example.com' });
+    const inactive = await Product.create(makeProduct({
+      name: 'Cat Toy',
+      description: 'Fun toy for cats',
+      quantity: 5,
       isActive: false,
-    });
+      createdBy: adminUser._id,
+    }));
     await agent
       .post('/api/cart/')
       .set('Cookie', cookie)
@@ -256,7 +288,7 @@ describe('Order Controller - Checkout Scenarios', () => {
   // 10. Race condition (simulate concurrent orders)
   it('should not oversell stock in concurrent orders', async () => {
     // Add to cart for two users
-    const user2 = { name: 'User2', email: 'user2@example.com', password: 'Password123*' };
+    const user2 = makeUser({ name: 'User2', email: 'user2@example.com' });
     const cookie2 = await createUserAndLogin(agent, user2);
     await agent
       .post('/api/cart/')

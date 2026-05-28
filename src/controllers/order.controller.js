@@ -39,13 +39,13 @@ exports.createOrder = async (req, res, next) => {
         await session.abortTransaction();
         session.endSession();
         logger.warn(`Inactive product: ${product._id}`);
-        return next(new AppError(`Product ${product.title} is not available`, 400));
+        return next(new AppError(`Product ${product.name} is not available`, 400));
       }
-      if (product.stock < item.quantity) {
+      if (product.quantity < item.quantity) {
         await session.abortTransaction();
         session.endSession();
         logger.warn(`Insufficient stock for product: ${product._id}`);
-        return next(new AppError(`Insufficient stock for ${product.title}`, 400));
+        return next(new AppError(`Insufficient stock for ${product.name}`, 400));
       }
       // Use current price from DB
       const { price } = product;
@@ -97,7 +97,7 @@ exports.createOrder = async (req, res, next) => {
       await Product.findByIdAndUpdate(
         item.product,
         {
-          $inc: { stock: -item.quantity },
+          $inc: { quantity: -item.quantity },
         },
         { session },
       );
@@ -309,7 +309,7 @@ exports.cancelOrder = async (req, res, next) => {
     // Restore product stock
     for (const item of order.items) {
       await Product.findByIdAndUpdate(item.product, {
-        $inc: { stock: item.quantity },
+        $inc: { quantity: item.quantity },
       });
     }
 
