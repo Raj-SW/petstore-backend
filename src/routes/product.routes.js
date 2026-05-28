@@ -17,6 +17,10 @@ const router = express.Router();
 // Public routes
 router.get('/', getProducts);
 router.get('/category/:category', getProductsByCategory);
+
+// Admin analytics (registered before /:id to prevent shadowing)
+router.get('/analytics/overview', isAuthenticated, isAdmin, getProductAnalytics);
+
 router.get('/:id', getProduct);
 
 // Admin-only routes
@@ -26,8 +30,5 @@ router.use(isAuthenticated, isAdmin);
 router.post('/', upload.array('images', 10), validateProduct, createProduct);
 router.patch('/:id', upload.array('images', 10), validateProductUpdate, updateProduct);
 router.delete('/:id', deleteProduct);
-
-// Admin analytics
-router.get('/analytics/overview', getProductAnalytics);
 
 module.exports = router;

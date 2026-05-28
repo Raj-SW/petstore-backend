@@ -275,7 +275,7 @@ exports.updateAppointmentStatus = async (req, res, next) => {
       req.user._id.toString() === appointment.professionalId.toString();
     const isProfessional = req.user.role === appointment.appointmentType;
     const isAdmin = req.user.role === 'admin';
-    if (!isProfessionalAssigned && !isProfessional) {
+    if (!isProfessionalAssigned && !isProfessional && !isAdmin) {
       return next(new AppError('Access denied', 403));
     }
 
