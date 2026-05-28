@@ -262,7 +262,7 @@ exports.updatePaymentStatus = async (req, res, next) => {
   try {
     const { paymentStatus, transactionId, paymentDate } = req.body;
 
-    const order = await Order.findById(req.params.id);
+    const order = await Order.findById(req.params.id).populate('user', 'name email');
     if (!order) {
       return next(new AppError('Order not found', 404));
     }
