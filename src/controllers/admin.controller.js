@@ -64,12 +64,12 @@ exports.getDashboardStats = async (req, res, next) => {
 
     // Get upcoming appointments
     const upcomingAppointments = await Appointment.find({
-      date: { $gte: startOfDay },
-      status: { $in: ['pending', 'accepted'] },
+      dateTime: { $gte: startOfDay },
+      status: { $in: ['PENDING', 'CONFIRMED'] },
     })
-      .populate('user', 'name email')
-      .populate('serviceProvider', 'name email')
-      .sort('date')
+      .populate('userId', 'name email')
+      .populate('professionalId', 'name email')
+      .sort('dateTime')
       .limit(5);
 
     res.status(200).json({
@@ -250,10 +250,10 @@ exports.getAppointmentAnalytics = async (req, res, next) => {
           },
           total: { $sum: 1 },
           completed: {
-            $sum: { $cond: [{ $eq: ['$status', 'completed'] }, 1, 0] },
+            $sum: { $cond: [{ $eq: ['$status', 'COMPLETED'] }, 1, 0] },
           },
           cancelled: {
-            $sum: { $cond: [{ $eq: ['$status', 'cancelled'] }, 1, 0] },
+            $sum: { $cond: [{ $eq: ['$status', 'CANCELLED'] }, 1, 0] },
           },
         },
       },
@@ -268,10 +268,10 @@ exports.getAppointmentAnalytics = async (req, res, next) => {
       },
       {
         $group: {
-          _id: '$serviceProvider',
+          _id: '$professionalId',
           totalAppointments: { $sum: 1 },
           completedAppointments: {
-            $sum: { $cond: [{ $eq: ['$status', 'completed'] }, 1, 0] },
+            $sum: { $cond: [{ $eq: ['$status', 'COMPLETED'] }, 1, 0] },
           },
         },
       },
