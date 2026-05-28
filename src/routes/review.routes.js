@@ -1,5 +1,5 @@
 const express = require('express');
-const { protect } = require('../middlewares/auth');
+const { isAuthenticated } = require('../middlewares/auth.middleware');
 const {
   createReview,
   getProductReviews,
@@ -12,9 +12,9 @@ const router = express.Router();
 
 // All review routes require authentication
 
-router.post('/', validateReview, createReview);
+router.post('/:productId', isAuthenticated, validateReview, createReview);
 router.get('/product/:productId', getProductReviews);
-router.patch('/:id', validateReview, updateReview);
-router.delete('/:id', deleteReview);
+router.patch('/:id', isAuthenticated, validateReview, updateReview);
+router.delete('/:id', isAuthenticated, deleteReview);
 
 module.exports = router;
