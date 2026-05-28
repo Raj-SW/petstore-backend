@@ -1,70 +1,78 @@
-/*
-const paypal = require('@paypal/paypal-server-sdk');
+const {
+  Client,
+  Environment,
+  OrdersController,
+  PaymentsController,
+  CheckoutPaymentIntent,
+} = require('@paypal/paypal-server-sdk');
+const https = require('https');
 const { AppError } = require('../middlewares/errorHandler');
 const logger = require('../utils/logger');
 
-// Configure PayPal environment
-const environment =
-  process.env.NODE_ENV === 'production'
-    ? new paypal.core.LiveEnvironment(
-        process.env.PAYPAL_CLIENT_ID,
-        process.env.PAYPAL_CLIENT_SECRET
-      )
-    : new paypal.core.SandboxEnvironment(
-        process.env.PAYPAL_CLIENT_ID,
-        process.env.PAYPAL_CLIENT_SECRET
-      );
+// Configure PayPal client
+const paypalClient = new Client({
+  clientCredentialsAuthCredentials: {
+    oAuthClientId: process.env.PAYPAL_CLIENT_ID || '',
+    oAuthClientSecret: process.env.PAYPAL_CLIENT_SECRET || '',
+  },
+  environment:
+    process.env.NODE_ENV === 'production'
+      ? Environment.Production
+      : Environment.Sandbox,
+});
 
-const client = new paypal.core.PayPalHttpClient(environment);
+const ordersController = new OrdersController(paypalClient);
+const paymentsController = new PaymentsController(paypalClient);
 
 class PayPalService {
   // Create PayPal order
   static async createOrder(order) {
     try {
-      const request = new paypal.orders.OrdersCreateRequest();
-      request.prefer('return=representation');
-      request.requestBody({
-        intent: 'CAPTURE',
-        purchase_units: [
-          {
-            reference_id: order._id.toString(),
-            amount: {
-              currency_code: 'USD',
-              value: order.finalAmount.toString(),
-              breakdown: {
-                item_total: {
-                  currency_code: 'USD',
-                  value: order.totalAmount.toString(),
-                },
-                discount: {
-                  currency_code: 'USD',
-                  value: order.discount.toString(),
+      const response = await ordersController.createOrder({
+        body: {
+          intent: CheckoutPaymentIntent.Capture,
+          purchaseUnits: [
+            {
+              referenceId: order._id.toString(),
+              amount: {
+                currencyCode: 'USD',
+                value: order.finalAmount.toString(),
+                breakdown: {
+                  itemTotal: {
+                    currencyCode: 'USD',
+                    value: order.totalAmount.toString(),
+                  },
+                  discount: {
+                    currencyCode: 'USD',
+                    value: order.discount.toString(),
+                  },
                 },
               },
+              items: order.items.map((item) => ({
+                name: item.product.name,
+                unitAmount: {
+                  currencyCode: 'USD',
+                  value: item.price.toString(),
+                },
+                quantity: item.quantity.toString(),
+              })),
             },
-            items: order.items.map((item) => ({
-              name: item.product.name,
-              unit_amount: {
-                currency_code: 'USD',
-                value: item.price.toString(),
-              },
-              quantity: item.quantity.toString(),
-            })),
+          ],
+          applicationContext: {
+            brandName: 'PetStore',
+            landingPage: 'NO_PREFERENCE',
+            userAction: 'PAY_NOW',
+            returnUrl: `${process.env.FRONTEND_URL}/payment/success`,
+            cancelUrl: `${process.env.FRONTEND_URL}/payment/cancel`,
           },
-        ],
-        application_context: {
-          brand_name: 'PetStore',
-          landing_page: 'NO_PREFERENCE',
-          user_action: 'PAY_NOW',
-          return_url: `${process.env.FRONTEND_URL}/payment/success`,
-          cancel_url: `${process.env.FRONTEND_URL}/payment/cancel`,
         },
+        prefer: 'return=representation',
       });
 
-      const response = await client.execute(request);
+      const result = response.result;
       return {
-        orderId: response.result.id,
-        links: response.result.links,
+        orderId: result.id,
+        links: result.links,
       };
     } catch (error) {
       logger.error('Error creating PayPal order:', error);
@@ -75,15 +83,17 @@ class PayPalService {
   // Capture PayPal payment
   static async capturePayment(orderId) {
     try {
-      const request = new paypal.orders.OrdersCaptureRequest(orderId);
-      const response = await client.execute(request);
+      const response = await ordersController.captureOrder({
+        id: orderId,
+      });
 
-      if (response.result.status === 'COMPLETED') {
+      const result = response.result;
+      if (result.status === 'COMPLETED') {
         return {
           status: 'completed',
-          transactionId: response.result.id,
+          transactionId: result.id,
           paymentDate: new Date(),
-          amount: response.result.purchase_units[0].amount.value,
+          amount: result.purchaseUnits[0].payments.captures[0].amount.value,
         };
       } else {
         throw new AppError('Payment capture failed', 400);
@@ -101,22 +111,22 @@ class PayPalService {
         throw new AppError('No payment transaction found for refund', 400);
       }
 
-      const request = new paypal.payments.RefundsPostRequest();
-      request.requestBody({
-        amount: {
-          currency_code: 'USD',
-          value: order.finalAmount.toString(),
+      const response = await paymentsController.refundCapturedPayment({
+        captureId: order.paymentDetails.transactionId,
+        body: {
+          amount: {
+            currencyCode: 'USD',
+            value: order.finalAmount.toString(),
+          },
         },
-        capture_id: order.paymentDetails.transactionId,
       });
 
-      const response = await client.execute(request);
-
+      const result = response.result;
       return {
         status: 'refunded',
-        transactionId: response.result.id,
+        transactionId: result.id,
         refundDate: new Date(),
-        amount: response.result.amount.value,
+        amount: result.amount.value,
       };
     } catch (error) {
       logger.error('Error processing PayPal refund:', error);
@@ -124,23 +134,62 @@ class PayPalService {
     }
   }
 
-  // Verify PayPal webhook signature
+  // Verify PayPal webhook signature via PayPal REST API
   static async verifyWebhook(headers, body) {
     try {
       const webhookId = process.env.PAYPAL_WEBHOOK_ID;
-      const request = new paypal.notifications.WebhooksVerifySignatureRequest();
-      request.requestBody({
+      const credentials = Buffer.from(
+        `${process.env.PAYPAL_CLIENT_ID}:${process.env.PAYPAL_CLIENT_SECRET}`
+      ).toString('base64');
+
+      const baseUrl =
+        process.env.NODE_ENV === 'production'
+          ? 'api.paypal.com'
+          : 'api.sandbox.paypal.com';
+
+      const payload = JSON.stringify({
         auth_algo: headers['paypal-auth-algo'],
         cert_url: headers['paypal-cert-url'],
         transmission_id: headers['paypal-transmission-id'],
         transmission_sig: headers['paypal-transmission-sig'],
         transmission_time: headers['paypal-transmission-time'],
         webhook_id: webhookId,
-        webhook_event: body,
+        webhook_event: typeof body === 'string' ? JSON.parse(body) : body,
       });
 
-      const response = await client.execute(request);
-      return response.result.verification_status === 'SUCCESS';
+      return new Promise((resolve) => {
+        const options = {
+          hostname: baseUrl,
+          path: '/v1/notifications/verify-webhook-signature',
+          method: 'POST',
+          headers: {
+            Authorization: `Basic ${credentials}`,
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(payload),
+          },
+        };
+
+        const req = https.request(options, (res) => {
+          let data = '';
+          res.on('data', (chunk) => (data += chunk));
+          res.on('end', () => {
+            try {
+              const parsed = JSON.parse(data);
+              resolve(parsed.verification_status === 'SUCCESS');
+            } catch {
+              resolve(false);
+            }
+          });
+        });
+
+        req.on('error', (err) => {
+          logger.error('Error verifying PayPal webhook:', err);
+          resolve(false);
+        });
+
+        req.write(payload);
+        req.end();
+      });
     } catch (error) {
       logger.error('Error verifying PayPal webhook:', error);
       return false;
@@ -149,4 +198,3 @@ class PayPalService {
 }
 
 module.exports = PayPalService;
-*/
