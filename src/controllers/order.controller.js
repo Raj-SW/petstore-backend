@@ -147,14 +147,26 @@ exports.createOrder = async (req, res, next) => {
 // Get all orders (admin only)
 exports.getOrders = async (req, res, next) => {
   try {
+    const page = Math.max(1, parseInt(req.query.page, 10) || 1);
+    const limit = Math.max(1, parseInt(req.query.limit, 10) || 20);
+    const skip = (page - 1) * limit;
+
+    const total = await Order.countDocuments();
     const orders = await Order.find()
       .populate('user', 'name email')
       .populate('items.product', 'name price images')
-      .sort('-createdAt');
+      .sort('-createdAt')
+      .skip(skip)
+      .limit(limit);
 
     res.status(200).json({
       success: true,
       data: orders,
+      pagination: {
+        total,
+        page,
+        pages: Math.ceil(total / limit),
+      },
     });
   } catch (error) {
     next(error);
@@ -209,7 +221,7 @@ exports.updateOrderStatus = async (req, res, next) => {
       status, trackingNumber, estimatedDelivery, notes,
     } = req.body;
 
-    const order = await Order.findById(req.params.id);
+    const order = await Order.findById(req.params.id).populate('user', 'name email');
     if (!order) {
       return next(new AppError('Order not found', 404));
     }
@@ -292,7 +304,7 @@ exports.updatePaymentStatus = async (req, res, next) => {
 // Cancel order
 exports.cancelOrder = async (req, res, next) => {
   try {
-    const order = await Order.findById(req.params.id);
+    const order = await Order.findById(req.params.id).populate('user', 'name email');
     if (!order) {
       return next(new AppError('Order not found', 404));
     }
