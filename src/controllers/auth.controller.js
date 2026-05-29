@@ -1,7 +1,6 @@
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const passport = require('passport');
 const { AppError } = require('../middlewares/errorHandler');
 const User = require('../models/user.model');
 const { sendEmail } = require('../utils/email');
@@ -14,18 +13,16 @@ const generateTokens = (user) => {
   return { accessToken, refreshToken };
 };
 
-// Register new user
+// Register new user — does NOT auto-login; user must call /login separately
 const signup = async (req, res, next) => {
   try {
     const { name, email, phoneNumber, address, password } = req.body;
 
-    // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return next(new AppError('Email already registered', 400));
     }
 
-    // Create user
     const user = await User.create({
       name,
       email,
@@ -35,60 +32,54 @@ const signup = async (req, res, next) => {
       role: 'customer',
     });
 
-    // Remove password from response
     user.password = undefined;
 
-    // Log in the user after registration
-    req.login(user, (err) => {
-      if (err) {
-        return next(err);
-      }
-      res.status(201).json({
-        success: true,
-        message: 'Registration successful. Try signing in now',
-        data: user,
-      });
+    res.status(201).json({
+      success: true,
+      message: 'Registration successful. Please sign in.',
+      data: user,
     });
   } catch (error) {
     next(error);
   }
 };
 
-// Login user
-const login = (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return next(new AppError(info.message || 'Invalid credentials', 401));
+// Login user — returns JWT access token
+const login = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    // findOne with +password because password field has select: false on the schema
+    const user = await User.findOne({ email }).select('+password');
+    if (!user || !(await user.comparePassword(password))) {
+      return next(new AppError('Invalid email or password', 401));
     }
 
-    req.login(user, (err) => {
-      if (err) {
-        return next(err);
-      }
-      // Remove password from response
-      user.password = undefined;
-      res.status(200).json({
-        success: true,
-        message: 'Login successful',
-        data: user,
-      });
-    });
-  })(req, res, next);
-};
+    // Access token only — no refresh token (24h stateless JWT, per auth design).
+    // Users re-authenticate after expiry. See generateTokens() for refresh token generation
+    // if a refresh flow is added in future.
+    const accessToken = user.generateAuthToken();
 
-// Logout user
-const logout = (req, res, next) => {
-  req.logout((err) => {
-    if (err) {
-      return next(err);
-    }
+    // Don't send password in response
+    user.password = undefined;
+
+    // Note: login response wraps { user, accessToken } in data — intentional,
+    // as login returns two things. Frontend destructures data.user and data.accessToken.
     res.status(200).json({
       success: true,
-      message: 'Logged out successfully',
+      message: 'Login successful',
+      data: { user, accessToken },
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Logout — stateless, client clears the token; server just acknowledges
+const logout = (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Logged out successfully',
   });
 };
 
