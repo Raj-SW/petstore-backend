@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Order = require('../models/order.model');
 const Product = require('../models/product.model');
 const User = require('../models/user.model');
@@ -230,16 +231,23 @@ exports.getUserAnalytics = async (req, res, next) => {
   }
 };
 
+const VALID_ROLES = ['customer', 'veterinarian', 'groomer', 'trainer', 'petTaxi', 'admin'];
+
 // List all users with pagination and optional role filter
 exports.listUsers = async (req, res, next) => {
   try {
     const page = Math.max(1, parseInt(req.query.page, 10) || 1);
-    const limit = Math.max(1, parseInt(req.query.limit, 10) || 20);
+    const limit = Math.min(100, Math.max(1, parseInt(req.query.limit, 10) || 20));
     const skip = (page - 1) * limit;
 
+    const { role } = req.query;
+    if (role && !VALID_ROLES.includes(role)) {
+      return next(new AppError('Invalid role filter', 400));
+    }
+
     const filter = {};
-    if (req.query.role) {
-      filter.role = req.query.role;
+    if (role) {
+      filter.role = role;
     }
 
     const sensitiveFields = '-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires';
@@ -263,13 +271,15 @@ exports.listUsers = async (req, res, next) => {
   }
 };
 
-const VALID_ROLES = ['customer', 'veterinarian', 'groomer', 'trainer', 'petTaxi', 'admin'];
-
 // Update a user's role
 exports.updateUserRole = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { role } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return next(new AppError('Invalid user ID format', 400));
+    }
 
     // Prevent admin from demoting themselves
     if (req.user._id.toString() === id) {
@@ -304,6 +314,10 @@ exports.deleteUser = async (req, res, next) => {
   try {
     const { id } = req.params;
 
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return next(new AppError('Invalid user ID format', 400));
+    }
+
     // Prevent admin from deleting themselves
     if (req.user._id.toString() === id) {
       return next(new AppError('You cannot delete your own account', 400));
@@ -314,6 +328,10 @@ exports.deleteUser = async (req, res, next) => {
       return next(new AppError('User not found', 404));
     }
 
+    // Get affected product IDs before deleting reviews
+    const userReviews = await Review.find({ user: id }).select('product');
+    const affectedProductIds = [...new Set(userReviews.map((r) => r.product.toString()))];
+
     // Cascade deletes
     await Promise.all([
       Cart.deleteMany({ user: id }),
@@ -323,8 +341,23 @@ exports.deleteUser = async (req, res, next) => {
         { userId: id, status: { $in: ['PENDING', 'CONFIRMED'] } },
         { status: 'CANCELLED' }
       ),
+      // Also cancel appointments where user is the professional
+      Appointment.updateMany(
+        { professionalId: id, status: { $in: ['PENDING', 'CONFIRMED'] } },
+        { status: 'CANCELLED' }
+      ),
       Order.deleteMany({ user: id }),
     ]);
+
+    // Recalculate ratings for affected products
+    for (const productId of affectedProductIds) {
+      const remainingReviews = await Review.find({ product: productId });
+      const avgRating =
+        remainingReviews.length > 0
+          ? remainingReviews.reduce((acc, r) => acc + r.rating, 0) / remainingReviews.length
+          : 0;
+      await Product.findByIdAndUpdate(productId, { rating: avgRating });
+    }
 
     await User.findByIdAndDelete(id);
 

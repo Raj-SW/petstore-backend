@@ -274,6 +274,7 @@ describe('Admin User Management Routes', () => {
       expect(res.status).toBe(200);
 
       const appt = await Appointment.findOne({ userId: regularUser._id });
+      expect(appt).not.toBeNull();
       expect(appt.status).toBe('CANCELLED');
     });
 
