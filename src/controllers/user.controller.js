@@ -1,6 +1,11 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/user.model');
 const { AppError } = require('../middlewares/errorHandler');
+const {
+  uploadMultipleToCloudinary,
+  deleteMultipleFromCloudinary,
+  validateImageFile,
+} = require('../utils/cloudinary');
 
 // Get user profile
 exports.getProfile = async (req, res, next) => {
@@ -75,6 +80,40 @@ exports.changePassword = async (req, res, next) => {
     res.status(200).json({
       status: 'success',
       message: 'Password updated successfully',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Upload avatar
+exports.uploadAvatar = async (req, res, next) => {
+  try {
+    if (!req.file) {
+      return next(new AppError('No file uploaded. Please provide an image file with field name "avatar".', 400));
+    }
+
+    // Validate image file
+    validateImageFile(req.file);
+
+    // Fetch the current user to check for existing profileImage
+    const user = await User.findById(req.user.id);
+
+    // Delete old Cloudinary image if present
+    if (user.profileImage && user.profileImage.publicId) {
+      await deleteMultipleFromCloudinary([user.profileImage.publicId]);
+    }
+
+    // Upload new image
+    const [uploaded] = await uploadMultipleToCloudinary([req.file], 'avatars');
+
+    // Persist the new image data
+    user.profileImage = { url: uploaded.url, publicId: uploaded.publicId };
+    await user.save({ validateBeforeSave: false });
+
+    res.status(200).json({
+      success: true,
+      data: { profileImage: uploaded.url },
     });
   } catch (error) {
     next(error);
