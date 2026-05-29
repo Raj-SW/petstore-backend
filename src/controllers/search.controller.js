@@ -8,7 +8,6 @@ exports.searchProducts = async (req, res, next) => {
       category,
       minPrice,
       maxPrice,
-      rating,
       sort,
       page = 1,
       limit = 10,
