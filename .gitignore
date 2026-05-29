@@ -45,3 +45,6 @@ build/
 
 # Git worktrees
 .worktrees/
+
+# Generated audit/analysis files
+AUDIT.md
