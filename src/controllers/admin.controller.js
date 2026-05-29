@@ -2,6 +2,9 @@ const Order = require('../models/order.model');
 const Product = require('../models/product.model');
 const User = require('../models/user.model');
 const Appointment = require('../models/appointment.model');
+const Cart = require('../models/cart.model');
+const Pet = require('../models/pet.model');
+const Review = require('../models/review.model');
 const { AppError } = require('../middlewares/errorHandler');
 const logger = require('../utils/logger');
 const { getStartDate, getDateFormat } = require('../utils/dateUtils');
@@ -221,6 +224,113 @@ exports.getUserAnalytics = async (req, res, next) => {
         userStats,
         topCustomers: customerStats,
       },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// List all users with pagination and optional role filter
+exports.listUsers = async (req, res, next) => {
+  try {
+    const page = Math.max(1, parseInt(req.query.page, 10) || 1);
+    const limit = Math.max(1, parseInt(req.query.limit, 10) || 20);
+    const skip = (page - 1) * limit;
+
+    const filter = {};
+    if (req.query.role) {
+      filter.role = req.query.role;
+    }
+
+    const sensitiveFields = '-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires';
+
+    const [users, total] = await Promise.all([
+      User.find(filter).select(sensitiveFields).skip(skip).limit(limit).lean(),
+      User.countDocuments(filter),
+    ]);
+
+    res.status(200).json({
+      success: true,
+      data: users,
+      pagination: {
+        total,
+        page,
+        pages: Math.ceil(total / limit),
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const VALID_ROLES = ['customer', 'veterinarian', 'groomer', 'trainer', 'petTaxi', 'admin'];
+
+// Update a user's role
+exports.updateUserRole = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { role } = req.body;
+
+    // Prevent admin from demoting themselves
+    if (req.user._id.toString() === id) {
+      return next(new AppError('You cannot change your own role', 400));
+    }
+
+    if (!role || !VALID_ROLES.includes(role)) {
+      return next(new AppError(`Role must be one of: ${VALID_ROLES.join(', ')}`, 400));
+    }
+
+    const user = await User.findByIdAndUpdate(
+      id,
+      { role },
+      { new: true, runValidators: true }
+    ).select('-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires');
+
+    if (!user) {
+      return next(new AppError('User not found', 404));
+    }
+
+    res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Delete a user and cascade-delete related data
+exports.deleteUser = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    // Prevent admin from deleting themselves
+    if (req.user._id.toString() === id) {
+      return next(new AppError('You cannot delete your own account', 400));
+    }
+
+    const user = await User.findById(id);
+    if (!user) {
+      return next(new AppError('User not found', 404));
+    }
+
+    // Cascade deletes
+    await Promise.all([
+      Cart.deleteMany({ user: id }),
+      Review.deleteMany({ user: id }),
+      Pet.deleteMany({ owner: id }),
+      Appointment.updateMany(
+        { userId: id, status: { $in: ['PENDING', 'CONFIRMED'] } },
+        { status: 'CANCELLED' }
+      ),
+      Order.deleteMany({ user: id }),
+    ]);
+
+    await User.findByIdAndDelete(id);
+
+    res.status(200).json({
+      success: true,
+      message: 'User deleted successfully',
     });
   } catch (error) {
     next(error);

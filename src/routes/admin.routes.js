@@ -7,6 +7,9 @@ const {
   getProductAnalytics,
   getUserAnalytics,
   getAppointmentAnalytics,
+  listUsers,
+  updateUserRole,
+  deleteUser,
 } = require('../controllers/admin.controller');
 
 const router = express.Router();
@@ -21,5 +24,10 @@ router.get('/analytics/sales', validateAnalyticsPeriod, getSalesAnalytics);
 router.get('/analytics/products', getProductAnalytics);
 router.get('/analytics/users', getUserAnalytics);
 router.get('/analytics/appointments', validateAnalyticsPeriod, getAppointmentAnalytics);
+
+// User management routes
+router.get('/users', listUsers);
+router.patch('/users/:id/role', updateUserRole);
+router.delete('/users/:id', deleteUser);
 
 module.exports = router;
