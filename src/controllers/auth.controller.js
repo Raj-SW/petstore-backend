@@ -55,11 +55,16 @@ const login = async (req, res, next) => {
       return next(new AppError('Invalid email or password', 401));
     }
 
+    // Access token only — no refresh token (24h stateless JWT, per auth design).
+    // Users re-authenticate after expiry. See generateTokens() for refresh token generation
+    // if a refresh flow is added in future.
     const accessToken = user.generateAuthToken();
 
     // Don't send password in response
     user.password = undefined;
 
+    // Note: login response wraps { user, accessToken } in data — intentional,
+    // as login returns two things. Frontend destructures data.user and data.accessToken.
     res.status(200).json({
       success: true,
       message: 'Login successful',
