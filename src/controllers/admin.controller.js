@@ -442,3 +442,34 @@ exports.getAppointmentAnalytics = async (req, res, next) => {
     next(error);
   }
 };
+
+// Get all appointments (admin only)
+exports.getAllAppointments = async (req, res, next) => {
+  try {
+    const { status, page = 1, limit = 100 } = req.query;
+    const skip = (page - 1) * limit;
+
+    const query = {};
+    if (status) query.status = status.toUpperCase();
+
+    const appointments = await Appointment.find(query)
+      .populate([
+        { path: 'professionalId', select: 'name email phoneNumber role' },
+        { path: 'userId', select: 'name email phoneNumber' },
+        { path: 'petId', select: 'name species breed age' },
+      ])
+      .sort({ dateTime: -1 })
+      .skip(skip)
+      .limit(parseInt(limit, 10));
+
+    const total = await Appointment.countDocuments(query);
+
+    res.status(200).json({
+      success: true,
+      data: appointments,
+      pagination: { total, page: parseInt(page, 10), pages: Math.ceil(total / limit) },
+    });
+  } catch (error) {
+    next(error);
+  }
+};

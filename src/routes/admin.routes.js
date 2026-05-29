@@ -10,6 +10,7 @@ const {
   listUsers,
   updateUserRole,
   deleteUser,
+  getAllAppointments,
 } = require('../controllers/admin.controller');
 
 const router = express.Router();
@@ -29,5 +30,8 @@ router.get('/analytics/appointments', validateAnalyticsPeriod, getAppointmentAna
 router.get('/users', listUsers);
 router.patch('/users/:id/role', updateUserRole);
 router.delete('/users/:id', deleteUser);
+
+// Appointment management routes (admin gets all appointments)
+router.get('/appointments', getAllAppointments);
 
 module.exports = router;
