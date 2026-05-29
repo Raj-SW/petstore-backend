@@ -10,7 +10,7 @@ exports.isAuthenticated = (req, res, next) => {
 
 // Middleware to check if user is a service provider
 exports.isServiceProvider = (req, res, next) => {
-  if (req.isAuthenticated() && ['veterinarian', 'groomer', 'trainer'].includes(req.user.role)) {
+  if (req.isAuthenticated() && ['veterinarian', 'groomer', 'trainer', 'petTaxi'].includes(req.user.role)) {
     return next();
   }
   return next(new AppError('Access denied. Service provider role required.', 403));

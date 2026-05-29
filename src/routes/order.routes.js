@@ -1,5 +1,5 @@
 const express = require('express');
-const { isAuthenticated } = require('../middlewares/auth.middleware');
+const { isAuthenticated, isAdmin } = require('../middlewares/auth.middleware');
 const {
   createOrder,
   getOrders,
@@ -27,8 +27,8 @@ router.get('/:id', getOrder);
 router.patch('/:id/cancel', cancelOrder);
 
 // Admin routes
-router.get('/', getOrders);
-router.patch('/:id/status', validateUpdateOrderStatus, updateOrderStatus);
-router.patch('/:id/payment', validatePaymentStatus, updatePaymentStatus);
+router.get('/', isAdmin, getOrders);
+router.patch('/:id/status', isAdmin, validateUpdateOrderStatus, updateOrderStatus);
+router.patch('/:id/payment', isAdmin, validatePaymentStatus, updatePaymentStatus);
 
 module.exports = router;

@@ -11,7 +11,7 @@ const appointmentSchema = new mongoose.Schema({
     required: true,
   },
   professionalId: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
   },
@@ -24,7 +24,7 @@ const appointmentSchema = new mongoose.Schema({
     required: true,
   },
   petId: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Pet',
     required: true,
   },
@@ -64,7 +64,7 @@ const appointmentSchema = new mongoose.Schema({
     default: Date.now,
   },
   userId: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
   },

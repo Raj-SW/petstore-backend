@@ -8,7 +8,6 @@ exports.searchProducts = async (req, res, next) => {
       category,
       minPrice,
       maxPrice,
-      rating,
       sort,
       page = 1,
       limit = 10,
@@ -27,7 +26,7 @@ exports.searchProducts = async (req, res, next) => {
 
     // Category filter
     if (category) {
-      searchQuery.category = category;
+      searchQuery.categories = { $in: [category] };
     }
 
     // Price range filter
@@ -35,11 +34,6 @@ exports.searchProducts = async (req, res, next) => {
       searchQuery.price = {};
       if (minPrice) searchQuery.price.$gte = Number(minPrice);
       if (maxPrice) searchQuery.price.$lte = Number(maxPrice);
-    }
-
-    // Rating filter
-    if (rating) {
-      searchQuery.rating = { $gte: Number(rating) };
     }
 
     // Build sort object
@@ -60,8 +54,7 @@ exports.searchProducts = async (req, res, next) => {
     const products = await Product.find(searchQuery)
       .sort(sortQuery)
       .skip(skip)
-      .limit(Number(limit))
-      .populate('category', 'name');
+      .limit(Number(limit));
 
     // Get total count for pagination
     const total = await Product.countDocuments(searchQuery);
@@ -100,8 +93,7 @@ exports.getSuggestions = async (req, res, next) => {
         { description: { $regex: query, $options: 'i' } },
       ],
     })
-      .select('name category')
-      .populate('category', 'name')
+      .select('name categories')
       .limit(5);
 
     res.status(200).json({

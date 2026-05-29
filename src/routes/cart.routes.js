@@ -22,8 +22,8 @@ router.use(isAuthenticated);
 router.get('/', getCart);
 router.post('/', validateAddToCart, addToCart);
 router.patch('/:id', validateUpdateCartItem, updateCartItem);
+router.delete('/clear', clearCart);
 router.delete('/:id', removeCartItem);
 router.post('/apply-discount', validateApplyDiscount, applyDiscount);
-router.delete('/clear', clearCart);
 
 module.exports = router;

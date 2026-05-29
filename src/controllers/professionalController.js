@@ -35,7 +35,6 @@ exports.getAllProfessionals = async (req, res, next) => {
     };
 
     const result = await professionalService.getAllProfessionals(filters, pagination, sorting);
-    console.log('result', result);
     res.status(200).json({
       success: true,
       data: result.professionals,
@@ -83,6 +82,11 @@ exports.createProfessional = async (req, res, next) => {
 exports.updateProfessional = async (req, res, next) => {
   try {
     validateObjectId(req.params.id, 'Professional ID');
+
+    // Allow only the professional themselves or an admin
+    if (req.user._id.toString() !== req.params.id && req.user.role !== 'admin') {
+      return next(new AppError('You can only update your own profile', 403));
+    }
 
     const professional = await professionalService.updateProfessional(req.params.id, req.body);
 

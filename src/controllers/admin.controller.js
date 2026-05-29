@@ -1,7 +1,11 @@
+const mongoose = require('mongoose');
 const Order = require('../models/order.model');
 const Product = require('../models/product.model');
 const User = require('../models/user.model');
 const Appointment = require('../models/appointment.model');
+const Cart = require('../models/cart.model');
+const Pet = require('../models/pet.model');
+const Review = require('../models/review.model');
 const { AppError } = require('../middlewares/errorHandler');
 const logger = require('../utils/logger');
 const { getStartDate, getDateFormat } = require('../utils/dateUtils');
@@ -64,12 +68,12 @@ exports.getDashboardStats = async (req, res, next) => {
 
     // Get upcoming appointments
     const upcomingAppointments = await Appointment.find({
-      date: { $gte: startOfDay },
-      status: { $in: ['pending', 'accepted'] },
+      dateTime: { $gte: startOfDay },
+      status: { $in: ['PENDING', 'CONFIRMED'] },
     })
-      .populate('user', 'name email')
-      .populate('serviceProvider', 'name email')
-      .sort('date')
+      .populate('userId', 'name email')
+      .populate('professionalId', 'name email')
+      .sort('dateTime')
       .limit(5);
 
     res.status(200).json({
@@ -227,6 +231,145 @@ exports.getUserAnalytics = async (req, res, next) => {
   }
 };
 
+const VALID_ROLES = ['customer', 'veterinarian', 'groomer', 'trainer', 'petTaxi', 'admin'];
+
+// List all users with pagination and optional role filter
+exports.listUsers = async (req, res, next) => {
+  try {
+    const page = Math.max(1, parseInt(req.query.page, 10) || 1);
+    const limit = Math.min(100, Math.max(1, parseInt(req.query.limit, 10) || 20));
+    const skip = (page - 1) * limit;
+
+    const { role } = req.query;
+    if (role && !VALID_ROLES.includes(role)) {
+      return next(new AppError('Invalid role filter', 400));
+    }
+
+    const filter = {};
+    if (role) {
+      filter.role = role;
+    }
+
+    const sensitiveFields = '-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires';
+
+    const [users, total] = await Promise.all([
+      User.find(filter).select(sensitiveFields).skip(skip).limit(limit).lean(),
+      User.countDocuments(filter),
+    ]);
+
+    res.status(200).json({
+      success: true,
+      data: users,
+      pagination: {
+        total,
+        page,
+        pages: Math.ceil(total / limit),
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Update a user's role
+exports.updateUserRole = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { role } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return next(new AppError('Invalid user ID format', 400));
+    }
+
+    // Prevent admin from demoting themselves
+    if (req.user._id.toString() === id) {
+      return next(new AppError('You cannot change your own role', 400));
+    }
+
+    if (!role || !VALID_ROLES.includes(role)) {
+      return next(new AppError(`Role must be one of: ${VALID_ROLES.join(', ')}`, 400));
+    }
+
+    const user = await User.findByIdAndUpdate(
+      id,
+      { role },
+      { new: true, runValidators: true }
+    ).select('-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires');
+
+    if (!user) {
+      return next(new AppError('User not found', 404));
+    }
+
+    res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Delete a user and cascade-delete related data
+exports.deleteUser = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return next(new AppError('Invalid user ID format', 400));
+    }
+
+    // Prevent admin from deleting themselves
+    if (req.user._id.toString() === id) {
+      return next(new AppError('You cannot delete your own account', 400));
+    }
+
+    const user = await User.findById(id);
+    if (!user) {
+      return next(new AppError('User not found', 404));
+    }
+
+    // Get affected product IDs before deleting reviews
+    const userReviews = await Review.find({ user: id }).select('product');
+    const affectedProductIds = [...new Set(userReviews.map((r) => r.product.toString()))];
+
+    // Cascade deletes
+    await Promise.all([
+      Cart.deleteMany({ user: id }),
+      Review.deleteMany({ user: id }),
+      Pet.deleteMany({ owner: id }),
+      Appointment.updateMany(
+        { userId: id, status: { $in: ['PENDING', 'CONFIRMED'] } },
+        { status: 'CANCELLED' }
+      ),
+      // Also cancel appointments where user is the professional
+      Appointment.updateMany(
+        { professionalId: id, status: { $in: ['PENDING', 'CONFIRMED'] } },
+        { status: 'CANCELLED' }
+      ),
+      Order.deleteMany({ user: id }),
+    ]);
+
+    // Recalculate ratings for affected products
+    for (const productId of affectedProductIds) {
+      const remainingReviews = await Review.find({ product: productId });
+      const avgRating =
+        remainingReviews.length > 0
+          ? remainingReviews.reduce((acc, r) => acc + r.rating, 0) / remainingReviews.length
+          : 0;
+      await Product.findByIdAndUpdate(productId, { rating: avgRating });
+    }
+
+    await User.findByIdAndDelete(id);
+
+    res.status(200).json({
+      success: true,
+      message: 'User deleted successfully',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // Get appointment analytics
 exports.getAppointmentAnalytics = async (req, res, next) => {
   try {
@@ -250,10 +393,10 @@ exports.getAppointmentAnalytics = async (req, res, next) => {
           },
           total: { $sum: 1 },
           completed: {
-            $sum: { $cond: [{ $eq: ['$status', 'completed'] }, 1, 0] },
+            $sum: { $cond: [{ $eq: ['$status', 'COMPLETED'] }, 1, 0] },
           },
           cancelled: {
-            $sum: { $cond: [{ $eq: ['$status', 'cancelled'] }, 1, 0] },
+            $sum: { $cond: [{ $eq: ['$status', 'CANCELLED'] }, 1, 0] },
           },
         },
       },
@@ -268,10 +411,10 @@ exports.getAppointmentAnalytics = async (req, res, next) => {
       },
       {
         $group: {
-          _id: '$serviceProvider',
+          _id: '$professionalId',
           totalAppointments: { $sum: 1 },
           completedAppointments: {
-            $sum: { $cond: [{ $eq: ['$status', 'completed'] }, 1, 0] },
+            $sum: { $cond: [{ $eq: ['$status', 'COMPLETED'] }, 1, 0] },
           },
         },
       },

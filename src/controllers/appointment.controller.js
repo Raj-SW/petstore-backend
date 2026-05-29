@@ -275,7 +275,7 @@ exports.updateAppointmentStatus = async (req, res, next) => {
       req.user._id.toString() === appointment.professionalId.toString();
     const isProfessional = req.user.role === appointment.appointmentType;
     const isAdmin = req.user.role === 'admin';
-    if (!isProfessionalAssigned && !isProfessional) {
+    if (!isProfessionalAssigned && !isProfessional && !isAdmin) {
       return next(new AppError('Access denied', 403));
     }
 
@@ -348,7 +348,7 @@ exports.getAppointmentById = async (req, res, next) => {
 
     const appointment = await Appointment.findById(appointmentId).populate([
       { path: 'professionalId', select: 'name email phoneNumber role professionalInfo' },
-      { path: 'user', select: 'name email phoneNumber address' },
+      { path: 'userId', select: 'name email phoneNumber address' },
       { path: 'petId', select: 'name species breed age weight medicalHistory' },
     ]);
 
@@ -357,8 +357,8 @@ exports.getAppointmentById = async (req, res, next) => {
     }
 
     // Check if user has permission to view this appointment
-    const isProfessional = appointment.professional._id.toString() === req.user._id.toString();
-    const isCustomer = appointment.user._id.toString() === req.user._id.toString();
+    const isProfessional = appointment.professionalId._id.toString() === req.user._id.toString();
+    const isCustomer = appointment.userId._id.toString() === req.user._id.toString();
     const isAdmin = req.user.role === 'admin';
 
     if (!isProfessional && !isCustomer && !isAdmin) {

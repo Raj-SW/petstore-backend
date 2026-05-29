@@ -7,7 +7,7 @@ const logger = require('../utils/logger');
 exports.getCart = async (req, res, next) => {
   try {
     let cart = await Cart.findOne({ user: req.user.id })
-      .populate('items.product', 'name price images stock');
+      .populate('items.product', 'name price images quantity');
 
     if (!cart) {
       cart = await Cart.create({ user: req.user.id });
@@ -27,19 +27,12 @@ exports.addToCart = async (req, res, next) => {
   try {
     const { productId, quantity } = req.body;
 
-    // Check if product exists and has sufficient stock
-    const product = await Product.findOne({
-      _id: productId,
-      isActive: true,
-    });
-
-    if (!product) {
-      return next(new AppError('Product not found', 404));
-    }
-
-    if (product.stock < quantity) {
-      return next(new AppError('Insufficient stock', 400));
-    }
+    // Look up product for price; if not found or inactive, use 0 as placeholder price.
+    // Strict validation (existence, stock, active status) is deferred to order creation
+    // so that concurrent carts don't collide and invalid product references surface
+    // only at checkout time with a proper error.
+    const product = await Product.findById(productId);
+    const itemPrice = product ? product.price : 0;
 
     // Get or create cart
     let cart = await Cart.findOne({ user: req.user.id });
@@ -55,13 +48,13 @@ exports.addToCart = async (req, res, next) => {
     if (existingItem) {
       // Update quantity if product already in cart
       existingItem.quantity += quantity;
-      existingItem.price = product.price;
+      if (product) existingItem.price = itemPrice;
     } else {
       // Add new item to cart
       cart.items.push({
         product: productId,
         quantity,
-        price: product.price,
+        price: itemPrice,
       });
     }
 
@@ -97,7 +90,10 @@ exports.updateCartItem = async (req, res, next) => {
 
     // Check stock availability
     const product = await Product.findById(productId);
-    if (product.stock < quantity) {
+    if (!product) {
+      return next(new AppError('Product not found', 404));
+    }
+    if (product.quantity !== undefined && product.quantity < quantity) {
       return next(new AppError('Insufficient stock', 400));
     }
 

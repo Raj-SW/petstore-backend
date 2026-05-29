@@ -24,6 +24,10 @@ passport.use(
           return done(null, false, { message: 'Incorrect password.' });
         }
 
+        if (!user.isActive) {
+          return done(null, false, { message: 'Account is deactivated.' });
+        }
+
         return done(null, user);
       } catch (error) {
         return done(error);

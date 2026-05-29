@@ -158,7 +158,7 @@ const forgotPassword = async (req, res, next) => {
     await user.save();
 
     // Send reset email
-    const resetUrl = `${req.protocol}://${req.get('host')}/api/auth/reset-password/${resetToken}`;
+    const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
 
     await sendEmail({
       email: user.email,
@@ -258,9 +258,7 @@ const resendVerificationEmail = async (req, res, next) => {
     await user.save();
 
     // Send verification email
-    const verificationUrl = `${req.protocol}://${req.get(
-      'host'
-    )}/api/auth/verify-email/${verificationToken}`;
+    const verificationUrl = `${process.env.FRONTEND_URL}/verify-email/${verificationToken}`;
 
     await sendEmail({
       email: user.email,

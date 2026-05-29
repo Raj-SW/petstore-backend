@@ -41,9 +41,13 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
     profileImage: {
-      type: String,
-      trim: true,
+      url: { type: String, trim: true },
+      publicId: { type: String, trim: true },
     },
     passwordResetToken: String,
     passwordResetExpires: Date,

@@ -1,4 +1,3 @@
-/*
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { AppError } = require('../middlewares/errorHandler');
 const logger = require('../utils/logger');
@@ -86,4 +85,3 @@ class PaymentService {
 }
 
 module.exports = PaymentService;
-*/
