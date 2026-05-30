@@ -28,9 +28,10 @@ class ProfessionalService {
 
     const { sortBy = 'professionalInfo.rating', sortOrder = 'desc' } = sorting;
 
-    // Build query for professionals only
+    // Build query for professionals only — always exclude deactivated users
     const query = {
       role: { $in: ['veterinarian', 'groomer', 'trainer'] },
+      isActive: true,
     };
 
     // Add filters
@@ -91,6 +92,7 @@ class ProfessionalService {
     const professional = await User.findOne({
       _id: professionalId,
       role: { $in: ['veterinarian', 'groomer', 'trainer'] },
+      isActive: true,
     }).select(
       '-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v'
     );
@@ -156,6 +158,7 @@ class ProfessionalService {
 
     const professionals = await User.find({
       role,
+      isActive: true,
       'professionalInfo.isActive': true,
     }).select(
       '-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v'
@@ -174,6 +177,7 @@ class ProfessionalService {
 
     const query = {
       role: role || { $in: ['veterinarian', 'groomer', 'trainer'] },
+      isActive: true,
       'professionalInfo.isActive': true,
     };
 

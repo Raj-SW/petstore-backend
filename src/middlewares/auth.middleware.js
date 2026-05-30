@@ -22,6 +22,10 @@ exports.isAuthenticated = async (req, res, next) => {
       return next(new AppError('User no longer exists', 401));
     }
 
+    if (!user.isActive) {
+      return next(new AppError('Your account has been deactivated. Please contact support.', 403));
+    }
+
     req.user = user;
     next();
   } catch (error) {

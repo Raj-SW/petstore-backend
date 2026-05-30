@@ -443,6 +443,43 @@ exports.getAppointmentAnalytics = async (req, res, next) => {
   }
 };
 
+// Toggle user active/inactive status (Admin only)
+exports.toggleUserStatus = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { isActive } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return next(new AppError('Invalid user ID format', 400));
+    }
+
+    if (req.user._id.toString() === id) {
+      return next(new AppError('You cannot change your own active status', 400));
+    }
+
+    if (typeof isActive !== 'boolean') {
+      return next(new AppError('isActive must be a boolean', 400));
+    }
+
+    const user = await User.findByIdAndUpdate(
+      id,
+      { isActive },
+      { new: true, runValidators: true }
+    ).select('-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires');
+
+    if (!user) {
+      return next(new AppError('User not found', 404));
+    }
+
+    res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // Get all appointments (admin only)
 exports.getAllAppointments = async (req, res, next) => {
   try {
