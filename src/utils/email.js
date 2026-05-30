@@ -5,48 +5,48 @@ const path = require('path');
 const handlebars = require('handlebars');
 
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: process.env.SMTP_PORT,
-  secure: process.env.SMTP_PORT === '465',
+  host: process.env.SMTP_HOST || 'smtp.resend.com',
+  port: parseInt(process.env.SMTP_PORT || '465', 10),
+  secure: parseInt(process.env.SMTP_PORT || '587', 10) === 465,
   auth: {
-    user: process.env.SMTP_USER,
+    user: process.env.SMTP_USER || 'resend',
     pass: process.env.SMTP_PASS,
   },
 });
 
-// Utility to render an HTML template with data
-function renderTemplate(templateName, data) {
+// Render a Handlebars HTML template with data
+function renderTemplate(templateName, data = {}) {
   const templatePath = path.join(__dirname, '../templates', `${templateName}.html`);
   const source = fs.readFileSync(templatePath, 'utf8');
-  const compiled = handlebars.compile(source);
-  return compiled(data);
+  return handlebars.compile(source)(data);
 }
 
 /**
- * Send an email using a template and data
- * @param {Object} options
- * @param {string} options.to - Recipient email
- * @param {string} options.subject - Email subject
- * @param {string} options.template - Template file name (without .html)
- * @param {Object} options.data - Data for template rendering
+ * Send a templated email via Resend SMTP.
+ *
+ * @param {Object} opts
+ * @param {string} opts.to        - Recipient address  (also accepts opts.email for backward compat)
+ * @param {string} opts.subject   - Email subject line
+ * @param {string} opts.template  - Template filename without .html  (e.g. 'welcome')
+ * @param {Object} [opts.data]    - Data injected into the Handlebars template
+ *
+ * Throws on failure so callers can wrap in try/catch and decide criticality.
  */
-exports.sendEmail = async ({ to, subject, template, data }) => {
-  try {
-    const html = renderTemplate(template, data);
-    const mailOptions = {
-      from: process.env.SMTP_USER,
-      to,
-      subject,
-      html,
-    };
-    await transporter.sendMail(mailOptions);
-    logger.info(`Email sent to ${to}`);
-  } catch (error) {
-    logger.error('Error sending email:', error);
-    // Fallback: log the failed email details for retry or manual review
-    logger.error('Failed email details:', { to, subject, template, data });
-    // Optionally, push to a retry queue here
-  }
+exports.sendEmail = async ({ to, email, subject, template, data = {} }) => {
+  const recipient = to || email;
+  if (!recipient) throw new Error('sendEmail: recipient (to/email) is required');
+  if (!template) throw new Error('sendEmail: template name is required');
+
+  const html = renderTemplate(template, data);
+
+  await transporter.sendMail({
+    from: process.env.SMTP_FROM || 'onboarding@resend.dev',
+    to: recipient,
+    subject,
+    html,
+  });
+
+  logger.info(`Email sent — subject: "${subject}" to: ${recipient}`);
 };
 
 exports.renderTemplate = renderTemplate;

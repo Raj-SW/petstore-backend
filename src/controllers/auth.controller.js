@@ -34,6 +34,21 @@ const signup = async (req, res, next) => {
 
     user.password = undefined;
 
+    // Welcome email — non-critical
+    try {
+      await sendEmail({
+        to: user.email,
+        subject: 'Welcome to VitalPaws! 🐾',
+        template: 'welcome',
+        data: {
+          name: user.name,
+          shopUrl: `${process.env.FRONTEND_URL}/petshop`,
+        },
+      });
+    } catch (emailErr) {
+      logger.warn('Welcome email failed (non-fatal)', { error: emailErr.message });
+    }
+
     res.status(201).json({
       success: true,
       message: 'Registration successful. Please sign in.',
@@ -62,6 +77,22 @@ const login = async (req, res, next) => {
 
     // Don't send password in response
     user.password = undefined;
+
+    // Login notification email — non-critical
+    try {
+      await sendEmail({
+        to: user.email,
+        subject: 'New sign-in to your VitalPaws account',
+        template: 'login-notification',
+        data: {
+          name: user.name,
+          loginTime: new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }),
+          resetUrl: `${process.env.FRONTEND_URL}/reset-password`,
+        },
+      });
+    } catch (emailErr) {
+      logger.warn('Login notification email failed (non-fatal)', { error: emailErr.message });
+    }
 
     // Note: login response wraps { user, accessToken } in data — intentional,
     // as login returns two things. Frontend destructures data.user and data.accessToken.
@@ -151,11 +182,21 @@ const forgotPassword = async (req, res, next) => {
     // Send reset email
     const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
 
-    await sendEmail({
-      email: user.email,
-      subject: 'Password Reset',
-      message: `Reset your password by clicking: ${resetUrl}`,
-    });
+    // Password reset email — critical: re-throw if it fails so user knows to retry
+    try {
+      await sendEmail({
+        to: user.email,
+        subject: 'Reset your VitalPaws password',
+        template: 'password-reset',
+        data: {
+          name: user.name,
+          resetUrl,
+        },
+      });
+    } catch (emailErr) {
+      logger.warn('Password reset email failed', { error: emailErr.message });
+      throw emailErr;
+    }
 
     res.status(200).json({
       success: true,
@@ -251,11 +292,21 @@ const resendVerificationEmail = async (req, res, next) => {
     // Send verification email
     const verificationUrl = `${process.env.FRONTEND_URL}/verify-email/${verificationToken}`;
 
-    await sendEmail({
-      email: user.email,
-      subject: 'Email Verification',
-      message: `Verify your email by clicking: ${verificationUrl}`,
-    });
+    // Verification email — critical: re-throw if it fails so user knows to retry
+    try {
+      await sendEmail({
+        to: user.email,
+        subject: 'Verify your VitalPaws email',
+        template: 'password-reset',
+        data: {
+          name: user.name,
+          resetUrl: verificationUrl,
+        },
+      });
+    } catch (emailErr) {
+      logger.warn('Verification email failed', { error: emailErr.message });
+      throw emailErr;
+    }
 
     res.status(200).json({
       success: true,

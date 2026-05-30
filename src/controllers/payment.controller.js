@@ -86,19 +86,23 @@ exports.confirmPayment = async (req, res, next) => {
       };
       await order.save();
 
-      // Send payment confirmation email
-      await sendEmail({
-        email: req.user.email,
-        subject: 'Payment Confirmation',
-        template: 'payment-confirmation',
-        data: {
-          name: req.user.name,
-          orderId: order._id,
-          amount: order.finalAmount,
-          transactionId: paymentResult.transactionId,
-          paymentMethod,
-        },
-      });
+      // Send payment confirmation email — non-critical
+      try {
+        await sendEmail({
+          email: req.user.email,
+          subject: 'Payment Confirmation',
+          template: 'payment-confirmation',
+          data: {
+            name: req.user.name,
+            orderId: order._id,
+            amount: order.finalAmount,
+            transactionId: paymentResult.transactionId,
+            paymentMethod,
+          },
+        });
+      } catch (emailErr) {
+        logger.warn('Payment confirmation email failed (non-fatal)', { error: emailErr.message });
+      }
     }
 
     res.status(200).json({
@@ -140,19 +144,23 @@ exports.processRefund = async (req, res, next) => {
     order.status = 'cancelled';
     await order.save();
 
-    // Send refund confirmation email
-    await sendEmail({
-      email: req.user.email,
-      subject: 'Refund Processed',
-      template: 'refund-confirmation',
-      data: {
-        name: req.user.name,
-        orderId: order._id,
-        amount: order.finalAmount,
-        refundId: refundResult.transactionId,
-        paymentMethod: order.paymentDetails.paymentMethod,
-      },
-    });
+    // Send refund confirmation email — non-critical
+    try {
+      await sendEmail({
+        email: req.user.email,
+        subject: 'Refund Processed',
+        template: 'refund-confirmation',
+        data: {
+          name: req.user.name,
+          orderId: order._id,
+          amount: order.finalAmount,
+          refundId: refundResult.transactionId,
+          paymentMethod: order.paymentDetails.paymentMethod,
+        },
+      });
+    } catch (emailErr) {
+      logger.warn('Refund confirmation email failed (non-fatal)', { error: emailErr.message });
+    }
 
     res.status(200).json({
       success: true,

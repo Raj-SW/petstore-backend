@@ -72,7 +72,7 @@ exports.addToCart = async (req, res, next) => {
 // Update cart item quantity
 exports.updateCartItem = async (req, res, next) => {
   try {
-    const { productId } = req.params;
+    const { id: productId } = req.params;
     const { quantity } = req.body;
 
     const cart = await Cart.findOne({ user: req.user.id });
@@ -115,7 +115,7 @@ exports.updateCartItem = async (req, res, next) => {
 // Remove item from cart
 exports.removeCartItem = async (req, res, next) => {
   try {
-    const { productId } = req.params;
+    const { id: productId } = req.params;
 
     const cart = await Cart.findOne({ user: req.user.id });
     if (!cart) {
@@ -171,7 +171,8 @@ exports.clearCart = async (req, res, next) => {
   try {
     const cart = await Cart.findOne({ user: req.user.id });
     if (!cart) {
-      return next(new AppError('Cart not found', 404));
+      // No cart document yet — already effectively empty, nothing to clear
+      return res.status(200).json({ success: true, data: { items: [] } });
     }
 
     cart.items = [];

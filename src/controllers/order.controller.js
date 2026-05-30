@@ -41,7 +41,8 @@ exports.createOrder = async (req, res, next) => {
         logger.warn(`Inactive product: ${product._id}`);
         return next(new AppError(`Product ${product.name} is not available`, 400));
       }
-      if (product.quantity < item.quantity) {
+      // Only enforce stock limit when quantity is a positive number (0 = not tracked / unlimited)
+      if (product.quantity != null && product.quantity > 0 && product.quantity < item.quantity) {
         await session.abortTransaction();
         session.endSession();
         logger.warn(`Insufficient stock for product: ${product._id}`);
@@ -115,18 +116,22 @@ exports.createOrder = async (req, res, next) => {
     // Log order creation
     logger.info('Order created', { user: req.user.id, order: order[0]._id, items: logDetails });
 
-    // Send order confirmation email
-    await sendEmail({
-      email: req.user.email,
-      subject: 'Order Confirmation',
-      template: 'order-confirmation',
-      data: {
-        name: req.user.name,
-        orderId: order[0]._id,
-        totalAmount: order[0].totalAmount,
-        items: order[0].items,
-      },
-    });
+    // Send order confirmation email — non-critical, never fail the order if email fails
+    try {
+      await sendEmail({
+        email: req.user.email,
+        subject: 'Order Confirmation',
+        template: 'order-confirmation',
+        data: {
+          name: req.user.name,
+          orderId: order[0]._id,
+          totalAmount: order[0].totalAmount,
+          items: order[0].items,
+        },
+      });
+    } catch (emailErr) {
+      logger.warn('Order confirmation email failed (non-fatal)', { error: emailErr.message });
+    }
 
     // Sanitize response
     const sanitizedOrder = order[0].toObject();
@@ -234,19 +239,23 @@ exports.updateOrderStatus = async (req, res, next) => {
 
     await order.save();
 
-    // Send status update email
-    await sendEmail({
-      email: order.user.email,
-      subject: 'Order Status Update',
-      template: 'order-status-update',
-      data: {
-        name: order.user.name,
-        orderId: order._id,
-        status,
-        trackingNumber,
-        estimatedDelivery,
-      },
-    });
+    // Send status update email — non-critical
+    try {
+      await sendEmail({
+        email: order.user.email,
+        subject: 'Order Status Update',
+        template: 'order-status-update',
+        data: {
+          name: order.user.name,
+          orderId: order._id,
+          status,
+          trackingNumber,
+          estimatedDelivery,
+        },
+      });
+    } catch (emailErr) {
+      logger.warn('Order status email failed (non-fatal)', { error: emailErr.message });
+    }
 
     res.status(200).json({
       success: true,
@@ -279,18 +288,22 @@ exports.updatePaymentStatus = async (req, res, next) => {
 
     await order.save();
 
-    // Send payment status update email
-    await sendEmail({
-      email: order.user.email,
-      subject: 'Payment Status Update',
-      template: 'payment-status-update',
-      data: {
-        name: order.user.name,
-        orderId: order._id,
-        paymentStatus,
-        amount: order.totalAmount,
-      },
-    });
+    // Send payment status update email — non-critical
+    try {
+      await sendEmail({
+        email: order.user.email,
+        subject: 'Payment Status Update',
+        template: 'payment-status-update',
+        data: {
+          name: order.user.name,
+          orderId: order._id,
+          paymentStatus,
+          amount: order.totalAmount,
+        },
+      });
+    } catch (emailErr) {
+      logger.warn('Payment status email failed (non-fatal)', { error: emailErr.message });
+    }
 
     res.status(200).json({
       success: true,
@@ -325,16 +338,20 @@ exports.cancelOrder = async (req, res, next) => {
       });
     }
 
-    // Send cancellation email
-    await sendEmail({
-      email: order.user.email,
-      subject: 'Order Cancelled',
-      template: 'order-cancelled',
-      data: {
-        name: order.user.name,
-        orderId: order._id,
-      },
-    });
+    // Send cancellation email — non-critical
+    try {
+      await sendEmail({
+        email: order.user.email,
+        subject: 'Order Cancelled',
+        template: 'order-cancelled',
+        data: {
+          name: order.user.name,
+          orderId: order._id,
+        },
+      });
+    } catch (emailErr) {
+      logger.warn('Order cancellation email failed (non-fatal)', { error: emailErr.message });
+    }
 
     res.status(200).json({
       success: true,
