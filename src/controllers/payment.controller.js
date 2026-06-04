@@ -4,6 +4,9 @@ const Order = require('../models/order.model');
 const { AppError } = require('../middlewares/errorHandler');
 const { sendEmail } = require('../utils/email');
 const logger = require('../utils/logger');
+const Invoice        = require('../models/invoice.model');
+const Transaction    = require('../models/transaction.model');
+const InvoiceService = require('../services/invoice.service');
 
 // Initialize payment for an order
 exports.initializePayment = async (req, res, next) => {
@@ -86,6 +89,27 @@ exports.confirmPayment = async (req, res, next) => {
       };
       await order.save();
 
+      // Auto-generate invoice + log transaction for completed payment
+      try {
+        const existingInvoice = await Invoice.findOne({ order: order._id });
+        if (!existingInvoice) {
+          const invoice = await InvoiceService.generateInvoice(order._id, order.user);
+          await Transaction.create({
+            order:         order._id,
+            invoice:       invoice._id,
+            user:          order.user,
+            type:          'payment',
+            amount:        order.finalAmount,
+            currency:      'USD',
+            paymentMethod,
+            transactionId: paymentResult.transactionId,
+            status:        'completed',
+          });
+        }
+      } catch (invoiceErr) {
+        logger.warn('Invoice generation failed (non-fatal)', { error: invoiceErr.message, orderId: order._id });
+      }
+
       // Send payment confirmation email — non-critical
       try {
         await sendEmail({
@@ -143,6 +167,30 @@ exports.processRefund = async (req, res, next) => {
     order.paymentStatus = 'refunded';
     order.status = 'cancelled';
     await order.save();
+
+    // Mark invoice as refunded + log refund transaction
+    try {
+      const updatedInvoice = await Invoice.findOneAndUpdate(
+        { order: order._id },
+        { status: 'refunded' },
+        { new: true },
+      );
+      if (!updatedInvoice) {
+        logger.warn('Refund: no invoice found to mark as refunded', { orderId: order._id });
+      }
+      await Transaction.create({
+        order:         order._id,
+        user:          order.user,
+        type:          'refund',
+        amount:        order.finalAmount,
+        currency:      'USD',
+        paymentMethod: order.paymentDetails?.paymentMethod,
+        transactionId: refundResult.transactionId,
+        status:        'completed',
+      });
+    } catch (txErr) {
+      logger.warn('Refund transaction log failed (non-fatal)', { error: txErr.message, orderId: order._id });
+    }
 
     // Send refund confirmation email — non-critical
     try {

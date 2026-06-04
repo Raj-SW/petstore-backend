@@ -9,6 +9,7 @@ const {
   cancelOrder,
   getMyOrders,
 } = require('../controllers/order.controller');
+const { getMyInvoice } = require('../controllers/invoice.controller');
 const {
   validateCreateOrder,
   validateUpdateOrderStatus,
@@ -22,6 +23,7 @@ router.use(isAuthenticated);
 
 // Customer routes
 router.get('/my-orders', getMyOrders);
+router.get('/my-invoices/:id', getMyInvoice);
 router.post('/', validateCreateOrder, createOrder);
 router.get('/:id', getOrder);
 router.patch('/:id/cancel', cancelOrder);

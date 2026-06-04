@@ -1,10 +1,14 @@
 const Order = require('../models/order.model');
 const Cart = require('../models/cart.model');
 const Product = require('../models/product.model');
+const StockMovement = require('../models/stockMovement.model');
 const { AppError } = require('../middlewares/errorHandler');
 const { sendEmail } = require('../utils/email');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const logger = require('../utils/logger');
+const Invoice        = require('../models/invoice.model');
+const Transaction    = require('../models/transaction.model');
+const InvoiceService = require('../services/invoice.service');
 
 // Create new order
 exports.createOrder = async (req, res, next) => {
@@ -93,15 +97,35 @@ exports.createOrder = async (req, res, next) => {
       { session },
     );
 
-    // Update product stock
+    // Update product stock and log movements
+    const orderMovements = [];
     for (const item of orderItems) {
+      // Use .lean() so we get raw MongoDB fields including legacy `stock` field
+      const prod = await Product.findById(item.product).lean().session(session);
+      // Resolve quantity: prefer `quantity` field; fall back to legacy `stock`
+      const prevQty = prod
+        ? (prod.quantity !== undefined && prod.quantity !== null ? prod.quantity : (prod.stock ?? 0))
+        : 0;
+      const newQty = Math.max(0, prevQty - item.quantity);
+      // Determine which field to decrement (don't create a new `quantity:-n` on legacy-only-stock products)
+      const stockField = (prod && prod.quantity !== undefined && prod.quantity !== null) ? 'quantity' : 'stock';
       await Product.findByIdAndUpdate(
         item.product,
-        {
-          $inc: { quantity: -item.quantity },
-        },
+        { $inc: { [stockField]: -item.quantity } },
         { session },
       );
+      orderMovements.push({
+        product: item.product,
+        type: 'order',
+        delta: -item.quantity,
+        prevQty,
+        newQty,
+        createdBy: req.user.id,
+        orderId: order[0]._id,
+      });
+    }
+    if (orderMovements.length > 0) {
+      await StockMovement.insertMany(orderMovements, { session });
     }
 
     // Clear cart
@@ -288,6 +312,29 @@ exports.updatePaymentStatus = async (req, res, next) => {
 
     await order.save();
 
+    // Auto-generate invoice when admin manually marks payment as completed
+    if (paymentStatus === 'completed') {
+      try {
+        const existing = await Invoice.findOne({ order: order._id });
+        if (!existing) {
+          const invoice = await InvoiceService.generateInvoice(order._id, order.user._id || order.user);
+          await Transaction.create({
+            order:         order._id,
+            invoice:       invoice._id,
+            user:          order.user._id || order.user,
+            type:          'payment',
+            amount:        order.finalAmount,
+            currency:      'USD',
+            paymentMethod: order.paymentDetails?.paymentMethod || order.paymentMethod,
+            transactionId: transactionId || order.paymentDetails?.transactionId,
+            status:        'completed',
+          });
+        }
+      } catch (invoiceErr) {
+        logger.warn('Invoice generation on admin status update failed (non-fatal)', { error: invoiceErr.message });
+      }
+    }
+
     // Send payment status update email — non-critical
     try {
       await sendEmail({
@@ -331,11 +378,33 @@ exports.cancelOrder = async (req, res, next) => {
     order.status = 'cancelled';
     await order.save();
 
-    // Restore product stock
+    // Restore product stock and log movements
+    const cancelMovements = [];
     for (const item of order.items) {
+      // Use .lean() so we get raw MongoDB fields including legacy `stock` field
+      const prod = await Product.findById(item.product).lean();
+      // Resolve quantity: prefer `quantity` field; fall back to legacy `stock`
+      const prevQty = prod
+        ? (prod.quantity !== undefined && prod.quantity !== null ? prod.quantity : (prod.stock ?? 0))
+        : 0;
+      const newQty = prevQty + item.quantity;
+      // Restore the correct field (match whichever field was decremented)
+      const stockField = (prod && prod.quantity !== undefined && prod.quantity !== null) ? 'quantity' : 'stock';
       await Product.findByIdAndUpdate(item.product, {
-        $inc: { quantity: item.quantity },
+        $inc: { [stockField]: item.quantity },
       });
+      cancelMovements.push({
+        product: item.product,
+        type: 'cancellation',
+        delta: item.quantity,
+        prevQty,
+        newQty,
+        createdBy: req.user.id,
+        orderId: order._id,
+      });
+    }
+    if (cancelMovements.length > 0) {
+      await StockMovement.insertMany(cancelMovements);
     }
 
     // Send cancellation email — non-critical

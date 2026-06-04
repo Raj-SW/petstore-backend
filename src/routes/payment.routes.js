@@ -1,5 +1,5 @@
 const express = require('express');
-const { isAuthenticated } = require('../middlewares/auth.middleware');
+const { isAuthenticated, isAdmin } = require('../middlewares/auth.middleware');
 const {
   initializePayment,
   confirmPayment,
@@ -28,6 +28,6 @@ router.post('/orders/:orderId/initialize', initializePayment);
 router.post('/orders/:orderId/confirm', confirmPayment);
 
 // Admin routes
-router.post('/orders/:orderId/refund', processRefund);
+router.post('/orders/:orderId/refund', isAdmin, processRefund);
 
 module.exports = router;
