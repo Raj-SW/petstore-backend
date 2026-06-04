@@ -55,9 +55,10 @@ exports.getDashboardStats = async (req, res, next) => {
       },
     ]);
 
-    // Get low stock products
-    const lowStockProducts = await Product.find({ stock: { $lt: 10 } })
-      .select('name stock price')
+    // Get low stock products (uses `quantity` field — not `stock`)
+    const lowStockProducts = await Product.find({ quantity: { $lt: 10 } })
+      .select('name quantity price categories images')
+      .sort({ quantity: 1 })
       .limit(5);
 
     // Get recent orders

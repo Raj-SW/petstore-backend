@@ -66,6 +66,10 @@ const productSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    isFeatured: {
+      type: Boolean,
+      default: false,
+    },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
@@ -97,6 +101,7 @@ productSchema.index({ slug: 1 });
 productSchema.index({ categories: 1 });
 productSchema.index({ price: 1 });
 productSchema.index({ quantity: 1 });
+productSchema.index({ isFeatured: 1 });
 
 // Prevent OverwriteModelError in dev/hot-reload
 module.exports = mongoose.models.Product || mongoose.model('Product', productSchema);
