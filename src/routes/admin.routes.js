@@ -34,6 +34,11 @@ const {
   getTransaction,
 } = require('../controllers/transaction.controller');
 
+const {
+  getContacts,
+  updateContactStatus,
+} = require('../controllers/contact.controller');
+
 const router = express.Router();
 
 // All admin routes require authentication and admin role
@@ -73,5 +78,9 @@ router.get('/invoices/:id/pdf',                downloadInvoicePDF);
 // Transaction routes
 router.get('/transactions',       getTransactions);
 router.get('/transactions/:id',   getTransaction);
+
+// Contact messages
+router.get('/contacts',           getContacts);
+router.patch('/contacts/:id',     updateContactStatus);
 
 module.exports = router;

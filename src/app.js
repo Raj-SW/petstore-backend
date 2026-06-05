@@ -23,6 +23,7 @@ const professionalRoutes = require('./routes/professional.routes');
 const reviewRoutes = require('./routes/review.routes');
 const petRoutes = require('./routes/pet.routes');
 const searchRoutes = require('./routes/search.routes');
+const contactRoutes = require('./routes/contact.routes');
 
 const app = express();
 
@@ -107,6 +108,7 @@ app.use('/api/professionals', professionalRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/pets', petRoutes);
 app.use('/api/search', searchRoutes);
+app.use('/api/contact', contactRoutes);
 
 // Handle unhandled routes
 app.all('*', (req, res, next) => {
