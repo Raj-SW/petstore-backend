@@ -275,8 +275,12 @@ exports.getProductsByCategory = async (req, res, next) => {
       return next(new AppError('Category is required', 400));
     }
 
+    const regex = new RegExp(category, 'i');
     const products = await Product.find({
-      categories: { $regex: new RegExp(category, 'i') },
+      $or: [
+        { categories: { $elemMatch: { $regex: regex } } },
+        { category: { $regex: regex } },
+      ],
       isActive: true,
     }).populate('createdBy', 'name email');
 
