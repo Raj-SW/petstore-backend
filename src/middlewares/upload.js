@@ -1,19 +1,6 @@
 const multer = require('multer');
-const path = require('path');
 const { AppError } = require('./errorHandler');
 
-// Configure storage
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
-    cb(null, `${file.fieldname}-${uniqueSuffix}${path.extname(file.originalname)}`);
-  },
-});
-
-// File filter
 const fileFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image/')) {
     cb(null, true);
@@ -22,12 +9,12 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// Configure multer
+// Memory storage — no disk dependency, buffer goes straight to Cloudinary
 const upload = multer({
-  storage,
+  storage: multer.memoryStorage(),
   fileFilter,
   limits: {
-    fileSize: 20 * 1024 * 1024, // 20MB limit
+    fileSize: 20 * 1024 * 1024, // 20MB
   },
 });
 

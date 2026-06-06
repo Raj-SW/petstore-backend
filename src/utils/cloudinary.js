@@ -9,10 +9,13 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// Upload file to Cloudinary
+// Upload file to Cloudinary from memory buffer (no temp disk file needed)
 exports.uploadToCloudinary = async (file, folder = 'products') => {
   try {
-    const result = await cloudinary.uploader.upload(file.path, {
+    const b64 = Buffer.from(file.buffer).toString('base64');
+    const dataURI = `data:${file.mimetype};base64,${b64}`;
+
+    const result = await cloudinary.uploader.upload(dataURI, {
       folder,
       resource_type: 'auto',
       transformation: [

@@ -2,6 +2,14 @@ const Joi = require('joi');
 const { AppError } = require('../middlewares/errorHandler');
 
 const validateProduct = (req, res, next) => {
+  // multipart/form-data sends a single appended value as a string, not an array.
+  // Normalise before Joi sees the body.
+  ['categories', 'colors', 'genders'].forEach((field) => {
+    if (req.body[field] !== undefined && !Array.isArray(req.body[field])) {
+      req.body[field] = [req.body[field]];
+    }
+  });
+
   const schema = Joi.object({
     name: Joi.string().required().min(2).max(100).trim().messages({
       'string.base': 'Product name must be a string',
@@ -21,14 +29,19 @@ const validateProduct = (req, res, next) => {
       'number.min': 'Price cannot be negative',
       'any.required': 'Product price is required',
     }),
-    colors: Joi.array().items(Joi.string().trim()).default([]).messages({
-      'array.base': 'Colors must be an array',
-    }),
     quantity: Joi.number().required().integer().min(0).messages({
       'number.base': 'Quantity must be a number',
       'number.integer': 'Quantity must be an integer',
       'number.min': 'Quantity cannot be negative',
       'any.required': 'Quantity in stock is required',
+    }),
+    categories: Joi.array().items(Joi.string().trim()).min(1).required().messages({
+      'array.base': 'Categories must be an array',
+      'array.min': 'At least one category is required',
+      'any.required': 'Categories are required',
+    }),
+    colors: Joi.array().items(Joi.string().trim()).default([]).messages({
+      'array.base': 'Colors must be an array',
     }),
     genders: Joi.array()
       .items(Joi.string().valid('Male', 'Female', 'Unisex'))
@@ -37,21 +50,26 @@ const validateProduct = (req, res, next) => {
         'array.base': 'Genders must be an array',
         'any.only': 'Gender must be one of: Male, Female, Unisex',
       }),
-    categories: Joi.array().items(Joi.string().trim()).min(1).required().messages({
-      'array.base': 'Categories must be an array',
-      'array.min': 'At least one category is required',
-      'any.required': 'Categories are required',
-    }),
+    isActive:   Joi.boolean().truthy('true').falsy('false').default(true),
+    isFeatured: Joi.boolean().truthy('true').falsy('false').default(false),
   });
 
-  const { error } = schema.validate(req.body);
+  const { error, value } = schema.validate(req.body);
   if (error) {
     return next(new AppError(error.details[0].message, 400));
   }
+  req.body = value;
   next();
 };
 
 const validateProductUpdate = (req, res, next) => {
+  // Same normalisation as create: single-category submissions arrive as a string
+  ['categories', 'colors', 'genders'].forEach((field) => {
+    if (req.body[field] !== undefined && !Array.isArray(req.body[field])) {
+      req.body[field] = [req.body[field]];
+    }
+  });
+
   const schema = Joi.object({
     name: Joi.string().min(2).max(100).trim().messages({
       'string.base': 'Product name must be a string',
@@ -66,31 +84,32 @@ const validateProductUpdate = (req, res, next) => {
       'number.base': 'Price must be a number',
       'number.min': 'Price cannot be negative',
     }),
-    colors: Joi.array().items(Joi.string().trim()).messages({
-      'array.base': 'Colors must be an array',
-    }),
     quantity: Joi.number().integer().min(0).messages({
       'number.base': 'Quantity must be a number',
       'number.integer': 'Quantity must be an integer',
       'number.min': 'Quantity cannot be negative',
     }),
-    genders: Joi.array().items(Joi.string().valid('Male', 'Female', 'Unisex')).messages({
-      'array.base': 'Genders must be an array',
-      'any.only': 'Gender must be one of: Male, Female, Unisex',
-    }),
     categories: Joi.array().items(Joi.string().trim()).min(1).messages({
       'array.base': 'Categories must be an array',
       'array.min': 'At least one category is required',
     }),
-    imagesChanged: Joi.boolean().default(false).messages({
-      'boolean.base': 'imagesChanged must be a boolean',
+    colors: Joi.array().items(Joi.string().trim()).messages({
+      'array.base': 'Colors must be an array',
     }),
+    genders: Joi.array().items(Joi.string().valid('Male', 'Female', 'Unisex')).messages({
+      'array.base': 'Genders must be an array',
+      'any.only': 'Gender must be one of: Male, Female, Unisex',
+    }),
+    isActive:      Joi.boolean().truthy('true').falsy('false'),
+    isFeatured:    Joi.boolean().truthy('true').falsy('false'),
+    imagesChanged: Joi.boolean().truthy('true').falsy('false').default(false),
   });
 
-  const { error } = schema.validate(req.body);
+  const { error, value } = schema.validate(req.body);
   if (error) {
     return next(new AppError(error.details[0].message, 400));
   }
+  req.body = value;
   next();
 };
 
