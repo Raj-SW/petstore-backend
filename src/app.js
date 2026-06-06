@@ -27,6 +27,12 @@ const contactRoutes = require('./routes/contact.routes');
 
 const app = express();
 
+// Trust Vercel/Render/Cloudflare proxy so rate-limiter and req.ip work correctly
+app.set('trust proxy', 1);
+
+// Health check — returns 200 so load balancers and uptime monitors don't 404
+app.get('/', (req, res) => res.status(200).json({ status: 'ok', message: 'VitalPaws API is running' }));
+
 // Security middleware
 app.use(
   helmet({
