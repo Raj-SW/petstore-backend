@@ -1,5 +1,4 @@
 const Review = require('../models/review.model');
-const Product = require('../models/product.model');
 const Order = require('../models/order.model');
 const { AppError } = require('../middlewares/errorHandler');
 
@@ -30,21 +29,13 @@ exports.createReview = async (req, res, next) => {
       return next(new AppError('You have already reviewed this product', 400));
     }
 
-    // Create review
+    // Create review (post-save hook on Review updates product rating automatically)
     const review = await Review.create({
       user: req.user.id,
       product: productId,
       rating,
       comment,
     });
-
-    // Update product average rating
-    const product = await Product.findById(productId);
-    const reviews = await Review.find({ product: productId });
-    const avgRating = reviews.reduce((acc, item) => acc + item.rating, 0) / reviews.length;
-
-    product.rating = avgRating;
-    await product.save();
 
     res.status(201).json({
       success: true,
@@ -89,15 +80,7 @@ exports.updateReview = async (req, res, next) => {
 
     review.rating = rating;
     review.comment = comment;
-    await review.save();
-
-    // Update product average rating
-    const product = await Product.findById(review.product);
-    const reviews = await Review.find({ product: review.product });
-    const avgRating = reviews.reduce((acc, item) => acc + item.rating, 0) / reviews.length;
-
-    product.rating = avgRating;
-    await product.save();
+    await review.save(); // post-save hook updates product rating automatically
 
     res.status(200).json({
       success: true,
@@ -123,16 +106,6 @@ exports.deleteReview = async (req, res, next) => {
     }
 
     await review.deleteOne();
-
-    // Update product average rating
-    const product = await Product.findById(review.product);
-    const reviews = await Review.find({ product: review.product });
-    const avgRating = reviews.length > 0
-      ? reviews.reduce((acc, item) => acc + item.rating, 0) / reviews.length
-      : 0;
-
-    product.rating = avgRating;
-    await product.save();
 
     res.status(200).json({
       success: true,
