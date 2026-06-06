@@ -167,14 +167,12 @@ exports.getProduct = async (req, res, next) => {
 exports.updateProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { imagesChanged, ...updateData } = req.body;
+    const { keepImages: keepImagesStr, ...updateData } = req.body;
 
-    // Validate if id is a valid MongoDB ObjectId
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return next(new AppError('Invalid product ID format', 400));
     }
 
-    // Find existing product
     const existingProduct = await Product.findById(id);
     if (!existingProduct) {
       return next(new AppError('Product not found', 404));
@@ -182,40 +180,39 @@ exports.updateProduct = async (req, res, next) => {
 
     let updatedImages = existingProduct.images;
 
-    // Handle image updates if images changed
-    if (imagesChanged) {
-      if (!req.files || req.files.length === 0) {
-        return next(new AppError('Images are required when imagesChanged is true', 400));
+    // keepImages is always sent from the edit form — process image changes
+    if (keepImagesStr !== undefined) {
+      const keepImages = JSON.parse(keepImagesStr); // [{url, publicId}]
+
+      // Delete images that were removed by the admin
+      const keepPublicIds = new Set(keepImages.map((img) => img.publicId).filter(Boolean));
+      const removedPublicIds = existingProduct.images
+        .map((img) => img.publicId)
+        .filter((pid) => pid && !keepPublicIds.has(pid));
+
+      if (removedPublicIds.length > 0) {
+        await deleteMultipleFromCloudinary(removedPublicIds);
       }
 
-      // Validate all new image files
-      req.files.forEach((file) => {
-        validateImageFile(file);
-      });
+      // Upload any new files and append to kept images
+      let newlyUploaded = [];
+      if (req.files && req.files.length > 0) {
+        req.files.forEach((file) => validateImageFile(file));
+        newlyUploaded = await uploadMultipleToCloudinary(req.files, 'products');
+      }
 
-      // Delete old images from Cloudinary
-      const oldPublicIds = existingProduct.images.map((img) => img.publicId);
-      await deleteMultipleFromCloudinary(oldPublicIds);
-
-      // Upload new images to Cloudinary
-      updatedImages = await uploadMultipleToCloudinary(req.files, 'products');
+      updatedImages = [...keepImages, ...newlyUploaded];
     }
 
-    // Update product data
-    const productToUpdate = {
-      ...updateData,
-      images: updatedImages,
-    };
-
-    const updatedProduct = await Product.findByIdAndUpdate(id, productToUpdate, {
-      new: true,
-      runValidators: true,
-    }).populate('createdBy', 'name email');
+    const updatedProduct = await Product.findByIdAndUpdate(
+      id,
+      { ...updateData, images: updatedImages },
+      { new: true, runValidators: true }
+    ).populate('createdBy', 'name email');
 
     logger.info(`Product updated successfully by admin ${req.user._id}`, {
       productId: updatedProduct._id,
       productName: updatedProduct.name,
-      imagesChanged,
     });
 
     return res.status(200).json({
