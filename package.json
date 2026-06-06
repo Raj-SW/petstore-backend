@@ -57,7 +57,11 @@
         "setupFiles": [
             "./tests/env-setup.js"
         ],
-        "testTimeout": 30000
+        "testTimeout": 30000,
+        "testPathIgnorePatterns": [
+            "/node_modules/",
+            "/.worktrees/"
+        ]
     },
     "engines": {
         "node": ">=14.0.0"

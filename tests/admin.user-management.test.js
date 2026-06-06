@@ -25,8 +25,7 @@ async function loginAs(agent, userData) {
     email: userData.email,
     password: userData.password,
   });
-  const cookies = res.headers['set-cookie'];
-  return Array.isArray(cookies) ? cookies.join('; ') : cookies;
+  return res.body.data.accessToken;
 }
 
 describe('Admin User Management Routes', () => {
@@ -62,7 +61,7 @@ describe('Admin User Management Routes', () => {
     );
 
     // Create regular user via registration
-    const regRes = await request(app).post('/api/auth/register').send(
+    const regRes = await request(app).post('/api/auth/signup').send(
       makeUser({ email: 'regular@example.com', password: userPassword, role: 'customer' })
     );
 
@@ -88,7 +87,7 @@ describe('Admin User Management Routes', () => {
 
       const res = await userAgent
         .get('/api/admin/users')
-        .set('Cookie', userCookie);
+        .set('Authorization', `Bearer ${userCookie}`);
 
       expect(res.status).toBe(403);
     });
@@ -101,7 +100,7 @@ describe('Admin User Management Routes', () => {
     it('should return paginated list of users', async () => {
       const res = await agent
         .get('/api/admin/users')
-        .set('Cookie', adminCookie);
+        .set('Authorization', `Bearer ${adminCookie}`);
 
       expect(res.status).toBe(200);
       expect(res.body.success).toBe(true);
@@ -118,7 +117,7 @@ describe('Admin User Management Routes', () => {
     it('should exclude sensitive fields from response', async () => {
       const res = await agent
         .get('/api/admin/users')
-        .set('Cookie', adminCookie);
+        .set('Authorization', `Bearer ${adminCookie}`);
 
       expect(res.status).toBe(200);
       const user = res.body.data[0];
@@ -132,7 +131,7 @@ describe('Admin User Management Routes', () => {
     it('should filter by role when role query param is provided', async () => {
       const res = await agent
         .get('/api/admin/users?role=admin')
-        .set('Cookie', adminCookie);
+        .set('Authorization', `Bearer ${adminCookie}`);
 
       expect(res.status).toBe(200);
       expect(res.body.data.every((u) => u.role === 'admin')).toBe(true);
@@ -148,7 +147,7 @@ describe('Admin User Management Routes', () => {
 
       const res = await agent
         .get('/api/admin/users?page=1&limit=2')
-        .set('Cookie', adminCookie);
+        .set('Authorization', `Bearer ${adminCookie}`);
 
       expect(res.status).toBe(200);
       expect(res.body.data.length).toBeLessThanOrEqual(2);
@@ -162,7 +161,7 @@ describe('Admin User Management Routes', () => {
     it('should change a user\'s role', async () => {
       const res = await agent
         .patch(`/api/admin/users/${regularUser._id}/role`)
-        .set('Cookie', adminCookie)
+        .set('Authorization', `Bearer ${adminCookie}`)
         .send({ role: 'veterinarian' });
 
       expect(res.status).toBe(200);
@@ -173,7 +172,7 @@ describe('Admin User Management Routes', () => {
     it('should prevent admin from changing their own role', async () => {
       const res = await agent
         .patch(`/api/admin/users/${adminUser._id}/role`)
-        .set('Cookie', adminCookie)
+        .set('Authorization', `Bearer ${adminCookie}`)
         .send({ role: 'customer' });
 
       expect(res.status).toBe(400);
@@ -183,7 +182,7 @@ describe('Admin User Management Routes', () => {
     it('should reject invalid roles', async () => {
       const res = await agent
         .patch(`/api/admin/users/${regularUser._id}/role`)
-        .set('Cookie', adminCookie)
+        .set('Authorization', `Bearer ${adminCookie}`)
         .send({ role: 'superuser' });
 
       expect(res.status).toBe(400);
@@ -193,7 +192,7 @@ describe('Admin User Management Routes', () => {
       const fakeId = new mongoose.Types.ObjectId();
       const res = await agent
         .patch(`/api/admin/users/${fakeId}/role`)
-        .set('Cookie', adminCookie)
+        .set('Authorization', `Bearer ${adminCookie}`)
         .send({ role: 'customer' });
 
       expect(res.status).toBe(404);
@@ -206,7 +205,7 @@ describe('Admin User Management Routes', () => {
     it('should delete a user successfully', async () => {
       const res = await agent
         .delete(`/api/admin/users/${regularUser._id}`)
-        .set('Cookie', adminCookie);
+        .set('Authorization', `Bearer ${adminCookie}`);
 
       expect(res.status).toBe(200);
       expect(res.body.success).toBe(true);
@@ -222,7 +221,7 @@ describe('Admin User Management Routes', () => {
 
       const res = await agent
         .delete(`/api/admin/users/${regularUser._id}`)
-        .set('Cookie', adminCookie);
+        .set('Authorization', `Bearer ${adminCookie}`);
 
       expect(res.status).toBe(200);
       const cart = await Cart.findOne({ user: regularUser._id });
@@ -269,7 +268,7 @@ describe('Admin User Management Routes', () => {
 
       const res = await agent
         .delete(`/api/admin/users/${regularUser._id}`)
-        .set('Cookie', adminCookie);
+        .set('Authorization', `Bearer ${adminCookie}`);
 
       expect(res.status).toBe(200);
 
@@ -281,7 +280,7 @@ describe('Admin User Management Routes', () => {
     it('should prevent admin from deleting themselves', async () => {
       const res = await agent
         .delete(`/api/admin/users/${adminUser._id}`)
-        .set('Cookie', adminCookie);
+        .set('Authorization', `Bearer ${adminCookie}`);
 
       expect(res.status).toBe(400);
       expect(res.body.success).toBeFalsy();
@@ -294,7 +293,7 @@ describe('Admin User Management Routes', () => {
       const fakeId = new mongoose.Types.ObjectId();
       const res = await agent
         .delete(`/api/admin/users/${fakeId}`)
-        .set('Cookie', adminCookie);
+        .set('Authorization', `Bearer ${adminCookie}`);
 
       expect(res.status).toBe(404);
     });

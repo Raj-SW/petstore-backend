@@ -6,16 +6,14 @@ const Product = require('../src/models/product.model');
 const Cart = require('../src/models/cart.model');
 const Order = require('../src/models/order.model');
 
-// Helper to create a user and get auth cookie
+// Helper to create a user and get JWT Bearer token
 async function createUserAndLogin(agent, userData) {
-  await request(app).post('/api/auth/register').send(userData);
+  await request(app).post('/api/auth/signup').send(userData);
   const res = await agent.post('/api/auth/login').send({
     email: userData.email,
     password: userData.password,
   });
-  // set-cookie is an array of cookie strings; join them for use with .set('Cookie', ...)
-  const cookies = res.headers['set-cookie'];
-  return Array.isArray(cookies) ? cookies.join('; ') : cookies;
+  return res.body.data.accessToken;
 }
 
 // Minimal valid user data matching the model's required fields
@@ -81,12 +79,12 @@ describe('Order Controller - Checkout Scenarios', () => {
     // Add to cart
     await agent
       .post('/api/cart/')
-      .set('Cookie', cookie)
+      .set('Authorization', `Bearer ${cookie}`)
       .send({ productId: product._id, quantity: 2 });
     // Checkout
     const res = await agent
       .post('/api/orders')
-      .set('Cookie', cookie)
+      .set('Authorization', `Bearer ${cookie}`)
       .send({
         shippingAddress: {
           street: '123 St',
@@ -106,11 +104,11 @@ describe('Order Controller - Checkout Scenarios', () => {
   it('should fail if product is out of stock', async () => {
     await agent
       .post('/api/cart/')
-      .set('Cookie', cookie)
+      .set('Authorization', `Bearer ${cookie}`)
       .send({ productId: product._id, quantity: 20 });
     const res = await agent
       .post('/api/orders')
-      .set('Cookie', cookie)
+      .set('Authorization', `Bearer ${cookie}`)
       .send({
         shippingAddress: {
           street: '123 St',
@@ -128,10 +126,10 @@ describe('Order Controller - Checkout Scenarios', () => {
   // 3. Product not found
   it('should fail if product does not exist', async () => {
     const fakeId = new mongoose.Types.ObjectId();
-    await agent.post('/api/cart/').set('Cookie', cookie).send({ productId: fakeId, quantity: 1 });
+    await agent.post('/api/cart/').set('Authorization', `Bearer ${cookie}`).send({ productId: fakeId, quantity: 1 });
     const res = await agent
       .post('/api/orders')
-      .set('Cookie', cookie)
+      .set('Authorization', `Bearer ${cookie}`)
       .send({
         shippingAddress: {
           street: '123 St',
@@ -158,11 +156,11 @@ describe('Order Controller - Checkout Scenarios', () => {
     }));
     await agent
       .post('/api/cart/')
-      .set('Cookie', cookie)
+      .set('Authorization', `Bearer ${cookie}`)
       .send({ productId: inactive._id, quantity: 1 });
     const res = await agent
       .post('/api/orders')
-      .set('Cookie', cookie)
+      .set('Authorization', `Bearer ${cookie}`)
       .send({
         shippingAddress: {
           street: '123 St',
@@ -182,7 +180,7 @@ describe('Order Controller - Checkout Scenarios', () => {
     // Add to cart
     await agent
       .post('/api/cart/')
-      .set('Cookie', cookie)
+      .set('Authorization', `Bearer ${cookie}`)
       .send({ productId: product._id, quantity: 1 });
     // Tamper cart price
     const cart = await Cart.findOne({ user: (await User.findOne({ email: user.email }))._id });
@@ -191,7 +189,7 @@ describe('Order Controller - Checkout Scenarios', () => {
     // Checkout
     const res = await agent
       .post('/api/orders')
-      .set('Cookie', cookie)
+      .set('Authorization', `Bearer ${cookie}`)
       .send({
         shippingAddress: {
           street: '123 St',
@@ -210,14 +208,14 @@ describe('Order Controller - Checkout Scenarios', () => {
   it('should ignore invalid discount code', async () => {
     await agent
       .post('/api/cart/')
-      .set('Cookie', cookie)
+      .set('Authorization', `Bearer ${cookie}`)
       .send({ productId: product._id, quantity: 1 });
     const cart = await Cart.findOne({ user: (await User.findOne({ email: user.email }))._id });
     cart.discountCode = 'INVALID';
     await cart.save();
     const res = await agent
       .post('/api/orders')
-      .set('Cookie', cookie)
+      .set('Authorization', `Bearer ${cookie}`)
       .send({
         shippingAddress: {
           street: '123 St',
@@ -236,7 +234,7 @@ describe('Order Controller - Checkout Scenarios', () => {
   it('should fail if cart is empty', async () => {
     const res = await agent
       .post('/api/orders')
-      .set('Cookie', cookie)
+      .set('Authorization', `Bearer ${cookie}`)
       .send({
         shippingAddress: {
           street: '123 St',
@@ -255,11 +253,11 @@ describe('Order Controller - Checkout Scenarios', () => {
   it('should not allow non-admin to update order status', async () => {
     await agent
       .post('/api/cart/')
-      .set('Cookie', cookie)
+      .set('Authorization', `Bearer ${cookie}`)
       .send({ productId: product._id, quantity: 1 });
     const orderRes = await agent
       .post('/api/orders')
-      .set('Cookie', cookie)
+      .set('Authorization', `Bearer ${cookie}`)
       .send({
         shippingAddress: {
           street: '123 St',
@@ -273,7 +271,7 @@ describe('Order Controller - Checkout Scenarios', () => {
     const orderId = orderRes.body.data._id;
     const res = await agent
       .patch(`/api/orders/${orderId}/status`)
-      .set('Cookie', cookie)
+      .set('Authorization', `Bearer ${cookie}`)
       .send({ status: 'shipped' });
     expect(res.status).toBe(403);
   });
@@ -292,22 +290,21 @@ describe('Order Controller - Checkout Scenarios', () => {
 
     // Register and log in user2 with agent2
     const user2 = makeUser({ name: 'User2', email: 'user2@example.com' });
-    await request(app).post('/api/auth/register').send(user2);
+    await request(app).post('/api/auth/signup').send(user2);
     const loginRes2 = await agent2.post('/api/auth/login').send({
       email: user2.email,
       password: user2.password,
     });
-    const cookies2 = loginRes2.headers['set-cookie'];
-    const cookie2 = Array.isArray(cookies2) ? cookies2.join('; ') : cookies2;
+    const cookie2 = loginRes2.body.data.accessToken;
 
     // Add to cart for each user via their own agent
     await agent1
       .post('/api/cart/')
-      .set('Cookie', cookie1)
+      .set('Authorization', `Bearer ${cookie1}`)
       .send({ productId: product._id, quantity: 7 });
     await agent2
       .post('/api/cart/')
-      .set('Cookie', cookie2)
+      .set('Authorization', `Bearer ${cookie2}`)
       .send({ productId: product._id, quantity: 5 });
 
     // Place both orders nearly simultaneously
@@ -321,11 +318,11 @@ describe('Order Controller - Checkout Scenarios', () => {
     const [res1, res2] = await Promise.all([
       agent1
         .post('/api/orders')
-        .set('Cookie', cookie1)
+        .set('Authorization', `Bearer ${cookie1}`)
         .send({ shippingAddress, paymentMethod: 'stripe' }),
       agent2
         .post('/api/orders')
-        .set('Cookie', cookie2)
+        .set('Authorization', `Bearer ${cookie2}`)
         .send({ shippingAddress, paymentMethod: 'stripe' }),
     ]);
 

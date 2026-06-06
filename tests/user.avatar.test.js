@@ -51,13 +51,12 @@ const makeUser = (overrides = {}) => ({
 });
 
 async function registerAndLogin(agent, userData) {
-  await request(app).post('/api/auth/register').send(userData);
+  await request(app).post('/api/auth/signup').send(userData);
   const res = await agent.post('/api/auth/login').send({
     email: userData.email,
     password: userData.password,
   });
-  const cookies = res.headers['set-cookie'];
-  return Array.isArray(cookies) ? cookies.join('; ') : cookies;
+  return res.body.data.accessToken;
 }
 
 describe('PATCH /api/users/upload-avatar', () => {
@@ -106,7 +105,7 @@ describe('PATCH /api/users/upload-avatar', () => {
   it('returns 400 when no file is uploaded', async () => {
     const res = await agent
       .patch('/api/users/upload-avatar')
-      .set('Cookie', cookie);
+      .set('Authorization', `Bearer ${cookie}`);
     // No .attach() → req.file will be undefined
 
     expect(res.status).toBe(400);
@@ -118,7 +117,7 @@ describe('PATCH /api/users/upload-avatar', () => {
   it('uploads avatar and returns profileImage URL', async () => {
     const res = await agent
       .patch('/api/users/upload-avatar')
-      .set('Cookie', cookie)
+      .set('Authorization', `Bearer ${cookie}`)
       .attach('avatar', TINY_PNG, { filename: 'avatar.png', contentType: 'image/png' });
 
     expect(res.status).toBe(200);
@@ -152,7 +151,7 @@ describe('PATCH /api/users/upload-avatar', () => {
 
     const res = await agent
       .patch('/api/users/upload-avatar')
-      .set('Cookie', cookie)
+      .set('Authorization', `Bearer ${cookie}`)
       .attach('avatar', TINY_PNG, { filename: 'new.png', contentType: 'image/png' });
 
     expect(res.status).toBe(200);
