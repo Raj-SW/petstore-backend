@@ -9,10 +9,10 @@ const logFormat = winston.format.combine(
   winston.format.json(),
 );
 
-// Vercel and other serverless platforms have a read-only filesystem —
-// only use Console transport there. File transports are only added when
-// a writable local filesystem is available (i.e. non-serverless envs).
-const isServerless = !!process.env.VERCEL || !!process.env.AWS_LAMBDA_FUNCTION_NAME;
+// File transports are only used in local development.
+// Production / serverless environments (Vercel, Render, etc.) have
+// read-only filesystems — console-only logging is used there.
+const isDevelopment = process.env.NODE_ENV === 'development';
 
 const transports = [
   new winston.transports.Console({
@@ -27,21 +27,28 @@ const transports = [
   }),
 ];
 
-if (!isServerless) {
-  transports.push(
-    new winston.transports.File({
-      filename: path.join(__dirname, '../../logs/error.log'),
-      level: 'error',
-    }),
-    new winston.transports.File({
-      filename: path.join(__dirname, '../../logs/combined.log'),
-    }),
-  );
+if (isDevelopment) {
+  try {
+    const fs = require('fs');
+    const logsDir = path.join(__dirname, '../../logs');
+    if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir, { recursive: true });
+    transports.push(
+      new winston.transports.File({
+        filename: path.join(logsDir, 'error.log'),
+        level: 'error',
+      }),
+      new winston.transports.File({
+        filename: path.join(logsDir, 'combined.log'),
+      }),
+    );
+  } catch {
+    // If log directory can't be created, fall back to console-only
+  }
 }
 
 // Create logger instance
 const logger = winston.createLogger({
-  level: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
+  level: isDevelopment ? 'debug' : 'info',
   format: logFormat,
   transports,
 });
