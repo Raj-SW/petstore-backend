@@ -100,9 +100,9 @@ const validateProductUpdate = (req, res, next) => {
       'array.base': 'Genders must be an array',
       'any.only': 'Gender must be one of: Male, Female, Unisex',
     }),
-    isActive:    Joi.boolean().truthy('true').falsy('false'),
-    isFeatured:  Joi.boolean().truthy('true').falsy('false'),
-    keepImages:  Joi.string().optional(), // JSON string of [{url, publicId}] sent from edit form
+    isActive:   Joi.boolean().truthy('true').falsy('false'),
+    isFeatured: Joi.boolean().truthy('true').falsy('false'),
+    keepImages: Joi.string().optional(), // JSON string of [{url,publicId}] — existing images to preserve
   });
 
   const { error, value } = schema.validate(req.body);

@@ -8,6 +8,7 @@
         "dev": "nodemon src/server.js",
         "debug": "nodemon --inspect src/server.js",
         "test": "cross-env NODE_ENV=test jest --runInBand --forceExit",
+        "test:coverage": "cross-env NODE_ENV=test jest --runInBand --forceExit --coverage",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "seed": "node src/config/seedDatabase.js"
@@ -61,7 +62,15 @@
         "testPathIgnorePatterns": [
             "/node_modules/",
             "/.worktrees/"
-        ]
+        ],
+        "collectCoverageFrom": [
+            "src/controllers/**/*.js",
+            "src/middlewares/**/*.js",
+            "src/validators/**/*.js",
+            "!src/**/*.test.js"
+        ],
+        "coverageReporters": ["text", "lcov", "text-summary"],
+        "coverageDirectory": "coverage"
     },
     "engines": {
         "node": ">=14.0.0"
