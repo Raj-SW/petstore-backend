@@ -70,6 +70,13 @@ const productSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    sections: [
+      {
+        title: { type: String, required: true, trim: true, maxlength: 100 },
+        body:  { type: String, required: true },
+        order: { type: Number, default: 0 },
+      },
+    ],
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',

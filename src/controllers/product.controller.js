@@ -25,6 +25,15 @@ exports.createProduct = async (req, res, next) => {
     // Upload images to Cloudinary
     uploadedImages = await uploadMultipleToCloudinary(req.files, 'products');
 
+    // Parse sections JSON string from FormData
+    if (req.body.sections && typeof req.body.sections === 'string') {
+      try {
+        req.body.sections = JSON.parse(req.body.sections);
+      } catch {
+        req.body.sections = [];
+      }
+    }
+
     // Create product data
     const productData = {
       ...req.body,
@@ -173,6 +182,15 @@ exports.getProduct = async (req, res, next) => {
 exports.updateProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
+    // Parse sections JSON string from FormData
+    if (req.body.sections && typeof req.body.sections === 'string') {
+      try {
+        req.body.sections = JSON.parse(req.body.sections);
+      } catch {
+        req.body.sections = [];
+      }
+    }
+
     const { keepImages: keepImagesStr, ...updateData } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {

@@ -52,6 +52,7 @@ const validateProduct = (req, res, next) => {
       }),
     isActive:   Joi.boolean().truthy('true').falsy('false').default(true),
     isFeatured: Joi.boolean().truthy('true').falsy('false').default(false),
+    sections:   Joi.string().optional(), // JSON array of { title, body, order }
   });
 
   const { error, value } = schema.validate(req.body);
@@ -103,6 +104,7 @@ const validateProductUpdate = (req, res, next) => {
     isActive:   Joi.boolean().truthy('true').falsy('false'),
     isFeatured: Joi.boolean().truthy('true').falsy('false'),
     keepImages: Joi.string().optional(), // JSON string of [{url,publicId}] — existing images to preserve
+    sections:   Joi.string().optional(), // JSON array of { title, body, order }
   });
 
   const { error, value } = schema.validate(req.body);
