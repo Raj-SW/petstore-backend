@@ -18,7 +18,7 @@ const validateProduct = (req, res, next) => {
       'string.max': 'Product name cannot exceed 100 characters',
       'any.required': 'Product name is required',
     }),
-    description: Joi.string().required().min(10).trim().messages({
+    description: Joi.string().required().min(10).messages({
       'string.base': 'Description must be a string',
       'string.empty': 'Product description is required',
       'string.min': 'Description must be at least 10 characters',
@@ -76,7 +76,7 @@ const validateProductUpdate = (req, res, next) => {
       'string.min': 'Product name must be at least 2 characters',
       'string.max': 'Product name cannot exceed 100 characters',
     }),
-    description: Joi.string().min(10).trim().messages({
+    description: Joi.string().min(10).messages({
       'string.base': 'Description must be a string',
       'string.min': 'Description must be at least 10 characters',
     }),
