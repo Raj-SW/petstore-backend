@@ -73,10 +73,16 @@ exports.getProducts = async (req, res, next) => {
       genders,
       search,
       isActive = true,
+      isFeatured,
     } = req.query;
 
     // Build query
     const query = { isActive };
+
+    // Filter by featured flag when explicitly requested
+    if (isFeatured !== undefined) {
+      query.isFeatured = isFeatured === 'true' || isFeatured === true;
+    }
 
     if (categories) {
       const categoryArray = Array.isArray(categories) ? categories : [categories];
@@ -267,19 +273,26 @@ exports.deleteProduct = async (req, res, next) => {
 exports.getProductsByCategory = async (req, res, next) => {
   try {
     const { category } = req.params;
+    const { isFeatured, limit } = req.query;
 
     if (!category) {
       return next(new AppError('Category is required', 400));
     }
 
     const regex = new RegExp(category, 'i');
-    const products = await Product.find({
-      $or: [
-        { categories: { $elemMatch: { $regex: regex } } },
-        { category: { $regex: regex } },
-      ],
+    const filter = {
+      categories: { $elemMatch: { $regex: regex } },
       isActive: true,
-    }).populate('createdBy', 'name email');
+    };
+
+    if (isFeatured !== undefined) {
+      filter.isFeatured = isFeatured === 'true';
+    }
+
+    let query = Product.find(filter).populate('createdBy', 'name email');
+    if (limit) query = query.limit(Number(limit));
+
+    const products = await query;
 
     return res.status(200).json({
       success: true,
