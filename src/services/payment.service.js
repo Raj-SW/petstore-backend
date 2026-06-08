@@ -6,8 +6,8 @@ class PaymentService {
   static async createPaymentIntent(order) {
     try {
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: Math.round(order.finalAmount * 100), // Convert to cents
-        currency: 'usd',
+        amount: Math.round(order.finalAmount * 100), // MUR in smallest unit (cents equivalent)
+        currency: 'mur',
         metadata: {
           orderId: order._id.toString(),
           userId: order.user.toString()

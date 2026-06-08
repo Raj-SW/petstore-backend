@@ -11,7 +11,7 @@ const transactionSchema = new mongoose.Schema(
       required: true,
     },
     amount:        { type: Number, required: true },
-    currency:      { type: String, default: 'USD' },
+    currency:      { type: String, default: 'MUR' },
     paymentMethod: { type: String },
     transactionId: { type: String },
     status: {

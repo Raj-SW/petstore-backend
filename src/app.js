@@ -40,20 +40,33 @@ app.use(
   })
 );
 
-app.use(
-  cors({
-    origin: [
-       process.env.CLIENT_URL,
+const corsOptions = {
+  origin: (origin, callback) => {
+    const allowed = [
+      process.env.CLIENT_URL,
       process.env.VERCEL_FRONTEND_URL,
       'http://localhost:5173',
-    ].filter(Boolean),
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  })
-);
+      'http://localhost:4173',
+    ].filter(Boolean);
 
-app.options('*', cors());
+    // Allow requests with no origin (mobile apps, curl, Postman, server-to-server)
+    if (!origin) return callback(null, true);
+
+    if (allowed.includes(origin)) {
+      callback(null, true);
+    } else {
+      logger.warn(`CORS blocked origin: ${origin}`);
+      callback(new Error(`Origin ${origin} not allowed by CORS`));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
+// Preflight must use the same config — not the open default
+app.options('*', cors(corsOptions));
 
 app.use(mongoSanitize());
 app.use(xss());
