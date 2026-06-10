@@ -5,8 +5,8 @@
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1561 nodes · 1848 edges · 235 communities (127 shown, 108 thin omitted)
-- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 133 edges (avg confidence: 0.84)
+- 1707 nodes · 3801 edges · 191 communities (97 shown, 94 thin omitted)
+- Extraction: 93% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 245 edges (avg confidence: 0.83)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
@@ -113,6 +113,7 @@
 - [[_COMMUNITY_Community 100|Community 100]]
 - [[_COMMUNITY_Community 101|Community 101]]
 - [[_COMMUNITY_Community 102|Community 102]]
+- [[_COMMUNITY_Community 103|Community 103]]
 - [[_COMMUNITY_Community 104|Community 104]]
 - [[_COMMUNITY_Community 105|Community 105]]
 - [[_COMMUNITY_Community 106|Community 106]]
@@ -125,6 +126,7 @@
 - [[_COMMUNITY_Community 113|Community 113]]
 - [[_COMMUNITY_Community 114|Community 114]]
 - [[_COMMUNITY_Community 115|Community 115]]
+- [[_COMMUNITY_Community 116|Community 116]]
 - [[_COMMUNITY_Community 117|Community 117]]
 - [[_COMMUNITY_Community 118|Community 118]]
 - [[_COMMUNITY_Community 119|Community 119]]
@@ -133,18 +135,43 @@
 - [[_COMMUNITY_Community 122|Community 122]]
 - [[_COMMUNITY_Community 123|Community 123]]
 - [[_COMMUNITY_Community 124|Community 124]]
+- [[_COMMUNITY_Community 125|Community 125]]
 - [[_COMMUNITY_Community 126|Community 126]]
 - [[_COMMUNITY_Community 127|Community 127]]
 - [[_COMMUNITY_Community 128|Community 128]]
-- [[_COMMUNITY_Community 129|Community 129]]
+- [[_COMMUNITY_Community 130|Community 130]]
 - [[_COMMUNITY_Community 131|Community 131]]
 - [[_COMMUNITY_Community 132|Community 132]]
 - [[_COMMUNITY_Community 133|Community 133]]
+- [[_COMMUNITY_Community 134|Community 134]]
+- [[_COMMUNITY_Community 135|Community 135]]
+- [[_COMMUNITY_Community 136|Community 136]]
+- [[_COMMUNITY_Community 137|Community 137]]
+- [[_COMMUNITY_Community 138|Community 138]]
+- [[_COMMUNITY_Community 139|Community 139]]
 - [[_COMMUNITY_Community 140|Community 140]]
+- [[_COMMUNITY_Community 141|Community 141]]
 - [[_COMMUNITY_Community 142|Community 142]]
+- [[_COMMUNITY_Community 143|Community 143]]
+- [[_COMMUNITY_Community 144|Community 144]]
+- [[_COMMUNITY_Community 145|Community 145]]
 - [[_COMMUNITY_Community 146|Community 146]]
 - [[_COMMUNITY_Community 147|Community 147]]
+- [[_COMMUNITY_Community 148|Community 148]]
 - [[_COMMUNITY_Community 149|Community 149]]
+- [[_COMMUNITY_Community 150|Community 150]]
+- [[_COMMUNITY_Community 151|Community 151]]
+- [[_COMMUNITY_Community 152|Community 152]]
+- [[_COMMUNITY_Community 153|Community 153]]
+- [[_COMMUNITY_Community 154|Community 154]]
+- [[_COMMUNITY_Community 155|Community 155]]
+- [[_COMMUNITY_Community 156|Community 156]]
+- [[_COMMUNITY_Community 157|Community 157]]
+- [[_COMMUNITY_Community 158|Community 158]]
+- [[_COMMUNITY_Community 159|Community 159]]
+- [[_COMMUNITY_Community 160|Community 160]]
+- [[_COMMUNITY_Community 161|Community 161]]
+- [[_COMMUNITY_Community 162|Community 162]]
 - [[_COMMUNITY_Community 163|Community 163]]
 - [[_COMMUNITY_Community 164|Community 164]]
 - [[_COMMUNITY_Community 165|Community 165]]
@@ -152,6 +179,11 @@
 - [[_COMMUNITY_Community 167|Community 167]]
 - [[_COMMUNITY_Community 168|Community 168]]
 - [[_COMMUNITY_Community 169|Community 169]]
+- [[_COMMUNITY_Community 170|Community 170]]
+- [[_COMMUNITY_Community 171|Community 171]]
+- [[_COMMUNITY_Community 172|Community 172]]
+- [[_COMMUNITY_Community 173|Community 173]]
+- [[_COMMUNITY_Community 174|Community 174]]
 - [[_COMMUNITY_Community 175|Community 175]]
 - [[_COMMUNITY_Community 176|Community 176]]
 - [[_COMMUNITY_Community 177|Community 177]]
@@ -165,159 +197,150 @@
 - [[_COMMUNITY_Community 185|Community 185]]
 - [[_COMMUNITY_Community 186|Community 186]]
 - [[_COMMUNITY_Community 187|Community 187]]
-- [[_COMMUNITY_Community 188|Community 188]]
 - [[_COMMUNITY_Community 189|Community 189]]
-- [[_COMMUNITY_Community 190|Community 190]]
-- [[_COMMUNITY_Community 191|Community 191]]
-- [[_COMMUNITY_Community 192|Community 192]]
-- [[_COMMUNITY_Community 193|Community 193]]
-- [[_COMMUNITY_Community 194|Community 194]]
-- [[_COMMUNITY_Community 195|Community 195]]
-- [[_COMMUNITY_Community 196|Community 196]]
-- [[_COMMUNITY_Community 197|Community 197]]
-- [[_COMMUNITY_Community 198|Community 198]]
-- [[_COMMUNITY_Community 199|Community 199]]
-- [[_COMMUNITY_Community 200|Community 200]]
-- [[_COMMUNITY_Community 201|Community 201]]
-- [[_COMMUNITY_Community 202|Community 202]]
-- [[_COMMUNITY_Community 203|Community 203]]
-- [[_COMMUNITY_Community 204|Community 204]]
-- [[_COMMUNITY_Community 205|Community 205]]
-- [[_COMMUNITY_Community 206|Community 206]]
-- [[_COMMUNITY_Community 207|Community 207]]
-- [[_COMMUNITY_Community 208|Community 208]]
-- [[_COMMUNITY_Community 209|Community 209]]
-- [[_COMMUNITY_Community 210|Community 210]]
-- [[_COMMUNITY_Community 211|Community 211]]
-- [[_COMMUNITY_Community 212|Community 212]]
-- [[_COMMUNITY_Community 213|Community 213]]
-- [[_COMMUNITY_Community 214|Community 214]]
-- [[_COMMUNITY_Community 215|Community 215]]
-- [[_COMMUNITY_Community 216|Community 216]]
-- [[_COMMUNITY_Community 217|Community 217]]
-- [[_COMMUNITY_Community 218|Community 218]]
-- [[_COMMUNITY_Community 219|Community 219]]
-- [[_COMMUNITY_Community 220|Community 220]]
-- [[_COMMUNITY_Community 221|Community 221]]
-- [[_COMMUNITY_Community 222|Community 222]]
-- [[_COMMUNITY_Community 223|Community 223]]
-- [[_COMMUNITY_Community 224|Community 224]]
-- [[_COMMUNITY_Community 225|Community 225]]
-- [[_COMMUNITY_Community 226|Community 226]]
-- [[_COMMUNITY_Community 227|Community 227]]
-- [[_COMMUNITY_Community 228|Community 228]]
-- [[_COMMUNITY_Community 229|Community 229]]
-- [[_COMMUNITY_Community 230|Community 230]]
-- [[_COMMUNITY_Community 231|Community 231]]
-- [[_COMMUNITY_Community 232|Community 232]]
-- [[_COMMUNITY_Community 234|Community 234]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `AppError` - 36 edges
-2. `ProductService` - 19 edges
-3. `Order Controller` - 18 edges
-4. `ToastContext` - 18 edges
-5. `AppointmentService` - 18 edges
-6. `Payment Controller` - 17 edges
-7. `Error Handler Middleware` - 17 edges
-8. `Email Notification System` - 16 edges
-9. `Invoicing & Transactions Design Spec` - 15 edges
-10. `ValidationUtils` - 14 edges
+1. `ProductService` - 57 edges
+2. `useToast()` - 55 edges
+3. `AppointmentService` - 54 edges
+4. `api` - 42 edges
+5. `useAuth()` - 37 edges
+6. `AppError` - 36 edges
+7. `ToastContext` - 36 edges
+8. `Invoicing & Transactions Design Spec` - 30 edges
+9. `RichTextEditor` - 28 edges
+10. `RichText Index (barrel)` - 28 edges
 
 ## Surprising Connections (you probably didn't know these)
 - None detected - all connections are within the same source files.
 
-## Communities (235 total, 108 thin omitted)
+## Communities (191 total, 94 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.07
-Nodes (67): inventoryApi.js, invoiceApi.js, transactionApi.js, Express App Entry Point, Subsystem A — Inventory Management, Subsystem B — Invoicing & Transactions, VitalPaws Feature Changelog, MongoDB Database Config (+59 more)
+Cohesion: 0.08
+Nodes (90): AddToCart, AdminAnalytics Page, AdminAppointments Page, AdminDashboard Page, AdminInventory Page, AdminInvoices Page, AdminOrders Page, AdminProductForm Page (+82 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.06
-Nodes (26): { AppError }, Appointment, { error }, logger, mongoose, Pet, query, { sendEmail } (+18 more)
+Cohesion: 0.09
+Nodes (15): AppointmentCreateDTO, AppointmentFilterDTO, AppointmentUpdateDTO, LoginDTO, PasswordChangeDTO, PasswordResetDTO, SignupDTO, ProductCreateDTO (+7 more)
 
 ### Community 2 - "Community 2"
-Cohesion: 0.06
-Nodes (31): affectedProductIds, { AppError }, Appointment, Cart, dateFormat, filter, { getStartDate, getDateFormat }, limit (+23 more)
+Cohesion: 0.10
+Nodes (67): inventoryApi.js, invoiceApi.js, transactionApi.js, Express App Entry Point, Subsystem A — Inventory Management, Subsystem B — Invoicing & Transactions, VitalPaws Feature Changelog, MongoDB Database Config (+59 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.07
-Nodes (16): bcrypt, jwt, mongoose, User, userSchema, { AppError }, mongoose, ProfessionalService (+8 more)
+Cohesion: 0.10
+Nodes (28): cn(), GooeyFilter(), SearchBar(), AccordionContent, AccordionItem, AccordionTrigger, Button, buttonVariants (+20 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.07
-Nodes (7): btnSpring, CartItem(), SERVICE_ITEMS, MOBILE_SERVICE_ITEMS, NAV_LINKS, ProductCardV2(), stripHtml()
+Nodes (16): bcrypt, jwt, mongoose, User, userSchema, { AppError }, mongoose, ProfessionalService (+8 more)
 
 ### Community 5 - "Community 5"
+Cohesion: 0.16
+Nodes (21): useCart(), ICON_FOR_TYPE, ToastCard(), ToastContext, ToastProvider(), ToastViewport(), useToast(), ExportImportForm() (+13 more)
+
+### Community 6 - "Community 6"
 Cohesion: 0.08
 Nodes (29): { AppError }, bcrypt, crypto, forgotPassword(), generateTokens(), getCurrentUser(), jwt, logger (+21 more)
 
-### Community 6 - "Community 6"
-Cohesion: 0.10
-Nodes (32): Email Notification System, Handlebars Templating, Joi Validation Pattern, AppError, validateCreateOrder, validatePaymentStatus, validateUpdateOrderStatus, validateProduct (+24 more)
-
 ### Community 7 - "Community 7"
-Cohesion: 0.08
-Nodes (24): { AppError }, filters, mongoose, pagination, professionalService, sorting, timeSlot, { createError } (+16 more)
+Cohesion: 0.14
+Nodes (19): ContactSection(), PROMO_SLIDES, slideVariants, HomePage(), FeaturedProductSection(), TABS, FEATURES, HeroSection() (+11 more)
 
 ### Community 8 - "Community 8"
-Cohesion: 0.07
-Nodes (27): adminRoutes, app, appointmentRoutes, authRoutes, cartRoutes, compression, contactRoutes, cors (+19 more)
+Cohesion: 0.24
+Nodes (8): ProductService, CATEGORIES, FilterComponent(), RATINGS, PetShopPage(), QUICK_CATS, OPTIONS, SortDropDown()
 
 ### Community 9 - "Community 9"
 Cohesion: 0.10
-Nodes (14): api, apiClient, token, appointmentsApi, inventoryApi, invoiceApi, ordersApi, paymentsApi (+6 more)
+Nodes (32): Email Notification System, Handlebars Templating, Joi Validation Pattern, AppError, validateCreateOrder, validatePaymentStatus, validateUpdateOrderStatus, validateProduct (+24 more)
 
 ### Community 10 - "Community 10"
-Cohesion: 0.08
-Nodes (11): PROMO_SLIDES, slideVariants, TABS, FEATURES, SERVICES, SLIDE_IMAGES, slideVariants, STATS (+3 more)
+Cohesion: 0.19
+Nodes (22): detectCurrency(), FALLBACK_RATES, fetchRates(), SUPPORTED_CURRENCIES, CurrencyContext, CurrencyProvider(), useCurrency(), CurrencySelector() (+14 more)
 
 ### Community 11 - "Community 11"
+Cohesion: 0.07
+Nodes (30): options, specs, swaggerJsdoc, swaggerUi, adminRoutes, appointmentRoutes, authRoutes, cartRoutes (+22 more)
+
+### Community 12 - "Community 12"
+Cohesion: 0.08
+Nodes (24): { AppError }, filters, mongoose, pagination, professionalService, sorting, timeSlot, { createError } (+16 more)
+
+### Community 13 - "Community 13"
+Cohesion: 0.25
+Nodes (15): AdminAnalytics(), CATEGORIES, MONTHLY_PLACEHOLDER, StatCard(), api, apiClient, token, authApi (+7 more)
+
+### Community 14 - "Community 14"
+Cohesion: 0.08
+Nodes (25): affectedProductIds, { AppError }, Appointment, Cart, dateFormat, filter, { getStartDate, getDateFormat }, limit (+17 more)
+
+### Community 15 - "Community 15"
+Cohesion: 0.09
+Nodes (20): logger, mongoose, appointments, bcrypt, categories, orders, products, users (+12 more)
+
+### Community 16 - "Community 16"
+Cohesion: 0.19
+Nodes (11): AdminLayout(), productsApi, useAuth(), CartContext(), CartSyncCtx, CartSyncLayer(), LoginModal(), SignUpModal() (+3 more)
+
+### Community 17 - "Community 17"
 Cohesion: 0.13
 Nodes (25): Admin Routes, Appointment Model, Appointment Routes, Auth Routes, isAdmin Middleware, isAuthenticated Middleware, isServiceProvider Middleware, Cart Model (+17 more)
 
-### Community 12 - "Community 12"
-Cohesion: 0.13
-Nodes (22): AdminAnalytics Page, AdminAppointments Page, AdminDashboard Page, AdminInventory Page, AdminInvoices Page, AdminOrders Page, AdminProductForm Page, AdminProducts Page (+14 more)
+### Community 18 - "Community 18"
+Cohesion: 0.18
+Nodes (12): AuthField(), AuthModal(), ForgotPasswordModal(), SERVICE_ITEMS, ServicesDropdown(), SignUpDropdown(), Footer(), LINKS (+4 more)
 
-### Community 13 - "Community 13"
-Cohesion: 0.10
-Nodes (6): { AppError }, commonValidations, mongoose, validationMessages, validationRules, ValidationUtils
+### Community 19 - "Community 19"
+Cohesion: 0.17
+Nodes (9): appointmentsApi, professionalsApi, AppointmentForm(), useDebounce(), PaginationBar(), ProfessionalCalendar(), ProfessionalCard(), PROFESSIONAL_CONFIGS (+1 more)
 
-### Community 14 - "Community 14"
-Cohesion: 0.11
-Nodes (16): { AppError }, Order, Review, { AppError }, bcrypt, {
-  uploadMultipleToCloudinary,
-  deleteMultipleFromCloudinary,
-  validateImageFile,
-}, User, AppError (+8 more)
+### Community 20 - "Community 20"
+Cohesion: 0.09
+Nodes (17): { AppError }, Appointment, { error }, logger, mongoose, Pet, query, { sendEmail } (+9 more)
 
-### Community 16 - "Community 16"
+### Community 21 - "Community 21"
+Cohesion: 0.31
+Nodes (12): buildExtensions(), linkConfig, textAlignConfig, TOOLBAR_GROUPS, RichTextEditor(), PURIFY_CONFIG, RichTextRenderer(), sanitize() (+4 more)
+
+### Community 22 - "Community 22"
+Cohesion: 0.22
+Nodes (10): ordersApi, btnSpring, CartCheckoutPage(), EMPTY_ADDRESS, stepVariants, btnSpring, CartItem(), childVariants (+2 more)
+
+### Community 23 - "Community 23"
+Cohesion: 0.33
+Nodes (15): RoleBasedRoute(), hasAnyRole(), hasPermission(), hasRole(), isAdmin(), isCustomer(), isProfessional(), PERMISSIONS (+7 more)
+
+### Community 25 - "Community 25"
 Cohesion: 0.10
 Nodes (21): ProfessionalService.getAllProfessionals, ProfessionalService.getAvailableProfessionals, ProfessionalService.getProfessionalById, ProfessionalService.getProfessionalsByRole, ProfessionalService, ProfessionalService.setProfessionalAvailability, ProfessionalService.toggleProfessionalStatus, ProfessionalService.updateProfessional (+13 more)
 
-### Community 17 - "Community 17"
+### Community 26 - "Community 26"
 Cohesion: 0.10
 Nodes (19): { AppError }, cancelMovements, Cart, Invoice, InvoiceService, limit, logDetails, logger (+11 more)
 
-### Community 19 - "Community 19"
+### Community 27 - "Community 27"
 Cohesion: 0.11
 Nodes (18): deleteFromCloudinary, deleteMultipleFromCloudinary, uploadMultipleToCloudinary, uploadToCloudinary, renderTemplate, sendEmail, generateInvoice, generatePDF (+10 more)
 
-### Community 20 - "Community 20"
+### Community 28 - "Community 28"
 Cohesion: 0.11
 Nodes (15): { AppError }, enriched, filter, limit, newQty, note, page, page_data (+7 more)
 
-### Community 21 - "Community 21"
-Cohesion: 0.15
-Nodes (14): appointments, bcrypt, categories, orders, products, users, Appointment, Category (+6 more)
+### Community 29 - "Community 29"
+Cohesion: 0.13
+Nodes (13): { AppError }, bcrypt, {
+  uploadMultipleToCloudinary,
+  deleteMultipleFromCloudinary,
+  validateImageFile,
+}, User, AppError, errorHandler(), logger, allowedMimeTypes (+5 more)
 
-### Community 22 - "Community 22"
-Cohesion: 0.18
-Nodes (8): buildExtensions(), linkConfig, textAlignConfig, TOOLBAR_GROUPS, RichTextEditor(), PURIFY_CONFIG, RichTextRenderer(), sanitize()
+### Community 30 - "Community 30"
+Cohesion: 0.23
+Nodes (9): ProtectedRoute(), ResetPassword(), USER_ROLES, GlobalToastContext, GlobalToastProvider(), useGlobalToast(), ProductCard(), root (+1 more)
 
-### Community 23 - "Community 23"
+### Community 31 - "Community 31"
 Cohesion: 0.14
 Nodes (13): { AppError }, multer, upload, {
   createProduct,
@@ -329,35 +352,27 @@ Nodes (13): { AppError }, multer, upload, {
   getProductAnalytics,
 }, express, { isAuthenticated, isAdmin }, router, { upload } (+5 more)
 
-### Community 24 - "Community 24"
-Cohesion: 0.12
-Nodes (13): logger, mongoose, app, connectDB, logger, server, fs, logFormat (+5 more)
-
-### Community 26 - "Community 26"
-Cohesion: 0.17
-Nodes (11): hasAnyRole(), hasPermission(), hasRole(), isAdmin(), isProfessional(), PERMISSIONS, PROFESSIONAL_ROLES, ROLE_DISPLAY_NAMES (+3 more)
-
-### Community 27 - "Community 27"
-Cohesion: 0.13
+### Community 32 - "Community 32"
+Cohesion: 0.40
 Nodes (16): APPOINTMENT_DURATIONS, APPOINTMENT_STATUS, AppointmentCreateDTO, AppointmentUpdateDTO, AppointmentFormData Interface, Appointment Interface, AppointmentStatus Type, AppointmentType Type (+8 more)
 
-### Community 28 - "Community 28"
+### Community 33 - "Community 33"
+Cohesion: 0.17
+Nodes (5): Breadcrumb(), UserProfile(), ConfirmModal(), PasswordChangeForm(), ProfileForm()
+
+### Community 34 - "Community 34"
 Cohesion: 0.12
 Nodes (15): { AppError }, filter, keepImages, keepPublicIds, logger, mongoose, newlyUploaded, Product (+7 more)
 
-### Community 29 - "Community 29"
-Cohesion: 0.17
-Nodes (15): AddToCart, CartCheckoutPage, CartItem, CartModal, CartItem Component, CheckoutStepper Component, Price Component, CartContext (+7 more)
+### Community 35 - "Community 35"
+Cohesion: 0.13
+Nodes (14): assets, chars, ddd, fonts, list, fr, h, ip (+6 more)
 
-### Community 30 - "Community 30"
-Cohesion: 0.15
-Nodes (14): productsApi, AppointmentCalendar Component, AppointmentPage, AuthField, AuthModal, ForgotPasswordModal, AppointmentCard Component, AppointmentForm Component (+6 more)
-
-### Community 31 - "Community 31"
+### Community 37 - "Community 37"
 Cohesion: 0.15
 Nodes (11): { AppError }, Invoice, InvoiceService, logger, Order, PaymentService, PayPalService, { sendEmail } (+3 more)
 
-### Community 32 - "Community 32"
+### Community 38 - "Community 38"
 Cohesion: 0.19
 Nodes (11): {
   createOrder,
@@ -373,15 +388,11 @@ Nodes (11): {
   validatePaymentStatus,
 }, { AppError }, Joi (+3 more)
 
-### Community 33 - "Community 33"
-Cohesion: 0.19
-Nodes (3): AppointmentCreateDTO, AppointmentFilterDTO, AppointmentUpdateDTO
+### Community 39 - "Community 39"
+Cohesion: 0.33
+Nodes (7): AdminAppointments(), formatDateTime(), getStatusClass(), STATUS_OPTIONS, DataTable(), AdminProducts(), resolveQty()
 
-### Community 34 - "Community 34"
-Cohesion: 0.15
-Nodes (4): LoginDTO, PasswordChangeDTO, PasswordResetDTO, SignupDTO
-
-### Community 35 - "Community 35"
+### Community 40 - "Community 40"
 Cohesion: 0.15
 Nodes (8): { AppError }, {
   Client,
@@ -391,11 +402,15 @@ Nodes (8): { AppError }, {
   CheckoutPaymentIntent,
 }, https, logger, ordersController, paymentsController, paypalClient, PayPalService
 
-### Community 36 - "Community 36"
+### Community 41 - "Community 41"
 Cohesion: 0.17
-Nodes (3): ProductCreateDTO, ProductFilterDTO, ProductUpdateDTO
+Nodes (11): assets, ddd, fr, h, ip, layers, markers, nm (+3 more)
 
-### Community 37 - "Community 37"
+### Community 42 - "Community 42"
+Cohesion: 0.17
+Nodes (10): { AppError }, Contact, filter, limit, logger, page, { sendEmail }, statMap (+2 more)
+
+### Community 43 - "Community 43"
 Cohesion: 0.21
 Nodes (10): express, {
   getCart,
@@ -410,11 +425,7 @@ Nodes (10): express, {
   validateApplyDiscount,
 }, { AppError }, Joi, validateAddToCart() (+2 more)
 
-### Community 38 - "Community 38"
-Cohesion: 0.17
-Nodes (10): { AppError }, Contact, filter, limit, logger, page, { sendEmail }, statMap (+2 more)
-
-### Community 39 - "Community 39"
+### Community 44 - "Community 44"
 Cohesion: 0.20
 Nodes (10): express, {
   getProfile,
@@ -424,60 +435,53 @@ Nodes (10): express, {
   uploadAvatar,
 }, { isAuthenticated }, router, { upload }, { validateUpdateProfile, validateChangePassword }, { AppError }, Joi (+2 more)
 
-### Community 40 - "Community 40"
+### Community 45 - "Community 45"
+Cohesion: 0.17
+Nodes (9): { AppError }, Pet, mongoose, Pet, petSchema, {
+  createPet,
+  getMyPets,
+  getPet,
+  updatePet,
+  deletePet,
+}, express, { isAuthenticated } (+1 more)
+
+### Community 46 - "Community 46"
+Cohesion: 0.35
+Nodes (5): AppointmentCalendar(), AppointmentCard(), AppointmentPage(), TABS, VALID_TABS
+
+### Community 47 - "Community 47"
 Cohesion: 0.18
+Nodes (9): { AppError }, Cart, cartItem, existingItem, logger, Product, cartItemSchema, cartSchema (+1 more)
+
+### Community 48 - "Community 48"
+Cohesion: 0.55
 Nodes (10): Appointment, AppointmentCalendarProps, AppointmentCardProps, AppointmentFormData, AppointmentFormProps, AppointmentRole, AppointmentStatus, AppointmentType (+2 more)
 
-### Community 41 - "Community 41"
-Cohesion: 0.20
-Nodes (8): Button, buttonVariants, Carousel, CarouselContent, CarouselContext, CarouselItem, CarouselNext, CarouselPrevious
-
-### Community 42 - "Community 42"
-Cohesion: 0.18
+### Community 49 - "Community 49"
+Cohesion: 0.55
 Nodes (11): PERMISSIONS, PROFESSIONAL_ROLES, ROLE_DISPLAY_NAMES, ROLE_PERMISSIONS, USER_ROLES, hasAnyRole, hasPermission, hasRole (+3 more)
 
-### Community 43 - "Community 43"
-Cohesion: 0.20
-Nodes (10): apiClient (api instance), AppointmentService, authApi, AuthService (re-export), paymentsApi, petApi, ProductService, ProfessionalService (+2 more)
-
-### Community 44 - "Community 44"
+### Community 50 - "Community 50"
 Cohesion: 0.20
 Nodes (8): counterSchema, mongoose, Counter, generateInvoice(), generatePDF(), Invoice, Order, PDFDocument
 
-### Community 45 - "Community 45"
+### Community 51 - "Community 51"
 Cohesion: 0.20
 Nodes (9): { AppError }, filter, { generateInvoice, generatePDF }, Invoice, limit, Order, ownerId, page (+1 more)
 
-### Community 46 - "Community 46"
-Cohesion: 0.20
+### Community 52 - "Community 52"
+Cohesion: 0.53
+Nodes (8): FILTER_TABS, MyOrdersPage(), OrderTimeline(), PAYMENT_META, REFUND_REASONS, RefundModal(), STATUS_META, TIMELINE_STEPS
+
+### Community 53 - "Community 53"
+Cohesion: 0.60
+Nodes (10): apiClient (api instance), AppointmentService, authApi, AuthService (re-export), paymentsApi, petApi, ProductService, ProfessionalService (+2 more)
+
+### Community 54 - "Community 54"
+Cohesion: 0.60
 Nodes (10): FilterComponent, IndividualProductItemPage, ProductSectionTabs, MyOrdersPage, OrderTimeline, RefundModal, OrderConfirmedPage, CheckoutForm (Stripe) (+2 more)
 
-### Community 47 - "Community 47"
-Cohesion: 0.20
-Nodes (8): { AppError }, decoded, jwt, User, {
-  createAppointment,
-  getUserAppointments,
-  getProfessionalAppointments,
-  getAppointmentById,
-  updateAppointmentStatus,
-  deleteAppointment,
-  getPublicProfessionalAppointments,
-}, express, { isAuthenticated, isServiceProvider }, router
-
-### Community 48 - "Community 48"
-Cohesion: 0.22
-Nodes (8): {
-  createReview,
-  getProductReviews,
-  updateReview,
-  deleteReview,
-}, express, { isAuthenticated }, router, { validateReview }, { AppError }, Joi, validateReview()
-
-### Community 49 - "Community 49"
-Cohesion: 0.22
-Nodes (10): appointmentsApi, professionalsApi, AppointmentForm, useDebounce, LoadingSpinner, PaginationBar, ProfessionalCalendar, ProfessionalCard (+2 more)
-
-### Community 50 - "Community 50"
+### Community 55 - "Community 55"
 Cohesion: 0.20
 Nodes (9): express, {
   getContacts,
@@ -509,123 +513,132 @@ Nodes (9): express, {
   getTransaction,
 }, { isAuthenticated, isAdmin }, router (+1 more)
 
-### Community 51 - "Community 51"
-Cohesion: 0.22
-Nodes (7): fs, handlebars, html, logger, nodemailer, path, transporter
-
-### Community 54 - "Community 54"
-Cohesion: 0.22
-Nodes (5): FILTER_TABS, PAYMENT_META, REFUND_REASONS, STATUS_META, TIMELINE_STEPS
-
-### Community 55 - "Community 55"
-Cohesion: 0.22
-Nodes (9): ConfirmModal Component, PasswordChangeForm Component, PetForm Component, PetList Component, ProfileForm Component, Pet Model (frontend), User Model (frontend), UserProfileService (+1 more)
-
 ### Community 56 - "Community 56"
-Cohesion: 0.31
-Nodes (5): detectCurrency(), FALLBACK_RATES, fetchRates(), SUPPORTED_CURRENCIES, CurrencyContext
+Cohesion: 0.20
+Nodes (8): { AppError }, decoded, jwt, User, {
+  createAppointment,
+  getUserAppointments,
+  getProfessionalAppointments,
+  getAppointmentById,
+  updateAppointmentStatus,
+  deleteAppointment,
+  getPublicProfessionalAppointments,
+}, express, { isAuthenticated, isServiceProvider }, router
 
 ### Community 57 - "Community 57"
 Cohesion: 0.22
-Nodes (7): { AppError }, Product, searchQuery, sortFields, sortQuery, mongoose, productSchema
+Nodes (8): {
+  createReview,
+  getProductReviews,
+  updateReview,
+  deleteReview,
+}, express, { isAuthenticated }, router, { validateReview }, { AppError }, Joi, validateReview()
 
 ### Community 58 - "Community 58"
 Cohesion: 0.22
-Nodes (4): { AppError }, logger, PaymentService, stripe
+Nodes (7): fs, handlebars, html, logger, nodemailer, path, transporter
 
 ### Community 59 - "Community 59"
-Cohesion: 0.29
-Nodes (4): cartApi, useAuth(), CartSyncCtx, CartSyncLayer()
+Cohesion: 0.58
+Nodes (7): AdminInventory(), BADGE, EMPTY_ADJUST, EMPTY_HISTORY, EMPTY_RESTOCK, MOVEMENT_TYPE_COLORS, STATUS_OPTS
+
+### Community 60 - "Community 60"
+Cohesion: 0.33
+Nodes (9): App Component, AdminLayout Shell, Admin Route Group, ProtectedRoute Auth Gate, Context Provider Hierarchy, Public Route Group, RoleBasedRoute Auth Gate, Browser Router Configuration (+1 more)
+
+### Community 61 - "Community 61"
+Cohesion: 0.22
+Nodes (7): { AppError }, Product, searchQuery, sortFields, sortQuery, mongoose, productSchema
+
+### Community 62 - "Community 62"
+Cohesion: 0.22
+Nodes (4): { AppError }, logger, PaymentService, stripe
 
 ### Community 63 - "Community 63"
-Cohesion: 0.25
-Nodes (6): after, before, cached, cachedRates, fetchSpy, freshRates
+Cohesion: 0.57
+Nodes (5): invoiceApi, AdminInvoices(), EMPTY_DRAWER, STATUS_BADGE, STATUS_OPTS
 
 ### Community 64 - "Community 64"
 Cohesion: 0.25
-Nodes (6): BADGE, EMPTY_ADJUST, EMPTY_HISTORY, EMPTY_RESTOCK, MOVEMENT_TYPE_COLORS, STATUS_OPTS
+Nodes (6): { AppError }, Order, Review, mongoose, Review, reviewSchema
 
 ### Community 65 - "Community 65"
-Cohesion: 0.57
-Nodes (8): AuthContext, CurrencySelector, ErrorBoundary, NavigationBar, ServicesDropdown, SignUpDropdown, SignUpModal, ToastContext
+Cohesion: 0.25
+Nodes (7): fs, logFormat, logger, logsDir, path, transports, winston
 
 ### Community 66 - "Community 66"
-Cohesion: 0.29
-Nodes (7): AppointmentCard, AppointmentForm, ToastContext, AppointmentErrorBoundary, ProfessionalCalendar, appointmentsApi, usersApi
+Cohesion: 0.61
+Nodes (7): { AppError }, commonValidations, createValidator(), formatFieldName(), mongoose, validationMessages, validationRules
 
 ### Community 67 - "Community 67"
-Cohesion: 0.33
-Nodes (7): AdminLayout, AuthContext, GlobalToastContext, DataTable, LoadingSpinner, ProtectedRoute, RoleBasedRoute
+Cohesion: 0.57
+Nodes (5): transactionApi, AdminTransactions(), METHOD_OPTS, TYPE_BADGE, TYPE_OPTS
+
+### Community 68 - "Community 68"
+Cohesion: 0.57
+Nodes (7): AppointmentCard, AppointmentForm, ToastContext, AppointmentErrorBoundary, ProfessionalCalendar, appointmentsApi, usersApi
 
 ### Community 69 - "Community 69"
-Cohesion: 0.29
-Nodes (3): CATEGORIES, RATINGS, QUICK_CATS
-
-### Community 71 - "Community 71"
-Cohesion: 0.38
-Nodes (7): Price Component, CurrencyContext, CurrencySelector, exchangeRatesService (fetchRates, detectCurrency, FALLBACK_RATES), CurrencyContext Test Suite, exchangeRatesService Test Suite, Price Component Test Suite
+Cohesion: 0.71
+Nodes (5): AdminProductForm(), CATEGORIES, EMPTY_FORM, GENDERS, SectionCard()
 
 ### Community 72 - "Community 72"
-Cohesion: 0.29
-Nodes (6): Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle
+Cohesion: 0.76
+Nodes (7): AdminLayout, AuthContext, GlobalToastContext, DataTable, LoadingSpinner, ProtectedRoute, RoleBasedRoute
 
 ### Community 73 - "Community 73"
-Cohesion: 0.29
-Nodes (6): { AppError }, Cart, cartItem, existingItem, logger, Product
-
-### Community 78 - "Community 78"
-Cohesion: 0.53
+Cohesion: 1.14
 Nodes (5): AdminOrders(), fmt(), getPaymentClass(), getStatusClass(), STATUS_OPTIONS
 
-### Community 79 - "Community 79"
-Cohesion: 0.33
-Nodes (3): CATEGORIES, EMPTY_FORM, GENDERS
+### Community 74 - "Community 74"
+Cohesion: 0.57
+Nodes (3): ReviewCarousel(), ProductReviewCard(), STAR_LABELS
 
-### Community 80 - "Community 80"
-Cohesion: 1.80
+### Community 76 - "Community 76"
+Cohesion: 0.71
+Nodes (5): ServiceCard(), ServicePage(), SERVICES, StatCard(), STATS
+
+### Community 78 - "Community 78"
+Cohesion: 0.80
+Nodes (4): AdminUsers(), getInitials(), getRoleBadgeClass(), ROLE_OPTIONS
+
+### Community 79 - "Community 79"
+Cohesion: 0.80
+Nodes (4): CardDropDown(), ListItem, MENU_ITEMS, NavigationCarousel()
+
+### Community 81 - "Community 81"
+Cohesion: 4.20
 Nodes (6): TOOLBAR_GROUPS, buildExtensions, RichText Index (barrel), RichTextEditor, RichTextRenderer, Toolbar
 
 ### Community 82 - "Community 82"
 Cohesion: 0.33
 Nodes (5): { AppError }, filter, limit, page, Transaction
 
+### Community 83 - "Community 83"
+Cohesion: 0.90
+Nodes (3): imagePathsDeskTop, imagePathsMobile, imagePathsTablet
+
 ### Community 84 - "Community 84"
-Cohesion: 0.50
-Nodes (3): AdminAppointments(), formatDateTime(), STATUS_OPTIONS
-
-### Community 85 - "Community 85"
-Cohesion: 0.40
-Nodes (3): METHOD_OPTS, TYPE_BADGE, TYPE_OPTS
-
-### Community 86 - "Community 86"
-Cohesion: 0.40
-Nodes (3): btnSpring, EMPTY_ADDRESS, stepVariants
-
-### Community 87 - "Community 87"
 Cohesion: 0.40
 Nodes (4): logFormat, loggerConfig, path, winston
 
-### Community 88 - "Community 88"
-Cohesion: 0.40
+### Community 85 - "Community 85"
+Cohesion: 1.20
 Nodes (4): APPOINTMENT_DURATIONS, APPOINTMENT_STATUS, APPOINTMENT_TYPES, TIME_SLOTS
 
-### Community 90 - "Community 90"
-Cohesion: 0.40
+### Community 86 - "Community 86"
+Cohesion: 1.20
 Nodes (5): AuthField, AuthModal, ForgotPasswordModal, FormInput, ResetPassword
 
-### Community 91 - "Community 91"
-Cohesion: 0.40
-Nodes (5): ImportExportServicePage, ExportImportForm (ImportPage), ServiceCard (ServicePage), ServicePage, StatCard (ServicePage)
+### Community 87 - "Community 87"
+Cohesion: 0.90
+Nodes (3): ServiceCard(), services, ServicesGrid()
 
-### Community 92 - "Community 92"
+### Community 89 - "Community 89"
 Cohesion: 0.40
-Nodes (3): EMPTY_DRAWER, STATUS_BADGE, STATUS_OPTS
+Nodes (3): { AppError }, Joi, validateAnalyticsPeriod()
 
-### Community 94 - "Community 94"
-Cohesion: 0.40
-Nodes (4): options, specs, swaggerJsdoc, swaggerUi
-
-### Community 95 - "Community 95"
+### Community 90 - "Community 90"
 Cohesion: 0.40
 Nodes (4): express, {
   initializePayment,
@@ -634,92 +647,82 @@ Nodes (4): express, {
   handleWebhook,
 }, { isAuthenticated, isAdmin }, router
 
-### Community 98 - "Community 98"
-Cohesion: 0.40
-Nodes (5): ProductCard V2, FeaturedProductSection, HeroSection, HomePage, productsApi Service
+### Community 91 - "Community 91"
+Cohesion: 1.20
+Nodes (5): ImportExportServicePage, ExportImportForm (ImportPage), ServiceCard (ServicePage), ServicePage, StatCard (ServicePage)
 
-### Community 100 - "Community 100"
-Cohesion: 0.40
-Nodes (3): { AppError }, Joi, validateAnalyticsPeriod()
-
-### Community 102 - "Community 102"
-Cohesion: 0.50
-Nodes (4): BannerCarousel, CarouselComponent, imagePathsDeskTop (imagePaths), PromoBannerCarousel
-
-### Community 105 - "Community 105"
+### Community 92 - "Community 92"
 Cohesion: 0.50
 Nodes (3): invoiceSchema, lineItemSchema, mongoose
 
-### Community 106 - "Community 106"
+### Community 93 - "Community 93"
 Cohesion: 0.50
 Nodes (3): mongoose, orderItemSchema, orderSchema
 
-### Community 107 - "Community 107"
-Cohesion: 0.50
-Nodes (3): imagePathsDeskTop, imagePathsMobile, imagePathsTablet
+### Community 94 - "Community 94"
+Cohesion: 1.50
+Nodes (4): BannerCarousel, CarouselComponent, imagePathsDeskTop (imagePaths), PromoBannerCarousel
 
-### Community 109 - "Community 109"
+### Community 96 - "Community 96"
+Cohesion: 0.50
+Nodes (3): express, router, { submitContact }
+
+### Community 97 - "Community 97"
 Cohesion: 0.50
 Nodes (3): express, router, {
   searchProducts,
   getSuggestions,
 }
 
-### Community 110 - "Community 110"
-Cohesion: 0.50
-Nodes (3): express, router, { submitContact }
-
-### Community 113 - "Community 113"
-Cohesion: 0.50
-Nodes (3): AccordionContent, AccordionItem, AccordionTrigger
-
-### Community 114 - "Community 114"
-Cohesion: 0.50
-Nodes (3): TabsContent, TabsList, TabsTrigger
-
-### Community 115 - "Community 115"
-Cohesion: 0.50
+### Community 100 - "Community 100"
+Cohesion: 1.50
 Nodes (4): useForm hook, createValidator, validationMessages, validationRules
 
-### Community 117 - "Community 117"
+### Community 102 - "Community 102"
 Cohesion: 0.67
 Nodes (3): validateAppointment, validateAppointmentStatus, validateCancellation
 
-### Community 118 - "Community 118"
-Cohesion: 2.00
+### Community 103 - "Community 103"
+Cohesion: 4.67
 Nodes (3): Button, Carousel, CarouselContext
 
-### Community 119 - "Community 119"
-Cohesion: 2.00
+### Community 106 - "Community 106"
+Cohesion: 4.67
 Nodes (3): ConfirmModal, PetForm, PetList
 
-### Community 128 - "Community 128"
+### Community 115 - "Community 115"
 Cohesion: 0.67
 Nodes (3): Payment Router, PaymentService, PayPalService
 
 ## Ambiguous Edges - Review These
 - `SearchBar` → `CartContext`  [AMBIGUOUS]
   frontend/src/Components/HelperComponents/SearchBar/SearchBar.jsx · relation: conceptually_related_to
+- `SearchBar` → `CartContext`  [AMBIGUOUS]
+  frontend/src/Components/HelperComponents/SearchBar/SearchBar.jsx · relation: conceptually_related_to
+- `SearchBar` → `CartContext`  [AMBIGUOUS]
+  frontend/src/Components/HelperComponents/SearchBar/SearchBar.jsx · relation: conceptually_related_to
+- `App Component` → `ProfessionalList Re-export`  [AMBIGUOUS]
+  frontend/src/Components/HelperComponents/ProfessionalList/index.js · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **744 isolated node(s):** `express`, `cors`, `helmet`, `rateLimit`, `mongoSanitize` (+739 more)
+- **518 isolated node(s):** `express`, `cors`, `helmet`, `rateLimit`, `mongoSanitize` (+513 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **108 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **94 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **What is the exact relationship between `SearchBar` and `CartContext`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **Why does `AppError` connect `Community 14` to `Community 32`, `Community 1`, `Community 2`, `Community 3`, `Community 35`, `Community 100`, `Community 5`, `Community 37`, `Community 39`, `Community 13`, `Community 48`, `Community 23`, `Community 58`?**
+- **What is the exact relationship between `SearchBar` and `CartContext`?**
+  _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
+- **What is the exact relationship between `SearchBar` and `CartContext`?**
+  _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
+- **What is the exact relationship between `App Component` and `ProfessionalList Re-export`?**
+  _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
+- **Why does `AppError` connect `Community 29` to `Community 66`, `Community 4`, `Community 6`, `Community 38`, `Community 40`, `Community 43`, `Community 44`, `Community 14`, `Community 20`, `Community 89`, `Community 57`, `Community 62`, `Community 31`?**
+  _High betweenness centrality (0.001) - this node is a cross-community bridge._
+- **Why does `api` connect `Community 13` to `Community 33`, `Community 69`, `Community 16`, `Community 19`, `Community 22`?**
   _High betweenness centrality (0.001) - this node is a cross-community bridge._
 - **What connects `express`, `cors`, `helmet` to the rest of the system?**
-  _744 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.07236544549977386 - nodes in this community are weakly interconnected._
-- **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.058823529411764705 - nodes in this community are weakly interconnected._
-- **Should `Community 2` be split into smaller, more focused modules?**
-  _Cohesion score 0.06050420168067227 - nodes in this community are weakly interconnected._
-- **Should `Community 3` be split into smaller, more focused modules?**
-  _Cohesion score 0.07394957983193277 - nodes in this community are weakly interconnected._
+  _518 weakly-connected nodes found - possible documentation gaps or missing edges._
