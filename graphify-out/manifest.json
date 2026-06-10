@@ -448,5 +448,315 @@
     "mtime": 1780156149.090618,
     "ast_hash": "747604ad79fd6a68cd36e5a933a992a8",
     "semantic_hash": "747604ad79fd6a68cd36e5a933a992a8"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\ErrorBoundary.jsx": {
+    "mtime": 1769629894.158069,
+    "ast_hash": "3b5d92d636ad35899b02c5dd1a20e7b4",
+    "semantic_hash": "3b5d92d636ad35899b02c5dd1a20e7b4"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\ProfessionalCalendar.jsx": {
+    "mtime": 1769629894.196102,
+    "ast_hash": "8231ef6c17a5cebcb17079efe51b52ca",
+    "semantic_hash": "8231ef6c17a5cebcb17079efe51b52ca"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\AddToCartComponent\\CartModalComponent.jsx": {
+    "mtime": 1769629894.1504214,
+    "ast_hash": "d61d07ce344bda2b2aaad3ef0e3a5942",
+    "semantic_hash": "d61d07ce344bda2b2aaad3ef0e3a5942"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\Admin\\AdminLayout.jsx": {
+    "mtime": 1780854266.2417362,
+    "ast_hash": "bb8a2ef42b4037c49652c88d2f4f2732",
+    "semantic_hash": "bb8a2ef42b4037c49652c88d2f4f2732"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\Admin\\DataTable\\DataTable.jsx": {
+    "mtime": 1780781511.188195,
+    "ast_hash": "f31308d03955686724bbbedcedae0b7b",
+    "semantic_hash": "f31308d03955686724bbbedcedae0b7b"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\Auth\\AuthField.jsx": {
+    "mtime": 1780063941.0074613,
+    "ast_hash": "aa7fc6545beaa799660f98163dd22aa5",
+    "semantic_hash": "aa7fc6545beaa799660f98163dd22aa5"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\Auth\\AuthModal.jsx": {
+    "mtime": 1780063941.0084777,
+    "ast_hash": "dd5b28a9b42d4355568c188e1f8b0ee3",
+    "semantic_hash": "dd5b28a9b42d4355568c188e1f8b0ee3"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\Auth\\ForgotPasswordModal.jsx": {
+    "mtime": 1780063941.0124786,
+    "ast_hash": "cfdddf30bc7093578b2e73299cf8122c",
+    "semantic_hash": "cfdddf30bc7093578b2e73299cf8122c"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\Auth\\ProtectedRoute.jsx": {
+    "mtime": 1769629894.1550784,
+    "ast_hash": "ca14e0e3b515a4be62308fa8087fad42",
+    "semantic_hash": "ca14e0e3b515a4be62308fa8087fad42"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\Auth\\ResetPassword.jsx": {
+    "mtime": 1769629894.1550784,
+    "ast_hash": "64a6dffb568257bc8fd337994082e888",
+    "semantic_hash": "64a6dffb568257bc8fd337994082e888"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\Auth\\RoleBasedRoute.jsx": {
+    "mtime": 1769629894.1560614,
+    "ast_hash": "f78bf9bc66845157efd5e2018ba977e5",
+    "semantic_hash": "f78bf9bc66845157efd5e2018ba977e5"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\Common\\FormInput\\FormInput.jsx": {
+    "mtime": 1769629894.1570697,
+    "ast_hash": "6a1b093f99b974af8ade7e9f69bec905",
+    "semantic_hash": "6a1b093f99b974af8ade7e9f69bec905"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\Footer\\Footer.jsx": {
+    "mtime": 1779547186.7164967,
+    "ast_hash": "7954f3f9bd9d7069904c9e891d6d187b",
+    "semantic_hash": "7954f3f9bd9d7069904c9e891d6d187b"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\AppointmentCard\\AppointmentCard.jsx": {
+    "mtime": 1769629894.1636207,
+    "ast_hash": "a7223a24e89b45e66565f2be53b130a0",
+    "semantic_hash": "a7223a24e89b45e66565f2be53b130a0"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\AppointmentForm\\AppointmentForm.jsx": {
+    "mtime": 1769629894.1657214,
+    "ast_hash": "cc4599d6a9ca366a5f7d0e282a73e729",
+    "semantic_hash": "cc4599d6a9ca366a5f7d0e282a73e729"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\Breadcrumb\\Breadcrumb.jsx": {
+    "mtime": 1780063941.0156164,
+    "ast_hash": "9eaf50adb303fa658091304a3d35ddf4",
+    "semantic_hash": "9eaf50adb303fa658091304a3d35ddf4"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\Carousel\\ReviewCarousel.jsx": {
+    "mtime": 1780777143.0459993,
+    "ast_hash": "ea849db543d0aa12913d8519ecfbf537",
+    "semantic_hash": "ea849db543d0aa12913d8519ecfbf537"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\CartItem\\CartItem.jsx": {
+    "mtime": 1780939224.1008656,
+    "ast_hash": "cd06d1c25d7006208c8b1879c22b3df7",
+    "semantic_hash": "cd06d1c25d7006208c8b1879c22b3df7"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\CheckoutStepper\\CheckoutStepper.jsx": {
+    "mtime": 1780603643.5956142,
+    "ast_hash": "19caa961dd7ca0ac528083fa78d35d4c",
+    "semantic_hash": "19caa961dd7ca0ac528083fa78d35d4c"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\CurrencySelector\\CurrencySelector.jsx": {
+    "mtime": 1780941724.432088,
+    "ast_hash": "0f48c3541fac85f34c656f334634ea9e",
+    "semantic_hash": "0f48c3541fac85f34c656f334634ea9e"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\CustomButton\\CustomButton.jsx": {
+    "mtime": 1769629894.170719,
+    "ast_hash": "4bc6075bbad2e58391b07a6f085a1ce2",
+    "semantic_hash": "4bc6075bbad2e58391b07a6f085a1ce2"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\ErrorBoundary\\ErrorBoundary.jsx": {
+    "mtime": 1769629894.1717184,
+    "ast_hash": "c51b0e188e673c2bddb6349e37409ce3",
+    "semantic_hash": "c51b0e188e673c2bddb6349e37409ce3"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\LoadingSpinner\\LoadingSpinner.jsx": {
+    "mtime": 1769629894.1723812,
+    "ast_hash": "02f8c16348ae51bef0efa007575ada49",
+    "semantic_hash": "02f8c16348ae51bef0efa007575ada49"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\PaginationBar\\PaginationBar.jsx": {
+    "mtime": 1769629894.1733892,
+    "ast_hash": "94d1068634ee7dbe77331c2ef9a964ba",
+    "semantic_hash": "94d1068634ee7dbe77331c2ef9a964ba"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\Price\\Price.jsx": {
+    "mtime": 1780939097.8788414,
+    "ast_hash": "72daf13192cdf9a9ef38af743bbd929d",
+    "semantic_hash": "72daf13192cdf9a9ef38af743bbd929d"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\ProductCard\\ProductCard.jsx": {
+    "mtime": 1780148665.525858,
+    "ast_hash": "84dd1cc8dca78f035b8b87737648f26e",
+    "semantic_hash": "84dd1cc8dca78f035b8b87737648f26e"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\ProductCard\\ProductCardV2.jsx": {
+    "mtime": 1780944666.3196225,
+    "ast_hash": "b13669e8f2159a92f81611e8e2cdffde",
+    "semantic_hash": "b13669e8f2159a92f81611e8e2cdffde"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\ProductReviewCard\\ProductReviewCard.jsx": {
+    "mtime": 1780777121.8656082,
+    "ast_hash": "f35928b4bc7f3470f832ea9203e6943e",
+    "semantic_hash": "f35928b4bc7f3470f832ea9203e6943e"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\ProductReviewFormModal\\ProductReviewFormModal.jsx": {
+    "mtime": 1780778239.8188648,
+    "ast_hash": "04f6c0bb2450199326bffc24b2709524",
+    "semantic_hash": "04f6c0bb2450199326bffc24b2709524"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\ProfessionalCalendar\\ProfessionalCalendar.jsx": {
+    "mtime": 1769629894.1786785,
+    "ast_hash": "d9385e0f77133226d85797893728f873",
+    "semantic_hash": "d9385e0f77133226d85797893728f873"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\ProfessionalCard\\ProfessionalCard.jsx": {
+    "mtime": 1769629894.1796868,
+    "ast_hash": "1707587b7e7b8361aad5fa6eeb08affb",
+    "semantic_hash": "1707587b7e7b8361aad5fa6eeb08affb"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\ProfessionalList\\index.js": {
+    "mtime": 1769629894.182685,
+    "ast_hash": "fc1d23a841fae64600977a150bc498fc",
+    "semantic_hash": "fc1d23a841fae64600977a150bc498fc"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\ProfessionalList\\ProfessionalList.jsx": {
+    "mtime": 1769629894.1816874,
+    "ast_hash": "32d433919dd3b95d58aaf43507e6f984",
+    "semantic_hash": "32d433919dd3b95d58aaf43507e6f984"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\SearchBar\\SearchBar.jsx": {
+    "mtime": 1780725125.5897913,
+    "ast_hash": "37ba8927d691f76ae3cb63410303b3c2",
+    "semantic_hash": "37ba8927d691f76ae3cb63410303b3c2"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\SortDropDown\\SortDropDown.jsx": {
+    "mtime": 1780063941.0258195,
+    "ast_hash": "d8929b63826d1e666bf59c63e6e73297",
+    "semantic_hash": "d8929b63826d1e666bf59c63e6e73297"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\TimeSlotGrid\\TimeSlotGrid.jsx": {
+    "mtime": 1769629894.1856854,
+    "ast_hash": "55c64c6efcf11d582599583a2fa8a5f9",
+    "semantic_hash": "55c64c6efcf11d582599583a2fa8a5f9"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\NavigationBar\\AddToCart.jsx": {
+    "mtime": 1780148652.638766,
+    "ast_hash": "38c7743acff2ef33bc589b2c2ecadbb0",
+    "semantic_hash": "38c7743acff2ef33bc589b2c2ecadbb0"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\NavigationBar\\CartModal.jsx": {
+    "mtime": 1780939260.3628378,
+    "ast_hash": "458cd224342a3b4ec2cbb3ae6b45deaf",
+    "semantic_hash": "458cd224342a3b4ec2cbb3ae6b45deaf"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\NavigationBar\\NavigationBar.jsx": {
+    "mtime": 1780939186.2057245,
+    "ast_hash": "82b60ef476137f01b5b264a562bdde7d",
+    "semantic_hash": "82b60ef476137f01b5b264a562bdde7d"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\NavigationBar\\Dropdowns\\CardDropdown.jsx": {
+    "mtime": 1769629894.1906855,
+    "ast_hash": "7a250e61a87b37c9ceaddecab232ef94",
+    "semantic_hash": "7a250e61a87b37c9ceaddecab232ef94"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\NavigationBar\\Dropdowns\\LoginModal.jsx": {
+    "mtime": 1780063941.0293436,
+    "ast_hash": "9504513fe33ffb04f4bcaf89637d4559",
+    "semantic_hash": "9504513fe33ffb04f4bcaf89637d4559"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\NavigationBar\\Dropdowns\\ServicesDropdown.jsx": {
+    "mtime": 1780160930.4749756,
+    "ast_hash": "32f8574407bce6f3f78bacc1ba25e172",
+    "semantic_hash": "32f8574407bce6f3f78bacc1ba25e172"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\NavigationBar\\Dropdowns\\SignUpDropdown.jsx": {
+    "mtime": 1780063941.0293436,
+    "ast_hash": "00a0bf3a6ff06402c179c462352f93d3",
+    "semantic_hash": "00a0bf3a6ff06402c179c462352f93d3"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\NavigationBar\\Dropdowns\\SignUpModal.jsx": {
+    "mtime": 1780063941.0293436,
+    "ast_hash": "94d2f7ad6b7aa44a6de1f2c605f42d83",
+    "semantic_hash": "94d2f7ad6b7aa44a6de1f2c605f42d83"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\RichText\\extensions.js": {
+    "mtime": 1780862679.9449034,
+    "ast_hash": "ecf7719e47bb9c91f1c9af4cdcd60c6e",
+    "semantic_hash": "ecf7719e47bb9c91f1c9af4cdcd60c6e"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\RichText\\index.js": {
+    "mtime": 1780862785.9422517,
+    "ast_hash": "f8fc24300f658978e07c7f2be11fdec4",
+    "semantic_hash": "f8fc24300f658978e07c7f2be11fdec4"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\RichText\\RichTextEditor.jsx": {
+    "mtime": 1780862724.1499133,
+    "ast_hash": "541db76f36a7a3aeec903878b6da9d3d",
+    "semantic_hash": "541db76f36a7a3aeec903878b6da9d3d"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\RichText\\RichTextRenderer.jsx": {
+    "mtime": 1780862766.2465792,
+    "ast_hash": "06b03aa6590300ea37eb3b294128c710",
+    "semantic_hash": "06b03aa6590300ea37eb3b294128c710"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\RichText\\Toolbar.jsx": {
+    "mtime": 1780863102.1494398,
+    "ast_hash": "e23237326e43667809f47a6b67096150",
+    "semantic_hash": "e23237326e43667809f47a6b67096150"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\ui\\accordion.jsx": {
+    "mtime": 1769629894.1997616,
+    "ast_hash": "915ac5e40a25491a93a439fbccd0d0e9",
+    "semantic_hash": "915ac5e40a25491a93a439fbccd0d0e9"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\ui\\button.jsx": {
+    "mtime": 1769629894.1997616,
+    "ast_hash": "b08ee338ed47ae5ba16c2ee308cf3b2b",
+    "semantic_hash": "b08ee338ed47ae5ba16c2ee308cf3b2b"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\ui\\card.jsx": {
+    "mtime": 1769629894.2007692,
+    "ast_hash": "8b9664739b2bc5ca571ec8234d265957",
+    "semantic_hash": "8b9664739b2bc5ca571ec8234d265957"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\ui\\carousel.jsx": {
+    "mtime": 1769629894.2007692,
+    "ast_hash": "f68397905f980569719a226d78152ed1",
+    "semantic_hash": "f68397905f980569719a226d78152ed1"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\ui\\input.jsx": {
+    "mtime": 1769629894.201769,
+    "ast_hash": "cebef17a7d762467a307e3155e9d31f9",
+    "semantic_hash": "cebef17a7d762467a307e3155e9d31f9"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\ui\\label.jsx": {
+    "mtime": 1769629894.2027674,
+    "ast_hash": "6660c8bda8da8042dc8e95e78d63c5e4",
+    "semantic_hash": "6660c8bda8da8042dc8e95e78d63c5e4"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\ui\\separator.jsx": {
+    "mtime": 1769629894.2027674,
+    "ast_hash": "e3b924b744a45d3feb9725edcf41a445",
+    "semantic_hash": "e3b924b744a45d3feb9725edcf41a445"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\ui\\tabs.jsx": {
+    "mtime": 1769629894.2037687,
+    "ast_hash": "3889ed39dc569d2bfc802dd1273a1dc4",
+    "semantic_hash": "3889ed39dc569d2bfc802dd1273a1dc4"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\UserProfile\\ConfirmModal.jsx": {
+    "mtime": 1780731020.7691994,
+    "ast_hash": "78cf8bfdc8a570222a98b6f51fb45ec5",
+    "semantic_hash": "78cf8bfdc8a570222a98b6f51fb45ec5"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\UserProfile\\PasswordChangeForm.jsx": {
+    "mtime": 1780729770.6812294,
+    "ast_hash": "1678de85c773d32e934773d140db7b60",
+    "semantic_hash": "1678de85c773d32e934773d140db7b60"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\UserProfile\\PetForm.jsx": {
+    "mtime": 1780729812.7713022,
+    "ast_hash": "57919fae981a6ed659a9a2943545649f",
+    "semantic_hash": "57919fae981a6ed659a9a2943545649f"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\UserProfile\\PetList.jsx": {
+    "mtime": 1780730432.995919,
+    "ast_hash": "c123a396006c4c83dc78afc0f647ad2c",
+    "semantic_hash": "c123a396006c4c83dc78afc0f647ad2c"
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\UserProfile\\ProfileForm.jsx": {
+    "mtime": 1780729274.8485405,
+    "ast_hash": "bff47f4d54056f94cdabfc842c785686",
+    "semantic_hash": "bff47f4d54056f94cdabfc842c785686"
   }
 }

@@ -1,0 +1,170 @@
+{
+  "communities": {
+    "0": [
+      "exchangeratesservice_test_js",
+      "test_exchangeratesservice_test_after",
+      "test_exchangeratesservice_test_before",
+      "test_exchangeratesservice_test_cached",
+      "test_exchangeratesservice_test_cachedrates",
+      "test_exchangeratesservice_test_fetchspy",
+      "test_exchangeratesservice_test_freshrates",
+      "test_exchangeratesservice_test_setlang"
+    ],
+    "1": [
+      "components_price",
+      "context_currencycontext",
+      "services_exchangeratesservice",
+      "test_currencycontext_test",
+      "test_exchangeratesservice_test",
+      "test_price_test"
+    ],
+    "2": [
+      "currencycontext_test_jsx",
+      "test_currencycontext_test_consolespy",
+      "test_currencycontext_test_consumer",
+      "test_currencycontext_test_renderwithprovider",
+      "test_currencycontext_test_rogue"
+    ],
+    "3": [
+      "price_test_jsx",
+      "test_price_test_container",
+      "test_price_test_mockmur",
+      "test_price_test_mockusd"
+    ],
+    "4": [
+      "setup_js"
+    ],
+    "5": [
+      "test_setup"
+    ]
+  },
+  "cohesion": {
+    "0": 0.25,
+    "1": 0.4666666666666667,
+    "2": 0.4,
+    "3": 0.5,
+    "4": 1.0,
+    "5": 1.0
+  },
+  "gods": [
+    {
+      "id": "context_currencycontext",
+      "label": "CurrencyContext (CurrencyProvider, useCurrency)",
+      "degree": 4
+    },
+    {
+      "id": "services_exchangeratesservice",
+      "label": "exchangeRatesService (fetchRates, detectCurrency, FALLBACK_RATES)",
+      "degree": 3
+    },
+    {
+      "id": "test_currencycontext_test",
+      "label": "CurrencyContext Test Suite",
+      "degree": 2
+    },
+    {
+      "id": "test_price_test",
+      "label": "Price Component Test Suite",
+      "degree": 2
+    },
+    {
+      "id": "components_price",
+      "label": "Price Component",
+      "degree": 2
+    },
+    {
+      "id": "test_currencycontext_test_consolespy",
+      "label": "consoleSpy",
+      "degree": 1
+    },
+    {
+      "id": "test_exchangeratesservice_test_cachedrates",
+      "label": "cachedRates",
+      "degree": 1
+    },
+    {
+      "id": "test_exchangeratesservice_test_fetchspy",
+      "label": "fetchSpy",
+      "degree": 1
+    },
+    {
+      "id": "test_exchangeratesservice_test_freshrates",
+      "label": "freshRates",
+      "degree": 1
+    },
+    {
+      "id": "test_exchangeratesservice_test_before",
+      "label": "before",
+      "degree": 1
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Price Component",
+      "target": "CurrencyContext (CurrencyProvider, useCurrency)",
+      "source_files": [
+        "frontend/src/Components/HelperComponents/Price/Price.jsx",
+        "frontend/src/context/CurrencyContext.jsx"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source"
+    },
+    {
+      "source": "CurrencyContext (CurrencyProvider, useCurrency)",
+      "target": "exchangeRatesService (fetchRates, detectCurrency, FALLBACK_RATES)",
+      "source_files": [
+        "frontend/src/context/CurrencyContext.jsx",
+        "frontend/src/Services/api/exchangeRatesService.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source"
+    },
+    {
+      "source": "CurrencyContext Test Suite",
+      "target": "CurrencyContext (CurrencyProvider, useCurrency)",
+      "source_files": [
+        "frontend/src/test/CurrencyContext.test.jsx",
+        "frontend/src/context/CurrencyContext.jsx"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "tests",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "CurrencyContext Test Suite",
+      "target": "exchangeRatesService (fetchRates, detectCurrency, FALLBACK_RATES)",
+      "source_files": [
+        "frontend/src/test/CurrencyContext.test.jsx",
+        "frontend/src/Services/api/exchangeRatesService.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "mocks",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "exchangeRatesService Test Suite",
+      "target": "exchangeRatesService (fetchRates, detectCurrency, FALLBACK_RATES)",
+      "source_files": [
+        "frontend/src/test/exchangeRatesService.test.js",
+        "frontend/src/Services/api/exchangeRatesService.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "tests",
+      "why": "cross-file semantic connection"
+    }
+  ],
+  "questions": [
+    {
+      "type": "verify_inferred",
+      "question": "Are the 2 inferred relationships involving `CurrencyContext (CurrencyProvider, useCurrency)` (e.g. with `Price Component` and `exchangeRatesService (fetchRates, detectCurrency, FALLBACK_RATES)`) actually correct?",
+      "why": "`CurrencyContext (CurrencyProvider, useCurrency)` has 2 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `consoleSpy`, `cachedRates`, `fetchSpy` to the rest of the system?",
+      "why": "10 weakly-connected nodes found - possible documentation gaps or missing edges."
+    }
+  ]
+}

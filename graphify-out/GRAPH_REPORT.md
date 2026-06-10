@@ -1,169 +1,325 @@
-# Graph Report - backend/src  (2026-06-10)
+# Graph Report - VitalPaws full project  (2026-06-10)
 
 ## Corpus Check
-- Corpus is ~28,426 words - fits in a single context window. You may not need a graph.
+- 0 files · ~99,999 words
+- Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 728 nodes · 959 edges · 68 communities (38 shown, 30 thin omitted)
-- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 68 edges (avg confidence: 0.88)
+- 1561 nodes · 1848 edges · 235 communities (127 shown, 108 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 133 edges (avg confidence: 0.84)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
-- [[_COMMUNITY_App Bootstrap & Config|App Bootstrap & Config]]
-- [[_COMMUNITY_Database Connection Layer|Database Connection Layer]]
-- [[_COMMUNITY_Inventory Controller|Inventory Controller]]
-- [[_COMMUNITY_Auth Controller|Auth Controller]]
-- [[_COMMUNITY_Express App & Swagger|Express App & Swagger]]
-- [[_COMMUNITY_Cross-Cutting Concerns|Cross-Cutting Concerns]]
-- [[_COMMUNITY_Admin Dashboard|Admin Dashboard]]
-- [[_COMMUNITY_Professional Controller|Professional Controller]]
-- [[_COMMUNITY_Product Catalog Controller|Product Catalog Controller]]
-- [[_COMMUNITY_File Upload Middleware|File Upload Middleware]]
-- [[_COMMUNITY_Pet & Auth Middleware|Pet & Auth Middleware]]
-- [[_COMMUNITY_API Route Definitions|API Route Definitions]]
-- [[_COMMUNITY_Shopping Cart Controller|Shopping Cart Controller]]
-- [[_COMMUNITY_Appointment Booking Controller|Appointment Booking Controller]]
-- [[_COMMUNITY_Professional Service Layer|Professional Service Layer]]
-- [[_COMMUNITY_Order Processing Controller|Order Processing Controller]]
-- [[_COMMUNITY_User Data Model|User Data Model]]
-- [[_COMMUNITY_Image Upload (Cloudinary)|Image Upload (Cloudinary)]]
-- [[_COMMUNITY_Database Seeding|Database Seeding]]
-- [[_COMMUNITY_User Service Layer|User Service Layer]]
-- [[_COMMUNITY_Payment Controller|Payment Controller]]
-- [[_COMMUNITY_Invoice & Billing Controller|Invoice & Billing Controller]]
-- [[_COMMUNITY_Transaction Ledger|Transaction Ledger]]
-- [[_COMMUNITY_Review System|Review System]]
-- [[_COMMUNITY_Search & Discovery|Search & Discovery]]
-- [[_COMMUNITY_Contact & Messaging|Contact & Messaging]]
-- [[_COMMUNITY_Payment Service (Stripe)|Payment Service (Stripe)]]
-- [[_COMMUNITY_PayPal Service|PayPal Service]]
-- [[_COMMUNITY_Invoice Service (PDF)|Invoice Service (PDF)]]
-- [[_COMMUNITY_Product Service Layer|Product Service Layer]]
-- [[_COMMUNITY_Email Notification Utilities|Email Notification Utilities]]
-- [[_COMMUNITY_Request Validation (Joi)|Request Validation (Joi)]]
-- [[_COMMUNITY_Error Handling|Error Handling]]
-- [[_COMMUNITY_Rate Limiting & Security|Rate Limiting & Security]]
-- [[_COMMUNITY_Stock Movement Tracking|Stock Movement Tracking]]
-- [[_COMMUNITY_Order Model|Order Model]]
-- [[_COMMUNITY_Product Model|Product Model]]
-- [[_COMMUNITY_Cart Model|Cart Model]]
-- [[_COMMUNITY_Invoice Model|Invoice Model]]
-- [[_COMMUNITY_Transaction Model|Transaction Model]]
-- [[_COMMUNITY_Appointment Model|Appointment Model]]
-- [[_COMMUNITY_Pet Model|Pet Model]]
-- [[_COMMUNITY_Review Model|Review Model]]
-- [[_COMMUNITY_Category Model|Category Model]]
-- [[_COMMUNITY_Counter Model|Counter Model]]
-- [[_COMMUNITY_Auth Validator|Auth Validator]]
-- [[_COMMUNITY_Order Validator|Order Validator]]
-- [[_COMMUNITY_Product Validator|Product Validator]]
-- [[_COMMUNITY_User Validator|User Validator]]
-- [[_COMMUNITY_Appointment Validator|Appointment Validator]]
-- [[_COMMUNITY_Cart Validator|Cart Validator]]
-- [[_COMMUNITY_Professional Validator|Professional Validator]]
-- [[_COMMUNITY_Review Validator|Review Validator]]
-- [[_COMMUNITY_Admin Validator|Admin Validator]]
-- [[_COMMUNITY_Email Templates (Appointment)|Email Templates (Appointment)]]
-- [[_COMMUNITY_Email Templates (Order)|Email Templates (Order)]]
-- [[_COMMUNITY_Email Templates (Payment)|Email Templates (Payment)]]
-- [[_COMMUNITY_Email Templates (Auth)|Email Templates (Auth)]]
-- [[_COMMUNITY_Email Templates (Contact)|Email Templates (Contact)]]
-- [[_COMMUNITY_Logger Utility|Logger Utility]]
-- [[_COMMUNITY_Date Utilities|Date Utilities]]
-- [[_COMMUNITY_Validation Utilities|Validation Utilities]]
-- [[_COMMUNITY_Professional Routes|Professional Routes]]
-- [[_COMMUNITY_Payment Routes|Payment Routes]]
-- [[_COMMUNITY_Pet Routes|Pet Routes]]
-- [[_COMMUNITY_Search Routes|Search Routes]]
-- [[_COMMUNITY_User Routes|User Routes]]
+- [[_COMMUNITY_Community 0|Community 0]]
+- [[_COMMUNITY_Community 1|Community 1]]
+- [[_COMMUNITY_Community 2|Community 2]]
+- [[_COMMUNITY_Community 3|Community 3]]
+- [[_COMMUNITY_Community 4|Community 4]]
+- [[_COMMUNITY_Community 5|Community 5]]
+- [[_COMMUNITY_Community 6|Community 6]]
+- [[_COMMUNITY_Community 7|Community 7]]
+- [[_COMMUNITY_Community 8|Community 8]]
+- [[_COMMUNITY_Community 9|Community 9]]
+- [[_COMMUNITY_Community 10|Community 10]]
+- [[_COMMUNITY_Community 11|Community 11]]
+- [[_COMMUNITY_Community 12|Community 12]]
+- [[_COMMUNITY_Community 13|Community 13]]
+- [[_COMMUNITY_Community 14|Community 14]]
+- [[_COMMUNITY_Community 15|Community 15]]
+- [[_COMMUNITY_Community 16|Community 16]]
+- [[_COMMUNITY_Community 17|Community 17]]
+- [[_COMMUNITY_Community 18|Community 18]]
+- [[_COMMUNITY_Community 19|Community 19]]
+- [[_COMMUNITY_Community 20|Community 20]]
+- [[_COMMUNITY_Community 21|Community 21]]
+- [[_COMMUNITY_Community 22|Community 22]]
+- [[_COMMUNITY_Community 23|Community 23]]
+- [[_COMMUNITY_Community 24|Community 24]]
+- [[_COMMUNITY_Community 25|Community 25]]
+- [[_COMMUNITY_Community 26|Community 26]]
+- [[_COMMUNITY_Community 27|Community 27]]
+- [[_COMMUNITY_Community 28|Community 28]]
+- [[_COMMUNITY_Community 29|Community 29]]
+- [[_COMMUNITY_Community 30|Community 30]]
+- [[_COMMUNITY_Community 31|Community 31]]
+- [[_COMMUNITY_Community 32|Community 32]]
+- [[_COMMUNITY_Community 33|Community 33]]
+- [[_COMMUNITY_Community 34|Community 34]]
+- [[_COMMUNITY_Community 35|Community 35]]
+- [[_COMMUNITY_Community 36|Community 36]]
+- [[_COMMUNITY_Community 37|Community 37]]
+- [[_COMMUNITY_Community 38|Community 38]]
+- [[_COMMUNITY_Community 39|Community 39]]
+- [[_COMMUNITY_Community 40|Community 40]]
+- [[_COMMUNITY_Community 41|Community 41]]
+- [[_COMMUNITY_Community 42|Community 42]]
+- [[_COMMUNITY_Community 43|Community 43]]
+- [[_COMMUNITY_Community 44|Community 44]]
+- [[_COMMUNITY_Community 45|Community 45]]
+- [[_COMMUNITY_Community 46|Community 46]]
+- [[_COMMUNITY_Community 47|Community 47]]
+- [[_COMMUNITY_Community 48|Community 48]]
+- [[_COMMUNITY_Community 49|Community 49]]
+- [[_COMMUNITY_Community 50|Community 50]]
+- [[_COMMUNITY_Community 51|Community 51]]
+- [[_COMMUNITY_Community 52|Community 52]]
+- [[_COMMUNITY_Community 53|Community 53]]
+- [[_COMMUNITY_Community 54|Community 54]]
+- [[_COMMUNITY_Community 55|Community 55]]
+- [[_COMMUNITY_Community 56|Community 56]]
+- [[_COMMUNITY_Community 57|Community 57]]
+- [[_COMMUNITY_Community 58|Community 58]]
+- [[_COMMUNITY_Community 59|Community 59]]
+- [[_COMMUNITY_Community 60|Community 60]]
+- [[_COMMUNITY_Community 61|Community 61]]
+- [[_COMMUNITY_Community 62|Community 62]]
+- [[_COMMUNITY_Community 63|Community 63]]
+- [[_COMMUNITY_Community 64|Community 64]]
+- [[_COMMUNITY_Community 65|Community 65]]
+- [[_COMMUNITY_Community 66|Community 66]]
+- [[_COMMUNITY_Community 67|Community 67]]
+- [[_COMMUNITY_Community 68|Community 68]]
+- [[_COMMUNITY_Community 69|Community 69]]
+- [[_COMMUNITY_Community 70|Community 70]]
+- [[_COMMUNITY_Community 71|Community 71]]
+- [[_COMMUNITY_Community 72|Community 72]]
+- [[_COMMUNITY_Community 73|Community 73]]
+- [[_COMMUNITY_Community 74|Community 74]]
+- [[_COMMUNITY_Community 75|Community 75]]
+- [[_COMMUNITY_Community 76|Community 76]]
+- [[_COMMUNITY_Community 77|Community 77]]
+- [[_COMMUNITY_Community 78|Community 78]]
+- [[_COMMUNITY_Community 79|Community 79]]
+- [[_COMMUNITY_Community 80|Community 80]]
+- [[_COMMUNITY_Community 81|Community 81]]
+- [[_COMMUNITY_Community 82|Community 82]]
+- [[_COMMUNITY_Community 83|Community 83]]
+- [[_COMMUNITY_Community 84|Community 84]]
+- [[_COMMUNITY_Community 85|Community 85]]
+- [[_COMMUNITY_Community 86|Community 86]]
+- [[_COMMUNITY_Community 87|Community 87]]
+- [[_COMMUNITY_Community 88|Community 88]]
+- [[_COMMUNITY_Community 89|Community 89]]
+- [[_COMMUNITY_Community 90|Community 90]]
+- [[_COMMUNITY_Community 91|Community 91]]
+- [[_COMMUNITY_Community 92|Community 92]]
+- [[_COMMUNITY_Community 93|Community 93]]
+- [[_COMMUNITY_Community 94|Community 94]]
+- [[_COMMUNITY_Community 95|Community 95]]
+- [[_COMMUNITY_Community 96|Community 96]]
+- [[_COMMUNITY_Community 97|Community 97]]
+- [[_COMMUNITY_Community 98|Community 98]]
+- [[_COMMUNITY_Community 99|Community 99]]
+- [[_COMMUNITY_Community 100|Community 100]]
+- [[_COMMUNITY_Community 101|Community 101]]
+- [[_COMMUNITY_Community 102|Community 102]]
+- [[_COMMUNITY_Community 104|Community 104]]
+- [[_COMMUNITY_Community 105|Community 105]]
+- [[_COMMUNITY_Community 106|Community 106]]
+- [[_COMMUNITY_Community 107|Community 107]]
+- [[_COMMUNITY_Community 108|Community 108]]
+- [[_COMMUNITY_Community 109|Community 109]]
+- [[_COMMUNITY_Community 110|Community 110]]
+- [[_COMMUNITY_Community 111|Community 111]]
+- [[_COMMUNITY_Community 112|Community 112]]
+- [[_COMMUNITY_Community 113|Community 113]]
+- [[_COMMUNITY_Community 114|Community 114]]
+- [[_COMMUNITY_Community 115|Community 115]]
+- [[_COMMUNITY_Community 117|Community 117]]
+- [[_COMMUNITY_Community 118|Community 118]]
+- [[_COMMUNITY_Community 119|Community 119]]
+- [[_COMMUNITY_Community 120|Community 120]]
+- [[_COMMUNITY_Community 121|Community 121]]
+- [[_COMMUNITY_Community 122|Community 122]]
+- [[_COMMUNITY_Community 123|Community 123]]
+- [[_COMMUNITY_Community 124|Community 124]]
+- [[_COMMUNITY_Community 126|Community 126]]
+- [[_COMMUNITY_Community 127|Community 127]]
+- [[_COMMUNITY_Community 128|Community 128]]
+- [[_COMMUNITY_Community 129|Community 129]]
+- [[_COMMUNITY_Community 131|Community 131]]
+- [[_COMMUNITY_Community 132|Community 132]]
+- [[_COMMUNITY_Community 133|Community 133]]
+- [[_COMMUNITY_Community 140|Community 140]]
+- [[_COMMUNITY_Community 142|Community 142]]
+- [[_COMMUNITY_Community 146|Community 146]]
+- [[_COMMUNITY_Community 147|Community 147]]
+- [[_COMMUNITY_Community 149|Community 149]]
+- [[_COMMUNITY_Community 163|Community 163]]
+- [[_COMMUNITY_Community 164|Community 164]]
+- [[_COMMUNITY_Community 165|Community 165]]
+- [[_COMMUNITY_Community 166|Community 166]]
+- [[_COMMUNITY_Community 167|Community 167]]
+- [[_COMMUNITY_Community 168|Community 168]]
+- [[_COMMUNITY_Community 169|Community 169]]
+- [[_COMMUNITY_Community 175|Community 175]]
+- [[_COMMUNITY_Community 176|Community 176]]
+- [[_COMMUNITY_Community 177|Community 177]]
+- [[_COMMUNITY_Community 178|Community 178]]
+- [[_COMMUNITY_Community 179|Community 179]]
+- [[_COMMUNITY_Community 180|Community 180]]
+- [[_COMMUNITY_Community 181|Community 181]]
+- [[_COMMUNITY_Community 182|Community 182]]
+- [[_COMMUNITY_Community 183|Community 183]]
+- [[_COMMUNITY_Community 184|Community 184]]
+- [[_COMMUNITY_Community 185|Community 185]]
+- [[_COMMUNITY_Community 186|Community 186]]
+- [[_COMMUNITY_Community 187|Community 187]]
+- [[_COMMUNITY_Community 188|Community 188]]
+- [[_COMMUNITY_Community 189|Community 189]]
+- [[_COMMUNITY_Community 190|Community 190]]
+- [[_COMMUNITY_Community 191|Community 191]]
+- [[_COMMUNITY_Community 192|Community 192]]
+- [[_COMMUNITY_Community 193|Community 193]]
+- [[_COMMUNITY_Community 194|Community 194]]
+- [[_COMMUNITY_Community 195|Community 195]]
+- [[_COMMUNITY_Community 196|Community 196]]
+- [[_COMMUNITY_Community 197|Community 197]]
+- [[_COMMUNITY_Community 198|Community 198]]
+- [[_COMMUNITY_Community 199|Community 199]]
+- [[_COMMUNITY_Community 200|Community 200]]
+- [[_COMMUNITY_Community 201|Community 201]]
+- [[_COMMUNITY_Community 202|Community 202]]
+- [[_COMMUNITY_Community 203|Community 203]]
+- [[_COMMUNITY_Community 204|Community 204]]
+- [[_COMMUNITY_Community 205|Community 205]]
+- [[_COMMUNITY_Community 206|Community 206]]
+- [[_COMMUNITY_Community 207|Community 207]]
+- [[_COMMUNITY_Community 208|Community 208]]
+- [[_COMMUNITY_Community 209|Community 209]]
+- [[_COMMUNITY_Community 210|Community 210]]
+- [[_COMMUNITY_Community 211|Community 211]]
+- [[_COMMUNITY_Community 212|Community 212]]
+- [[_COMMUNITY_Community 213|Community 213]]
+- [[_COMMUNITY_Community 214|Community 214]]
+- [[_COMMUNITY_Community 215|Community 215]]
+- [[_COMMUNITY_Community 216|Community 216]]
+- [[_COMMUNITY_Community 217|Community 217]]
+- [[_COMMUNITY_Community 218|Community 218]]
+- [[_COMMUNITY_Community 219|Community 219]]
+- [[_COMMUNITY_Community 220|Community 220]]
+- [[_COMMUNITY_Community 221|Community 221]]
+- [[_COMMUNITY_Community 222|Community 222]]
+- [[_COMMUNITY_Community 223|Community 223]]
+- [[_COMMUNITY_Community 224|Community 224]]
+- [[_COMMUNITY_Community 225|Community 225]]
+- [[_COMMUNITY_Community 226|Community 226]]
+- [[_COMMUNITY_Community 227|Community 227]]
+- [[_COMMUNITY_Community 228|Community 228]]
+- [[_COMMUNITY_Community 229|Community 229]]
+- [[_COMMUNITY_Community 230|Community 230]]
+- [[_COMMUNITY_Community 231|Community 231]]
+- [[_COMMUNITY_Community 232|Community 232]]
+- [[_COMMUNITY_Community 234|Community 234]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `AppError` - 36 edges
-2. `Error Handler Middleware` - 17 edges
-3. `Email Notification System` - 16 edges
-4. `ValidationUtils` - 14 edges
-5. `Order Controller` - 14 edges
-6. `User Model` - 14 edges
-7. `Admin Controller` - 12 edges
-8. `Logger Utility` - 12 edges
-9. `Logger (Winston)` - 12 edges
-10. `Payment Controller` - 11 edges
+2. `ProductService` - 19 edges
+3. `Order Controller` - 18 edges
+4. `ToastContext` - 18 edges
+5. `AppointmentService` - 18 edges
+6. `Payment Controller` - 17 edges
+7. `Error Handler Middleware` - 17 edges
+8. `Email Notification System` - 16 edges
+9. `Invoicing & Transactions Design Spec` - 15 edges
+10. `ValidationUtils` - 14 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `validateCreateOrder` --shares_data_with--> `Order Confirmation Email Template`  [INFERRED]
-  backend/src/validators/order.validator.js → backend/src/templates/order-confirmation.html
-- `validateUpdateOrderStatus` --shares_data_with--> `Order Status Update Email Template`  [INFERRED]
-  backend/src/validators/order.validator.js → backend/src/templates/order-status-update.html
-- `validatePaymentStatus` --shares_data_with--> `Payment Status Update Email Template`  [INFERRED]
-  backend/src/validators/order.validator.js → backend/src/templates/payment-status-update.html
-- `Winston Logger Config` --conceptually_related_to--> `Logger Utility`  [INFERRED]
-  backend/src/config/logger.js → backend/src/utils/logger.js
-- `validateRequest Middleware` --calls--> `AppError Class`  [INFERRED]
-  backend/src/middlewares/validateRequest.js → backend/src/middlewares/errorHandler.js
+- None detected - all connections are within the same source files.
 
-## Hyperedges (group relationships)
-- **Payment Processing Flow** — controller_payment, service_payment, service_paypal, model_order, model_invoice, model_transaction, service_invoice [INFERRED 0.95]
-- **Order Lifecycle** — controller_cart, controller_order, controller_payment, model_cart, model_order, model_product, model_stockmovement [INFERRED 0.95]
-- **Appointment Booking Flow** — controller_appointment, controller_professional, model_appointment, model_pet, model_user, validator_appointment, util_email [INFERRED 0.90]
-- **Admin Analytics & Management** — controller_admin, controller_inventory, controller_invoice, controller_transaction, controller_contact, model_order, model_product, model_user, model_appointment [INFERRED 0.90]
-- **Email Notification Pattern** — controller_auth, controller_appointment, controller_order, controller_payment, controller_contact, util_email [INFERRED 0.90]
-- **Authentication Middleware Chain** — authmiddleware_isAuthenticated, authmiddleware_isAdmin, authmiddleware_isServiceProvider, errorhandler_AppError, user_model_User [EXTRACTED 1.00]
-- **User-Referenced Models** — user_model_User, appointment_model_Appointment, cart_model_Cart, order_model_Order, pet_model_Pet, review_model_Review, invoice_model_Invoice, transaction_model_Transaction, stockmovement_model_StockMovement, category_model_Category, product_model_Product [EXTRACTED 1.00]
-- **Product Ecosystem Models** — product_model_Product, cart_model_Cart, order_model_Order, review_model_Review, stockmovement_model_StockMovement, category_model_Category [INFERRED 0.95]
-- **Payment & Financial Models** — order_model_Order, invoice_model_Invoice, transaction_model_Transaction, counter_model_Counter [INFERRED 0.85]
-- **Admin Route Controller Dependencies** — admin_routes_adminRouter, authmiddleware_isAuthenticated, authmiddleware_isAdmin [EXTRACTED 1.00]
-- **Payment Processing Stack (Stripe + PayPal)** — payment_service_paymentservice, paypal_service_paypalservice, payment_routes_paymentrouter, invoice_service_invoiceservice [INFERRED 0.85]
-- **Routes Protected by Auth Middleware** — payment_routes_paymentrouter, pet_routes_petrouter, product_routes_productrouter, professional_routes_professionalrouter, review_routes_reviewrouter, user_routes_userrouter [EXTRACTED 1.00]
-- **Joi-Based Request Validators** — admin_validator_validateanalyticsperiod, admin_validator_validatedaterange, appointment_validator_validateappointment, appointment_validator_validateappointmentstatus, appointment_validator_validatecancellation, auth_validator_validateregister, auth_validator_validatelogin, auth_validator_validateforgotpassword, auth_validator_validateresetpassword, cart_validator_validateaddtocart, cart_validator_validateupdatecartitem, cart_validator_validateapplydiscount [EXTRACTED 1.00]
-- **User and Professional Data Layer** — userService_userservice, professionalService_professionalservice, userService_createuser, userService_getuserbyid, professionalService_getallprofessionals, professionalService_getavailableprofessionals [INFERRED 0.85]
-- **Cloudinary Image Operations** — cloudinary_util_uploadtocloudinary, cloudinary_util_uploadmultipletocloudinary, cloudinary_util_deletefromcloudinary, cloudinary_util_deletemultiplefromcloudinary, cloudinary_util_validateimagefile [EXTRACTED 1.00]
-- **Appointment Email Notification Flow** — template_appointment_confirmation, template_appointment_request, template_appointment_status, template_appointmentstatusupdate, template_appointmentstatusupdatecustomer, template_appointmentstatusupdateprofessional [INFERRED 0.95]
-- **Order Email Notification Flow** — template_order_confirmation, template_order_cancelled, template_order_status_update [INFERRED 0.95]
-- **Payment Email Notification Flow** — template_payment_confirmation, template_payment_status_update, template_refund_confirmation [INFERRED 0.95]
-- **Request Validation Middleware Layer** — ordervalidator_validateCreateOrder, ordervalidator_validateUpdateOrderStatus, ordervalidator_validatePaymentStatus, productvalidator_validateProduct, productvalidator_validateProductUpdate, reviewvalidator_validateReview, uservalidator_validateUpdateProfile, uservalidator_validateChangePassword, professionalvalidator_updateProfessionalSchema, professionalvalidator_querySchema, professionalvalidator_availabilitySchema, professionalvalidator_ratingSchema [INFERRED 0.95]
-- **Professional Schema Composition Chain** — professionalvalidator_availabilityDaySchema, professionalvalidator_availabilitySchema, professionalvalidator_serviceSchema, professionalvalidator_locationSchema, professionalvalidator_professionalInfoSchema, professionalvalidator_updateProfessionalSchema [EXTRACTED 1.00]
+## Communities (235 total, 108 thin omitted)
 
-## Communities (68 total, 30 thin omitted)
+### Community 0 - "Community 0"
+Cohesion: 0.07
+Nodes (67): inventoryApi.js, invoiceApi.js, transactionApi.js, Express App Entry Point, Subsystem A — Inventory Management, Subsystem B — Invoicing & Transactions, VitalPaws Feature Changelog, MongoDB Database Config (+59 more)
 
-### Community 0 - "App Bootstrap & Config"
-Cohesion: 0.11
-Nodes (42): Express App Entry Point, MongoDB Database Config, Winston Logger Config, Swagger API Docs Config, Admin Controller, Appointment Controller, Auth Controller, Cart Controller (+34 more)
-
-### Community 1 - "Database Connection Layer"
-Cohesion: 0.05
-Nodes (33): logger, mongoose, { AppError }, Contact, filter, limit, logger, page (+25 more)
-
-### Community 2 - "Inventory Controller"
+### Community 1 - "Community 1"
 Cohesion: 0.06
-Nodes (29): { AppError }, enriched, filter, limit, newQty, note, page, page_data (+21 more)
+Nodes (26): { AppError }, Appointment, { error }, logger, mongoose, Pet, query, { sendEmail } (+18 more)
 
-### Community 3 - "Auth Controller"
+### Community 2 - "Community 2"
+Cohesion: 0.06
+Nodes (31): affectedProductIds, { AppError }, Appointment, Cart, dateFormat, filter, { getStartDate, getDateFormat }, limit (+23 more)
+
+### Community 3 - "Community 3"
+Cohesion: 0.07
+Nodes (16): bcrypt, jwt, mongoose, User, userSchema, { AppError }, mongoose, ProfessionalService (+8 more)
+
+### Community 4 - "Community 4"
+Cohesion: 0.07
+Nodes (7): btnSpring, CartItem(), SERVICE_ITEMS, MOBILE_SERVICE_ITEMS, NAV_LINKS, ProductCardV2(), stripHtml()
+
+### Community 5 - "Community 5"
 Cohesion: 0.08
 Nodes (29): { AppError }, bcrypt, crypto, forgotPassword(), generateTokens(), getCurrentUser(), jwt, logger (+21 more)
 
-### Community 4 - "Express App & Swagger"
-Cohesion: 0.06
-Nodes (31): options, specs, swaggerJsdoc, swaggerUi, adminRoutes, app, appointmentRoutes, authRoutes (+23 more)
-
-### Community 5 - "Cross-Cutting Concerns"
+### Community 6 - "Community 6"
 Cohesion: 0.10
 Nodes (32): Email Notification System, Handlebars Templating, Joi Validation Pattern, AppError, validateCreateOrder, validatePaymentStatus, validateUpdateOrderStatus, validateProduct (+24 more)
 
-### Community 6 - "Admin Dashboard"
-Cohesion: 0.07
-Nodes (28): affectedProductIds, { AppError }, Appointment, Cart, dateFormat, filter, { getStartDate, getDateFormat }, limit (+20 more)
-
-### Community 7 - "Professional Controller"
+### Community 7 - "Community 7"
 Cohesion: 0.08
 Nodes (24): { AppError }, filters, mongoose, pagination, professionalService, sorting, timeSlot, { createError } (+16 more)
 
-### Community 8 - "Product Catalog Controller"
+### Community 8 - "Community 8"
 Cohesion: 0.07
-Nodes (25): { AppError }, filter, keepImages, keepPublicIds, logger, mongoose, newlyUploaded, Product (+17 more)
+Nodes (27): adminRoutes, app, appointmentRoutes, authRoutes, cartRoutes, compression, contactRoutes, cors (+19 more)
 
-### Community 9 - "File Upload Middleware"
+### Community 9 - "Community 9"
+Cohesion: 0.10
+Nodes (14): api, apiClient, token, appointmentsApi, inventoryApi, invoiceApi, ordersApi, paymentsApi (+6 more)
+
+### Community 10 - "Community 10"
 Cohesion: 0.08
-Nodes (23): { AppError }, multer, upload, {
+Nodes (11): PROMO_SLIDES, slideVariants, TABS, FEATURES, SERVICES, SLIDE_IMAGES, slideVariants, STATS (+3 more)
+
+### Community 11 - "Community 11"
+Cohesion: 0.13
+Nodes (25): Admin Routes, Appointment Model, Appointment Routes, Auth Routes, isAdmin Middleware, isAuthenticated Middleware, isServiceProvider Middleware, Cart Model (+17 more)
+
+### Community 12 - "Community 12"
+Cohesion: 0.13
+Nodes (22): AdminAnalytics Page, AdminAppointments Page, AdminDashboard Page, AdminInventory Page, AdminInvoices Page, AdminOrders Page, AdminProductForm Page, AdminProducts Page (+14 more)
+
+### Community 13 - "Community 13"
+Cohesion: 0.10
+Nodes (6): { AppError }, commonValidations, mongoose, validationMessages, validationRules, ValidationUtils
+
+### Community 14 - "Community 14"
+Cohesion: 0.11
+Nodes (16): { AppError }, Order, Review, { AppError }, bcrypt, {
+  uploadMultipleToCloudinary,
+  deleteMultipleFromCloudinary,
+  validateImageFile,
+}, User, AppError (+8 more)
+
+### Community 16 - "Community 16"
+Cohesion: 0.10
+Nodes (21): ProfessionalService.getAllProfessionals, ProfessionalService.getAvailableProfessionals, ProfessionalService.getProfessionalById, ProfessionalService.getProfessionalsByRole, ProfessionalService, ProfessionalService.setProfessionalAvailability, ProfessionalService.toggleProfessionalStatus, ProfessionalService.updateProfessional (+13 more)
+
+### Community 17 - "Community 17"
+Cohesion: 0.10
+Nodes (19): { AppError }, cancelMovements, Cart, Invoice, InvoiceService, limit, logDetails, logger (+11 more)
+
+### Community 19 - "Community 19"
+Cohesion: 0.11
+Nodes (18): deleteFromCloudinary, deleteMultipleFromCloudinary, uploadMultipleToCloudinary, uploadToCloudinary, renderTemplate, sendEmail, generateInvoice, generatePDF (+10 more)
+
+### Community 20 - "Community 20"
+Cohesion: 0.11
+Nodes (15): { AppError }, enriched, filter, limit, newQty, note, page, page_data (+7 more)
+
+### Community 21 - "Community 21"
+Cohesion: 0.15
+Nodes (14): appointments, bcrypt, categories, orders, products, users, Appointment, Category (+6 more)
+
+### Community 22 - "Community 22"
+Cohesion: 0.18
+Nodes (8): buildExtensions(), linkConfig, textAlignConfig, TOOLBAR_GROUPS, RichTextEditor(), PURIFY_CONFIG, RichTextRenderer(), sanitize()
+
+### Community 23 - "Community 23"
+Cohesion: 0.14
+Nodes (13): { AppError }, multer, upload, {
   createProduct,
   getProducts,
   getProduct,
@@ -171,59 +327,37 @@ Nodes (23): { AppError }, multer, upload, {
   deleteProduct,
   getProductsByCategory,
   getProductAnalytics,
-}, express, { isAuthenticated, isAdmin }, router, { upload } (+15 more)
+}, express, { isAuthenticated, isAdmin }, router, { upload } (+5 more)
 
-### Community 10 - "Pet & Auth Middleware"
-Cohesion: 0.07
-Nodes (21): { AppError }, Pet, { AppError }, decoded, jwt, User, mongoose, Pet (+13 more)
+### Community 24 - "Community 24"
+Cohesion: 0.12
+Nodes (13): logger, mongoose, app, connectDB, logger, server, fs, logFormat (+5 more)
 
-### Community 11 - "API Route Definitions"
+### Community 26 - "Community 26"
+Cohesion: 0.17
+Nodes (11): hasAnyRole(), hasPermission(), hasRole(), isAdmin(), isProfessional(), PERMISSIONS, PROFESSIONAL_ROLES, ROLE_DISPLAY_NAMES (+3 more)
+
+### Community 27 - "Community 27"
 Cohesion: 0.13
-Nodes (25): Admin Routes, Appointment Model, Appointment Routes, Auth Routes, isAdmin Middleware, isAuthenticated Middleware, isServiceProvider Middleware, Cart Model (+17 more)
+Nodes (16): APPOINTMENT_DURATIONS, APPOINTMENT_STATUS, AppointmentCreateDTO, AppointmentUpdateDTO, AppointmentFormData Interface, Appointment Interface, AppointmentStatus Type, AppointmentType Type (+8 more)
 
-### Community 12 - "Shopping Cart Controller"
-Cohesion: 0.10
-Nodes (19): { AppError }, Cart, cartItem, existingItem, logger, Product, cartItemSchema, cartSchema (+11 more)
+### Community 28 - "Community 28"
+Cohesion: 0.12
+Nodes (15): { AppError }, filter, keepImages, keepPublicIds, logger, mongoose, newlyUploaded, Product (+7 more)
 
-### Community 13 - "Appointment Booking Controller"
-Cohesion: 0.09
-Nodes (17): { AppError }, Appointment, { error }, logger, mongoose, Pet, query, { sendEmail } (+9 more)
+### Community 29 - "Community 29"
+Cohesion: 0.17
+Nodes (15): AddToCart, CartCheckoutPage, CartItem, CartModal, CartItem Component, CheckoutStepper Component, Price Component, CartContext (+7 more)
 
-### Community 14 - "Professional Service Layer"
-Cohesion: 0.10
-Nodes (21): ProfessionalService.getAllProfessionals, ProfessionalService.getAvailableProfessionals, ProfessionalService.getProfessionalById, ProfessionalService.getProfessionalsByRole, ProfessionalService, ProfessionalService.setProfessionalAvailability, ProfessionalService.toggleProfessionalStatus, ProfessionalService.updateProfessional (+13 more)
-
-### Community 15 - "Order Processing Controller"
-Cohesion: 0.10
-Nodes (19): { AppError }, cancelMovements, Cart, Invoice, InvoiceService, limit, logDetails, logger (+11 more)
-
-### Community 16 - "User Data Model"
-Cohesion: 0.13
-Nodes (10): bcrypt, jwt, mongoose, User, userSchema, { AppError }, mongoose, ProfessionalService (+2 more)
-
-### Community 17 - "Image Upload (Cloudinary)"
-Cohesion: 0.11
-Nodes (18): deleteFromCloudinary, deleteMultipleFromCloudinary, uploadMultipleToCloudinary, uploadToCloudinary, renderTemplate, sendEmail, generateInvoice, generatePDF (+10 more)
-
-### Community 18 - "Database Seeding"
+### Community 30 - "Community 30"
 Cohesion: 0.15
-Nodes (14): appointments, bcrypt, categories, orders, products, users, Appointment, Category (+6 more)
+Nodes (14): productsApi, AppointmentCalendar Component, AppointmentPage, AuthField, AuthModal, ForgotPasswordModal, AppointmentCard Component, AppointmentForm Component (+6 more)
 
-### Community 19 - "User Service Layer"
-Cohesion: 0.18
-Nodes (6): { AppError }, bcrypt, mongoose, User, UserService, validateObjectId()
-
-### Community 21 - "Invoice & Billing Controller"
+### Community 31 - "Community 31"
 Cohesion: 0.15
-Nodes (8): { AppError }, {
-  Client,
-  Environment,
-  OrdersController,
-  PaymentsController,
-  CheckoutPaymentIntent,
-}, https, logger, ordersController, paymentsController, paypalClient, PayPalService
+Nodes (11): { AppError }, Invoice, InvoiceService, logger, Order, PaymentService, PayPalService, { sendEmail } (+3 more)
 
-### Community 22 - "Transaction Ledger"
+### Community 32 - "Community 32"
 Cohesion: 0.19
 Nodes (11): {
   createOrder,
@@ -239,19 +373,98 @@ Nodes (11): {
   validatePaymentStatus,
 }, { AppError }, Joi (+3 more)
 
-### Community 23 - "Review System"
-Cohesion: 0.20
-Nodes (9): { AppError }, filter, { generateInvoice, generatePDF }, Invoice, limit, Order, ownerId, page (+1 more)
+### Community 33 - "Community 33"
+Cohesion: 0.19
+Nodes (3): AppointmentCreateDTO, AppointmentFilterDTO, AppointmentUpdateDTO
 
-### Community 24 - "Search & Discovery"
-Cohesion: 0.20
-Nodes (9): { AppError }, Invoice, InvoiceService, logger, Order, PaymentService, PayPalService, { sendEmail } (+1 more)
+### Community 34 - "Community 34"
+Cohesion: 0.15
+Nodes (4): LoginDTO, PasswordChangeDTO, PasswordResetDTO, SignupDTO
 
-### Community 25 - "Contact & Messaging"
+### Community 35 - "Community 35"
+Cohesion: 0.15
+Nodes (8): { AppError }, {
+  Client,
+  Environment,
+  OrdersController,
+  PaymentsController,
+  CheckoutPaymentIntent,
+}, https, logger, ordersController, paymentsController, paypalClient, PayPalService
+
+### Community 36 - "Community 36"
+Cohesion: 0.17
+Nodes (3): ProductCreateDTO, ProductFilterDTO, ProductUpdateDTO
+
+### Community 37 - "Community 37"
+Cohesion: 0.21
+Nodes (10): express, {
+  getCart,
+  addToCart,
+  updateCartItem,
+  removeCartItem,
+  applyDiscount,
+  clearCart,
+}, { isAuthenticated }, router, {
+  validateAddToCart,
+  validateUpdateCartItem,
+  validateApplyDiscount,
+}, { AppError }, Joi, validateAddToCart() (+2 more)
+
+### Community 38 - "Community 38"
+Cohesion: 0.17
+Nodes (10): { AppError }, Contact, filter, limit, logger, page, { sendEmail }, statMap (+2 more)
+
+### Community 39 - "Community 39"
+Cohesion: 0.20
+Nodes (10): express, {
+  getProfile,
+  updateProfile,
+  changePassword,
+  deleteAccount,
+  uploadAvatar,
+}, { isAuthenticated }, router, { upload }, { validateUpdateProfile, validateChangePassword }, { AppError }, Joi (+2 more)
+
+### Community 40 - "Community 40"
+Cohesion: 0.18
+Nodes (10): Appointment, AppointmentCalendarProps, AppointmentCardProps, AppointmentFormData, AppointmentFormProps, AppointmentRole, AppointmentStatus, AppointmentType (+2 more)
+
+### Community 41 - "Community 41"
+Cohesion: 0.20
+Nodes (8): Button, buttonVariants, Carousel, CarouselContent, CarouselContext, CarouselItem, CarouselNext, CarouselPrevious
+
+### Community 42 - "Community 42"
+Cohesion: 0.18
+Nodes (11): PERMISSIONS, PROFESSIONAL_ROLES, ROLE_DISPLAY_NAMES, ROLE_PERMISSIONS, USER_ROLES, hasAnyRole, hasPermission, hasRole (+3 more)
+
+### Community 43 - "Community 43"
+Cohesion: 0.20
+Nodes (10): apiClient (api instance), AppointmentService, authApi, AuthService (re-export), paymentsApi, petApi, ProductService, ProfessionalService (+2 more)
+
+### Community 44 - "Community 44"
 Cohesion: 0.20
 Nodes (8): counterSchema, mongoose, Counter, generateInvoice(), generatePDF(), Invoice, Order, PDFDocument
 
-### Community 26 - "Payment Service (Stripe)"
+### Community 45 - "Community 45"
+Cohesion: 0.20
+Nodes (9): { AppError }, filter, { generateInvoice, generatePDF }, Invoice, limit, Order, ownerId, page (+1 more)
+
+### Community 46 - "Community 46"
+Cohesion: 0.20
+Nodes (10): FilterComponent, IndividualProductItemPage, ProductSectionTabs, MyOrdersPage, OrderTimeline, RefundModal, OrderConfirmedPage, CheckoutForm (Stripe) (+2 more)
+
+### Community 47 - "Community 47"
+Cohesion: 0.20
+Nodes (8): { AppError }, decoded, jwt, User, {
+  createAppointment,
+  getUserAppointments,
+  getProfessionalAppointments,
+  getAppointmentById,
+  updateAppointmentStatus,
+  deleteAppointment,
+  getPublicProfessionalAppointments,
+}, express, { isAuthenticated, isServiceProvider }, router
+
+### Community 48 - "Community 48"
 Cohesion: 0.22
 Nodes (8): {
   createReview,
@@ -260,73 +473,253 @@ Nodes (8): {
   deleteReview,
 }, express, { isAuthenticated }, router, { validateReview }, { AppError }, Joi, validateReview()
 
-### Community 27 - "PayPal Service"
+### Community 49 - "Community 49"
+Cohesion: 0.22
+Nodes (10): appointmentsApi, professionalsApi, AppointmentForm, useDebounce, LoadingSpinner, PaginationBar, ProfessionalCalendar, ProfessionalCard (+2 more)
+
+### Community 50 - "Community 50"
+Cohesion: 0.20
+Nodes (9): express, {
+  getContacts,
+  updateContactStatus,
+}, {
+  getDashboardStats,
+  getSalesAnalytics,
+  getProductAnalytics,
+  getUserAnalytics,
+  getAppointmentAnalytics,
+  listUsers,
+  updateUserRole,
+  toggleUserStatus,
+  deleteUser,
+  getAllAppointments,
+}, {
+  getInventory,
+  getLowStock,
+  getMovements,
+  restockProduct,
+  adjustStock,
+}, {
+  getInvoices,
+  getInvoice,
+  downloadInvoicePDF,
+  generateInvoiceForOrder,
+}, {
+  getTransactions,
+  getTransaction,
+}, { isAuthenticated, isAdmin }, router (+1 more)
+
+### Community 51 - "Community 51"
+Cohesion: 0.22
+Nodes (7): fs, handlebars, html, logger, nodemailer, path, transporter
+
+### Community 54 - "Community 54"
+Cohesion: 0.22
+Nodes (5): FILTER_TABS, PAYMENT_META, REFUND_REASONS, STATUS_META, TIMELINE_STEPS
+
+### Community 55 - "Community 55"
+Cohesion: 0.22
+Nodes (9): ConfirmModal Component, PasswordChangeForm Component, PetForm Component, PetList Component, ProfileForm Component, Pet Model (frontend), User Model (frontend), UserProfileService (+1 more)
+
+### Community 56 - "Community 56"
+Cohesion: 0.31
+Nodes (5): detectCurrency(), FALLBACK_RATES, fetchRates(), SUPPORTED_CURRENCIES, CurrencyContext
+
+### Community 57 - "Community 57"
+Cohesion: 0.22
+Nodes (7): { AppError }, Product, searchQuery, sortFields, sortQuery, mongoose, productSchema
+
+### Community 58 - "Community 58"
 Cohesion: 0.22
 Nodes (4): { AppError }, logger, PaymentService, stripe
 
-### Community 28 - "Invoice Service (PDF)"
-Cohesion: 0.25
-Nodes (5): AppError, errorHandler(), logger, { AppError }, mongoose
-
-### Community 30 - "Email Notification Utilities"
+### Community 59 - "Community 59"
 Cohesion: 0.29
-Nodes (6): allowedMimeTypes, { AppError }, b64, deletePromises, logger, uploadPromises
+Nodes (4): cartApi, useAuth(), CartSyncCtx, CartSyncLayer()
 
-### Community 31 - "Request Validation (Joi)"
+### Community 63 - "Community 63"
+Cohesion: 0.25
+Nodes (6): after, before, cached, cachedRates, fetchSpy, freshRates
+
+### Community 64 - "Community 64"
+Cohesion: 0.25
+Nodes (6): BADGE, EMPTY_ADJUST, EMPTY_HISTORY, EMPTY_RESTOCK, MOVEMENT_TYPE_COLORS, STATUS_OPTS
+
+### Community 65 - "Community 65"
+Cohesion: 0.57
+Nodes (8): AuthContext, CurrencySelector, ErrorBoundary, NavigationBar, ServicesDropdown, SignUpDropdown, SignUpModal, ToastContext
+
+### Community 66 - "Community 66"
+Cohesion: 0.29
+Nodes (7): AppointmentCard, AppointmentForm, ToastContext, AppointmentErrorBoundary, ProfessionalCalendar, appointmentsApi, usersApi
+
+### Community 67 - "Community 67"
+Cohesion: 0.33
+Nodes (7): AdminLayout, AuthContext, GlobalToastContext, DataTable, LoadingSpinner, ProtectedRoute, RoleBasedRoute
+
+### Community 69 - "Community 69"
+Cohesion: 0.29
+Nodes (3): CATEGORIES, RATINGS, QUICK_CATS
+
+### Community 71 - "Community 71"
+Cohesion: 0.38
+Nodes (7): Price Component, CurrencyContext, CurrencySelector, exchangeRatesService (fetchRates, detectCurrency, FALLBACK_RATES), CurrencyContext Test Suite, exchangeRatesService Test Suite, Price Component Test Suite
+
+### Community 72 - "Community 72"
+Cohesion: 0.29
+Nodes (6): Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle
+
+### Community 73 - "Community 73"
+Cohesion: 0.29
+Nodes (6): { AppError }, Cart, cartItem, existingItem, logger, Product
+
+### Community 78 - "Community 78"
+Cohesion: 0.53
+Nodes (5): AdminOrders(), fmt(), getPaymentClass(), getStatusClass(), STATUS_OPTIONS
+
+### Community 79 - "Community 79"
+Cohesion: 0.33
+Nodes (3): CATEGORIES, EMPTY_FORM, GENDERS
+
+### Community 80 - "Community 80"
+Cohesion: 1.80
+Nodes (6): TOOLBAR_GROUPS, buildExtensions, RichText Index (barrel), RichTextEditor, RichTextRenderer, Toolbar
+
+### Community 82 - "Community 82"
 Cohesion: 0.33
 Nodes (5): { AppError }, filter, limit, page, Transaction
 
-### Community 32 - "Error Handling"
+### Community 84 - "Community 84"
+Cohesion: 0.50
+Nodes (3): AdminAppointments(), formatDateTime(), STATUS_OPTIONS
+
+### Community 85 - "Community 85"
+Cohesion: 0.40
+Nodes (3): METHOD_OPTS, TYPE_BADGE, TYPE_OPTS
+
+### Community 86 - "Community 86"
+Cohesion: 0.40
+Nodes (3): btnSpring, EMPTY_ADDRESS, stepVariants
+
+### Community 87 - "Community 87"
 Cohesion: 0.40
 Nodes (4): logFormat, loggerConfig, path, winston
 
-### Community 33 - "Rate Limiting & Security"
+### Community 88 - "Community 88"
 Cohesion: 0.40
-Nodes (4): { AppError }, bcrypt, {
-  uploadMultipleToCloudinary,
-  deleteMultipleFromCloudinary,
-  validateImageFile,
-}, User
+Nodes (4): APPOINTMENT_DURATIONS, APPOINTMENT_STATUS, APPOINTMENT_TYPES, TIME_SLOTS
 
-### Community 34 - "Stock Movement Tracking"
+### Community 90 - "Community 90"
+Cohesion: 0.40
+Nodes (5): AuthField, AuthModal, ForgotPasswordModal, FormInput, ResetPassword
+
+### Community 91 - "Community 91"
+Cohesion: 0.40
+Nodes (5): ImportExportServicePage, ExportImportForm (ImportPage), ServiceCard (ServicePage), ServicePage, StatCard (ServicePage)
+
+### Community 92 - "Community 92"
+Cohesion: 0.40
+Nodes (3): EMPTY_DRAWER, STATUS_BADGE, STATUS_OPTS
+
+### Community 94 - "Community 94"
+Cohesion: 0.40
+Nodes (4): options, specs, swaggerJsdoc, swaggerUi
+
+### Community 95 - "Community 95"
+Cohesion: 0.40
+Nodes (4): express, {
+  initializePayment,
+  confirmPayment,
+  processRefund,
+  handleWebhook,
+}, { isAuthenticated, isAdmin }, router
+
+### Community 98 - "Community 98"
+Cohesion: 0.40
+Nodes (5): ProductCard V2, FeaturedProductSection, HeroSection, HomePage, productsApi Service
+
+### Community 100 - "Community 100"
+Cohesion: 0.40
+Nodes (3): { AppError }, Joi, validateAnalyticsPeriod()
+
+### Community 102 - "Community 102"
+Cohesion: 0.50
+Nodes (4): BannerCarousel, CarouselComponent, imagePathsDeskTop (imagePaths), PromoBannerCarousel
+
+### Community 105 - "Community 105"
 Cohesion: 0.50
 Nodes (3): invoiceSchema, lineItemSchema, mongoose
 
-### Community 35 - "Order Model"
+### Community 106 - "Community 106"
 Cohesion: 0.50
 Nodes (3): mongoose, orderItemSchema, orderSchema
 
-### Community 36 - "Product Model"
+### Community 107 - "Community 107"
 Cohesion: 0.50
-Nodes (3): { AppError }, Order, Review
+Nodes (3): imagePathsDeskTop, imagePathsMobile, imagePathsTablet
 
-### Community 37 - "Cart Model"
+### Community 109 - "Community 109"
+Cohesion: 0.50
+Nodes (3): express, router, {
+  searchProducts,
+  getSuggestions,
+}
+
+### Community 110 - "Community 110"
+Cohesion: 0.50
+Nodes (3): express, router, { submitContact }
+
+### Community 113 - "Community 113"
+Cohesion: 0.50
+Nodes (3): AccordionContent, AccordionItem, AccordionTrigger
+
+### Community 114 - "Community 114"
+Cohesion: 0.50
+Nodes (3): TabsContent, TabsList, TabsTrigger
+
+### Community 115 - "Community 115"
+Cohesion: 0.50
+Nodes (4): useForm hook, createValidator, validationMessages, validationRules
+
+### Community 117 - "Community 117"
 Cohesion: 0.67
 Nodes (3): validateAppointment, validateAppointmentStatus, validateCancellation
 
-### Community 39 - "Transaction Model"
+### Community 118 - "Community 118"
+Cohesion: 2.00
+Nodes (3): Button, Carousel, CarouselContext
+
+### Community 119 - "Community 119"
+Cohesion: 2.00
+Nodes (3): ConfirmModal, PetForm, PetList
+
+### Community 128 - "Community 128"
 Cohesion: 0.67
 Nodes (3): Payment Router, PaymentService, PayPalService
 
+## Ambiguous Edges - Review These
+- `SearchBar` → `CartContext`  [AMBIGUOUS]
+  frontend/src/Components/HelperComponents/SearchBar/SearchBar.jsx · relation: conceptually_related_to
+
 ## Knowledge Gaps
-- **456 isolated node(s):** `express`, `cors`, `helmet`, `rateLimit`, `mongoSanitize` (+451 more)
+- **744 isolated node(s):** `express`, `cors`, `helmet`, `rateLimit`, `mongoSanitize` (+739 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **30 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **108 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `AppError` connect `Invoice Service (PDF)` to `Database Connection Layer`, `Inventory Controller`, `Auth Controller`, `Express App & Swagger`, `Admin Dashboard`, `Professional Controller`, `Product Catalog Controller`, `File Upload Middleware`, `Pet & Auth Middleware`, `Shopping Cart Controller`, `Appointment Booking Controller`, `Order Processing Controller`, `User Data Model`, `User Service Layer`, `Invoice & Billing Controller`, `Transaction Ledger`, `Review System`, `Search & Discovery`, `Payment Service (Stripe)`, `PayPal Service`, `Email Notification Utilities`, `Request Validation (Joi)`, `Rate Limiting & Security`, `Product Model`?**
-  _High betweenness centrality (0.147) - this node is a cross-community bridge._
-- **Why does `ValidationUtils` connect `Payment Controller` to `Invoice Service (PDF)`?**
-  _High betweenness centrality (0.026) - this node is a cross-community bridge._
-- **Are the 16 inferred relationships involving `Email Notification System` (e.g. with `Appointment Confirmation Email Template` and `Appointment Request Email Template`) actually correct?**
-  _`Email Notification System` has 16 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 4 inferred relationships involving `Order Controller` (e.g. with `Inventory Controller` and `Invoice Controller`) actually correct?**
-  _`Order Controller` has 4 INFERRED edges - model-reasoned connections that need verification._
+- **What is the exact relationship between `SearchBar` and `CartContext`?**
+  _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
+- **Why does `AppError` connect `Community 14` to `Community 32`, `Community 1`, `Community 2`, `Community 3`, `Community 35`, `Community 100`, `Community 5`, `Community 37`, `Community 39`, `Community 13`, `Community 48`, `Community 23`, `Community 58`?**
+  _High betweenness centrality (0.001) - this node is a cross-community bridge._
 - **What connects `express`, `cors`, `helmet` to the rest of the system?**
-  _456 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `App Bootstrap & Config` be split into smaller, more focused modules?**
-  _Cohesion score 0.10569105691056911 - nodes in this community are weakly interconnected._
-- **Should `Database Connection Layer` be split into smaller, more focused modules?**
-  _Cohesion score 0.04994192799070848 - nodes in this community are weakly interconnected._
+  _744 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Community 0` be split into smaller, more focused modules?**
+  _Cohesion score 0.07236544549977386 - nodes in this community are weakly interconnected._
+- **Should `Community 1` be split into smaller, more focused modules?**
+  _Cohesion score 0.058823529411764705 - nodes in this community are weakly interconnected._
+- **Should `Community 2` be split into smaller, more focused modules?**
+  _Cohesion score 0.06050420168067227 - nodes in this community are weakly interconnected._
+- **Should `Community 3` be split into smaller, more focused modules?**
+  _Cohesion score 0.07394957983193277 - nodes in this community are weakly interconnected._
