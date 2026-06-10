@@ -1,0 +1,5530 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "auth_guard_components",
+        "label": "Auth Guard Components",
+        "nodes": [
+          "protectedroute_protectedroute",
+          "rolebasedroute_rolebasedroute",
+          "context_authcontext"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "frontend/src/Components/Auth/ProtectedRoute.jsx"
+      },
+      {
+        "id": "auth_modal_system",
+        "label": "Auth Modal System",
+        "nodes": [
+          "authmodal_authmodal",
+          "authfield_authfield",
+          "forgotpasswordmodal_forgotpasswordmodal",
+          "resetpassword_resetpassword"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "frontend/src/Components/Auth/ForgotPasswordModal.jsx"
+      },
+      {
+        "id": "appointment_components",
+        "label": "Appointment UI Components",
+        "nodes": [
+          "appointmentcard_appointmentcard",
+          "appointmentform_appointmentform",
+          "errorboundary_appointmenterrorboundary",
+          "professionalcalendar_professionalcalendar"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.8,
+        "source_file": "frontend/src/Components/HelperComponents/AppointmentForm/AppointmentForm.jsx"
+      },
+      {
+        "id": "admin_components",
+        "label": "Admin Panel Components",
+        "nodes": [
+          "adminlayout_adminlayout",
+          "datatable_datatable",
+          "context_authcontext"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "frontend/src/Components/Admin/AdminLayout.jsx"
+      },
+      {
+        "id": "cart_checkout_components",
+        "label": "Cart and Checkout Components",
+        "nodes": [
+          "cartitem_cartitem",
+          "cartmodalcomponent_cartmodalcomponent",
+          "checkoutstepper_checkoutstepper",
+          "helpercomponents_price"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.8,
+        "source_file": "frontend/src/Components/HelperComponents/CartItem/CartItem.jsx"
+      },
+      {
+        "id": "cart_flow",
+        "label": "Cart Management Flow",
+        "nodes": [
+          "addtocart_AddToCart",
+          "cartmodal_CartModal",
+          "context_CartContext",
+          "cartitem_CartItem",
+          "price_Price"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "frontend/src/Components/NavigationBar/CartModal.jsx"
+      },
+      {
+        "id": "professional_booking_flow",
+        "label": "Professional Booking Flow",
+        "nodes": [
+          "professionallist_ProfessionalList",
+          "professionalcard_ProfessionalCard",
+          "professionalcalendar_ProfessionalCalendar",
+          "appointmentform_AppointmentForm",
+          "api_professionalsApi",
+          "api_appointmentsApi"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "frontend/src/Components/HelperComponents/ProfessionalList/ProfessionalList.jsx"
+      },
+      {
+        "id": "product_review_flow",
+        "label": "Product Review Flow",
+        "nodes": [
+          "productreviewcard_ProductReviewCard",
+          "productreviewformmodal_ProductReviewFormModal",
+          "api_productsApi",
+          "context_AuthContext"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "frontend/src/Components/HelperComponents/ProductReviewFormModal/ProductReviewFormModal.jsx"
+      },
+      {
+        "id": "navbar_composition",
+        "label": "NavigationBar Composition",
+        "nodes": [
+          "navigationbar_NavigationBar",
+          "addtocart_AddToCart",
+          "servicesdropdown_ServicesDropdown",
+          "currencyselector_CurrencySelector",
+          "signupdropdown_SignUpDropdown",
+          "context_AuthContext"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "frontend/src/Components/NavigationBar/NavigationBar.jsx"
+      },
+      {
+        "id": "auth_modal_flow",
+        "label": "Authentication Modal Flow",
+        "nodes": [
+          "loginmodal_LoginModal",
+          "auth_AuthModal",
+          "auth_AuthField",
+          "auth_ForgotPasswordModal",
+          "context_AuthContext",
+          "context_ToastContext"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "frontend/src/Components/NavigationBar/Dropdowns/LoginModal.jsx"
+      },
+      {
+        "id": "toast_consumers",
+        "label": "Toast Context Consumers",
+        "nodes": [
+          "productcardv2_ProductCardV2",
+          "addtocart_AddToCart",
+          "cartmodal_CartModal",
+          "professionallist_ProfessionalList",
+          "professionalcalendar_ProfessionalCalendar",
+          "loginmodal_LoginModal"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "frontend/src/context/ToastContext.jsx"
+      },
+      {
+        "id": "auth_modal_flow",
+        "label": "Auth Modal Flow (SignUpDropdown orchestrates Login and SignUp modals)",
+        "nodes": [
+          "signupdropdown_SignUpDropdown",
+          "signupmodal_SignUpModal",
+          "authcontext_AuthContext",
+          "toastcontext_ToastContext"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "frontend/src/Components/NavigationBar/Dropdowns/SignUpDropdown.jsx"
+      },
+      {
+        "id": "richtexteditor_system",
+        "label": "RichText Editor System (Editor, Toolbar, Extensions, Renderer)",
+        "nodes": [
+          "richtexteditor_RichTextEditor",
+          "toolbar_Toolbar",
+          "extensions_buildExtensions",
+          "extensions_TOOLBAR_GROUPS",
+          "richtextrenderer_RichTextRenderer",
+          "richtext_index"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "frontend/src/Components/RichText/index.js"
+      },
+      {
+        "id": "userprofile_modals",
+        "label": "UserProfile Modal Components",
+        "nodes": [
+          "confirmmodal_ConfirmModal",
+          "passwordchangeform_PasswordChangeForm",
+          "petform_PetForm",
+          "petlist_PetList",
+          "profileform_ProfileForm"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "frontend/src/Components/UserProfile/ConfirmModal.jsx"
+      },
+      {
+        "id": "ui_primitives",
+        "label": "Shadcn/Radix UI Primitives",
+        "nodes": [
+          "accordion_Accordion",
+          "button_Button",
+          "card_Card",
+          "carousel_Carousel",
+          "input_Input",
+          "label_Label",
+          "separator_Separator",
+          "tabs_Tabs"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.9,
+        "source_file": "frontend/src/Components/ui/button.jsx"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "ErrorBoundary.jsx",
+      "file_type": "code",
+      "source_file": "ErrorBoundary.jsx",
+      "source_location": "L1",
+      "id": "errorboundary_jsx",
+      "community": 11,
+      "norm_label": "errorboundary.jsx"
+    },
+    {
+      "label": "AppointmentErrorBoundary",
+      "file_type": "code",
+      "source_file": "ErrorBoundary.jsx",
+      "source_location": "L3",
+      "id": "components_errorboundary_appointmenterrorboundary",
+      "community": 11,
+      "norm_label": "appointmenterrorboundary"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "ErrorBoundary.jsx",
+      "source_location": "L4",
+      "id": "components_errorboundary_appointmenterrorboundary_constructor",
+      "community": 11,
+      "norm_label": ".constructor()"
+    },
+    {
+      "label": ".getDerivedStateFromError()",
+      "file_type": "code",
+      "source_file": "ErrorBoundary.jsx",
+      "source_location": "L9",
+      "id": "components_errorboundary_appointmenterrorboundary_getderivedstatefromerror",
+      "community": 11,
+      "norm_label": ".getderivedstatefromerror()"
+    },
+    {
+      "label": ".componentDidCatch()",
+      "file_type": "code",
+      "source_file": "ErrorBoundary.jsx",
+      "source_location": "L13",
+      "id": "components_errorboundary_appointmenterrorboundary_componentdidcatch",
+      "community": 11,
+      "norm_label": ".componentdidcatch()"
+    },
+    {
+      "label": ".render()",
+      "file_type": "code",
+      "source_file": "ErrorBoundary.jsx",
+      "source_location": "L17",
+      "id": "components_errorboundary_appointmenterrorboundary_render",
+      "community": 11,
+      "norm_label": ".render()"
+    },
+    {
+      "label": "ProfessionalCalendar.jsx",
+      "file_type": "code",
+      "source_file": "ProfessionalCalendar.jsx",
+      "source_location": "L1",
+      "id": "professionalcalendar_jsx",
+      "community": 44,
+      "norm_label": "professionalcalendar.jsx"
+    },
+    {
+      "label": "handleDateSelect()",
+      "file_type": "code",
+      "source_file": "ProfessionalCalendar.jsx",
+      "source_location": "L1",
+      "id": "components_professionalcalendar_handledateselect",
+      "community": 44,
+      "norm_label": "handledateselect()"
+    },
+    {
+      "label": "CartModalComponent.jsx",
+      "file_type": "code",
+      "source_file": "AddToCartComponent/CartModalComponent.jsx",
+      "source_location": "L1",
+      "id": "addtocartcomponent_cartmodalcomponent_jsx",
+      "community": 28,
+      "norm_label": "cartmodalcomponent.jsx"
+    },
+    {
+      "label": "CartModalComponent()",
+      "file_type": "code",
+      "source_file": "AddToCartComponent/CartModalComponent.jsx",
+      "source_location": "L2",
+      "id": "addtocartcomponent_cartmodalcomponent_cartmodalcomponent",
+      "community": 28,
+      "norm_label": "cartmodalcomponent()"
+    },
+    {
+      "label": "AdminLayout.jsx",
+      "file_type": "code",
+      "source_file": "Admin/AdminLayout.jsx",
+      "source_location": "L1",
+      "id": "admin_adminlayout_jsx",
+      "community": 29,
+      "norm_label": "adminlayout.jsx"
+    },
+    {
+      "label": "AdminLayout()",
+      "file_type": "code",
+      "source_file": "Admin/AdminLayout.jsx",
+      "source_location": "L23",
+      "id": "admin_adminlayout_adminlayout",
+      "community": 29,
+      "norm_label": "adminlayout()"
+    },
+    {
+      "label": "DataTable.jsx",
+      "file_type": "code",
+      "source_file": "Admin/DataTable/DataTable.jsx",
+      "source_location": "L1",
+      "id": "admin_datatable_datatable_jsx",
+      "community": 37,
+      "norm_label": "datatable.jsx"
+    },
+    {
+      "label": "DataTable()",
+      "file_type": "code",
+      "source_file": "Admin/DataTable/DataTable.jsx",
+      "source_location": "L24",
+      "id": "datatable_datatable_datatable",
+      "community": 37,
+      "norm_label": "datatable()"
+    },
+    {
+      "label": "AuthField.jsx",
+      "file_type": "code",
+      "source_file": "Auth/AuthField.jsx",
+      "source_location": "L1",
+      "id": "auth_authfield_jsx",
+      "community": 4,
+      "norm_label": "authfield.jsx"
+    },
+    {
+      "label": "AuthField()",
+      "file_type": "code",
+      "source_file": "Auth/AuthField.jsx",
+      "source_location": "L1",
+      "id": "auth_authfield_authfield",
+      "community": 4,
+      "norm_label": "authfield()"
+    },
+    {
+      "label": "AuthModal.jsx",
+      "file_type": "code",
+      "source_file": "Auth/AuthModal.jsx",
+      "source_location": "L1",
+      "id": "auth_authmodal_jsx",
+      "community": 4,
+      "norm_label": "authmodal.jsx"
+    },
+    {
+      "label": "AuthModal()",
+      "file_type": "code",
+      "source_file": "Auth/AuthModal.jsx",
+      "source_location": "L7",
+      "id": "auth_authmodal_authmodal",
+      "community": 4,
+      "norm_label": "authmodal()"
+    },
+    {
+      "label": "ForgotPasswordModal.jsx",
+      "file_type": "code",
+      "source_file": "Auth/ForgotPasswordModal.jsx",
+      "source_location": "L1",
+      "id": "auth_forgotpasswordmodal_jsx",
+      "community": 4,
+      "norm_label": "forgotpasswordmodal.jsx"
+    },
+    {
+      "label": "ForgotPasswordModal()",
+      "file_type": "code",
+      "source_file": "Auth/ForgotPasswordModal.jsx",
+      "source_location": "L6",
+      "id": "auth_forgotpasswordmodal_forgotpasswordmodal",
+      "community": 4,
+      "norm_label": "forgotpasswordmodal()"
+    },
+    {
+      "label": "ProtectedRoute.jsx",
+      "file_type": "code",
+      "source_file": "Auth/ProtectedRoute.jsx",
+      "source_location": "L1",
+      "id": "auth_protectedroute_jsx",
+      "community": 31,
+      "norm_label": "protectedroute.jsx"
+    },
+    {
+      "label": "ProtectedRoute()",
+      "file_type": "code",
+      "source_file": "Auth/ProtectedRoute.jsx",
+      "source_location": "L6",
+      "id": "auth_protectedroute_protectedroute",
+      "community": 31,
+      "norm_label": "protectedroute()"
+    },
+    {
+      "label": "ResetPassword.jsx",
+      "file_type": "code",
+      "source_file": "Auth/ResetPassword.jsx",
+      "source_location": "L1",
+      "id": "auth_resetpassword_jsx",
+      "community": 32,
+      "norm_label": "resetpassword.jsx"
+    },
+    {
+      "label": "ResetPassword()",
+      "file_type": "code",
+      "source_file": "Auth/ResetPassword.jsx",
+      "source_location": "L15",
+      "id": "auth_resetpassword_resetpassword",
+      "community": 32,
+      "norm_label": "resetpassword()"
+    },
+    {
+      "label": "RoleBasedRoute.jsx",
+      "file_type": "code",
+      "source_file": "Auth/RoleBasedRoute.jsx",
+      "source_location": "L1",
+      "id": "auth_rolebasedroute_jsx",
+      "community": 2,
+      "norm_label": "rolebasedroute.jsx"
+    },
+    {
+      "label": "RoleBasedRoute()",
+      "file_type": "code",
+      "source_file": "Auth/RoleBasedRoute.jsx",
+      "source_location": "L14",
+      "id": "auth_rolebasedroute_rolebasedroute",
+      "community": 2,
+      "norm_label": "rolebasedroute()"
+    },
+    {
+      "label": "FormInput.jsx",
+      "file_type": "code",
+      "source_file": "Common/FormInput/FormInput.jsx",
+      "source_location": "L1",
+      "id": "common_forminput_forminput_jsx",
+      "community": 38,
+      "norm_label": "forminput.jsx"
+    },
+    {
+      "label": "FormInput()",
+      "file_type": "code",
+      "source_file": "Common/FormInput/FormInput.jsx",
+      "source_location": "L21",
+      "id": "forminput_forminput_forminput",
+      "community": 38,
+      "norm_label": "forminput()"
+    },
+    {
+      "label": "Footer.jsx",
+      "file_type": "code",
+      "source_file": "Footer/Footer.jsx",
+      "source_location": "L1",
+      "id": "footer_footer_jsx",
+      "community": 21,
+      "norm_label": "footer.jsx"
+    },
+    {
+      "label": "LINKS",
+      "file_type": "code",
+      "source_file": "Footer/Footer.jsx",
+      "source_location": "L7",
+      "id": "footer_footer_links",
+      "community": 21,
+      "norm_label": "links"
+    },
+    {
+      "label": "Footer()",
+      "file_type": "code",
+      "source_file": "Footer/Footer.jsx",
+      "source_location": "L50",
+      "id": "footer_footer_footer",
+      "community": 21,
+      "norm_label": "footer()"
+    },
+    {
+      "label": "AppointmentCard.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/AppointmentCard/AppointmentCard.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_appointmentcard_appointmentcard_jsx",
+      "community": 30,
+      "norm_label": "appointmentcard.jsx"
+    },
+    {
+      "label": "AppointmentCard()",
+      "file_type": "code",
+      "source_file": "HelperComponents/AppointmentCard/AppointmentCard.jsx",
+      "source_location": "L13",
+      "id": "appointmentcard_appointmentcard_appointmentcard",
+      "community": 30,
+      "norm_label": "appointmentcard()"
+    },
+    {
+      "label": "AppointmentForm.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/AppointmentForm/AppointmentForm.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_appointmentform_appointmentform_jsx",
+      "community": 2,
+      "norm_label": "appointmentform.jsx"
+    },
+    {
+      "label": "AppointmentForm()",
+      "file_type": "code",
+      "source_file": "HelperComponents/AppointmentForm/AppointmentForm.jsx",
+      "source_location": "L10",
+      "id": "appointmentform_appointmentform_appointmentform",
+      "community": 2,
+      "norm_label": "appointmentform()"
+    },
+    {
+      "label": "Breadcrumb.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/Breadcrumb/Breadcrumb.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_breadcrumb_breadcrumb_jsx",
+      "community": 33,
+      "norm_label": "breadcrumb.jsx"
+    },
+    {
+      "label": "Breadcrumb()",
+      "file_type": "code",
+      "source_file": "HelperComponents/Breadcrumb/Breadcrumb.jsx",
+      "source_location": "L6",
+      "id": "breadcrumb_breadcrumb_breadcrumb",
+      "community": 33,
+      "norm_label": "breadcrumb()"
+    },
+    {
+      "label": "ReviewCarousel.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/Carousel/ReviewCarousel.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_carousel_reviewcarousel_jsx",
+      "community": 16,
+      "norm_label": "reviewcarousel.jsx"
+    },
+    {
+      "label": "ReviewCarousel()",
+      "file_type": "code",
+      "source_file": "HelperComponents/Carousel/ReviewCarousel.jsx",
+      "source_location": "L7",
+      "id": "carousel_reviewcarousel_reviewcarousel",
+      "community": 16,
+      "norm_label": "reviewcarousel()"
+    },
+    {
+      "label": "CartItem.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/CartItem/CartItem.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_cartitem_cartitem_jsx",
+      "community": 5,
+      "norm_label": "cartitem.jsx"
+    },
+    {
+      "label": "btnSpring",
+      "file_type": "code",
+      "source_file": "HelperComponents/CartItem/CartItem.jsx",
+      "source_location": "L6",
+      "id": "cartitem_cartitem_btnspring",
+      "community": 5,
+      "norm_label": "btnspring"
+    },
+    {
+      "label": "CartItem()",
+      "file_type": "code",
+      "source_file": "HelperComponents/CartItem/CartItem.jsx",
+      "source_location": "L8",
+      "id": "cartitem_cartitem_cartitem",
+      "community": 5,
+      "norm_label": "cartitem()"
+    },
+    {
+      "label": "CheckoutStepper.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/CheckoutStepper/CheckoutStepper.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_checkoutstepper_checkoutstepper_jsx",
+      "community": 20,
+      "norm_label": "checkoutstepper.jsx"
+    },
+    {
+      "label": "STEPS",
+      "file_type": "code",
+      "source_file": "HelperComponents/CheckoutStepper/CheckoutStepper.jsx",
+      "source_location": "L6",
+      "id": "checkoutstepper_checkoutstepper_steps",
+      "community": 20,
+      "norm_label": "steps"
+    },
+    {
+      "label": "CheckoutStepper()",
+      "file_type": "code",
+      "source_file": "HelperComponents/CheckoutStepper/CheckoutStepper.jsx",
+      "source_location": "L12",
+      "id": "checkoutstepper_checkoutstepper_checkoutstepper",
+      "community": 20,
+      "norm_label": "checkoutstepper()"
+    },
+    {
+      "label": "CurrencySelector.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/CurrencySelector/CurrencySelector.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_currencyselector_currencyselector_jsx",
+      "community": 6,
+      "norm_label": "currencyselector.jsx"
+    },
+    {
+      "label": "CurrencySelector()",
+      "file_type": "code",
+      "source_file": "HelperComponents/CurrencySelector/CurrencySelector.jsx",
+      "source_location": "L5",
+      "id": "currencyselector_currencyselector_currencyselector",
+      "community": 6,
+      "norm_label": "currencyselector()"
+    },
+    {
+      "label": "CustomButton.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/CustomButton/CustomButton.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_custombutton_custombutton_jsx",
+      "community": 36,
+      "norm_label": "custombutton.jsx"
+    },
+    {
+      "label": "CustomButton()",
+      "file_type": "code",
+      "source_file": "HelperComponents/CustomButton/CustomButton.jsx",
+      "source_location": "L3",
+      "id": "custombutton_custombutton_custombutton",
+      "community": 36,
+      "norm_label": "custombutton()"
+    },
+    {
+      "label": "ErrorBoundary.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/ErrorBoundary/ErrorBoundary.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_errorboundary_errorboundary_jsx",
+      "community": 12,
+      "norm_label": "errorboundary.jsx"
+    },
+    {
+      "label": "ErrorBoundary",
+      "file_type": "code",
+      "source_file": "HelperComponents/ErrorBoundary/ErrorBoundary.jsx",
+      "source_location": "L4",
+      "id": "errorboundary_errorboundary_errorboundary",
+      "community": 12,
+      "norm_label": "errorboundary"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "HelperComponents/ErrorBoundary/ErrorBoundary.jsx",
+      "source_location": "L5",
+      "id": "errorboundary_errorboundary_errorboundary_constructor",
+      "community": 12,
+      "norm_label": ".constructor()"
+    },
+    {
+      "label": ".getDerivedStateFromError()",
+      "file_type": "code",
+      "source_file": "HelperComponents/ErrorBoundary/ErrorBoundary.jsx",
+      "source_location": "L10",
+      "id": "errorboundary_errorboundary_errorboundary_getderivedstatefromerror",
+      "community": 12,
+      "norm_label": ".getderivedstatefromerror()"
+    },
+    {
+      "label": ".componentDidCatch()",
+      "file_type": "code",
+      "source_file": "HelperComponents/ErrorBoundary/ErrorBoundary.jsx",
+      "source_location": "L14",
+      "id": "errorboundary_errorboundary_errorboundary_componentdidcatch",
+      "community": 12,
+      "norm_label": ".componentdidcatch()"
+    },
+    {
+      "label": ".render()",
+      "file_type": "code",
+      "source_file": "HelperComponents/ErrorBoundary/ErrorBoundary.jsx",
+      "source_location": "L23",
+      "id": "errorboundary_errorboundary_errorboundary_render",
+      "community": 12,
+      "norm_label": ".render()"
+    },
+    {
+      "label": "LoadingSpinner.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/LoadingSpinner/LoadingSpinner.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_loadingspinner_loadingspinner_jsx",
+      "community": 2,
+      "norm_label": "loadingspinner.jsx"
+    },
+    {
+      "label": "LoadingSpinner()",
+      "file_type": "code",
+      "source_file": "HelperComponents/LoadingSpinner/LoadingSpinner.jsx",
+      "source_location": "L3",
+      "id": "loadingspinner_loadingspinner_loadingspinner",
+      "community": 2,
+      "norm_label": "loadingspinner()"
+    },
+    {
+      "label": "PaginationBar.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/PaginationBar/PaginationBar.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_paginationbar_paginationbar_jsx",
+      "community": 2,
+      "norm_label": "paginationbar.jsx"
+    },
+    {
+      "label": "PaginationBar()",
+      "file_type": "code",
+      "source_file": "HelperComponents/PaginationBar/PaginationBar.jsx",
+      "source_location": "L3",
+      "id": "paginationbar_paginationbar_paginationbar",
+      "community": 2,
+      "norm_label": "paginationbar()"
+    },
+    {
+      "label": "Price.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/Price/Price.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_price_price_jsx",
+      "community": 5,
+      "norm_label": "price.jsx"
+    },
+    {
+      "label": "Price()",
+      "file_type": "code",
+      "source_file": "HelperComponents/Price/Price.jsx",
+      "source_location": "L19",
+      "id": "price_price_price",
+      "community": 5,
+      "norm_label": "price()"
+    },
+    {
+      "label": "ProductCard.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProductCard/ProductCard.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_productcard_productcard_jsx",
+      "community": 39,
+      "norm_label": "productcard.jsx"
+    },
+    {
+      "label": "ProductCard()",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProductCard/ProductCard.jsx",
+      "source_location": "L7",
+      "id": "productcard_productcard_productcard",
+      "community": 39,
+      "norm_label": "productcard()"
+    },
+    {
+      "label": "ProductCardV2.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProductCard/ProductCardV2.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_productcard_productcardv2_jsx",
+      "community": 5,
+      "norm_label": "productcardv2.jsx"
+    },
+    {
+      "label": "stripHtml()",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProductCard/ProductCardV2.jsx",
+      "source_location": "L10",
+      "id": "productcard_productcardv2_striphtml",
+      "community": 5,
+      "norm_label": "striphtml()"
+    },
+    {
+      "label": "resolveProductImage()",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProductCard/ProductCardV2.jsx",
+      "source_location": "L22",
+      "id": "productcard_productcardv2_resolveproductimage",
+      "community": 5,
+      "norm_label": "resolveproductimage()"
+    },
+    {
+      "label": "ProductCardV2()",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProductCard/ProductCardV2.jsx",
+      "source_location": "L31",
+      "id": "productcard_productcardv2_productcardv2",
+      "community": 5,
+      "norm_label": "productcardv2()"
+    },
+    {
+      "label": "ProductReviewCard.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProductReviewCard/ProductReviewCard.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_productreviewcard_productreviewcard_jsx",
+      "community": 16,
+      "norm_label": "productreviewcard.jsx"
+    },
+    {
+      "label": "STAR_LABELS",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProductReviewCard/ProductReviewCard.jsx",
+      "source_location": "L5",
+      "id": "productreviewcard_productreviewcard_star_labels",
+      "community": 16,
+      "norm_label": "star_labels"
+    },
+    {
+      "label": "ProductReviewCard()",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProductReviewCard/ProductReviewCard.jsx",
+      "source_location": "L7",
+      "id": "productreviewcard_productreviewcard_productreviewcard",
+      "community": 16,
+      "norm_label": "productreviewcard()"
+    },
+    {
+      "label": "ProductReviewFormModal.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProductReviewFormModal/ProductReviewFormModal.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_productreviewformmodal_productreviewformmodal_jsx",
+      "community": 43,
+      "norm_label": "productreviewformmodal.jsx"
+    },
+    {
+      "label": "ProductReviewFormModal()",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProductReviewFormModal/ProductReviewFormModal.jsx",
+      "source_location": "L9",
+      "id": "productreviewformmodal_productreviewformmodal_productreviewformmodal",
+      "community": 43,
+      "norm_label": "productreviewformmodal()"
+    },
+    {
+      "label": "ProfessionalCalendar.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProfessionalCalendar/ProfessionalCalendar.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_professionalcalendar_professionalcalendar_jsx",
+      "community": 2,
+      "norm_label": "professionalcalendar.jsx"
+    },
+    {
+      "label": "ProfessionalCalendar()",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProfessionalCalendar/ProfessionalCalendar.jsx",
+      "source_location": "L17",
+      "id": "professionalcalendar_professionalcalendar_professionalcalendar",
+      "community": 2,
+      "norm_label": "professionalcalendar()"
+    },
+    {
+      "label": "ProfessionalCard.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProfessionalCard/ProfessionalCard.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_professionalcard_professionalcard_jsx",
+      "community": 2,
+      "norm_label": "professionalcard.jsx"
+    },
+    {
+      "label": "ProfessionalCard()",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProfessionalCard/ProfessionalCard.jsx",
+      "source_location": "L5",
+      "id": "professionalcard_professionalcard_professionalcard",
+      "community": 2,
+      "norm_label": "professionalcard()"
+    },
+    {
+      "label": "index.js",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProfessionalList/index.js",
+      "source_location": "L1",
+      "id": "helpercomponents_professionallist_index_js",
+      "community": 2,
+      "norm_label": "index.js"
+    },
+    {
+      "label": "ProfessionalList.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProfessionalList/ProfessionalList.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_professionallist_professionallist_jsx",
+      "community": 2,
+      "norm_label": "professionallist.jsx"
+    },
+    {
+      "label": "PROFESSIONAL_CONFIGS",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProfessionalList/ProfessionalList.jsx",
+      "source_location": "L17",
+      "id": "professionallist_professionallist_professional_configs",
+      "community": 2,
+      "norm_label": "professional_configs"
+    },
+    {
+      "label": "ProfessionalList()",
+      "file_type": "code",
+      "source_file": "HelperComponents/ProfessionalList/ProfessionalList.jsx",
+      "source_location": "L60",
+      "id": "professionallist_professionallist_professionallist",
+      "community": 2,
+      "norm_label": "professionallist()"
+    },
+    {
+      "label": "SearchBar.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/SearchBar/SearchBar.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_searchbar_searchbar_jsx",
+      "community": 24,
+      "norm_label": "searchbar.jsx"
+    },
+    {
+      "label": "GooeyFilter()",
+      "file_type": "code",
+      "source_file": "HelperComponents/SearchBar/SearchBar.jsx",
+      "source_location": "L9",
+      "id": "searchbar_searchbar_gooeyfilter",
+      "community": 24,
+      "norm_label": "gooeyfilter()"
+    },
+    {
+      "label": "SearchBar()",
+      "file_type": "code",
+      "source_file": "HelperComponents/SearchBar/SearchBar.jsx",
+      "source_location": "L21",
+      "id": "searchbar_searchbar_searchbar",
+      "community": 24,
+      "norm_label": "searchbar()"
+    },
+    {
+      "label": "SortDropDown.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/SortDropDown/SortDropDown.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_sortdropdown_sortdropdown_jsx",
+      "community": 22,
+      "norm_label": "sortdropdown.jsx"
+    },
+    {
+      "label": "OPTIONS",
+      "file_type": "code",
+      "source_file": "HelperComponents/SortDropDown/SortDropDown.jsx",
+      "source_location": "L6",
+      "id": "sortdropdown_sortdropdown_options",
+      "community": 22,
+      "norm_label": "options"
+    },
+    {
+      "label": "SortDropDown()",
+      "file_type": "code",
+      "source_file": "HelperComponents/SortDropDown/SortDropDown.jsx",
+      "source_location": "L13",
+      "id": "sortdropdown_sortdropdown_sortdropdown",
+      "community": 22,
+      "norm_label": "sortdropdown()"
+    },
+    {
+      "label": "TimeSlotGrid.jsx",
+      "file_type": "code",
+      "source_file": "HelperComponents/TimeSlotGrid/TimeSlotGrid.jsx",
+      "source_location": "L1",
+      "id": "helpercomponents_timeslotgrid_timeslotgrid_jsx",
+      "community": 41,
+      "norm_label": "timeslotgrid.jsx"
+    },
+    {
+      "label": "TimeSlotGrid()",
+      "file_type": "code",
+      "source_file": "HelperComponents/TimeSlotGrid/TimeSlotGrid.jsx",
+      "source_location": "L5",
+      "id": "timeslotgrid_timeslotgrid_timeslotgrid",
+      "community": 41,
+      "norm_label": "timeslotgrid()"
+    },
+    {
+      "label": "AddToCart.jsx",
+      "file_type": "code",
+      "source_file": "NavigationBar/AddToCart.jsx",
+      "source_location": "L1",
+      "id": "navigationbar_addtocart_jsx",
+      "community": 6,
+      "norm_label": "addtocart.jsx"
+    },
+    {
+      "label": "AddToCart()",
+      "file_type": "code",
+      "source_file": "NavigationBar/AddToCart.jsx",
+      "source_location": "L10",
+      "id": "navigationbar_addtocart_addtocart",
+      "community": 6,
+      "norm_label": "addtocart()"
+    },
+    {
+      "label": "CartModal.jsx",
+      "file_type": "code",
+      "source_file": "NavigationBar/CartModal.jsx",
+      "source_location": "L1",
+      "id": "navigationbar_cartmodal_jsx",
+      "community": 5,
+      "norm_label": "cartmodal.jsx"
+    },
+    {
+      "label": "CartModal()",
+      "file_type": "code",
+      "source_file": "NavigationBar/CartModal.jsx",
+      "source_location": "L14",
+      "id": "navigationbar_cartmodal_cartmodal",
+      "community": 5,
+      "norm_label": "cartmodal()"
+    },
+    {
+      "label": "NavigationBar.jsx",
+      "file_type": "code",
+      "source_file": "NavigationBar/NavigationBar.jsx",
+      "source_location": "L1",
+      "id": "navigationbar_navigationbar_jsx",
+      "community": 6,
+      "norm_label": "navigationbar.jsx"
+    },
+    {
+      "label": "MOBILE_SERVICE_ITEMS",
+      "file_type": "code",
+      "source_file": "NavigationBar/NavigationBar.jsx",
+      "source_location": "L25",
+      "id": "navigationbar_navigationbar_mobile_service_items",
+      "community": 6,
+      "norm_label": "mobile_service_items"
+    },
+    {
+      "label": "NAV_LINKS",
+      "file_type": "code",
+      "source_file": "NavigationBar/NavigationBar.jsx",
+      "source_location": "L31",
+      "id": "navigationbar_navigationbar_nav_links",
+      "community": 6,
+      "norm_label": "nav_links"
+    },
+    {
+      "label": "NavigationBar()",
+      "file_type": "code",
+      "source_file": "NavigationBar/NavigationBar.jsx",
+      "source_location": "L40",
+      "id": "navigationbar_navigationbar_navigationbar",
+      "community": 6,
+      "norm_label": "navigationbar()"
+    },
+    {
+      "label": "CardDropdown.jsx",
+      "file_type": "code",
+      "source_file": "NavigationBar/Dropdowns/CardDropdown.jsx",
+      "source_location": "L1",
+      "id": "navigationbar_dropdowns_carddropdown_jsx",
+      "community": 14,
+      "norm_label": "carddropdown.jsx"
+    },
+    {
+      "label": "MENU_ITEMS",
+      "file_type": "code",
+      "source_file": "NavigationBar/Dropdowns/CardDropdown.jsx",
+      "source_location": "L19",
+      "id": "dropdowns_carddropdown_menu_items",
+      "community": 14,
+      "norm_label": "menu_items"
+    },
+    {
+      "label": "NavigationCarousel()",
+      "file_type": "code",
+      "source_file": "NavigationBar/Dropdowns/CardDropdown.jsx",
+      "source_location": "L33",
+      "id": "dropdowns_carddropdown_navigationcarousel",
+      "community": 14,
+      "norm_label": "navigationcarousel()"
+    },
+    {
+      "label": "ListItem",
+      "file_type": "code",
+      "source_file": "NavigationBar/Dropdowns/CardDropdown.jsx",
+      "source_location": "L58",
+      "id": "dropdowns_carddropdown_listitem",
+      "community": 14,
+      "norm_label": "listitem"
+    },
+    {
+      "label": "CardDropDown()",
+      "file_type": "code",
+      "source_file": "NavigationBar/Dropdowns/CardDropdown.jsx",
+      "source_location": "L75",
+      "id": "dropdowns_carddropdown_carddropdown",
+      "community": 14,
+      "norm_label": "carddropdown()"
+    },
+    {
+      "label": "LoginModal.jsx",
+      "file_type": "code",
+      "source_file": "NavigationBar/Dropdowns/LoginModal.jsx",
+      "source_location": "L1",
+      "id": "navigationbar_dropdowns_loginmodal_jsx",
+      "community": 4,
+      "norm_label": "loginmodal.jsx"
+    },
+    {
+      "label": "LoginModal()",
+      "file_type": "code",
+      "source_file": "NavigationBar/Dropdowns/LoginModal.jsx",
+      "source_location": "L13",
+      "id": "dropdowns_loginmodal_loginmodal",
+      "community": 4,
+      "norm_label": "loginmodal()"
+    },
+    {
+      "label": "ServicesDropdown.jsx",
+      "file_type": "code",
+      "source_file": "NavigationBar/Dropdowns/ServicesDropdown.jsx",
+      "source_location": "L1",
+      "id": "navigationbar_dropdowns_servicesdropdown_jsx",
+      "community": 6,
+      "norm_label": "servicesdropdown.jsx"
+    },
+    {
+      "label": "SERVICE_ITEMS",
+      "file_type": "code",
+      "source_file": "NavigationBar/Dropdowns/ServicesDropdown.jsx",
+      "source_location": "L9",
+      "id": "dropdowns_servicesdropdown_service_items",
+      "community": 6,
+      "norm_label": "service_items"
+    },
+    {
+      "label": "ServicesDropdown()",
+      "file_type": "code",
+      "source_file": "NavigationBar/Dropdowns/ServicesDropdown.jsx",
+      "source_location": "L36",
+      "id": "dropdowns_servicesdropdown_servicesdropdown",
+      "community": 6,
+      "norm_label": "servicesdropdown()"
+    },
+    {
+      "label": "SignUpDropdown.jsx",
+      "file_type": "code",
+      "source_file": "NavigationBar/Dropdowns/SignUpDropdown.jsx",
+      "source_location": "L1",
+      "id": "navigationbar_dropdowns_signupdropdown_jsx",
+      "community": 4,
+      "norm_label": "signupdropdown.jsx"
+    },
+    {
+      "label": "SignUpDropdown()",
+      "file_type": "code",
+      "source_file": "NavigationBar/Dropdowns/SignUpDropdown.jsx",
+      "source_location": "L6",
+      "id": "dropdowns_signupdropdown_signupdropdown",
+      "community": 4,
+      "norm_label": "signupdropdown()"
+    },
+    {
+      "label": "SignUpModal.jsx",
+      "file_type": "code",
+      "source_file": "NavigationBar/Dropdowns/SignUpModal.jsx",
+      "source_location": "L1",
+      "id": "navigationbar_dropdowns_signupmodal_jsx",
+      "community": 4,
+      "norm_label": "signupmodal.jsx"
+    },
+    {
+      "label": "SignUpModal()",
+      "file_type": "code",
+      "source_file": "NavigationBar/Dropdowns/SignUpModal.jsx",
+      "source_location": "L12",
+      "id": "dropdowns_signupmodal_signupmodal",
+      "community": 4,
+      "norm_label": "signupmodal()"
+    },
+    {
+      "label": "extensions.js",
+      "file_type": "code",
+      "source_file": "RichText/extensions.js",
+      "source_location": "L1",
+      "id": "richtext_extensions_js",
+      "community": 1,
+      "norm_label": "extensions.js"
+    },
+    {
+      "label": "linkConfig",
+      "file_type": "code",
+      "source_file": "RichText/extensions.js",
+      "source_location": "L26",
+      "id": "richtext_extensions_linkconfig",
+      "community": 1,
+      "norm_label": "linkconfig"
+    },
+    {
+      "label": "textAlignConfig",
+      "file_type": "code",
+      "source_file": "RichText/extensions.js",
+      "source_location": "L36",
+      "id": "richtext_extensions_textalignconfig",
+      "community": 1,
+      "norm_label": "textalignconfig"
+    },
+    {
+      "label": "buildExtensions()",
+      "file_type": "code",
+      "source_file": "RichText/extensions.js",
+      "source_location": "L46",
+      "id": "richtext_extensions_buildextensions",
+      "community": 1,
+      "norm_label": "buildextensions()"
+    },
+    {
+      "label": "TOOLBAR_GROUPS",
+      "file_type": "code",
+      "source_file": "RichText/extensions.js",
+      "source_location": "L93",
+      "id": "richtext_extensions_toolbar_groups",
+      "community": 1,
+      "norm_label": "toolbar_groups"
+    },
+    {
+      "label": "index.js",
+      "file_type": "code",
+      "source_file": "RichText/index.js",
+      "source_location": "L1",
+      "id": "richtext_index_js",
+      "community": 1,
+      "norm_label": "index.js"
+    },
+    {
+      "label": "RichTextEditor.jsx",
+      "file_type": "code",
+      "source_file": "RichText/RichTextEditor.jsx",
+      "source_location": "L1",
+      "id": "richtext_richtexteditor_jsx",
+      "community": 1,
+      "norm_label": "richtexteditor.jsx"
+    },
+    {
+      "label": "RichTextEditor()",
+      "file_type": "code",
+      "source_file": "RichText/RichTextEditor.jsx",
+      "source_location": "L25",
+      "id": "richtext_richtexteditor_richtexteditor",
+      "community": 1,
+      "norm_label": "richtexteditor()"
+    },
+    {
+      "label": "RichTextRenderer.jsx",
+      "file_type": "code",
+      "source_file": "RichText/RichTextRenderer.jsx",
+      "source_location": "L1",
+      "id": "richtext_richtextrenderer_jsx",
+      "community": 1,
+      "norm_label": "richtextrenderer.jsx"
+    },
+    {
+      "label": "PURIFY_CONFIG",
+      "file_type": "code",
+      "source_file": "RichText/RichTextRenderer.jsx",
+      "source_location": "L19",
+      "id": "richtext_richtextrenderer_purify_config",
+      "community": 1,
+      "norm_label": "purify_config"
+    },
+    {
+      "label": "sanitize()",
+      "file_type": "code",
+      "source_file": "RichText/RichTextRenderer.jsx",
+      "source_location": "L32",
+      "id": "richtext_richtextrenderer_sanitize",
+      "community": 1,
+      "norm_label": "sanitize()"
+    },
+    {
+      "label": "RichTextRenderer()",
+      "file_type": "code",
+      "source_file": "RichText/RichTextRenderer.jsx",
+      "source_location": "L37",
+      "id": "richtext_richtextrenderer_richtextrenderer",
+      "community": 1,
+      "norm_label": "richtextrenderer()"
+    },
+    {
+      "label": "Toolbar.jsx",
+      "file_type": "code",
+      "source_file": "RichText/Toolbar.jsx",
+      "source_location": "L1",
+      "id": "richtext_toolbar_jsx",
+      "community": 1,
+      "norm_label": "toolbar.jsx"
+    },
+    {
+      "label": "Divider()",
+      "file_type": "code",
+      "source_file": "RichText/Toolbar.jsx",
+      "source_location": "L13",
+      "id": "richtext_toolbar_divider",
+      "community": 1,
+      "norm_label": "divider()"
+    },
+    {
+      "label": "Btn()",
+      "file_type": "code",
+      "source_file": "RichText/Toolbar.jsx",
+      "source_location": "L15",
+      "id": "richtext_toolbar_btn",
+      "community": 1,
+      "norm_label": "btn()"
+    },
+    {
+      "label": "LinkDialog()",
+      "file_type": "code",
+      "source_file": "RichText/Toolbar.jsx",
+      "source_location": "L30",
+      "id": "richtext_toolbar_linkdialog",
+      "community": 1,
+      "norm_label": "linkdialog()"
+    },
+    {
+      "label": "Toolbar()",
+      "file_type": "code",
+      "source_file": "RichText/Toolbar.jsx",
+      "source_location": "L54",
+      "id": "richtext_toolbar_toolbar",
+      "community": 1,
+      "norm_label": "toolbar()"
+    },
+    {
+      "label": "accordion.jsx",
+      "file_type": "code",
+      "source_file": "ui/accordion.jsx",
+      "source_location": "L1",
+      "id": "ui_accordion_jsx",
+      "community": 17,
+      "norm_label": "accordion.jsx"
+    },
+    {
+      "label": "AccordionItem",
+      "file_type": "code",
+      "source_file": "ui/accordion.jsx",
+      "source_location": "L9",
+      "id": "ui_accordion_accordionitem",
+      "community": 17,
+      "norm_label": "accordionitem"
+    },
+    {
+      "label": "AccordionTrigger",
+      "file_type": "code",
+      "source_file": "ui/accordion.jsx",
+      "source_location": "L18",
+      "id": "ui_accordion_accordiontrigger",
+      "community": 17,
+      "norm_label": "accordiontrigger"
+    },
+    {
+      "label": "AccordionContent",
+      "file_type": "code",
+      "source_file": "ui/accordion.jsx",
+      "source_location": "L37",
+      "id": "ui_accordion_accordioncontent",
+      "community": 17,
+      "norm_label": "accordioncontent"
+    },
+    {
+      "label": "button.jsx",
+      "file_type": "code",
+      "source_file": "ui/button.jsx",
+      "source_location": "L1",
+      "id": "ui_button_jsx",
+      "community": 7,
+      "norm_label": "button.jsx"
+    },
+    {
+      "label": "buttonVariants",
+      "file_type": "code",
+      "source_file": "ui/button.jsx",
+      "source_location": "L7",
+      "id": "ui_button_buttonvariants",
+      "community": 7,
+      "norm_label": "buttonvariants"
+    },
+    {
+      "label": "Button",
+      "file_type": "code",
+      "source_file": "ui/button.jsx",
+      "source_location": "L36",
+      "id": "ui_button_button",
+      "community": 7,
+      "norm_label": "button"
+    },
+    {
+      "label": "card.jsx",
+      "file_type": "code",
+      "source_file": "ui/card.jsx",
+      "source_location": "L1",
+      "id": "ui_card_jsx",
+      "community": 10,
+      "norm_label": "card.jsx"
+    },
+    {
+      "label": "Card",
+      "file_type": "code",
+      "source_file": "ui/card.jsx",
+      "source_location": "L5",
+      "id": "ui_card_card",
+      "community": 10,
+      "norm_label": "card"
+    },
+    {
+      "label": "CardHeader",
+      "file_type": "code",
+      "source_file": "ui/card.jsx",
+      "source_location": "L17",
+      "id": "ui_card_cardheader",
+      "community": 10,
+      "norm_label": "cardheader"
+    },
+    {
+      "label": "CardTitle",
+      "file_type": "code",
+      "source_file": "ui/card.jsx",
+      "source_location": "L26",
+      "id": "ui_card_cardtitle",
+      "community": 10,
+      "norm_label": "cardtitle"
+    },
+    {
+      "label": "CardDescription",
+      "file_type": "code",
+      "source_file": "ui/card.jsx",
+      "source_location": "L38",
+      "id": "ui_card_carddescription",
+      "community": 10,
+      "norm_label": "carddescription"
+    },
+    {
+      "label": "CardContent",
+      "file_type": "code",
+      "source_file": "ui/card.jsx",
+      "source_location": "L47",
+      "id": "ui_card_cardcontent",
+      "community": 10,
+      "norm_label": "cardcontent"
+    },
+    {
+      "label": "CardFooter",
+      "file_type": "code",
+      "source_file": "ui/card.jsx",
+      "source_location": "L52",
+      "id": "ui_card_cardfooter",
+      "community": 10,
+      "norm_label": "cardfooter"
+    },
+    {
+      "label": "carousel.jsx",
+      "file_type": "code",
+      "source_file": "ui/carousel.jsx",
+      "source_location": "L1",
+      "id": "ui_carousel_jsx",
+      "community": 7,
+      "norm_label": "carousel.jsx"
+    },
+    {
+      "label": "CarouselContext",
+      "file_type": "code",
+      "source_file": "ui/carousel.jsx",
+      "source_location": "L8",
+      "id": "ui_carousel_carouselcontext",
+      "community": 7,
+      "norm_label": "carouselcontext"
+    },
+    {
+      "label": "useCarousel()",
+      "file_type": "code",
+      "source_file": "ui/carousel.jsx",
+      "source_location": "L10",
+      "id": "ui_carousel_usecarousel",
+      "community": 7,
+      "norm_label": "usecarousel()"
+    },
+    {
+      "label": "Carousel",
+      "file_type": "code",
+      "source_file": "ui/carousel.jsx",
+      "source_location": "L20",
+      "id": "ui_carousel_carousel",
+      "community": 7,
+      "norm_label": "carousel"
+    },
+    {
+      "label": "CarouselContent",
+      "file_type": "code",
+      "source_file": "ui/carousel.jsx",
+      "source_location": "L125",
+      "id": "ui_carousel_carouselcontent",
+      "community": 7,
+      "norm_label": "carouselcontent"
+    },
+    {
+      "label": "CarouselItem",
+      "file_type": "code",
+      "source_file": "ui/carousel.jsx",
+      "source_location": "L144",
+      "id": "ui_carousel_carouselitem",
+      "community": 7,
+      "norm_label": "carouselitem"
+    },
+    {
+      "label": "CarouselPrevious",
+      "file_type": "code",
+      "source_file": "ui/carousel.jsx",
+      "source_location": "L163",
+      "id": "ui_carousel_carouselprevious",
+      "community": 7,
+      "norm_label": "carouselprevious"
+    },
+    {
+      "label": "CarouselNext",
+      "file_type": "code",
+      "source_file": "ui/carousel.jsx",
+      "source_location": "L191",
+      "id": "ui_carousel_carouselnext",
+      "community": 7,
+      "norm_label": "carouselnext"
+    },
+    {
+      "label": "input.jsx",
+      "file_type": "code",
+      "source_file": "ui/input.jsx",
+      "source_location": "L1",
+      "id": "ui_input_jsx",
+      "community": 45,
+      "norm_label": "input.jsx"
+    },
+    {
+      "label": "Input",
+      "file_type": "code",
+      "source_file": "ui/input.jsx",
+      "source_location": "L5",
+      "id": "ui_input_input",
+      "community": 45,
+      "norm_label": "input"
+    },
+    {
+      "label": "label.jsx",
+      "file_type": "code",
+      "source_file": "ui/label.jsx",
+      "source_location": "L1",
+      "id": "ui_label_jsx",
+      "community": 25,
+      "norm_label": "label.jsx"
+    },
+    {
+      "label": "labelVariants",
+      "file_type": "code",
+      "source_file": "ui/label.jsx",
+      "source_location": "L7",
+      "id": "ui_label_labelvariants",
+      "community": 25,
+      "norm_label": "labelvariants"
+    },
+    {
+      "label": "Label",
+      "file_type": "code",
+      "source_file": "ui/label.jsx",
+      "source_location": "L11",
+      "id": "ui_label_label",
+      "community": 25,
+      "norm_label": "label"
+    },
+    {
+      "label": "separator.jsx",
+      "file_type": "code",
+      "source_file": "ui/separator.jsx",
+      "source_location": "L1",
+      "id": "ui_separator_jsx",
+      "community": 46,
+      "norm_label": "separator.jsx"
+    },
+    {
+      "label": "Separator",
+      "file_type": "code",
+      "source_file": "ui/separator.jsx",
+      "source_location": "L6",
+      "id": "ui_separator_separator",
+      "community": 46,
+      "norm_label": "separator"
+    },
+    {
+      "label": "tabs.jsx",
+      "file_type": "code",
+      "source_file": "ui/tabs.jsx",
+      "source_location": "L1",
+      "id": "ui_tabs_jsx",
+      "community": 18,
+      "norm_label": "tabs.jsx"
+    },
+    {
+      "label": "TabsList",
+      "file_type": "code",
+      "source_file": "ui/tabs.jsx",
+      "source_location": "L8",
+      "id": "ui_tabs_tabslist",
+      "community": 18,
+      "norm_label": "tabslist"
+    },
+    {
+      "label": "TabsTrigger",
+      "file_type": "code",
+      "source_file": "ui/tabs.jsx",
+      "source_location": "L20",
+      "id": "ui_tabs_tabstrigger",
+      "community": 18,
+      "norm_label": "tabstrigger"
+    },
+    {
+      "label": "TabsContent",
+      "file_type": "code",
+      "source_file": "ui/tabs.jsx",
+      "source_location": "L32",
+      "id": "ui_tabs_tabscontent",
+      "community": 18,
+      "norm_label": "tabscontent"
+    },
+    {
+      "label": "ConfirmModal.jsx",
+      "file_type": "code",
+      "source_file": "UserProfile/ConfirmModal.jsx",
+      "source_location": "L1",
+      "id": "userprofile_confirmmodal_jsx",
+      "community": 47,
+      "norm_label": "confirmmodal.jsx"
+    },
+    {
+      "label": "ConfirmModal()",
+      "file_type": "code",
+      "source_file": "UserProfile/ConfirmModal.jsx",
+      "source_location": "L6",
+      "id": "userprofile_confirmmodal_confirmmodal",
+      "community": 47,
+      "norm_label": "confirmmodal()"
+    },
+    {
+      "label": "PasswordChangeForm.jsx",
+      "file_type": "code",
+      "source_file": "UserProfile/PasswordChangeForm.jsx",
+      "source_location": "L1",
+      "id": "userprofile_passwordchangeform_jsx",
+      "community": 48,
+      "norm_label": "passwordchangeform.jsx"
+    },
+    {
+      "label": "PasswordChangeForm()",
+      "file_type": "code",
+      "source_file": "UserProfile/PasswordChangeForm.jsx",
+      "source_location": "L7",
+      "id": "userprofile_passwordchangeform_passwordchangeform",
+      "community": 48,
+      "norm_label": "passwordchangeform()"
+    },
+    {
+      "label": "PetForm.jsx",
+      "file_type": "code",
+      "source_file": "UserProfile/PetForm.jsx",
+      "source_location": "L1",
+      "id": "userprofile_petform_jsx",
+      "community": 26,
+      "norm_label": "petform.jsx"
+    },
+    {
+      "label": "EMPTY_FORM",
+      "file_type": "code",
+      "source_file": "UserProfile/PetForm.jsx",
+      "source_location": "L7",
+      "id": "userprofile_petform_empty_form",
+      "community": 26,
+      "norm_label": "empty_form"
+    },
+    {
+      "label": "PetForm()",
+      "file_type": "code",
+      "source_file": "UserProfile/PetForm.jsx",
+      "source_location": "L11",
+      "id": "userprofile_petform_petform",
+      "community": 26,
+      "norm_label": "petform()"
+    },
+    {
+      "label": "PetList.jsx",
+      "file_type": "code",
+      "source_file": "UserProfile/PetList.jsx",
+      "source_location": "L1",
+      "id": "userprofile_petlist_jsx",
+      "community": 27,
+      "norm_label": "petlist.jsx"
+    },
+    {
+      "label": "TYPE_ICON",
+      "file_type": "code",
+      "source_file": "UserProfile/PetList.jsx",
+      "source_location": "L4",
+      "id": "userprofile_petlist_type_icon",
+      "community": 27,
+      "norm_label": "type_icon"
+    },
+    {
+      "label": "PetList()",
+      "file_type": "code",
+      "source_file": "UserProfile/PetList.jsx",
+      "source_location": "L11",
+      "id": "userprofile_petlist_petlist",
+      "community": 27,
+      "norm_label": "petlist()"
+    },
+    {
+      "label": "ProfileForm.jsx",
+      "file_type": "code",
+      "source_file": "UserProfile/ProfileForm.jsx",
+      "source_location": "L1",
+      "id": "userprofile_profileform_jsx",
+      "community": 49,
+      "norm_label": "profileform.jsx"
+    },
+    {
+      "label": "ProfileForm()",
+      "file_type": "code",
+      "source_file": "UserProfile/ProfileForm.jsx",
+      "source_location": "L7",
+      "id": "userprofile_profileform_profileform",
+      "community": 49,
+      "norm_label": "profileform()"
+    },
+    {
+      "label": "AppointmentErrorBoundary",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/ErrorBoundary.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "errorboundary_appointmenterrorboundary",
+      "community": 8,
+      "norm_label": "appointmenterrorboundary"
+    },
+    {
+      "label": "ProfessionalCalendar",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/ProfessionalCalendar.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "professionalcalendar_professionalcalendar",
+      "community": 8,
+      "norm_label": "professionalcalendar"
+    },
+    {
+      "label": "CartModalComponent",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/AddToCartComponent/CartModalComponent.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "cartmodalcomponent_cartmodalcomponent",
+      "community": 50,
+      "norm_label": "cartmodalcomponent"
+    },
+    {
+      "label": "AdminLayout",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/Admin/AdminLayout.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "adminlayout_adminlayout",
+      "community": 9,
+      "norm_label": "adminlayout"
+    },
+    {
+      "label": "DataTable",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/Admin/DataTable/DataTable.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "datatable_datatable",
+      "community": 9,
+      "norm_label": "datatable"
+    },
+    {
+      "label": "AuthField",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/Auth/AuthField.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "authfield_authfield",
+      "community": 15,
+      "norm_label": "authfield"
+    },
+    {
+      "label": "AuthModal",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/Auth/AuthModal.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "authmodal_authmodal",
+      "community": 15,
+      "norm_label": "authmodal"
+    },
+    {
+      "label": "ForgotPasswordModal",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/Auth/ForgotPasswordModal.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "forgotpasswordmodal_forgotpasswordmodal",
+      "community": 15,
+      "norm_label": "forgotpasswordmodal"
+    },
+    {
+      "label": "ProtectedRoute",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/Auth/ProtectedRoute.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "protectedroute_protectedroute",
+      "community": 9,
+      "norm_label": "protectedroute"
+    },
+    {
+      "label": "ResetPassword",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/Auth/ResetPassword.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "resetpassword_resetpassword",
+      "community": 15,
+      "norm_label": "resetpassword"
+    },
+    {
+      "label": "RoleBasedRoute",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/Auth/RoleBasedRoute.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "rolebasedroute_rolebasedroute",
+      "community": 9,
+      "norm_label": "rolebasedroute"
+    },
+    {
+      "label": "FormInput",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/Common/FormInput/FormInput.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "forminput_forminput",
+      "community": 15,
+      "norm_label": "forminput"
+    },
+    {
+      "label": "Footer",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/Footer/Footer.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "footer_footer",
+      "community": 51,
+      "norm_label": "footer"
+    },
+    {
+      "label": "AppointmentCard",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/AppointmentCard/AppointmentCard.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "appointmentcard_appointmentcard",
+      "community": 8,
+      "norm_label": "appointmentcard"
+    },
+    {
+      "label": "AppointmentForm",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/AppointmentForm/AppointmentForm.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "appointmentform_appointmentform",
+      "community": 8,
+      "norm_label": "appointmentform"
+    },
+    {
+      "label": "Breadcrumb",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/Breadcrumb/Breadcrumb.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "breadcrumb_breadcrumb",
+      "community": 52,
+      "norm_label": "breadcrumb"
+    },
+    {
+      "label": "ReviewCarousel",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/Carousel/ReviewCarousel.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "reviewcarousel_reviewcarousel",
+      "community": 40,
+      "norm_label": "reviewcarousel"
+    },
+    {
+      "label": "CartItem",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/CartItem/CartItem.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "cartitem_cartitem",
+      "community": 34,
+      "norm_label": "cartitem"
+    },
+    {
+      "label": "CheckoutStepper",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/CheckoutStepper/CheckoutStepper.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "checkoutstepper_checkoutstepper",
+      "community": 53,
+      "norm_label": "checkoutstepper"
+    },
+    {
+      "label": "CurrencySelector",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/CurrencySelector/CurrencySelector.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "currencyselector_currencyselector",
+      "community": 35,
+      "norm_label": "currencyselector"
+    },
+    {
+      "label": "CustomButton",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/CustomButton/CustomButton.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "custombutton_custombutton",
+      "community": 54,
+      "norm_label": "custombutton"
+    },
+    {
+      "label": "AuthContext",
+      "file_type": "code",
+      "source_file": "frontend/src/context/AuthContext.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "context_authcontext",
+      "community": 9,
+      "norm_label": "authcontext"
+    },
+    {
+      "label": "GlobalToastContext",
+      "file_type": "code",
+      "source_file": "frontend/src/context/GlobalToastContext.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "context_globaltoastcontext",
+      "community": 9,
+      "norm_label": "globaltoastcontext"
+    },
+    {
+      "label": "ToastContext",
+      "file_type": "code",
+      "source_file": "frontend/src/context/ToastContext.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "context_toastcontext",
+      "community": 8,
+      "norm_label": "toastcontext"
+    },
+    {
+      "label": "CurrencyContext",
+      "file_type": "code",
+      "source_file": "frontend/src/context/CurrencyContext.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "context_currencycontext",
+      "community": 35,
+      "norm_label": "currencycontext"
+    },
+    {
+      "label": "usersApi",
+      "file_type": "code",
+      "source_file": "frontend/src/Services/api/usersApi.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "services_usersapi",
+      "community": 8,
+      "norm_label": "usersapi"
+    },
+    {
+      "label": "appointmentsApi",
+      "file_type": "code",
+      "source_file": "frontend/src/Services/api/appointmentsApi.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "services_appointmentsapi",
+      "community": 8,
+      "norm_label": "appointmentsapi"
+    },
+    {
+      "label": "LoadingSpinner",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/LoadingSpinner/LoadingSpinner.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "helpercomponents_loadingspinner",
+      "community": 9,
+      "norm_label": "loadingspinner"
+    },
+    {
+      "label": "ProductReviewCard",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/ProductReviewCard/ProductReviewCard.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "helpercomponents_productreviewcard",
+      "community": 40,
+      "norm_label": "productreviewcard"
+    },
+    {
+      "label": "Price",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/Price/Price.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "helpercomponents_price",
+      "community": 34,
+      "norm_label": "price"
+    },
+    {
+      "label": "ErrorBoundary",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/ErrorBoundary/ErrorBoundary.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "errorboundary_ErrorBoundary",
+      "community": 3,
+      "norm_label": "errorboundary"
+    },
+    {
+      "label": "LoadingSpinner",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/LoadingSpinner/LoadingSpinner.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "loadingspinner_LoadingSpinner",
+      "community": 0,
+      "norm_label": "loadingspinner"
+    },
+    {
+      "label": "PaginationBar",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/PaginationBar/PaginationBar.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "paginationbar_PaginationBar",
+      "community": 0,
+      "norm_label": "paginationbar"
+    },
+    {
+      "label": "Price",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/Price/Price.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "price_Price",
+      "community": 0,
+      "norm_label": "price"
+    },
+    {
+      "label": "ProductCard",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/ProductCard/ProductCard.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "productcard_ProductCard",
+      "community": 0,
+      "norm_label": "productcard"
+    },
+    {
+      "label": "ProductCardV2",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/ProductCard/ProductCardV2.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "productcardv2_ProductCardV2",
+      "community": 0,
+      "norm_label": "productcardv2"
+    },
+    {
+      "label": "ProductReviewCard",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/ProductReviewCard/ProductReviewCard.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "productreviewcard_ProductReviewCard",
+      "community": 3,
+      "norm_label": "productreviewcard"
+    },
+    {
+      "label": "ProductReviewFormModal",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/ProductReviewFormModal/ProductReviewFormModal.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "productreviewformmodal_ProductReviewFormModal",
+      "community": 3,
+      "norm_label": "productreviewformmodal"
+    },
+    {
+      "label": "ProfessionalCalendar",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/ProfessionalCalendar/ProfessionalCalendar.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "professionalcalendar_ProfessionalCalendar",
+      "community": 0,
+      "norm_label": "professionalcalendar"
+    },
+    {
+      "label": "ProfessionalCard",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/ProfessionalCard/ProfessionalCard.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "professionalcard_ProfessionalCard",
+      "community": 0,
+      "norm_label": "professionalcard"
+    },
+    {
+      "label": "ProfessionalList",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/ProfessionalList/ProfessionalList.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "professionallist_ProfessionalList",
+      "community": 0,
+      "norm_label": "professionallist"
+    },
+    {
+      "label": "SearchBar",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/SearchBar/SearchBar.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "searchbar_SearchBar",
+      "community": 0,
+      "norm_label": "searchbar"
+    },
+    {
+      "label": "SortDropDown",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/SortDropDown/SortDropDown.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "sortdropdown_SortDropDown",
+      "community": 55,
+      "norm_label": "sortdropdown"
+    },
+    {
+      "label": "TimeSlotGrid",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/TimeSlotGrid/TimeSlotGrid.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "timeslotgrid_TimeSlotGrid",
+      "community": 0,
+      "norm_label": "timeslotgrid"
+    },
+    {
+      "label": "AddToCart",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/NavigationBar/AddToCart.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "addtocart_AddToCart",
+      "community": 0,
+      "norm_label": "addtocart"
+    },
+    {
+      "label": "CartModal",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/NavigationBar/CartModal.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "cartmodal_CartModal",
+      "community": 0,
+      "norm_label": "cartmodal"
+    },
+    {
+      "label": "NavigationBar",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/NavigationBar/NavigationBar.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "navigationbar_NavigationBar",
+      "community": 3,
+      "norm_label": "navigationbar"
+    },
+    {
+      "label": "CardDropDown",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/NavigationBar/Dropdowns/CardDropdown.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "carddropdown_CardDropDown",
+      "community": 56,
+      "norm_label": "carddropdown"
+    },
+    {
+      "label": "LoginModal",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/NavigationBar/Dropdowns/LoginModal.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "loginmodal_LoginModal",
+      "community": 3,
+      "norm_label": "loginmodal"
+    },
+    {
+      "label": "ServicesDropdown",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/NavigationBar/Dropdowns/ServicesDropdown.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "servicesdropdown_ServicesDropdown",
+      "community": 3,
+      "norm_label": "servicesdropdown"
+    },
+    {
+      "label": "CurrencyContext",
+      "file_type": "code",
+      "source_file": "frontend/src/context/CurrencyContext.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "context_CurrencyContext",
+      "community": 0,
+      "norm_label": "currencycontext"
+    },
+    {
+      "label": "CartContext",
+      "file_type": "code",
+      "source_file": "frontend/src/context/CartContext.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "context_CartContext",
+      "community": 0,
+      "norm_label": "cartcontext"
+    },
+    {
+      "label": "GlobalToastContext",
+      "file_type": "code",
+      "source_file": "frontend/src/context/GlobalToastContext.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "context_GlobalToastContext",
+      "community": 0,
+      "norm_label": "globaltoastcontext"
+    },
+    {
+      "label": "ToastContext",
+      "file_type": "code",
+      "source_file": "frontend/src/context/ToastContext.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "context_ToastContext",
+      "community": 0,
+      "norm_label": "toastcontext"
+    },
+    {
+      "label": "AuthContext",
+      "file_type": "code",
+      "source_file": "frontend/src/context/AuthContext.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "context_AuthContext",
+      "community": 3,
+      "norm_label": "authcontext"
+    },
+    {
+      "label": "productsApi",
+      "file_type": "code",
+      "source_file": "frontend/src/Services/api/productsApi.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "api_productsApi",
+      "community": 3,
+      "norm_label": "productsapi"
+    },
+    {
+      "label": "appointmentsApi",
+      "file_type": "code",
+      "source_file": "frontend/src/Services/api/appointmentsApi.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "api_appointmentsApi",
+      "community": 0,
+      "norm_label": "appointmentsapi"
+    },
+    {
+      "label": "professionalsApi",
+      "file_type": "code",
+      "source_file": "frontend/src/Services/api/professionalsApi.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "api_professionalsApi",
+      "community": 0,
+      "norm_label": "professionalsapi"
+    },
+    {
+      "label": "useDebounce",
+      "file_type": "code",
+      "source_file": "frontend/src/hooks/useDebounce.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "hook_useDebounce",
+      "community": 0,
+      "norm_label": "usedebounce"
+    },
+    {
+      "label": "AuthModal",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/Auth/AuthModal.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "auth_AuthModal",
+      "community": 3,
+      "norm_label": "authmodal"
+    },
+    {
+      "label": "AuthField",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/Auth/AuthField.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "auth_AuthField",
+      "community": 3,
+      "norm_label": "authfield"
+    },
+    {
+      "label": "ForgotPasswordModal",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/Auth/ForgotPasswordModal.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "auth_ForgotPasswordModal",
+      "community": 3,
+      "norm_label": "forgotpasswordmodal"
+    },
+    {
+      "label": "AppointmentForm",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/AppointmentForm/AppointmentForm.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "appointmentform_AppointmentForm",
+      "community": 0,
+      "norm_label": "appointmentform"
+    },
+    {
+      "label": "CartItem",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/CartItem/CartItem.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "cartitem_CartItem",
+      "community": 0,
+      "norm_label": "cartitem"
+    },
+    {
+      "label": "CurrencySelector",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/CurrencySelector/CurrencySelector.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "currencyselector_CurrencySelector",
+      "community": 3,
+      "norm_label": "currencyselector"
+    },
+    {
+      "label": "SignUpDropdown",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/NavigationBar/Dropdowns/SignUpDropdown.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "signupdropdown_SignUpDropdown",
+      "community": 3,
+      "norm_label": "signupdropdown"
+    },
+    {
+      "label": "SignUpModal",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/NavigationBar/Dropdowns/SignUpModal.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "signupmodal_SignUpModal",
+      "community": 3,
+      "norm_label": "signupmodal"
+    },
+    {
+      "label": "buildExtensions",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/RichText/extensions.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "extensions_buildExtensions",
+      "community": 13,
+      "norm_label": "buildextensions"
+    },
+    {
+      "label": "TOOLBAR_GROUPS",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/RichText/extensions.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "extensions_TOOLBAR_GROUPS",
+      "community": 13,
+      "norm_label": "toolbar_groups"
+    },
+    {
+      "label": "RichTextEditor",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/RichText/RichTextEditor.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "richtexteditor_RichTextEditor",
+      "community": 13,
+      "norm_label": "richtexteditor"
+    },
+    {
+      "label": "RichTextRenderer",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/RichText/RichTextRenderer.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "richtextrenderer_RichTextRenderer",
+      "community": 13,
+      "norm_label": "richtextrenderer"
+    },
+    {
+      "label": "Toolbar",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/RichText/Toolbar.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "toolbar_Toolbar",
+      "community": 13,
+      "norm_label": "toolbar"
+    },
+    {
+      "label": "RichText Index (barrel)",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/RichText/index.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "richtext_index",
+      "community": 13,
+      "norm_label": "richtext index (barrel)"
+    },
+    {
+      "label": "Accordion",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/ui/accordion.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "accordion_Accordion",
+      "community": 57,
+      "norm_label": "accordion"
+    },
+    {
+      "label": "Button",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/ui/button.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "button_Button",
+      "community": 19,
+      "norm_label": "button"
+    },
+    {
+      "label": "Card",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/ui/card.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "card_Card",
+      "community": 58,
+      "norm_label": "card"
+    },
+    {
+      "label": "Carousel",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/ui/carousel.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "carousel_Carousel",
+      "community": 19,
+      "norm_label": "carousel"
+    },
+    {
+      "label": "CarouselContext",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/ui/carousel.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "carousel_CarouselContext",
+      "community": 19,
+      "norm_label": "carouselcontext"
+    },
+    {
+      "label": "Input",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/ui/input.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "input_Input",
+      "community": 59,
+      "norm_label": "input"
+    },
+    {
+      "label": "Label",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/ui/label.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "label_Label",
+      "community": 60,
+      "norm_label": "label"
+    },
+    {
+      "label": "Separator",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/ui/separator.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "separator_Separator",
+      "community": 61,
+      "norm_label": "separator"
+    },
+    {
+      "label": "Tabs",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/ui/tabs.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "tabs_Tabs",
+      "community": 62,
+      "norm_label": "tabs"
+    },
+    {
+      "label": "ConfirmModal",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/UserProfile/ConfirmModal.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "confirmmodal_ConfirmModal",
+      "community": 23,
+      "norm_label": "confirmmodal"
+    },
+    {
+      "label": "PasswordChangeForm",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/UserProfile/PasswordChangeForm.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "passwordchangeform_PasswordChangeForm",
+      "community": 42,
+      "norm_label": "passwordchangeform"
+    },
+    {
+      "label": "PetForm",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/UserProfile/PetForm.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "petform_PetForm",
+      "community": 23,
+      "norm_label": "petform"
+    },
+    {
+      "label": "PetList",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/UserProfile/PetList.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "petlist_PetList",
+      "community": 23,
+      "norm_label": "petlist"
+    },
+    {
+      "label": "ProfileForm",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/UserProfile/ProfileForm.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "profileform_ProfileForm",
+      "community": 42,
+      "norm_label": "profileform"
+    },
+    {
+      "label": "AuthContext",
+      "file_type": "code",
+      "source_file": "frontend/src/context/AuthContext.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "authcontext_AuthContext",
+      "community": 3,
+      "norm_label": "authcontext"
+    },
+    {
+      "label": "ToastContext",
+      "file_type": "code",
+      "source_file": "frontend/src/context/ToastContext.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "toastcontext_ToastContext",
+      "community": 3,
+      "norm_label": "toastcontext"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ErrorBoundary.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "errorboundary_jsx",
+      "target": "components_errorboundary_appointmenterrorboundary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ErrorBoundary.jsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "components_errorboundary_appointmenterrorboundary",
+      "target": "components_errorboundary_appointmenterrorboundary_componentdidcatch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ErrorBoundary.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "components_errorboundary_appointmenterrorboundary",
+      "target": "components_errorboundary_appointmenterrorboundary_constructor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ErrorBoundary.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "components_errorboundary_appointmenterrorboundary",
+      "target": "components_errorboundary_appointmenterrorboundary_getderivedstatefromerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ErrorBoundary.jsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "components_errorboundary_appointmenterrorboundary",
+      "target": "components_errorboundary_appointmenterrorboundary_render",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ProfessionalCalendar.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "professionalcalendar_jsx",
+      "target": "components_professionalcalendar_handledateselect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AddToCartComponent/CartModalComponent.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "addtocartcomponent_cartmodalcomponent_jsx",
+      "target": "addtocartcomponent_cartmodalcomponent_cartmodalcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Admin/AdminLayout.jsx",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "admin_adminlayout_jsx",
+      "target": "admin_adminlayout_adminlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Admin/DataTable/DataTable.jsx",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "admin_datatable_datatable_jsx",
+      "target": "datatable_datatable_datatable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Auth/AuthField.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "auth_authfield_jsx",
+      "target": "auth_authfield_authfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "Auth/ForgotPasswordModal.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "auth_forgotpasswordmodal_jsx",
+      "target": "auth_authfield_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/Dropdowns/LoginModal.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "navigationbar_dropdowns_loginmodal_jsx",
+      "target": "auth_authfield_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/Dropdowns/SignUpModal.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "navigationbar_dropdowns_signupmodal_jsx",
+      "target": "auth_authfield_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Auth/AuthModal.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "auth_authmodal_jsx",
+      "target": "auth_authmodal_authmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "Auth/ForgotPasswordModal.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "auth_forgotpasswordmodal_jsx",
+      "target": "auth_authmodal_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/Dropdowns/LoginModal.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "navigationbar_dropdowns_loginmodal_jsx",
+      "target": "auth_authmodal_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/Dropdowns/SignUpModal.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "navigationbar_dropdowns_signupmodal_jsx",
+      "target": "auth_authmodal_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Auth/ForgotPasswordModal.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "auth_forgotpasswordmodal_jsx",
+      "target": "auth_forgotpasswordmodal_forgotpasswordmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/Dropdowns/LoginModal.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "navigationbar_dropdowns_loginmodal_jsx",
+      "target": "auth_forgotpasswordmodal_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Auth/ProtectedRoute.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "auth_protectedroute_jsx",
+      "target": "auth_protectedroute_protectedroute",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Auth/ResetPassword.jsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "auth_resetpassword_jsx",
+      "target": "auth_resetpassword_resetpassword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Auth/RoleBasedRoute.jsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "auth_rolebasedroute_jsx",
+      "target": "auth_rolebasedroute_rolebasedroute",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "Auth/RoleBasedRoute.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "auth_rolebasedroute_jsx",
+      "target": "helpercomponents_loadingspinner_loadingspinner_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Common/FormInput/FormInput.jsx",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "common_forminput_forminput_jsx",
+      "target": "forminput_forminput_forminput",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Footer/Footer.jsx",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "footer_footer_jsx",
+      "target": "footer_footer_footer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Footer/Footer.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "footer_footer_jsx",
+      "target": "footer_footer_links",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/AppointmentCard/AppointmentCard.jsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "helpercomponents_appointmentcard_appointmentcard_jsx",
+      "target": "appointmentcard_appointmentcard_appointmentcard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/AppointmentForm/AppointmentForm.jsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "helpercomponents_appointmentform_appointmentform_jsx",
+      "target": "appointmentform_appointmentform_appointmentform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProfessionalCalendar/ProfessionalCalendar.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "helpercomponents_professionalcalendar_professionalcalendar_jsx",
+      "target": "helpercomponents_appointmentform_appointmentform_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/Breadcrumb/Breadcrumb.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "helpercomponents_breadcrumb_breadcrumb_jsx",
+      "target": "breadcrumb_breadcrumb_breadcrumb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/Carousel/ReviewCarousel.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "helpercomponents_carousel_reviewcarousel_jsx",
+      "target": "carousel_reviewcarousel_reviewcarousel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/Carousel/ReviewCarousel.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "helpercomponents_carousel_reviewcarousel_jsx",
+      "target": "helpercomponents_productreviewcard_productreviewcard_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/CartItem/CartItem.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "helpercomponents_cartitem_cartitem_jsx",
+      "target": "cartitem_cartitem_btnspring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/CartItem/CartItem.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "helpercomponents_cartitem_cartitem_jsx",
+      "target": "cartitem_cartitem_cartitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/CartItem/CartItem.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "helpercomponents_cartitem_cartitem_jsx",
+      "target": "helpercomponents_price_price_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/CartModal.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "navigationbar_cartmodal_jsx",
+      "target": "helpercomponents_cartitem_cartitem_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/CartModal.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "navigationbar_cartmodal_jsx",
+      "target": "cartitem_cartitem_cartitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/CheckoutStepper/CheckoutStepper.jsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "helpercomponents_checkoutstepper_checkoutstepper_jsx",
+      "target": "checkoutstepper_checkoutstepper_checkoutstepper",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/CheckoutStepper/CheckoutStepper.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "helpercomponents_checkoutstepper_checkoutstepper_jsx",
+      "target": "checkoutstepper_checkoutstepper_steps",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/CurrencySelector/CurrencySelector.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "helpercomponents_currencyselector_currencyselector_jsx",
+      "target": "currencyselector_currencyselector_currencyselector",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/NavigationBar.jsx",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "navigationbar_navigationbar_jsx",
+      "target": "helpercomponents_currencyselector_currencyselector_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/CustomButton/CustomButton.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "helpercomponents_custombutton_custombutton_jsx",
+      "target": "custombutton_custombutton_custombutton",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ErrorBoundary/ErrorBoundary.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "helpercomponents_errorboundary_errorboundary_jsx",
+      "target": "errorboundary_errorboundary_errorboundary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ErrorBoundary/ErrorBoundary.jsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "errorboundary_errorboundary_errorboundary",
+      "target": "errorboundary_errorboundary_errorboundary_componentdidcatch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ErrorBoundary/ErrorBoundary.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "errorboundary_errorboundary_errorboundary",
+      "target": "errorboundary_errorboundary_errorboundary_constructor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ErrorBoundary/ErrorBoundary.jsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "errorboundary_errorboundary_errorboundary",
+      "target": "errorboundary_errorboundary_errorboundary_getderivedstatefromerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ErrorBoundary/ErrorBoundary.jsx",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "errorboundary_errorboundary_errorboundary",
+      "target": "errorboundary_errorboundary_errorboundary_render",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/LoadingSpinner/LoadingSpinner.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "helpercomponents_loadingspinner_loadingspinner_jsx",
+      "target": "loadingspinner_loadingspinner_loadingspinner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProfessionalList/ProfessionalList.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "helpercomponents_professionallist_professionallist_jsx",
+      "target": "helpercomponents_loadingspinner_loadingspinner_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/PaginationBar/PaginationBar.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "helpercomponents_paginationbar_paginationbar_jsx",
+      "target": "paginationbar_paginationbar_paginationbar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProfessionalList/ProfessionalList.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "helpercomponents_professionallist_professionallist_jsx",
+      "target": "helpercomponents_paginationbar_paginationbar_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/Price/Price.jsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "helpercomponents_price_price_jsx",
+      "target": "price_price_price",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProductCard/ProductCardV2.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "helpercomponents_productcard_productcardv2_jsx",
+      "target": "helpercomponents_price_price_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/CartModal.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "navigationbar_cartmodal_jsx",
+      "target": "helpercomponents_price_price_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProductCard/ProductCard.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "helpercomponents_productcard_productcard_jsx",
+      "target": "productcard_productcard_productcard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProductCard/ProductCardV2.jsx",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "helpercomponents_productcard_productcardv2_jsx",
+      "target": "productcard_productcardv2_productcardv2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProductCard/ProductCardV2.jsx",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "helpercomponents_productcard_productcardv2_jsx",
+      "target": "productcard_productcardv2_resolveproductimage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProductCard/ProductCardV2.jsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "helpercomponents_productcard_productcardv2_jsx",
+      "target": "productcard_productcardv2_striphtml",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProductCard/ProductCardV2.jsx",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "productcard_productcardv2_productcardv2",
+      "target": "productcard_productcardv2_striphtml",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProductReviewCard/ProductReviewCard.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "helpercomponents_productreviewcard_productreviewcard_jsx",
+      "target": "productreviewcard_productreviewcard_productreviewcard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProductReviewCard/ProductReviewCard.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "helpercomponents_productreviewcard_productreviewcard_jsx",
+      "target": "productreviewcard_productreviewcard_star_labels",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProductReviewFormModal/ProductReviewFormModal.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "helpercomponents_productreviewformmodal_productreviewformmodal_jsx",
+      "target": "productreviewformmodal_productreviewformmodal_productreviewformmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProfessionalCalendar/ProfessionalCalendar.jsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "helpercomponents_professionalcalendar_professionalcalendar_jsx",
+      "target": "professionalcalendar_professionalcalendar_professionalcalendar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProfessionalList/ProfessionalList.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "helpercomponents_professionallist_professionallist_jsx",
+      "target": "helpercomponents_professionalcalendar_professionalcalendar_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProfessionalCard/ProfessionalCard.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "helpercomponents_professionalcard_professionalcard_jsx",
+      "target": "professionalcard_professionalcard_professionalcard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProfessionalList/ProfessionalList.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "helpercomponents_professionallist_professionallist_jsx",
+      "target": "helpercomponents_professionalcard_professionalcard_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProfessionalList/index.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "helpercomponents_professionallist_index_js",
+      "target": "helpercomponents_professionallist_professionallist_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProfessionalList/ProfessionalList.jsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "helpercomponents_professionallist_professionallist_jsx",
+      "target": "professionallist_professionallist_professional_configs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/ProfessionalList/ProfessionalList.jsx",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "helpercomponents_professionallist_professionallist_jsx",
+      "target": "professionallist_professionallist_professionallist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/SearchBar/SearchBar.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "helpercomponents_searchbar_searchbar_jsx",
+      "target": "searchbar_searchbar_gooeyfilter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/SearchBar/SearchBar.jsx",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "helpercomponents_searchbar_searchbar_jsx",
+      "target": "searchbar_searchbar_searchbar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/SortDropDown/SortDropDown.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "helpercomponents_sortdropdown_sortdropdown_jsx",
+      "target": "sortdropdown_sortdropdown_options",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/SortDropDown/SortDropDown.jsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "helpercomponents_sortdropdown_sortdropdown_jsx",
+      "target": "sortdropdown_sortdropdown_sortdropdown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HelperComponents/TimeSlotGrid/TimeSlotGrid.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "helpercomponents_timeslotgrid_timeslotgrid_jsx",
+      "target": "timeslotgrid_timeslotgrid_timeslotgrid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/AddToCart.jsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "navigationbar_addtocart_jsx",
+      "target": "navigationbar_addtocart_addtocart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/AddToCart.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "navigationbar_addtocart_jsx",
+      "target": "navigationbar_cartmodal_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/NavigationBar.jsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "navigationbar_navigationbar_jsx",
+      "target": "navigationbar_addtocart_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/CartModal.jsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "navigationbar_cartmodal_jsx",
+      "target": "navigationbar_cartmodal_cartmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/NavigationBar.jsx",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "navigationbar_navigationbar_jsx",
+      "target": "navigationbar_dropdowns_servicesdropdown_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/NavigationBar.jsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "navigationbar_navigationbar_jsx",
+      "target": "navigationbar_dropdowns_signupdropdown_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/NavigationBar.jsx",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "navigationbar_navigationbar_jsx",
+      "target": "navigationbar_navigationbar_mobile_service_items",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/NavigationBar.jsx",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "navigationbar_navigationbar_jsx",
+      "target": "navigationbar_navigationbar_nav_links",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/NavigationBar.jsx",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "navigationbar_navigationbar_jsx",
+      "target": "navigationbar_navigationbar_navigationbar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/Dropdowns/CardDropdown.jsx",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "navigationbar_dropdowns_carddropdown_jsx",
+      "target": "dropdowns_carddropdown_carddropdown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/Dropdowns/CardDropdown.jsx",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "navigationbar_dropdowns_carddropdown_jsx",
+      "target": "dropdowns_carddropdown_listitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/Dropdowns/CardDropdown.jsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "navigationbar_dropdowns_carddropdown_jsx",
+      "target": "dropdowns_carddropdown_menu_items",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/Dropdowns/CardDropdown.jsx",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "navigationbar_dropdowns_carddropdown_jsx",
+      "target": "dropdowns_carddropdown_navigationcarousel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/Dropdowns/LoginModal.jsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "navigationbar_dropdowns_loginmodal_jsx",
+      "target": "dropdowns_loginmodal_loginmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/Dropdowns/SignUpDropdown.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "navigationbar_dropdowns_signupdropdown_jsx",
+      "target": "navigationbar_dropdowns_loginmodal_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/Dropdowns/ServicesDropdown.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "navigationbar_dropdowns_servicesdropdown_jsx",
+      "target": "dropdowns_servicesdropdown_service_items",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/Dropdowns/ServicesDropdown.jsx",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "navigationbar_dropdowns_servicesdropdown_jsx",
+      "target": "dropdowns_servicesdropdown_servicesdropdown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/Dropdowns/SignUpDropdown.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "navigationbar_dropdowns_signupdropdown_jsx",
+      "target": "dropdowns_signupdropdown_signupdropdown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/Dropdowns/SignUpDropdown.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "navigationbar_dropdowns_signupdropdown_jsx",
+      "target": "navigationbar_dropdowns_signupmodal_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "NavigationBar/Dropdowns/SignUpModal.jsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "navigationbar_dropdowns_signupmodal_jsx",
+      "target": "dropdowns_signupmodal_signupmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/extensions.js",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "richtext_extensions_js",
+      "target": "richtext_extensions_buildextensions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/extensions.js",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "richtext_extensions_js",
+      "target": "richtext_extensions_linkconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/extensions.js",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "richtext_extensions_js",
+      "target": "richtext_extensions_textalignconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/extensions.js",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "richtext_extensions_js",
+      "target": "richtext_extensions_toolbar_groups",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/index.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "richtext_index_js",
+      "target": "richtext_extensions_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/RichTextEditor.jsx",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "richtext_richtexteditor_jsx",
+      "target": "richtext_extensions_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/Toolbar.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "richtext_toolbar_jsx",
+      "target": "richtext_extensions_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/index.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "richtext_index_js",
+      "target": "richtext_extensions_buildextensions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/RichTextEditor.jsx",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "richtext_richtexteditor_jsx",
+      "target": "richtext_extensions_buildextensions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/RichTextEditor.jsx",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "richtext_richtexteditor_richtexteditor",
+      "target": "richtext_extensions_buildextensions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/index.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "richtext_index_js",
+      "target": "richtext_extensions_toolbar_groups",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/Toolbar.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "richtext_toolbar_jsx",
+      "target": "richtext_extensions_toolbar_groups",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/index.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "richtext_index_js",
+      "target": "richtext_richtexteditor_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/index.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "richtext_index_js",
+      "target": "richtext_richtextrenderer_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/RichTextEditor.jsx",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "richtext_richtexteditor_jsx",
+      "target": "richtext_richtexteditor_richtexteditor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/RichTextEditor.jsx",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "richtext_richtexteditor_jsx",
+      "target": "richtext_toolbar_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/RichTextRenderer.jsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "richtext_richtextrenderer_jsx",
+      "target": "richtext_richtextrenderer_purify_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/RichTextRenderer.jsx",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "richtext_richtextrenderer_jsx",
+      "target": "richtext_richtextrenderer_richtextrenderer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/RichTextRenderer.jsx",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "richtext_richtextrenderer_jsx",
+      "target": "richtext_richtextrenderer_sanitize",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/RichTextRenderer.jsx",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "richtext_richtextrenderer_richtextrenderer",
+      "target": "richtext_richtextrenderer_sanitize",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/Toolbar.jsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "richtext_toolbar_jsx",
+      "target": "richtext_toolbar_btn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/Toolbar.jsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "richtext_toolbar_jsx",
+      "target": "richtext_toolbar_divider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/Toolbar.jsx",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "richtext_toolbar_jsx",
+      "target": "richtext_toolbar_linkdialog",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "RichText/Toolbar.jsx",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "richtext_toolbar_jsx",
+      "target": "richtext_toolbar_toolbar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/accordion.jsx",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "ui_accordion_jsx",
+      "target": "ui_accordion_accordioncontent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/accordion.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "ui_accordion_jsx",
+      "target": "ui_accordion_accordionitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/accordion.jsx",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "ui_accordion_jsx",
+      "target": "ui_accordion_accordiontrigger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/button.jsx",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "ui_button_jsx",
+      "target": "ui_button_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/button.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "ui_button_jsx",
+      "target": "ui_button_buttonvariants",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/carousel.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "ui_carousel_jsx",
+      "target": "ui_button_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/carousel.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "ui_carousel_jsx",
+      "target": "ui_button_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/card.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "ui_card_jsx",
+      "target": "ui_card_card",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/card.jsx",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "ui_card_jsx",
+      "target": "ui_card_cardcontent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/card.jsx",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "ui_card_jsx",
+      "target": "ui_card_carddescription",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/card.jsx",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "ui_card_jsx",
+      "target": "ui_card_cardfooter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/card.jsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "ui_card_jsx",
+      "target": "ui_card_cardheader",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/card.jsx",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "ui_card_jsx",
+      "target": "ui_card_cardtitle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/carousel.jsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "ui_carousel_jsx",
+      "target": "ui_carousel_carousel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/carousel.jsx",
+      "source_location": "L125",
+      "weight": 1.0,
+      "source": "ui_carousel_jsx",
+      "target": "ui_carousel_carouselcontent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/carousel.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "ui_carousel_jsx",
+      "target": "ui_carousel_carouselcontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/carousel.jsx",
+      "source_location": "L144",
+      "weight": 1.0,
+      "source": "ui_carousel_jsx",
+      "target": "ui_carousel_carouselitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/carousel.jsx",
+      "source_location": "L191",
+      "weight": 1.0,
+      "source": "ui_carousel_jsx",
+      "target": "ui_carousel_carouselnext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/carousel.jsx",
+      "source_location": "L163",
+      "weight": 1.0,
+      "source": "ui_carousel_jsx",
+      "target": "ui_carousel_carouselprevious",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/carousel.jsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "ui_carousel_jsx",
+      "target": "ui_carousel_usecarousel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/input.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "ui_input_jsx",
+      "target": "ui_input_input",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/label.jsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "ui_label_jsx",
+      "target": "ui_label_label",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/label.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "ui_label_jsx",
+      "target": "ui_label_labelvariants",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/separator.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "ui_separator_jsx",
+      "target": "ui_separator_separator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/tabs.jsx",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "ui_tabs_jsx",
+      "target": "ui_tabs_tabscontent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/tabs.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "ui_tabs_jsx",
+      "target": "ui_tabs_tabslist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui/tabs.jsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "ui_tabs_jsx",
+      "target": "ui_tabs_tabstrigger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "UserProfile/ConfirmModal.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "userprofile_confirmmodal_jsx",
+      "target": "userprofile_confirmmodal_confirmmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "UserProfile/PasswordChangeForm.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "userprofile_passwordchangeform_jsx",
+      "target": "userprofile_passwordchangeform_passwordchangeform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "UserProfile/PetForm.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "userprofile_petform_jsx",
+      "target": "userprofile_petform_empty_form",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "UserProfile/PetForm.jsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "userprofile_petform_jsx",
+      "target": "userprofile_petform_petform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "UserProfile/PetList.jsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "userprofile_petlist_jsx",
+      "target": "userprofile_petlist_petlist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "UserProfile/PetList.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "userprofile_petlist_jsx",
+      "target": "userprofile_petlist_type_icon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "UserProfile/ProfileForm.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "userprofile_profileform_jsx",
+      "target": "userprofile_profileform_profileform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "frontend/src/Components/ErrorBoundary.jsx",
+      "source_location": null,
+      "weight": 0.65,
+      "source": "errorboundary_appointmenterrorboundary",
+      "target": "appointmentform_appointmentform"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "frontend/src/Components/ProfessionalCalendar.jsx",
+      "source_location": null,
+      "weight": 0.75,
+      "source": "professionalcalendar_professionalcalendar",
+      "target": "appointmentform_appointmentform"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/Admin/AdminLayout.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "adminlayout_adminlayout",
+      "target": "context_authcontext"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "frontend/src/Components/Admin/DataTable/DataTable.jsx",
+      "source_location": null,
+      "weight": 0.75,
+      "source": "datatable_datatable",
+      "target": "adminlayout_adminlayout"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/Components/Auth/AuthField.jsx",
+      "source_location": null,
+      "weight": 0.85,
+      "source": "authfield_authfield",
+      "target": "forminput_forminput"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/Auth/ForgotPasswordModal.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "forgotpasswordmodal_forgotpasswordmodal",
+      "target": "authfield_authfield"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/Auth/ForgotPasswordModal.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "forgotpasswordmodal_forgotpasswordmodal",
+      "target": "authmodal_authmodal"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/Components/Auth/ForgotPasswordModal.jsx",
+      "source_location": null,
+      "weight": 0.85,
+      "source": "forgotpasswordmodal_forgotpasswordmodal",
+      "target": "resetpassword_resetpassword"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/Auth/ProtectedRoute.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "protectedroute_protectedroute",
+      "target": "context_authcontext"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/Auth/ProtectedRoute.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "protectedroute_protectedroute",
+      "target": "context_globaltoastcontext"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/Components/Auth/ProtectedRoute.jsx",
+      "source_location": null,
+      "weight": 0.85,
+      "source": "protectedroute_protectedroute",
+      "target": "rolebasedroute_rolebasedroute"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/Auth/RoleBasedRoute.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "rolebasedroute_rolebasedroute",
+      "target": "context_authcontext"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/Auth/RoleBasedRoute.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "rolebasedroute_rolebasedroute",
+      "target": "helpercomponents_loadingspinner"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/Components/HelperComponents/AppointmentCard/AppointmentCard.jsx",
+      "source_location": null,
+      "weight": 0.85,
+      "source": "appointmentcard_appointmentcard",
+      "target": "appointmentform_appointmentform"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/AppointmentForm/AppointmentForm.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "appointmentform_appointmentform",
+      "target": "context_toastcontext"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/AppointmentForm/AppointmentForm.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "appointmentform_appointmentform",
+      "target": "services_appointmentsapi"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/AppointmentForm/AppointmentForm.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "appointmentform_appointmentform",
+      "target": "services_usersapi"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/Carousel/ReviewCarousel.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "reviewcarousel_reviewcarousel",
+      "target": "helpercomponents_productreviewcard"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/CartItem/CartItem.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "cartitem_cartitem",
+      "target": "helpercomponents_price"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/CurrencySelector/CurrencySelector.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "currencyselector_currencyselector",
+      "target": "context_currencycontext"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.55,
+      "source_file": "frontend/src/Components/HelperComponents/ErrorBoundary/ErrorBoundary.jsx",
+      "source_location": null,
+      "weight": 0.55,
+      "source": "errorboundary_ErrorBoundary",
+      "target": "navigationbar_NavigationBar"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProfessionalList/ProfessionalList.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "professionallist_ProfessionalList",
+      "target": "loadingspinner_LoadingSpinner"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProfessionalList/ProfessionalList.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "professionallist_ProfessionalList",
+      "target": "paginationbar_PaginationBar"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/CartModal.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "cartmodal_CartModal",
+      "target": "price_Price"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/Price/Price.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "price_Price",
+      "target": "context_CurrencyContext"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProductCard/ProductCardV2.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "productcardv2_ProductCardV2",
+      "target": "price_Price"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "frontend/src/Components/HelperComponents/ProductCard/ProductCard.jsx",
+      "source_location": null,
+      "weight": 0.95,
+      "source": "productcard_ProductCard",
+      "target": "context_CartContext"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProductCard/ProductCard.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "productcard_ProductCard",
+      "target": "context_GlobalToastContext"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/Components/HelperComponents/ProductCard/ProductCardV2.jsx",
+      "source_location": null,
+      "weight": 0.85,
+      "source": "productcardv2_ProductCardV2",
+      "target": "productcard_ProductCard"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProductCard/ProductCardV2.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "productcardv2_ProductCardV2",
+      "target": "context_CartContext"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProductCard/ProductCardV2.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "productcardv2_ProductCardV2",
+      "target": "context_ToastContext"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/Components/HelperComponents/ProductReviewCard/ProductReviewCard.jsx",
+      "source_location": null,
+      "weight": 0.85,
+      "source": "productreviewcard_ProductReviewCard",
+      "target": "productreviewformmodal_ProductReviewFormModal"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProductReviewFormModal/ProductReviewFormModal.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "productreviewformmodal_ProductReviewFormModal",
+      "target": "api_productsApi"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProductReviewFormModal/ProductReviewFormModal.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "productreviewformmodal_ProductReviewFormModal",
+      "target": "context_AuthContext"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProfessionalCalendar/ProfessionalCalendar.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "professionalcalendar_ProfessionalCalendar",
+      "target": "api_appointmentsApi"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProfessionalCalendar/ProfessionalCalendar.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "professionalcalendar_ProfessionalCalendar",
+      "target": "api_professionalsApi"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProfessionalCalendar/ProfessionalCalendar.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "professionalcalendar_ProfessionalCalendar",
+      "target": "appointmentform_AppointmentForm"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProfessionalCalendar/ProfessionalCalendar.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "professionalcalendar_ProfessionalCalendar",
+      "target": "context_AuthContext"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProfessionalCalendar/ProfessionalCalendar.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "professionalcalendar_ProfessionalCalendar",
+      "target": "context_ToastContext"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "frontend/src/Components/HelperComponents/ProfessionalCalendar/ProfessionalCalendar.jsx",
+      "source_location": null,
+      "weight": 0.75,
+      "source": "professionalcalendar_ProfessionalCalendar",
+      "target": "timeslotgrid_TimeSlotGrid"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProfessionalList/ProfessionalList.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "professionallist_ProfessionalList",
+      "target": "professionalcalendar_ProfessionalCalendar"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProfessionalList/ProfessionalList.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "professionallist_ProfessionalList",
+      "target": "professionalcard_ProfessionalCard"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProfessionalList/ProfessionalList.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "professionallist_ProfessionalList",
+      "target": "api_professionalsApi"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProfessionalList/ProfessionalList.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "professionallist_ProfessionalList",
+      "target": "context_ToastContext"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/HelperComponents/ProfessionalList/ProfessionalList.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "professionallist_ProfessionalList",
+      "target": "hook_useDebounce"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "AMBIGUOUS",
+      "confidence_score": 0.2,
+      "source_file": "frontend/src/Components/HelperComponents/SearchBar/SearchBar.jsx",
+      "source_location": null,
+      "weight": 0.2,
+      "source": "searchbar_SearchBar",
+      "target": "context_CartContext"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/AddToCart.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "addtocart_AddToCart",
+      "target": "cartmodal_CartModal"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/AddToCart.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "addtocart_AddToCart",
+      "target": "context_CartContext"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/AddToCart.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "addtocart_AddToCart",
+      "target": "context_ToastContext"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/NavigationBar.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "navigationbar_NavigationBar",
+      "target": "addtocart_AddToCart"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/CartModal.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "cartmodal_CartModal",
+      "target": "cartitem_CartItem"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/CartModal.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "cartmodal_CartModal",
+      "target": "context_CartContext"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/CartModal.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "cartmodal_CartModal",
+      "target": "context_ToastContext"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/NavigationBar.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "navigationbar_NavigationBar",
+      "target": "context_AuthContext"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/NavigationBar.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "navigationbar_NavigationBar",
+      "target": "currencyselector_CurrencySelector"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/NavigationBar.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "navigationbar_NavigationBar",
+      "target": "servicesdropdown_ServicesDropdown"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/NavigationBar.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "navigationbar_NavigationBar",
+      "target": "signupdropdown_SignUpDropdown"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/Dropdowns/LoginModal.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "loginmodal_LoginModal",
+      "target": "auth_AuthField"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/Dropdowns/LoginModal.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "loginmodal_LoginModal",
+      "target": "auth_AuthModal"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/Dropdowns/LoginModal.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "loginmodal_LoginModal",
+      "target": "auth_ForgotPasswordModal"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/Dropdowns/LoginModal.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "loginmodal_LoginModal",
+      "target": "context_AuthContext"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/Dropdowns/LoginModal.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "loginmodal_LoginModal",
+      "target": "context_ToastContext"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.55,
+      "source_file": "frontend/src/Components/NavigationBar/Dropdowns/SignUpDropdown.jsx",
+      "source_location": null,
+      "weight": 0.6,
+      "source": "signupdropdown_SignUpDropdown",
+      "target": "authcontext_AuthContext"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/Dropdowns/SignUpDropdown.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "signupdropdown_SignUpDropdown",
+      "target": "signupmodal_SignUpModal"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/Dropdowns/SignUpModal.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "signupmodal_SignUpModal",
+      "target": "authcontext_AuthContext"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/NavigationBar/Dropdowns/SignUpModal.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "signupmodal_SignUpModal",
+      "target": "toastcontext_ToastContext"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/RichText/extensions.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "extensions_buildExtensions",
+      "target": "extensions_TOOLBAR_GROUPS"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/RichText/index.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "richtext_index",
+      "target": "extensions_buildExtensions"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/RichText/RichTextEditor.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "richtexteditor_RichTextEditor",
+      "target": "extensions_buildExtensions"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/RichText/index.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "richtext_index",
+      "target": "extensions_TOOLBAR_GROUPS"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/RichText/Toolbar.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "toolbar_Toolbar",
+      "target": "extensions_TOOLBAR_GROUPS"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/RichText/index.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "richtext_index",
+      "target": "richtexteditor_RichTextEditor"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/RichText/RichTextEditor.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "richtexteditor_RichTextEditor",
+      "target": "toolbar_Toolbar"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/Components/RichText/RichTextRenderer.jsx",
+      "source_location": null,
+      "weight": 0.8,
+      "source": "richtextrenderer_RichTextRenderer",
+      "target": "richtexteditor_RichTextEditor"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/RichText/index.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "richtext_index",
+      "target": "richtextrenderer_RichTextRenderer"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/ui/carousel.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "carousel_Carousel",
+      "target": "button_Button"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/ui/carousel.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "carousel_Carousel",
+      "target": "carousel_CarouselContext"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/Components/UserProfile/PetList.jsx",
+      "source_location": null,
+      "weight": 0.8,
+      "source": "petlist_PetList",
+      "target": "confirmmodal_ConfirmModal"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "frontend/src/Components/UserProfile/ProfileForm.jsx",
+      "source_location": null,
+      "weight": 0.7,
+      "source": "profileform_ProfileForm",
+      "target": "passwordchangeform_PasswordChangeForm"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/Components/UserProfile/PetList.jsx",
+      "source_location": null,
+      "weight": 0.8,
+      "source": "petlist_PetList",
+      "target": "petform_PetForm"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "auth_guard_components",
+      "label": "Auth Guard Components",
+      "nodes": [
+        "protectedroute_protectedroute",
+        "rolebasedroute_rolebasedroute",
+        "context_authcontext"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "frontend/src/Components/Auth/ProtectedRoute.jsx"
+    },
+    {
+      "id": "auth_modal_system",
+      "label": "Auth Modal System",
+      "nodes": [
+        "authmodal_authmodal",
+        "authfield_authfield",
+        "forgotpasswordmodal_forgotpasswordmodal",
+        "resetpassword_resetpassword"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/Components/Auth/ForgotPasswordModal.jsx"
+    },
+    {
+      "id": "appointment_components",
+      "label": "Appointment UI Components",
+      "nodes": [
+        "appointmentcard_appointmentcard",
+        "appointmentform_appointmentform",
+        "errorboundary_appointmenterrorboundary",
+        "professionalcalendar_professionalcalendar"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "frontend/src/Components/HelperComponents/AppointmentForm/AppointmentForm.jsx"
+    },
+    {
+      "id": "admin_components",
+      "label": "Admin Panel Components",
+      "nodes": [
+        "adminlayout_adminlayout",
+        "datatable_datatable",
+        "context_authcontext"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/Components/Admin/AdminLayout.jsx"
+    },
+    {
+      "id": "cart_checkout_components",
+      "label": "Cart and Checkout Components",
+      "nodes": [
+        "cartitem_cartitem",
+        "cartmodalcomponent_cartmodalcomponent",
+        "checkoutstepper_checkoutstepper",
+        "helpercomponents_price"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "frontend/src/Components/HelperComponents/CartItem/CartItem.jsx"
+    },
+    {
+      "id": "cart_flow",
+      "label": "Cart Management Flow",
+      "nodes": [
+        "addtocart_AddToCart",
+        "cartmodal_CartModal",
+        "context_CartContext",
+        "cartitem_CartItem",
+        "price_Price"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "frontend/src/Components/NavigationBar/CartModal.jsx"
+    },
+    {
+      "id": "professional_booking_flow",
+      "label": "Professional Booking Flow",
+      "nodes": [
+        "professionallist_ProfessionalList",
+        "professionalcard_ProfessionalCard",
+        "professionalcalendar_ProfessionalCalendar",
+        "appointmentform_AppointmentForm",
+        "api_professionalsApi",
+        "api_appointmentsApi"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "frontend/src/Components/HelperComponents/ProfessionalList/ProfessionalList.jsx"
+    },
+    {
+      "id": "product_review_flow",
+      "label": "Product Review Flow",
+      "nodes": [
+        "productreviewcard_ProductReviewCard",
+        "productreviewformmodal_ProductReviewFormModal",
+        "api_productsApi",
+        "context_AuthContext"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "frontend/src/Components/HelperComponents/ProductReviewFormModal/ProductReviewFormModal.jsx"
+    },
+    {
+      "id": "navbar_composition",
+      "label": "NavigationBar Composition",
+      "nodes": [
+        "navigationbar_NavigationBar",
+        "addtocart_AddToCart",
+        "servicesdropdown_ServicesDropdown",
+        "currencyselector_CurrencySelector",
+        "signupdropdown_SignUpDropdown",
+        "context_AuthContext"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "frontend/src/Components/NavigationBar/NavigationBar.jsx"
+    },
+    {
+      "id": "auth_modal_flow",
+      "label": "Authentication Modal Flow",
+      "nodes": [
+        "loginmodal_LoginModal",
+        "auth_AuthModal",
+        "auth_AuthField",
+        "auth_ForgotPasswordModal",
+        "context_AuthContext",
+        "context_ToastContext"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "frontend/src/Components/NavigationBar/Dropdowns/LoginModal.jsx"
+    },
+    {
+      "id": "toast_consumers",
+      "label": "Toast Context Consumers",
+      "nodes": [
+        "productcardv2_ProductCardV2",
+        "addtocart_AddToCart",
+        "cartmodal_CartModal",
+        "professionallist_ProfessionalList",
+        "professionalcalendar_ProfessionalCalendar",
+        "loginmodal_LoginModal"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "frontend/src/context/ToastContext.jsx"
+    },
+    {
+      "id": "auth_modal_flow",
+      "label": "Auth Modal Flow (SignUpDropdown orchestrates Login and SignUp modals)",
+      "nodes": [
+        "signupdropdown_SignUpDropdown",
+        "signupmodal_SignUpModal",
+        "authcontext_AuthContext",
+        "toastcontext_ToastContext"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "frontend/src/Components/NavigationBar/Dropdowns/SignUpDropdown.jsx"
+    },
+    {
+      "id": "richtexteditor_system",
+      "label": "RichText Editor System (Editor, Toolbar, Extensions, Renderer)",
+      "nodes": [
+        "richtexteditor_RichTextEditor",
+        "toolbar_Toolbar",
+        "extensions_buildExtensions",
+        "extensions_TOOLBAR_GROUPS",
+        "richtextrenderer_RichTextRenderer",
+        "richtext_index"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/Components/RichText/index.js"
+    },
+    {
+      "id": "userprofile_modals",
+      "label": "UserProfile Modal Components",
+      "nodes": [
+        "confirmmodal_ConfirmModal",
+        "passwordchangeform_PasswordChangeForm",
+        "petform_PetForm",
+        "petlist_PetList",
+        "profileform_ProfileForm"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/Components/UserProfile/ConfirmModal.jsx"
+    },
+    {
+      "id": "ui_primitives",
+      "label": "Shadcn/Radix UI Primitives",
+      "nodes": [
+        "accordion_Accordion",
+        "button_Button",
+        "card_Card",
+        "carousel_Carousel",
+        "input_Input",
+        "label_Label",
+        "separator_Separator",
+        "tabs_Tabs"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "frontend/src/Components/ui/button.jsx"
+    }
+  ],
+  "built_at_commit": "bd256d6222c5b1799dbe36df862936b1cdb7c8c6"
+}
