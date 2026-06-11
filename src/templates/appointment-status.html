@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Appointment Status Update</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .header {
+      text-align: center;
+      padding: 20px 0;
+      background-color: #f8f9fa;
+    }
+    .content {
+      padding: 20px 0;
+    }
+    .appointment-details {
+      margin: 20px 0;
+      padding: 20px;
+      background-color: #f8f9fa;
+      border-radius: 5px;
+    }
+    .status {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .status.accepted {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .status.rejected {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    .status.completed {
+      background-color: #cce5ff;
+      color: #004085;
+    }
+    .status.cancelled {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px 0;
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Appointment Status Update</h1>
+    </div>
+    <div class="content">
+      <p>Dear {{name}},</p>
+      <p>Your appointment status has been updated.</p>
+      
+      <div class="status {{status}}">
+        Status: {{status}}
+      </div>
+
+      <div class="appointment-details">
+        <h2>Appointment Details</h2>
+        <p><strong>Service Type:</strong> {{serviceType}}</p>
+        <p><strong>Service Provider:</strong> {{serviceProviderName}}</p>
+        <p><strong>Pet Name:</strong> {{petName}}</p>
+        <p><strong>Date:</strong> {{date}}</p>
+        <p><strong>Time:</strong> {{timeSlot.start}} - {{timeSlot.end}}</p>
+        {{#if notes}}
+        <p><strong>Notes:</strong> {{notes}}</p>
+        {{/if}}
+        {{#if cancellationReason}}
+        <p><strong>Cancellation Reason:</strong> {{cancellationReason}}</p>
+        {{/if}}
+      </div>
+
+      {{#if status}}
+      <p>If you have any questions or need to make changes, please contact our support team.</p>
+      {{/if}}
+    </div>
+    <div class="footer">
+      <p>This is an automated message, please do not reply to this email.</p>
+    </div>
+  </div>
+</body>
+</html> 
