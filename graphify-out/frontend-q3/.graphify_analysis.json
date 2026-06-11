@@ -1,0 +1,690 @@
+{
+  "communities": {
+    "0": [
+      "dto_appointmentdto_appointmentcreatedto",
+      "dto_appointmentdto_appointmentcreatedto_constructor",
+      "dto_appointmentdto_appointmentcreatedto_validate",
+      "dto_appointmentdto_appointmentfilterdto",
+      "dto_appointmentdto_appointmentfilterdto_constructor",
+      "dto_appointmentdto_appointmentfilterdto_toqueryparams",
+      "dto_appointmentdto_appointmentfilterdto_validate",
+      "dto_appointmentdto_appointmentupdatedto",
+      "dto_appointmentdto_appointmentupdatedto_constructor",
+      "dto_appointmentdto_appointmentupdatedto_tojson",
+      "dto_appointmentdto_appointmentupdatedto_validate",
+      "dto_authdto_logindto",
+      "dto_authdto_logindto_constructor",
+      "dto_authdto_logindto_validate",
+      "dto_authdto_passwordchangedto",
+      "dto_authdto_passwordchangedto_constructor",
+      "dto_authdto_passwordchangedto_validate",
+      "dto_authdto_passwordresetdto",
+      "dto_authdto_passwordresetdto_constructor",
+      "dto_authdto_passwordresetdto_validate",
+      "dto_authdto_signupdto",
+      "dto_authdto_signupdto_constructor",
+      "dto_authdto_signupdto_validate",
+      "dto_productdto_productcreatedto",
+      "dto_productdto_productcreatedto_constructor",
+      "dto_productdto_productcreatedto_validate",
+      "dto_productdto_productfilterdto",
+      "dto_productdto_productfilterdto_constructor",
+      "dto_productdto_productfilterdto_toqueryparams",
+      "dto_productdto_productfilterdto_validate",
+      "dto_productdto_productupdatedto",
+      "dto_productdto_productupdatedto_constructor",
+      "dto_productdto_productupdatedto_tojson",
+      "dto_productdto_productupdatedto_validate",
+      "entities_user_user",
+      "entities_user_user_constructor",
+      "entities_user_user_fromjson",
+      "entities_user_user_tojson",
+      "entities_user_user_validate",
+      "models_dto_appointmentdto_js",
+      "models_dto_authdto_js",
+      "models_dto_productdto_js",
+      "models_entities_user_js",
+      "models_index_js"
+    ],
+    "1": [
+      "api_apiclient_api",
+      "api_apiclient_apiclient",
+      "api_apiclient_token",
+      "api_appointmentsapi_appointmentsapi",
+      "api_authapi_authapi",
+      "api_cartapi_cartapi",
+      "api_inventoryapi_inventoryapi",
+      "api_invoiceapi_invoiceapi",
+      "api_ordersapi_ordersapi",
+      "api_paymentsapi_paymentsapi",
+      "api_petapi_petapi",
+      "api_productsapi_productsapi",
+      "api_professionalsapi_professionalsapi",
+      "api_transactionapi_transactionapi",
+      "api_usersapi_usersapi",
+      "core_api_apiclient_js",
+      "localservices_reviewservice_reviewservice",
+      "localservices_userprofileservice_userprofileservice",
+      "localservices_userprofileservice_userprofileservice_addpet",
+      "localservices_userprofileservice_userprofileservice_changepassword",
+      "localservices_userprofileservice_userprofileservice_deletepet",
+      "localservices_userprofileservice_userprofileservice_getpet",
+      "localservices_userprofileservice_userprofileservice_updatepet",
+      "localservices_userprofileservice_userprofileservice_updateuserprofile",
+      "services_api_appointmentsapi_js",
+      "services_api_authapi_js",
+      "services_api_cartapi_js",
+      "services_api_inventoryapi_js",
+      "services_api_invoiceapi_js",
+      "services_api_ordersapi_js",
+      "services_api_paymentsapi_js",
+      "services_api_petapi_js",
+      "services_api_productsapi_js",
+      "services_api_professionalsapi_js",
+      "services_api_transactionapi_js",
+      "services_api_usersapi_js",
+      "services_authservice_js",
+      "services_localservices_reviewservice_js",
+      "services_localservices_userprofileservice_js"
+    ],
+    "2": [
+      "constants_userconstants_hasanyrole",
+      "constants_userconstants_haspermission",
+      "constants_userconstants_hasrole",
+      "constants_userconstants_isadmin",
+      "constants_userconstants_iscustomer",
+      "constants_userconstants_isprofessional",
+      "constants_userconstants_js",
+      "constants_userconstants_permissions",
+      "constants_userconstants_professional_roles",
+      "constants_userconstants_role_display_names",
+      "constants_userconstants_role_permissions",
+      "constants_userconstants_user_roles",
+      "context_authcontext_authcontext",
+      "context_authcontext_authprovider",
+      "context_authcontext_istokenexpired",
+      "context_authcontext_jsx",
+      "context_authcontext_useauth",
+      "context_cartcontext_cartcontext",
+      "context_cartcontext_cartsyncctx",
+      "context_cartcontext_cartsynclayer",
+      "context_cartcontext_jsx",
+      "context_cartcontext_usecart"
+    ],
+    "3": [
+      "hooks_useappointments_js",
+      "hooks_useappointments_useappointments",
+      "localservices_appointmentservice_appointmentservice",
+      "localservices_appointmentservice_appointmentservice_checkavailability",
+      "localservices_appointmentservice_appointmentservice_create",
+      "localservices_appointmentservice_appointmentservice_delete",
+      "localservices_appointmentservice_appointmentservice_getallmyappointments",
+      "localservices_appointmentservice_appointmentservice_getallmyappointmentsbytype",
+      "localservices_appointmentservice_appointmentservice_getbydaterange",
+      "localservices_appointmentservice_appointmentservice_getbyid",
+      "localservices_appointmentservice_appointmentservice_getbyowner",
+      "localservices_appointmentservice_appointmentservice_getbypetid",
+      "localservices_appointmentservice_appointmentservice_getbyprofessionalid",
+      "localservices_appointmentservice_appointmentservice_getbystatus",
+      "localservices_appointmentservice_appointmentservice_getmyappointments",
+      "localservices_appointmentservice_appointmentservice_getprofessionalappointments",
+      "localservices_appointmentservice_appointmentservice_getserviceproviderappointments",
+      "localservices_appointmentservice_appointmentservice_handlerequest",
+      "localservices_appointmentservice_appointmentservice_update",
+      "localservices_appointmentservice_appointmentservice_updatestatus",
+      "services_localservices_appointmentservice_js"
+    ],
+    "4": [
+      "localservices_productservice_productservice",
+      "localservices_productservice_productservice_createproduct",
+      "localservices_productservice_productservice_debouncerequest",
+      "localservices_productservice_productservice_deleteproduct",
+      "localservices_productservice_productservice_deleteproductimage",
+      "localservices_productservice_productservice_fetchallproducts",
+      "localservices_productservice_productservice_fetchproductbyid",
+      "localservices_productservice_productservice_fetchproductsbyapparel",
+      "localservices_productservice_productservice_fetchproductsbycategories",
+      "localservices_productservice_productservice_fetchproductsbycategory",
+      "localservices_productservice_productservice_fetchproductsbyname",
+      "localservices_productservice_productservice_fetchproductsbypricerange",
+      "localservices_productservice_productservice_fetchproductsbyrating",
+      "localservices_productservice_productservice_fetchproductswithfilters",
+      "localservices_productservice_productservice_fetchrelatedproducts",
+      "localservices_productservice_productservice_handlerequest",
+      "localservices_productservice_productservice_transformproductdata",
+      "localservices_productservice_productservice_updateproduct",
+      "localservices_productservice_productservice_uploadproductimages",
+      "services_localservices_productservice_js"
+    ],
+    "5": [
+      "appointmentConstants_APPOINTMENT_DURATIONS",
+      "appointmentConstants_APPOINTMENT_STATUS",
+      "appointmentDto_AppointmentCreateDTO",
+      "appointmentDto_AppointmentUpdateDTO",
+      "appointmentTypes_AppointmentFormData",
+      "appointmentTypes_AppointmentInterface",
+      "appointmentTypes_AppointmentStatus",
+      "appointmentTypes_AppointmentType",
+      "appointmentTypes_ServiceProvider",
+      "authDto_SignupDTO",
+      "entityAppointment_Appointment",
+      "entityPet_Pet",
+      "entityProduct_Product",
+      "entityReview_Review",
+      "entityUser_User",
+      "productDto_ProductCreateDTO"
+    ],
+    "6": [
+      "types_appointment_types_appointment",
+      "types_appointment_types_appointmentcalendarprops",
+      "types_appointment_types_appointmentcardprops",
+      "types_appointment_types_appointmentformdata",
+      "types_appointment_types_appointmentformprops",
+      "types_appointment_types_appointmentrole",
+      "types_appointment_types_appointmentstatus",
+      "types_appointment_types_appointmenttype",
+      "types_appointment_types_serviceprovider",
+      "types_appointment_types_timeslot",
+      "types_appointment_types_ts"
+    ],
+    "7": [
+      "userConstants_PERMISSIONS",
+      "userConstants_PROFESSIONAL_ROLES",
+      "userConstants_ROLE_DISPLAY_NAMES",
+      "userConstants_ROLE_PERMISSIONS",
+      "userConstants_USER_ROLES",
+      "userConstants_hasAnyRole",
+      "userConstants_hasPermission",
+      "userConstants_hasRole",
+      "userConstants_isAdmin",
+      "userConstants_isCustomer",
+      "userConstants_isProfessional"
+    ],
+    "8": [
+      "apiclient_api",
+      "appointmentservice_appointmentservice",
+      "authapi_authapi",
+      "authservice_authservice",
+      "paymentsapi_paymentsapi",
+      "petapi_petapi",
+      "productservice_productservice",
+      "professionalservice_professionalservice",
+      "reviewservice_reviewservice",
+      "useappointments_useappointments"
+    ],
+    "9": [
+      "api_exchangeratesservice_detectcurrency",
+      "api_exchangeratesservice_fallback_rates",
+      "api_exchangeratesservice_fetchrates",
+      "api_exchangeratesservice_supported_currencies",
+      "context_currencycontext_currencycontext",
+      "context_currencycontext_currencyprovider",
+      "context_currencycontext_jsx",
+      "context_currencycontext_usecurrency",
+      "services_api_exchangeratesservice_js"
+    ],
+    "10": [
+      "entities_appointment_appointment",
+      "entities_appointment_appointment_constructor",
+      "entities_appointment_appointment_fromjson",
+      "entities_appointment_appointment_ispast",
+      "entities_appointment_appointment_isupcoming",
+      "entities_appointment_appointment_tojson",
+      "entities_appointment_appointment_updatestatus",
+      "entities_appointment_appointment_validate",
+      "models_entities_appointment_js"
+    ],
+    "11": [
+      "entities_product_product",
+      "entities_product_product_addimage",
+      "entities_product_product_constructor",
+      "entities_product_product_fromjson",
+      "entities_product_product_removeimage",
+      "entities_product_product_tojson",
+      "entities_product_product_updaterating",
+      "entities_product_product_validate",
+      "models_entities_product_js"
+    ],
+    "12": [
+      "entities_review_review",
+      "entities_review_review_constructor",
+      "entities_review_review_decrementlikes",
+      "entities_review_review_fromjson",
+      "entities_review_review_incrementlikes",
+      "entities_review_review_tojson",
+      "entities_review_review_validate",
+      "models_entities_review_js"
+    ],
+    "13": [
+      "entities_pet_pet",
+      "entities_pet_pet_addmedicalrecord",
+      "entities_pet_pet_addvaccination",
+      "entities_pet_pet_constructor",
+      "entities_pet_pet_fromjson",
+      "entities_pet_pet_tojson",
+      "entities_pet_pet_validate",
+      "models_entities_pet_js"
+    ],
+    "14": [
+      "context_toastcontext_icon_for_type",
+      "context_toastcontext_jsx",
+      "context_toastcontext_toastcard",
+      "context_toastcontext_toastcontext",
+      "context_toastcontext_toastprovider",
+      "context_toastcontext_toastviewport",
+      "context_toastcontext_usetoast"
+    ],
+    "15": [
+      "extensions_TOOLBAR_GROUPS",
+      "extensions_buildExtensions",
+      "richtext_index",
+      "richtexteditor_RichTextEditor",
+      "richtextrenderer_RichTextRenderer",
+      "toolbar_Toolbar"
+    ],
+    "16": [
+      "utils_validation_commonvalidations",
+      "utils_validation_createvalidator",
+      "utils_validation_formatfieldname",
+      "utils_validation_js",
+      "utils_validation_validationmessages",
+      "utils_validation_validationrules"
+    ],
+    "17": [
+      "constants_appointmentconstants_appointment_durations",
+      "constants_appointmentconstants_appointment_status",
+      "constants_appointmentconstants_appointment_types",
+      "constants_appointmentconstants_js",
+      "constants_appointmentconstants_time_slots"
+    ],
+    "18": [
+      "localservices_professionalservice_professionalservice",
+      "localservices_professionalservice_professionalservice_getall",
+      "localservices_professionalservice_professionalservice_getbyid",
+      "localservices_professionalservice_professionalservice_getbyrole",
+      "services_localservices_professionalservice_js"
+    ],
+    "19": [
+      "context_globaltoastcontext_globaltoastcontext",
+      "context_globaltoastcontext_globaltoastprovider",
+      "context_globaltoastcontext_jsx",
+      "context_globaltoastcontext_useglobaltoast"
+    ],
+    "20": [
+      "authcontext_AuthContext",
+      "signupdropdown_SignUpDropdown",
+      "signupmodal_SignUpModal",
+      "toastcontext_ToastContext"
+    ],
+    "21": [
+      "useform_useform",
+      "validation_createvalidator",
+      "validation_validationmessages",
+      "validation_validationrules"
+    ],
+    "22": [
+      "button_Button",
+      "carousel_Carousel",
+      "carousel_CarouselContext"
+    ],
+    "23": [
+      "hooks_useapi_js",
+      "hooks_useapi_useapi",
+      "hooks_useapi_usepaginatedapi"
+    ],
+    "24": [
+      "confirmmodal_ConfirmModal",
+      "petform_PetForm",
+      "petlist_PetList"
+    ],
+    "25": [
+      "exchangeratesservice_fallbackrates",
+      "exchangeratesservice_fetchrates"
+    ],
+    "26": [
+      "hooks_usedebounce_js",
+      "hooks_usedebounce_usedebounce"
+    ],
+    "27": [
+      "hooks_useform_js",
+      "hooks_useform_useform"
+    ],
+    "28": [
+      "lib_utils_cn",
+      "lib_utils_js"
+    ],
+    "29": [
+      "passwordchangeform_PasswordChangeForm",
+      "profileform_ProfileForm"
+    ],
+    "30": [
+      "useapi_useapi",
+      "useapi_usepaginatedapi"
+    ],
+    "31": [
+      "services_appointmentsApi"
+    ],
+    "32": [
+      "services_cartApi"
+    ],
+    "33": [
+      "services_inventoryApi"
+    ],
+    "34": [
+      "services_invoiceApi"
+    ],
+    "35": [
+      "services_ordersApi"
+    ],
+    "36": [
+      "services_productsApi"
+    ],
+    "37": [
+      "api_professionalsApi"
+    ],
+    "38": [
+      "services_transactionApi"
+    ],
+    "39": [
+      "services_usersApi"
+    ],
+    "40": [
+      "services_userProfileService"
+    ],
+    "41": [
+      "context_AuthContext"
+    ],
+    "42": [
+      "context_CartContext"
+    ],
+    "43": [
+      "context_CurrencyContext"
+    ],
+    "44": [
+      "context_globaltoastcontext"
+    ],
+    "45": [
+      "context_GlobalToastContext"
+    ],
+    "46": [
+      "context_ToastContext"
+    ],
+    "47": [
+      "hook_useDebounce"
+    ],
+    "48": [
+      "services_apiClient"
+    ],
+    "49": [
+      "models_User"
+    ],
+    "50": [
+      "models_Pet"
+    ],
+    "51": [
+      "exchangeratesservice_detectcurrency"
+    ],
+    "52": [
+      "exchangeratesservice_supportedcurrencies"
+    ],
+    "53": [
+      "validation_commonvalidations"
+    ],
+    "54": [
+      "appointmentConstants_APPOINTMENT_TYPES"
+    ],
+    "55": [
+      "appointmentConstants_TIME_SLOTS"
+    ],
+    "56": [
+      "libUtils_cn"
+    ],
+    "57": [
+      "appointmentTypes_TimeSlot"
+    ],
+    "58": [
+      "appointmentDto_AppointmentFilterDTO"
+    ],
+    "59": [
+      "authDto_LoginDTO"
+    ],
+    "60": [
+      "authDto_PasswordResetDTO"
+    ],
+    "61": [
+      "authDto_PasswordChangeDTO"
+    ],
+    "62": [
+      "productDto_ProductUpdateDTO"
+    ],
+    "63": [
+      "productDto_ProductFilterDTO"
+    ],
+    "64": [
+      "accordion_Accordion"
+    ],
+    "65": [
+      "card_Card"
+    ],
+    "66": [
+      "input_Input"
+    ],
+    "67": [
+      "label_Label"
+    ],
+    "68": [
+      "separator_Separator"
+    ],
+    "69": [
+      "tabs_Tabs"
+    ]
+  },
+  "cohesion": {
+    "0": 0.056025369978858354,
+    "1": 0.06747638326585695,
+    "2": 0.12121212121212122,
+    "3": 0.16666666666666666,
+    "4": 0.1736842105263158,
+    "5": 0.13333333333333333,
+    "6": 0.18181818181818182,
+    "7": 0.18181818181818182,
+    "8": 0.2,
+    "9": 0.3055555555555556,
+    "10": 0.2222222222222222,
+    "11": 0.2222222222222222,
+    "12": 0.25,
+    "13": 0.25,
+    "14": 0.2857142857142857,
+    "15": 0.6,
+    "16": 0.3333333333333333,
+    "17": 0.4,
+    "18": 0.4,
+    "19": 0.5,
+    "20": 0.6666666666666666,
+    "21": 0.5,
+    "22": 0.6666666666666666,
+    "23": 1.0,
+    "24": 0.6666666666666666,
+    "25": 1.0,
+    "26": 1.0,
+    "27": 1.0,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 1.0,
+    "31": 1.0,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0
+  },
+  "gods": [
+    {
+      "id": "localservices_productservice_productservice",
+      "label": "ProductService",
+      "degree": 19
+    },
+    {
+      "id": "localservices_appointmentservice_appointmentservice",
+      "label": "AppointmentService",
+      "degree": 18
+    },
+    {
+      "id": "api_apiclient_api",
+      "label": "api",
+      "degree": 13
+    },
+    {
+      "id": "entities_appointment_appointment",
+      "label": "Appointment",
+      "degree": 8
+    },
+    {
+      "id": "entities_product_product",
+      "label": "Product",
+      "degree": 8
+    },
+    {
+      "id": "localservices_userprofileservice_userprofileservice",
+      "label": "UserProfileService",
+      "degree": 7
+    },
+    {
+      "id": "entities_pet_pet",
+      "label": "Pet",
+      "degree": 7
+    },
+    {
+      "id": "entities_review_review",
+      "label": "Review",
+      "degree": 7
+    },
+    {
+      "id": "apiclient_api",
+      "label": "apiClient (api instance)",
+      "degree": 7
+    },
+    {
+      "id": "userConstants_USER_ROLES",
+      "label": "USER_ROLES",
+      "degree": 7
+    }
+  ],
+  "surprises": [
+    {
+      "source": "AppointmentService",
+      "target": "apiClient (api instance)",
+      "source_files": [
+        "frontend/src/Services/localServices/appointmentService.js",
+        "frontend/src/core/api/apiClient.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "uses",
+      "why": "inferred connection - not explicitly stated in source; peripheral node `AppointmentService` unexpectedly reaches hub `apiClient (api instance)`"
+    },
+    {
+      "source": "ProductService",
+      "target": "apiClient (api instance)",
+      "source_files": [
+        "frontend/src/Services/localServices/ProductService.js",
+        "frontend/src/core/api/apiClient.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "uses",
+      "why": "inferred connection - not explicitly stated in source; peripheral node `ProductService` unexpectedly reaches hub `apiClient (api instance)`"
+    },
+    {
+      "source": "ProfessionalService",
+      "target": "apiClient (api instance)",
+      "source_files": [
+        "frontend/src/Services/localServices/professionalService.js",
+        "frontend/src/core/api/apiClient.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "uses",
+      "why": "inferred connection - not explicitly stated in source; peripheral node `ProfessionalService` unexpectedly reaches hub `apiClient (api instance)`"
+    },
+    {
+      "source": "Appointment Entity",
+      "target": "APPOINTMENT_STATUS",
+      "source_files": [
+        "frontend/src/models/entities/Appointment.js",
+        "frontend/src/constants/appointmentConstants.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "uses",
+      "why": "inferred connection - not explicitly stated in source; peripheral node `APPOINTMENT_STATUS` unexpectedly reaches hub `Appointment Entity`"
+    },
+    {
+      "source": "AppointmentCreateDTO",
+      "target": "Appointment Entity",
+      "source_files": [
+        "frontend/src/models/dto/AppointmentDTO.js",
+        "frontend/src/models/entities/Appointment.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; peripheral node `AppointmentCreateDTO` unexpectedly reaches hub `Appointment Entity`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `appointmentsApi`, `authApi`, `cartApi` to the rest of the system?",
+      "why": "118 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.056025369978858354 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 1` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.06747638326585695 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 2` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.12121212121212122 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 5` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

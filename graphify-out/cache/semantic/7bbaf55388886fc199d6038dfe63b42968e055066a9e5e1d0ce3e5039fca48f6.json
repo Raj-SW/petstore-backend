@@ -1,0 +1,1 @@
+{"nodes": [{"id": "services_invoiceApi", "label": "invoiceApi Service", "file_type": "code", "source_file": "frontend/src/Services/api/invoiceApi.js", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null}], "edges": [], "hyperedges": []}

@@ -1,0 +1,530 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "currency_behavior_tests",
+        "label": "Currency Behavior Test Coverage",
+        "nodes": [
+          "test_currencycontext_test",
+          "test_exchangeratesservice_test",
+          "test_price_test"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.95,
+        "source_file": "frontend/src/test/CurrencyContext.test.jsx"
+      },
+      {
+        "id": "currency_system_under_test",
+        "label": "Currency System Under Test",
+        "nodes": [
+          "context_currencycontext",
+          "services_exchangeratesservice",
+          "components_price"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "frontend/src/test/CurrencyContext.test.jsx"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "CurrencyContext.test.jsx",
+      "file_type": "code",
+      "source_file": "CurrencyContext.test.jsx",
+      "source_location": "L1",
+      "id": "currencycontext_test_jsx",
+      "community": 2,
+      "norm_label": "currencycontext.test.jsx"
+    },
+    {
+      "label": "renderWithProvider()",
+      "file_type": "code",
+      "source_file": "CurrencyContext.test.jsx",
+      "source_location": "L40",
+      "id": "test_currencycontext_test_renderwithprovider",
+      "community": 2,
+      "norm_label": "renderwithprovider()"
+    },
+    {
+      "label": "Consumer()",
+      "file_type": "code",
+      "source_file": "CurrencyContext.test.jsx",
+      "source_location": "L50",
+      "id": "test_currencycontext_test_consumer",
+      "community": 2,
+      "norm_label": "consumer()"
+    },
+    {
+      "label": "consoleSpy",
+      "file_type": "code",
+      "source_file": "CurrencyContext.test.jsx",
+      "source_location": "L246",
+      "id": "test_currencycontext_test_consolespy",
+      "community": 2,
+      "norm_label": "consolespy"
+    },
+    {
+      "label": "Rogue()",
+      "file_type": "code",
+      "source_file": "CurrencyContext.test.jsx",
+      "source_location": "L247",
+      "id": "test_currencycontext_test_rogue",
+      "community": 2,
+      "norm_label": "rogue()"
+    },
+    {
+      "label": "exchangeRatesService.test.js",
+      "file_type": "code",
+      "source_file": "exchangeRatesService.test.js",
+      "source_location": "L1",
+      "id": "exchangeratesservice_test_js",
+      "community": 0,
+      "norm_label": "exchangeratesservice.test.js"
+    },
+    {
+      "label": "setLang()",
+      "file_type": "code",
+      "source_file": "exchangeRatesService.test.js",
+      "source_location": "L13",
+      "id": "test_exchangeratesservice_test_setlang",
+      "community": 0,
+      "norm_label": "setlang()"
+    },
+    {
+      "label": "cachedRates",
+      "file_type": "code",
+      "source_file": "exchangeRatesService.test.js",
+      "source_location": "L94",
+      "id": "test_exchangeratesservice_test_cachedrates",
+      "community": 0,
+      "norm_label": "cachedrates"
+    },
+    {
+      "label": "fetchSpy",
+      "file_type": "code",
+      "source_file": "exchangeRatesService.test.js",
+      "source_location": "L99",
+      "id": "test_exchangeratesservice_test_fetchspy",
+      "community": 0,
+      "norm_label": "fetchspy"
+    },
+    {
+      "label": "freshRates",
+      "file_type": "code",
+      "source_file": "exchangeRatesService.test.js",
+      "source_location": "L116",
+      "id": "test_exchangeratesservice_test_freshrates",
+      "community": 0,
+      "norm_label": "freshrates"
+    },
+    {
+      "label": "before",
+      "file_type": "code",
+      "source_file": "exchangeRatesService.test.js",
+      "source_location": "L139",
+      "id": "test_exchangeratesservice_test_before",
+      "community": 0,
+      "norm_label": "before"
+    },
+    {
+      "label": "after",
+      "file_type": "code",
+      "source_file": "exchangeRatesService.test.js",
+      "source_location": "L141",
+      "id": "test_exchangeratesservice_test_after",
+      "community": 0,
+      "norm_label": "after"
+    },
+    {
+      "label": "cached",
+      "file_type": "code",
+      "source_file": "exchangeRatesService.test.js",
+      "source_location": "L143",
+      "id": "test_exchangeratesservice_test_cached",
+      "community": 0,
+      "norm_label": "cached"
+    },
+    {
+      "label": "Price.test.jsx",
+      "file_type": "code",
+      "source_file": "Price.test.jsx",
+      "source_location": "L1",
+      "id": "price_test_jsx",
+      "community": 3,
+      "norm_label": "price.test.jsx"
+    },
+    {
+      "label": "mockMUR()",
+      "file_type": "code",
+      "source_file": "Price.test.jsx",
+      "source_location": "L17",
+      "id": "test_price_test_mockmur",
+      "community": 3,
+      "norm_label": "mockmur()"
+    },
+    {
+      "label": "mockUSD()",
+      "file_type": "code",
+      "source_file": "Price.test.jsx",
+      "source_location": "L25",
+      "id": "test_price_test_mockusd",
+      "community": 3,
+      "norm_label": "mockusd()"
+    },
+    {
+      "label": "{ container }",
+      "file_type": "code",
+      "source_file": "Price.test.jsx",
+      "source_location": "L65",
+      "id": "test_price_test_container",
+      "community": 3,
+      "norm_label": "{ container }"
+    },
+    {
+      "label": "setup.js",
+      "file_type": "code",
+      "source_file": "setup.js",
+      "source_location": "L1",
+      "id": "setup_js",
+      "community": 4,
+      "norm_label": "setup.js"
+    },
+    {
+      "label": "CurrencyContext Test Suite",
+      "file_type": "code",
+      "source_file": "frontend/src/test/CurrencyContext.test.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "test_currencycontext_test",
+      "community": 1,
+      "norm_label": "currencycontext test suite"
+    },
+    {
+      "label": "exchangeRatesService Test Suite",
+      "file_type": "code",
+      "source_file": "frontend/src/test/exchangeRatesService.test.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "test_exchangeratesservice_test",
+      "community": 1,
+      "norm_label": "exchangeratesservice test suite"
+    },
+    {
+      "label": "Price Component Test Suite",
+      "file_type": "code",
+      "source_file": "frontend/src/test/Price.test.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "test_price_test",
+      "community": 1,
+      "norm_label": "price component test suite"
+    },
+    {
+      "label": "Vitest/Jest-DOM Setup",
+      "file_type": "code",
+      "source_file": "frontend/src/test/setup.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "test_setup",
+      "community": 5,
+      "norm_label": "vitest/jest-dom setup"
+    },
+    {
+      "label": "CurrencyContext (CurrencyProvider, useCurrency)",
+      "file_type": "code",
+      "source_file": "frontend/src/context/CurrencyContext.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "context_currencycontext",
+      "community": 1,
+      "norm_label": "currencycontext (currencyprovider, usecurrency)"
+    },
+    {
+      "label": "exchangeRatesService (fetchRates, detectCurrency, FALLBACK_RATES)",
+      "file_type": "code",
+      "source_file": "frontend/src/Services/api/exchangeRatesService.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "services_exchangeratesservice",
+      "community": 1,
+      "norm_label": "exchangeratesservice (fetchrates, detectcurrency, fallback_rates)"
+    },
+    {
+      "label": "Price Component",
+      "file_type": "code",
+      "source_file": "frontend/src/Components/HelperComponents/Price/Price.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "components_price",
+      "community": 1,
+      "norm_label": "price component"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CurrencyContext.test.jsx",
+      "source_location": "L246",
+      "weight": 1.0,
+      "source": "currencycontext_test_jsx",
+      "target": "test_currencycontext_test_consolespy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CurrencyContext.test.jsx",
+      "source_location": "L229",
+      "weight": 1.0,
+      "source": "currencycontext_test_jsx",
+      "target": "test_currencycontext_test_consumer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CurrencyContext.test.jsx",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "currencycontext_test_jsx",
+      "target": "test_currencycontext_test_renderwithprovider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CurrencyContext.test.jsx",
+      "source_location": "L247",
+      "weight": 1.0,
+      "source": "currencycontext_test_jsx",
+      "target": "test_currencycontext_test_rogue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "exchangeRatesService.test.js",
+      "source_location": "L141",
+      "weight": 1.0,
+      "source": "exchangeratesservice_test_js",
+      "target": "test_exchangeratesservice_test_after",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "exchangeRatesService.test.js",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "exchangeratesservice_test_js",
+      "target": "test_exchangeratesservice_test_before",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "exchangeRatesService.test.js",
+      "source_location": "L143",
+      "weight": 1.0,
+      "source": "exchangeratesservice_test_js",
+      "target": "test_exchangeratesservice_test_cached",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "exchangeRatesService.test.js",
+      "source_location": "L94",
+      "weight": 1.0,
+      "source": "exchangeratesservice_test_js",
+      "target": "test_exchangeratesservice_test_cachedrates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "exchangeRatesService.test.js",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "exchangeratesservice_test_js",
+      "target": "test_exchangeratesservice_test_fetchspy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "exchangeRatesService.test.js",
+      "source_location": "L151",
+      "weight": 1.0,
+      "source": "exchangeratesservice_test_js",
+      "target": "test_exchangeratesservice_test_freshrates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "exchangeRatesService.test.js",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "exchangeratesservice_test_js",
+      "target": "test_exchangeratesservice_test_setlang",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Price.test.jsx",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "price_test_jsx",
+      "target": "test_price_test_container",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Price.test.jsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "price_test_jsx",
+      "target": "test_price_test_mockmur",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Price.test.jsx",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "price_test_jsx",
+      "target": "test_price_test_mockusd",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "tests",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/test/CurrencyContext.test.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_currencycontext_test",
+      "target": "context_currencycontext"
+    },
+    {
+      "relation": "mocks",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/test/CurrencyContext.test.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_currencycontext_test",
+      "target": "services_exchangeratesservice"
+    },
+    {
+      "relation": "tests",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/test/exchangeRatesService.test.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_exchangeratesservice_test",
+      "target": "services_exchangeratesservice"
+    },
+    {
+      "relation": "tests",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/test/Price.test.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_price_test",
+      "target": "components_price"
+    },
+    {
+      "relation": "mocks",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/test/Price.test.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_price_test",
+      "target": "context_currencycontext"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "frontend/src/test/Price.test.jsx",
+      "source_location": null,
+      "weight": 0.9,
+      "source": "components_price",
+      "target": "context_currencycontext"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "frontend/src/test/CurrencyContext.test.jsx",
+      "source_location": null,
+      "weight": 0.9,
+      "source": "context_currencycontext",
+      "target": "services_exchangeratesservice"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "currency_behavior_tests",
+      "label": "Currency Behavior Test Coverage",
+      "nodes": [
+        "test_currencycontext_test",
+        "test_exchangeratesservice_test",
+        "test_price_test"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "frontend/src/test/CurrencyContext.test.jsx"
+    },
+    {
+      "id": "currency_system_under_test",
+      "label": "Currency System Under Test",
+      "nodes": [
+        "context_currencycontext",
+        "services_exchangeratesservice",
+        "components_price"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/test/CurrencyContext.test.jsx"
+    }
+  ],
+  "built_at_commit": "f8eb254b0fc06877a94a29f20014f75b87da68fe"
+}

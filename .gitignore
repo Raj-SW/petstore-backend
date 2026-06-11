@@ -28,6 +28,7 @@ coverage/
 # IDE
 .idea/
 .vscode/
+.vs/
 *.swp
 *.swo
 
@@ -48,3 +49,9 @@ build/
 
 # Generated audit/analysis files
 AUDIT.md
+
+# Graphify intermediate pipeline files (regenerate on every run)
+graphify-out/.graphify_*.json
+graphify-out/.graphify_*.txt
+graphify-out/**/.graphify_*.json
+graphify-out/.graphify_python

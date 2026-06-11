@@ -1,0 +1,602 @@
+{
+  "communities": {
+    "0": [
+      "addtocart_AddToCart",
+      "api_appointmentsApi",
+      "api_professionalsApi",
+      "appointmentform_AppointmentForm",
+      "cartitem_CartItem",
+      "cartmodal_CartModal",
+      "context_CartContext",
+      "context_CurrencyContext",
+      "context_GlobalToastContext",
+      "context_ToastContext",
+      "hook_useDebounce",
+      "loadingspinner_LoadingSpinner",
+      "paginationbar_PaginationBar",
+      "price_Price",
+      "productcard_ProductCard",
+      "productcardv2_ProductCardV2",
+      "professionalcalendar_ProfessionalCalendar",
+      "professionalcard_ProfessionalCard",
+      "professionallist_ProfessionalList",
+      "searchbar_SearchBar",
+      "timeslotgrid_TimeSlotGrid"
+    ],
+    "1": [
+      "richtext_extensions_buildextensions",
+      "richtext_extensions_js",
+      "richtext_extensions_linkconfig",
+      "richtext_extensions_textalignconfig",
+      "richtext_extensions_toolbar_groups",
+      "richtext_index_js",
+      "richtext_richtexteditor_jsx",
+      "richtext_richtexteditor_richtexteditor",
+      "richtext_richtextrenderer_jsx",
+      "richtext_richtextrenderer_purify_config",
+      "richtext_richtextrenderer_richtextrenderer",
+      "richtext_richtextrenderer_sanitize",
+      "richtext_toolbar_btn",
+      "richtext_toolbar_divider",
+      "richtext_toolbar_jsx",
+      "richtext_toolbar_linkdialog",
+      "richtext_toolbar_toolbar"
+    ],
+    "2": [
+      "appointmentform_appointmentform_appointmentform",
+      "auth_rolebasedroute_jsx",
+      "auth_rolebasedroute_rolebasedroute",
+      "helpercomponents_appointmentform_appointmentform_jsx",
+      "helpercomponents_loadingspinner_loadingspinner_jsx",
+      "helpercomponents_paginationbar_paginationbar_jsx",
+      "helpercomponents_professionalcalendar_professionalcalendar_jsx",
+      "helpercomponents_professionalcard_professionalcard_jsx",
+      "helpercomponents_professionallist_index_js",
+      "helpercomponents_professionallist_professionallist_jsx",
+      "loadingspinner_loadingspinner_loadingspinner",
+      "paginationbar_paginationbar_paginationbar",
+      "professionalcalendar_professionalcalendar_professionalcalendar",
+      "professionalcard_professionalcard_professionalcard",
+      "professionallist_professionallist_professional_configs",
+      "professionallist_professionallist_professionallist"
+    ],
+    "3": [
+      "api_productsApi",
+      "auth_AuthField",
+      "auth_AuthModal",
+      "auth_ForgotPasswordModal",
+      "authcontext_AuthContext",
+      "context_AuthContext",
+      "currencyselector_CurrencySelector",
+      "errorboundary_ErrorBoundary",
+      "loginmodal_LoginModal",
+      "navigationbar_NavigationBar",
+      "productreviewcard_ProductReviewCard",
+      "productreviewformmodal_ProductReviewFormModal",
+      "servicesdropdown_ServicesDropdown",
+      "signupdropdown_SignUpDropdown",
+      "signupmodal_SignUpModal",
+      "toastcontext_ToastContext"
+    ],
+    "4": [
+      "auth_authfield_authfield",
+      "auth_authfield_jsx",
+      "auth_authmodal_authmodal",
+      "auth_authmodal_jsx",
+      "auth_forgotpasswordmodal_forgotpasswordmodal",
+      "auth_forgotpasswordmodal_jsx",
+      "dropdowns_loginmodal_loginmodal",
+      "dropdowns_signupdropdown_signupdropdown",
+      "dropdowns_signupmodal_signupmodal",
+      "navigationbar_dropdowns_loginmodal_jsx",
+      "navigationbar_dropdowns_signupdropdown_jsx",
+      "navigationbar_dropdowns_signupmodal_jsx"
+    ],
+    "5": [
+      "cartitem_cartitem_btnspring",
+      "cartitem_cartitem_cartitem",
+      "helpercomponents_cartitem_cartitem_jsx",
+      "helpercomponents_price_price_jsx",
+      "helpercomponents_productcard_productcardv2_jsx",
+      "navigationbar_cartmodal_cartmodal",
+      "navigationbar_cartmodal_jsx",
+      "price_price_price",
+      "productcard_productcardv2_productcardv2",
+      "productcard_productcardv2_resolveproductimage",
+      "productcard_productcardv2_striphtml"
+    ],
+    "6": [
+      "currencyselector_currencyselector_currencyselector",
+      "dropdowns_servicesdropdown_service_items",
+      "dropdowns_servicesdropdown_servicesdropdown",
+      "helpercomponents_currencyselector_currencyselector_jsx",
+      "navigationbar_addtocart_addtocart",
+      "navigationbar_addtocart_jsx",
+      "navigationbar_dropdowns_servicesdropdown_jsx",
+      "navigationbar_navigationbar_jsx",
+      "navigationbar_navigationbar_mobile_service_items",
+      "navigationbar_navigationbar_nav_links",
+      "navigationbar_navigationbar_navigationbar"
+    ],
+    "7": [
+      "ui_button_button",
+      "ui_button_buttonvariants",
+      "ui_button_jsx",
+      "ui_carousel_carousel",
+      "ui_carousel_carouselcontent",
+      "ui_carousel_carouselcontext",
+      "ui_carousel_carouselitem",
+      "ui_carousel_carouselnext",
+      "ui_carousel_carouselprevious",
+      "ui_carousel_jsx",
+      "ui_carousel_usecarousel"
+    ],
+    "8": [
+      "appointmentcard_appointmentcard",
+      "appointmentform_appointmentform",
+      "context_toastcontext",
+      "errorboundary_appointmenterrorboundary",
+      "professionalcalendar_professionalcalendar",
+      "services_appointmentsapi",
+      "services_usersapi"
+    ],
+    "9": [
+      "adminlayout_adminlayout",
+      "context_authcontext",
+      "context_globaltoastcontext",
+      "datatable_datatable",
+      "helpercomponents_loadingspinner",
+      "protectedroute_protectedroute",
+      "rolebasedroute_rolebasedroute"
+    ],
+    "10": [
+      "ui_card_card",
+      "ui_card_cardcontent",
+      "ui_card_carddescription",
+      "ui_card_cardfooter",
+      "ui_card_cardheader",
+      "ui_card_cardtitle",
+      "ui_card_jsx"
+    ],
+    "11": [
+      "components_errorboundary_appointmenterrorboundary",
+      "components_errorboundary_appointmenterrorboundary_componentdidcatch",
+      "components_errorboundary_appointmenterrorboundary_constructor",
+      "components_errorboundary_appointmenterrorboundary_getderivedstatefromerror",
+      "components_errorboundary_appointmenterrorboundary_render",
+      "errorboundary_jsx"
+    ],
+    "12": [
+      "errorboundary_errorboundary_errorboundary",
+      "errorboundary_errorboundary_errorboundary_componentdidcatch",
+      "errorboundary_errorboundary_errorboundary_constructor",
+      "errorboundary_errorboundary_errorboundary_getderivedstatefromerror",
+      "errorboundary_errorboundary_errorboundary_render",
+      "helpercomponents_errorboundary_errorboundary_jsx"
+    ],
+    "13": [
+      "extensions_TOOLBAR_GROUPS",
+      "extensions_buildExtensions",
+      "richtext_index",
+      "richtexteditor_RichTextEditor",
+      "richtextrenderer_RichTextRenderer",
+      "toolbar_Toolbar"
+    ],
+    "14": [
+      "dropdowns_carddropdown_carddropdown",
+      "dropdowns_carddropdown_listitem",
+      "dropdowns_carddropdown_menu_items",
+      "dropdowns_carddropdown_navigationcarousel",
+      "navigationbar_dropdowns_carddropdown_jsx"
+    ],
+    "15": [
+      "authfield_authfield",
+      "authmodal_authmodal",
+      "forgotpasswordmodal_forgotpasswordmodal",
+      "forminput_forminput",
+      "resetpassword_resetpassword"
+    ],
+    "16": [
+      "carousel_reviewcarousel_reviewcarousel",
+      "helpercomponents_carousel_reviewcarousel_jsx",
+      "helpercomponents_productreviewcard_productreviewcard_jsx",
+      "productreviewcard_productreviewcard_productreviewcard",
+      "productreviewcard_productreviewcard_star_labels"
+    ],
+    "17": [
+      "ui_accordion_accordioncontent",
+      "ui_accordion_accordionitem",
+      "ui_accordion_accordiontrigger",
+      "ui_accordion_jsx"
+    ],
+    "18": [
+      "ui_tabs_jsx",
+      "ui_tabs_tabscontent",
+      "ui_tabs_tabslist",
+      "ui_tabs_tabstrigger"
+    ],
+    "19": [
+      "button_Button",
+      "carousel_Carousel",
+      "carousel_CarouselContext"
+    ],
+    "20": [
+      "checkoutstepper_checkoutstepper_checkoutstepper",
+      "checkoutstepper_checkoutstepper_steps",
+      "helpercomponents_checkoutstepper_checkoutstepper_jsx"
+    ],
+    "21": [
+      "footer_footer_footer",
+      "footer_footer_jsx",
+      "footer_footer_links"
+    ],
+    "22": [
+      "helpercomponents_sortdropdown_sortdropdown_jsx",
+      "sortdropdown_sortdropdown_options",
+      "sortdropdown_sortdropdown_sortdropdown"
+    ],
+    "23": [
+      "confirmmodal_ConfirmModal",
+      "petform_PetForm",
+      "petlist_PetList"
+    ],
+    "24": [
+      "helpercomponents_searchbar_searchbar_jsx",
+      "searchbar_searchbar_gooeyfilter",
+      "searchbar_searchbar_searchbar"
+    ],
+    "25": [
+      "ui_label_jsx",
+      "ui_label_label",
+      "ui_label_labelvariants"
+    ],
+    "26": [
+      "userprofile_petform_empty_form",
+      "userprofile_petform_jsx",
+      "userprofile_petform_petform"
+    ],
+    "27": [
+      "userprofile_petlist_jsx",
+      "userprofile_petlist_petlist",
+      "userprofile_petlist_type_icon"
+    ],
+    "28": [
+      "addtocartcomponent_cartmodalcomponent_cartmodalcomponent",
+      "addtocartcomponent_cartmodalcomponent_jsx"
+    ],
+    "29": [
+      "admin_adminlayout_adminlayout",
+      "admin_adminlayout_jsx"
+    ],
+    "30": [
+      "appointmentcard_appointmentcard_appointmentcard",
+      "helpercomponents_appointmentcard_appointmentcard_jsx"
+    ],
+    "31": [
+      "auth_protectedroute_jsx",
+      "auth_protectedroute_protectedroute"
+    ],
+    "32": [
+      "auth_resetpassword_jsx",
+      "auth_resetpassword_resetpassword"
+    ],
+    "33": [
+      "breadcrumb_breadcrumb_breadcrumb",
+      "helpercomponents_breadcrumb_breadcrumb_jsx"
+    ],
+    "34": [
+      "cartitem_cartitem",
+      "helpercomponents_price"
+    ],
+    "35": [
+      "context_currencycontext",
+      "currencyselector_currencyselector"
+    ],
+    "36": [
+      "custombutton_custombutton_custombutton",
+      "helpercomponents_custombutton_custombutton_jsx"
+    ],
+    "37": [
+      "admin_datatable_datatable_jsx",
+      "datatable_datatable_datatable"
+    ],
+    "38": [
+      "common_forminput_forminput_jsx",
+      "forminput_forminput_forminput"
+    ],
+    "39": [
+      "helpercomponents_productcard_productcard_jsx",
+      "productcard_productcard_productcard"
+    ],
+    "40": [
+      "helpercomponents_productreviewcard",
+      "reviewcarousel_reviewcarousel"
+    ],
+    "41": [
+      "helpercomponents_timeslotgrid_timeslotgrid_jsx",
+      "timeslotgrid_timeslotgrid_timeslotgrid"
+    ],
+    "42": [
+      "passwordchangeform_PasswordChangeForm",
+      "profileform_ProfileForm"
+    ],
+    "43": [
+      "helpercomponents_productreviewformmodal_productreviewformmodal_jsx",
+      "productreviewformmodal_productreviewformmodal_productreviewformmodal"
+    ],
+    "44": [
+      "components_professionalcalendar_handledateselect",
+      "professionalcalendar_jsx"
+    ],
+    "45": [
+      "ui_input_input",
+      "ui_input_jsx"
+    ],
+    "46": [
+      "ui_separator_jsx",
+      "ui_separator_separator"
+    ],
+    "47": [
+      "userprofile_confirmmodal_confirmmodal",
+      "userprofile_confirmmodal_jsx"
+    ],
+    "48": [
+      "userprofile_passwordchangeform_jsx",
+      "userprofile_passwordchangeform_passwordchangeform"
+    ],
+    "49": [
+      "userprofile_profileform_jsx",
+      "userprofile_profileform_profileform"
+    ],
+    "50": [
+      "cartmodalcomponent_cartmodalcomponent"
+    ],
+    "51": [
+      "footer_footer"
+    ],
+    "52": [
+      "breadcrumb_breadcrumb"
+    ],
+    "53": [
+      "checkoutstepper_checkoutstepper"
+    ],
+    "54": [
+      "custombutton_custombutton"
+    ],
+    "55": [
+      "sortdropdown_SortDropDown"
+    ],
+    "56": [
+      "carddropdown_CardDropDown"
+    ],
+    "57": [
+      "accordion_Accordion"
+    ],
+    "58": [
+      "card_Card"
+    ],
+    "59": [
+      "input_Input"
+    ],
+    "60": [
+      "label_Label"
+    ],
+    "61": [
+      "separator_Separator"
+    ],
+    "62": [
+      "tabs_Tabs"
+    ]
+  },
+  "cohesion": {
+    "0": 0.12857142857142856,
+    "1": 0.17647058823529413,
+    "2": 0.125,
+    "3": 0.13333333333333333,
+    "4": 0.22727272727272727,
+    "5": 0.23636363636363636,
+    "6": 0.18181818181818182,
+    "7": 0.2,
+    "8": 0.2857142857142857,
+    "9": 0.3333333333333333,
+    "10": 0.2857142857142857,
+    "11": 0.3333333333333333,
+    "12": 0.3333333333333333,
+    "13": 0.6,
+    "14": 0.4,
+    "15": 0.4,
+    "16": 0.4,
+    "17": 0.5,
+    "18": 0.5,
+    "19": 0.6666666666666666,
+    "20": 0.6666666666666666,
+    "21": 0.6666666666666666,
+    "22": 0.6666666666666666,
+    "23": 0.6666666666666666,
+    "24": 0.6666666666666666,
+    "25": 0.6666666666666666,
+    "26": 0.6666666666666666,
+    "27": 0.6666666666666666,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 1.0,
+    "31": 1.0,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0
+  },
+  "gods": [
+    {
+      "id": "professionalcalendar_ProfessionalCalendar",
+      "label": "ProfessionalCalendar",
+      "degree": 7
+    },
+    {
+      "id": "professionallist_ProfessionalList",
+      "label": "ProfessionalList",
+      "degree": 7
+    },
+    {
+      "id": "appointmentform_appointmentform",
+      "label": "AppointmentForm",
+      "degree": 6
+    },
+    {
+      "id": "navigationbar_NavigationBar",
+      "label": "NavigationBar",
+      "degree": 6
+    },
+    {
+      "id": "context_ToastContext",
+      "label": "ToastContext",
+      "degree": 6
+    },
+    {
+      "id": "components_errorboundary_appointmenterrorboundary",
+      "label": "AppointmentErrorBoundary",
+      "degree": 5
+    },
+    {
+      "id": "errorboundary_errorboundary_errorboundary",
+      "label": "ErrorBoundary",
+      "degree": 5
+    },
+    {
+      "id": "cartmodal_CartModal",
+      "label": "CartModal",
+      "degree": 5
+    },
+    {
+      "id": "loginmodal_LoginModal",
+      "label": "LoginModal",
+      "degree": 5
+    },
+    {
+      "id": "context_CartContext",
+      "label": "CartContext",
+      "degree": 5
+    }
+  ],
+  "surprises": [
+    {
+      "source": "SearchBar",
+      "target": "CartContext",
+      "source_files": [
+        "frontend/src/Components/HelperComponents/SearchBar/SearchBar.jsx",
+        "frontend/src/context/CartContext.jsx"
+      ],
+      "confidence": "AMBIGUOUS",
+      "relation": "conceptually_related_to",
+      "why": "ambiguous connection - not explicitly stated in source; peripheral node `SearchBar` unexpectedly reaches hub `CartContext`"
+    },
+    {
+      "source": "AppointmentErrorBoundary",
+      "target": "AppointmentForm",
+      "source_files": [
+        "frontend/src/Components/ErrorBoundary.jsx",
+        "frontend/src/Components/HelperComponents/AppointmentForm/AppointmentForm.jsx"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; peripheral node `AppointmentErrorBoundary` unexpectedly reaches hub `AppointmentForm`"
+    },
+    {
+      "source": "ProfessionalCalendar",
+      "target": "AppointmentForm",
+      "source_files": [
+        "frontend/src/Components/ProfessionalCalendar.jsx",
+        "frontend/src/Components/HelperComponents/AppointmentForm/AppointmentForm.jsx"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; peripheral node `ProfessionalCalendar` unexpectedly reaches hub `AppointmentForm`"
+    },
+    {
+      "source": "AuthField",
+      "target": "FormInput",
+      "source_files": [
+        "frontend/src/Components/Auth/AuthField.jsx",
+        "frontend/src/Components/Common/FormInput/FormInput.jsx"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "AppointmentCard",
+      "target": "AppointmentForm",
+      "source_files": [
+        "frontend/src/Components/HelperComponents/AppointmentCard/AppointmentCard.jsx",
+        "frontend/src/Components/HelperComponents/AppointmentForm/AppointmentForm.jsx"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; peripheral node `AppointmentCard` unexpectedly reaches hub `AppointmentForm`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "ambiguous_edge",
+      "question": "What is the exact relationship between `SearchBar` and `CartContext`?",
+      "why": "Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `NavigationBar` connect `Community 3` to `Community 0`?",
+      "why": "High betweenness centrality (0.007) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `ToastContext` connect `Community 0` to `Community 3`?",
+      "why": "High betweenness centrality (0.006) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `AuthContext` connect `Community 3` to `Community 0`?",
+      "why": "High betweenness centrality (0.006) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 3 inferred relationships involving `AppointmentForm` (e.g. with `AppointmentCard` and `AppointmentErrorBoundary`) actually correct?",
+      "why": "`AppointmentForm` has 3 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `LINKS`, `btnSpring`, `STEPS` to the rest of the system?",
+      "why": "96 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.12857142857142856 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

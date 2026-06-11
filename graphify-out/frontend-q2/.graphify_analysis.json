@@ -1,0 +1,587 @@
+{
+  "communities": {
+    "0": [
+      "adminanalytics_AdminAnalytics",
+      "adminappointments_AdminAppointments",
+      "admindashboard_AdminDashboard",
+      "admininventory_AdminInventory",
+      "admininvoices_AdminInvoices",
+      "adminorders_AdminOrders",
+      "adminproductform_AdminProductForm",
+      "adminproducts_AdminProducts",
+      "adminsettings_AdminSettings",
+      "admintransactions_AdminTransactions",
+      "adminusers_AdminUsers",
+      "components_DataTable",
+      "components_LoadingSpinner",
+      "components_ProductCard",
+      "components_RichTextEditor",
+      "context_ToastContext",
+      "featuredproductsection_FeaturedProductSection",
+      "herosection_HeroSection",
+      "homepage_HomePage",
+      "services_apiClient",
+      "services_appointmentsApi",
+      "services_inventoryApi",
+      "services_invoiceApi",
+      "services_ordersApi",
+      "services_productsApi",
+      "services_transactionApi",
+      "services_usersApi"
+    ],
+    "1": [
+      "contactsection_contactsection_contactsection",
+      "contactsection_contactsection_promo_slides",
+      "contactsection_contactsection_slidevariants",
+      "homepage_homepage_homepage",
+      "homepage_homepage_jsx",
+      "homepage_homepagesections_contactsection_contactsection_jsx",
+      "homepage_homepagesections_featuredproductsection_jsx",
+      "homepage_homepagesections_herosection_jsx",
+      "homepage_homepagesections_promobannercarousel_promobannercarousel_jsx",
+      "homepage_homepagesections_servicessection_jsx",
+      "homepage_homepagesections_statssection_jsx",
+      "homepagesections_featuredproductsection_featuredproductsection",
+      "homepagesections_featuredproductsection_tabs",
+      "homepagesections_herosection_features",
+      "homepagesections_herosection_herosection",
+      "homepagesections_servicessection_servicecard",
+      "homepagesections_servicessection_services",
+      "homepagesections_servicessection_servicessection",
+      "homepagesections_statssection_slide_images",
+      "homepagesections_statssection_slidevariants",
+      "homepagesections_statssection_stats",
+      "homepagesections_statssection_statssection",
+      "homepagesections_statssection_testimonials",
+      "promobannercarousel_promobannercarousel_promobannercarousel",
+      "promobannercarousel_promobannercarousel_slides",
+      "promobannercarousel_promobannercarousel_variants"
+    ],
+    "2": [
+      "appointmentcalendar_AppointmentCalendar",
+      "appointmentpage_AppointmentPage",
+      "components_AppointmentCard",
+      "components_AppointmentForm",
+      "components_Breadcrumb",
+      "components_ConfirmModal",
+      "components_PasswordChangeForm",
+      "components_PetForm",
+      "components_PetList",
+      "components_ProfessionalList",
+      "components_ProfileForm",
+      "context_AuthContext",
+      "models_Pet",
+      "models_User",
+      "services_userProfileService",
+      "userprofile_UserProfile"
+    ],
+    "3": [
+      "filtercomponent_FilterComponent",
+      "individualproductitempage_IndividualProductItemPage",
+      "individualproductitempage_ProductSectionTabs",
+      "myorderspage_MyOrdersPage",
+      "myorderspage_OrderTimeline",
+      "myorderspage_RefundModal",
+      "orderconfirmedpage_OrderConfirmedPage",
+      "paymentpage_CheckoutForm",
+      "paymentpage_PaymentPage",
+      "petshoppage_PetShopPage"
+    ],
+    "4": [
+      "myorders_myorderspage_filter_tabs",
+      "myorders_myorderspage_jsx",
+      "myorders_myorderspage_myorderspage",
+      "myorders_myorderspage_ordertimeline",
+      "myorders_myorderspage_payment_meta",
+      "myorders_myorderspage_refund_reasons",
+      "myorders_myorderspage_refundmodal",
+      "myorders_myorderspage_status_meta",
+      "myorders_myorderspage_timeline_steps"
+    ],
+    "5": [
+      "admin_inventory_admininventory_jsx",
+      "inventory_admininventory_admininventory",
+      "inventory_admininventory_badge",
+      "inventory_admininventory_empty_adjust",
+      "inventory_admininventory_empty_history",
+      "inventory_admininventory_empty_restock",
+      "inventory_admininventory_movement_type_colors",
+      "inventory_admininventory_status_opts"
+    ],
+    "6": [
+      "petshoppage_filtercomponent_categories",
+      "petshoppage_filtercomponent_filtercomponent",
+      "petshoppage_filtercomponent_jsx",
+      "petshoppage_filtercomponent_ratings",
+      "petshoppage_petshoppage_jsx",
+      "petshoppage_petshoppage_petshoppage",
+      "petshoppage_petshoppage_quick_cats"
+    ],
+    "7": [
+      "cartcheckout_CartCheckoutPage",
+      "components_CartItem",
+      "components_CheckoutStepper",
+      "components_Price",
+      "context_CartContext",
+      "context_CurrencyContext",
+      "services_cartApi"
+    ],
+    "8": [
+      "admin_products_adminproductform_jsx",
+      "products_adminproductform_adminproductform",
+      "products_adminproductform_categories",
+      "products_adminproductform_empty_form",
+      "products_adminproductform_genders",
+      "products_adminproductform_sectioncard"
+    ],
+    "9": [
+      "appointmentcalendar_appointmentcalendar_appointmentcalendar",
+      "appointmentpage_appointmentcalendar_appointmentcalendar_jsx",
+      "appointmentpage_appointmentpage_appointmentpage",
+      "appointmentpage_appointmentpage_jsx",
+      "appointmentpage_appointmentpage_tabs",
+      "appointmentpage_appointmentpage_valid_tabs"
+    ],
+    "10": [
+      "admin_orders_adminorders_jsx",
+      "orders_adminorders_adminorders",
+      "orders_adminorders_fmt",
+      "orders_adminorders_getpaymentclass",
+      "orders_adminorders_getstatusclass",
+      "orders_adminorders_status_options"
+    ],
+    "11": [
+      "extensions_TOOLBAR_GROUPS",
+      "extensions_buildExtensions",
+      "richtext_index",
+      "richtexteditor_RichTextEditor",
+      "richtextrenderer_RichTextRenderer",
+      "toolbar_Toolbar"
+    ],
+    "12": [
+      "servicepage_servicepage_jsx",
+      "servicepage_servicepage_servicecard",
+      "servicepage_servicepage_servicepage",
+      "servicepage_servicepage_services",
+      "servicepage_servicepage_statcard",
+      "servicepage_servicepage_stats"
+    ],
+    "13": [
+      "admin_users_adminusers_jsx",
+      "users_adminusers_adminusers",
+      "users_adminusers_getinitials",
+      "users_adminusers_getrolebadgeclass",
+      "users_adminusers_role_options"
+    ],
+    "14": [
+      "admin_analytics_adminanalytics_jsx",
+      "analytics_adminanalytics_adminanalytics",
+      "analytics_adminanalytics_categories",
+      "analytics_adminanalytics_monthly_placeholder",
+      "analytics_adminanalytics_statcard"
+    ],
+    "15": [
+      "admin_appointments_adminappointments_jsx",
+      "appointments_adminappointments_adminappointments",
+      "appointments_adminappointments_formatdatetime",
+      "appointments_adminappointments_getstatusclass",
+      "appointments_adminappointments_status_options"
+    ],
+    "16": [
+      "cartcheckoutpage_cartcheckoutpage_btnspring",
+      "cartcheckoutpage_cartcheckoutpage_cartcheckoutpage",
+      "cartcheckoutpage_cartcheckoutpage_empty_address",
+      "cartcheckoutpage_cartcheckoutpage_jsx",
+      "cartcheckoutpage_cartcheckoutpage_stepvariants"
+    ],
+    "17": [
+      "admin_invoices_admininvoices_jsx",
+      "invoices_admininvoices_admininvoices",
+      "invoices_admininvoices_empty_drawer",
+      "invoices_admininvoices_status_badge",
+      "invoices_admininvoices_status_opts"
+    ],
+    "18": [
+      "payment_paymentpage_card_element_options",
+      "payment_paymentpage_checkoutform",
+      "payment_paymentpage_jsx",
+      "payment_paymentpage_paymentpage",
+      "payment_paymentpage_stripepromise"
+    ],
+    "19": [
+      "importexportservicepage_ImportExportServicePage",
+      "importpage_ExportImportForm",
+      "servicepage_ServiceCard",
+      "servicepage_ServicePage",
+      "servicepage_StatCard"
+    ],
+    "20": [
+      "admin_transactions_admintransactions_jsx",
+      "transactions_admintransactions_admintransactions",
+      "transactions_admintransactions_method_opts",
+      "transactions_admintransactions_type_badge",
+      "transactions_admintransactions_type_opts"
+    ],
+    "21": [
+      "admin_settings_adminsettings_jsx",
+      "settings_adminsettings_adminsettings",
+      "settings_adminsettings_tabs",
+      "settings_adminsettings_theme_options"
+    ],
+    "22": [
+      "carousels_imagepaths_imagepathsdesktop",
+      "carousels_imagepaths_imagepathsmobile",
+      "carousels_imagepaths_imagepathstablet",
+      "homepage_homepagesections_carousels_imagepaths_js"
+    ],
+    "23": [
+      "carousels_bannercarousel_bannercarousel",
+      "carousels_carouselcomponent_carouselcomponent",
+      "homepage_homepagesections_carousels_bannercarousel_jsx",
+      "homepage_homepagesections_carousels_carouselcomponent_jsx"
+    ],
+    "24": [
+      "homepage_homepagesections_servicescard_jsx",
+      "homepagesections_servicescard_servicecard",
+      "homepagesections_servicescard_services",
+      "homepagesections_servicescard_servicesgrid"
+    ],
+    "25": [
+      "bannercarousel_BannerCarousel",
+      "carouselcomponent_CarouselComponent",
+      "imagepaths_imagePathsDeskTop",
+      "promobannercarousel_PromoBannerCarousel"
+    ],
+    "26": [
+      "authcontext_AuthContext",
+      "signupdropdown_SignUpDropdown",
+      "signupmodal_SignUpModal",
+      "toastcontext_ToastContext"
+    ],
+    "27": [
+      "admin_products_adminproducts_jsx",
+      "products_adminproducts_adminproducts",
+      "products_adminproducts_resolveqty"
+    ],
+    "28": [
+      "button_Button",
+      "carousel_Carousel",
+      "carousel_CarouselContext"
+    ],
+    "29": [
+      "individualproductitempage_individualproductitempage_individualproductitempage",
+      "individualproductitempage_individualproductitempage_jsx",
+      "individualproductitempage_individualproductitempage_productsectiontabs"
+    ],
+    "30": [
+      "orderconfirmed_orderconfirmedpage_childvariants",
+      "orderconfirmed_orderconfirmedpage_jsx",
+      "orderconfirmed_orderconfirmedpage_orderconfirmedpage"
+    ],
+    "31": [
+      "confirmmodal_ConfirmModal",
+      "petform_PetForm",
+      "petlist_PetList"
+    ],
+    "32": [
+      "appointmentlist_appointmentlist_appointmentlist",
+      "appointmentpage_appointmentlist_appointmentlist_jsx"
+    ],
+    "33": [
+      "admin_dashboard_admindashboard_jsx",
+      "dashboard_admindashboard_admindashboard"
+    ],
+    "34": [
+      "carousels_cardslider_cardslider",
+      "homepage_homepagesections_carousels_cardslider_jsx"
+    ],
+    "35": [
+      "homepage_homepagesections_communitysection_jsx",
+      "homepagesections_communitysection_communitysection"
+    ],
+    "36": [
+      "homepage_homepagesections_subscribesection_jsx",
+      "homepagesections_subscribesection_subscribesection"
+    ],
+    "37": [
+      "homepage_homepagesections_section3_jsx",
+      "homepagesections_section3_section3"
+    ],
+    "38": [
+      "import_importpage_exportimportform",
+      "importexport_import_importpage_jsx"
+    ],
+    "39": [
+      "importexport_importexportservicepage_importexportservicepage",
+      "importexport_importexportservicepage_jsx"
+    ],
+    "40": [
+      "pages_userprofile_userprofile",
+      "userprofile_jsx"
+    ],
+    "41": [
+      "passwordchangeform_PasswordChangeForm",
+      "profileform_ProfileForm"
+    ],
+    "42": [
+      "servicescard_ServiceCard",
+      "servicescard_ServicesGrid"
+    ],
+    "43": [
+      "servicessection_ServiceCard",
+      "servicessection_ServicesSection"
+    ],
+    "44": [
+      "appointmentlist_AppointmentList"
+    ],
+    "45": [
+      "communitysection_CommunitySection"
+    ],
+    "46": [
+      "section3_Section3"
+    ],
+    "47": [
+      "statssection_StatsSection"
+    ],
+    "48": [
+      "subscribesection_SubscribeSection"
+    ],
+    "49": [
+      "cardslider_CardSlider"
+    ],
+    "50": [
+      "imagepaths_imagePathsTablet"
+    ],
+    "51": [
+      "imagepaths_imagePathsMobile"
+    ],
+    "52": [
+      "contactsection_ContactSection"
+    ],
+    "53": [
+      "accordion_Accordion"
+    ],
+    "54": [
+      "card_Card"
+    ],
+    "55": [
+      "input_Input"
+    ],
+    "56": [
+      "label_Label"
+    ],
+    "57": [
+      "separator_Separator"
+    ],
+    "58": [
+      "tabs_Tabs"
+    ]
+  },
+  "cohesion": {
+    "0": 0.10256410256410256,
+    "1": 0.07692307692307693,
+    "2": 0.14166666666666666,
+    "3": 0.2,
+    "4": 0.2222222222222222,
+    "5": 0.25,
+    "6": 0.2857142857142857,
+    "7": 0.2857142857142857,
+    "8": 0.3333333333333333,
+    "9": 0.3333333333333333,
+    "10": 0.5333333333333333,
+    "11": 0.6,
+    "12": 0.3333333333333333,
+    "13": 0.4,
+    "14": 0.4,
+    "15": 0.5,
+    "16": 0.4,
+    "17": 0.4,
+    "18": 0.4,
+    "19": 0.4,
+    "20": 0.4,
+    "21": 0.5,
+    "22": 0.5,
+    "23": 0.5,
+    "24": 0.5,
+    "25": 0.5,
+    "26": 0.6666666666666666,
+    "27": 0.6666666666666666,
+    "28": 0.6666666666666666,
+    "29": 0.6666666666666666,
+    "30": 0.6666666666666666,
+    "31": 0.6666666666666666,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0
+  },
+  "gods": [
+    {
+      "id": "context_ToastContext",
+      "label": "ToastContext",
+      "degree": 12
+    },
+    {
+      "id": "userprofile_UserProfile",
+      "label": "UserProfile Page",
+      "degree": 11
+    },
+    {
+      "id": "cartcheckout_CartCheckoutPage",
+      "label": "CartCheckoutPage",
+      "degree": 8
+    },
+    {
+      "id": "admindashboard_AdminDashboard",
+      "label": "AdminDashboard Page",
+      "degree": 7
+    },
+    {
+      "id": "appointmentcalendar_AppointmentCalendar",
+      "label": "AppointmentCalendar Component",
+      "degree": 6
+    },
+    {
+      "id": "adminproducts_AdminProducts",
+      "label": "AdminProducts Page",
+      "degree": 5
+    },
+    {
+      "id": "orders_adminorders_adminorders",
+      "label": "AdminOrders()",
+      "degree": 4
+    },
+    {
+      "id": "adminappointments_AdminAppointments",
+      "label": "AdminAppointments Page",
+      "degree": 4
+    },
+    {
+      "id": "adminorders_AdminOrders",
+      "label": "AdminOrders Page",
+      "degree": 4
+    },
+    {
+      "id": "adminproductform_AdminProductForm",
+      "label": "AdminProductForm Page",
+      "degree": 4
+    }
+  ],
+  "surprises": [
+    {
+      "source": "UserProfile Page",
+      "target": "usersApi Service",
+      "source_files": [
+        "frontend/src/Pages/UserProfile.jsx",
+        "frontend/src/Services/api/usersApi.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "uses",
+      "why": "bridges separate communities; peripheral node `usersApi Service` unexpectedly reaches hub `UserProfile Page`"
+    },
+    {
+      "source": "AppointmentCalendar Component",
+      "target": "appointmentsApi Service",
+      "source_files": [
+        "frontend/src/Pages/AppointmentPage/AppointmentCalendar/appointmentCalendar.jsx",
+        "frontend/src/Services/api/appointmentsApi.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "uses",
+      "why": "bridges separate communities; peripheral node `appointmentsApi Service` unexpectedly reaches hub `AppointmentCalendar Component`"
+    },
+    {
+      "source": "CartCheckoutPage",
+      "target": "ordersApi Service",
+      "source_files": [
+        "frontend/src/Pages/CartCheckoutPage/CartCheckOutPage.jsx",
+        "frontend/src/Services/api/ordersApi.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "uses",
+      "why": "bridges separate communities; peripheral node `ordersApi Service` unexpectedly reaches hub `CartCheckoutPage`"
+    },
+    {
+      "source": "UserProfile Page",
+      "target": "Breadcrumb Component",
+      "source_files": [
+        "frontend/src/Pages/UserProfile.jsx",
+        "frontend/src/Components/HelperComponents/Breadcrumb/Breadcrumb.jsx"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "uses",
+      "why": "peripheral node `Breadcrumb Component` unexpectedly reaches hub `UserProfile Page`"
+    },
+    {
+      "source": "UserProfile Page",
+      "target": "ConfirmModal Component",
+      "source_files": [
+        "frontend/src/Pages/UserProfile.jsx",
+        "frontend/src/Components/UserProfile/ConfirmModal.jsx"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "uses",
+      "why": "peripheral node `ConfirmModal Component` unexpectedly reaches hub `UserProfile Page`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `ToastContext` connect `Community 0` to `Community 2`, `Community 7`?",
+      "why": "High betweenness centrality (0.023) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `UserProfile Page` connect `Community 2` to `Community 0`?",
+      "why": "High betweenness centrality (0.011) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `AppointmentCalendar Component` connect `Community 2` to `Community 0`?",
+      "why": "High betweenness centrality (0.010) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 5 inferred relationships involving `AdminDashboard Page` (e.g. with `AdminAnalytics Page` and `AdminAppointments Page`) actually correct?",
+      "why": "`AdminDashboard Page` has 5 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `MONTHLY_PLACEHOLDER`, `CATEGORIES`, `STATUS_OPTIONS` to the rest of the system?",
+      "why": "116 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.10256410256410256 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 1` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.07692307692307693 - nodes in this community are weakly interconnected."
+    }
+  ]
+}
