@@ -1472,7 +1472,7 @@ git commit -m "feat: seed script for pet care tips and adverts"
 - Create: `frontend/src/Services/api/advertsApi.js`
 - Create: `frontend/src/Pages/PetCareTips/tipTheme.js`
 
-- [ ] **Step 1: Write tipsApi.js**
+- [x] **Step 1: Write tipsApi.js**
 
 ```js
 import { api } from "../../core/api/apiClient";
@@ -1525,7 +1525,7 @@ const tipsApi = {
 export default tipsApi;
 ```
 
-- [ ] **Step 2: Write advertsApi.js**
+- [x] **Step 2: Write advertsApi.js**
 
 ```js
 import { api } from "../../core/api/apiClient";
@@ -1563,7 +1563,7 @@ const advertsApi = {
 export default advertsApi;
 ```
 
-- [ ] **Step 3: Write tipTheme.js**
+- [x] **Step 3: Write tipTheme.js**
 
 ```js
 /**
@@ -1598,7 +1598,7 @@ export const getAnimalTheme = (value) =>
 export const capitalize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : "");
 ```
 
-- [ ] **Step 4: Commit (inside `frontend/`)**
+- [x] **Step 4: Commit (inside `frontend/`)**
 
 ```bash
 cd frontend
@@ -1615,7 +1615,7 @@ git commit -m "feat: tips/adverts API services and tip theme constants"
 - Create: `frontend/src/Pages/PetCareTips/components/TipCard.test.jsx`
 - Create: `frontend/src/Pages/PetCareTips/PetCareTips.css` (started here, grown in later tasks)
 
-- [ ] **Step 1: Write the failing component test**
+- [x] **Step 1: Write the failing component test**
 
 ```jsx
 import { describe, it, expect } from "vitest";
@@ -1659,12 +1659,12 @@ describe("SponsoredCard", () => {
 });
 ```
 
-- [ ] **Step 2: Run to verify failure**
+- [x] **Step 2: Run to verify failure**
 
 Run (from `frontend/`): `npm test -- TipCard`
 Expected: FAIL — `Cannot find module './TipCard'` (or equivalent resolve error)
 
-- [ ] **Step 3: Write TipCard.jsx**
+- [x] **Step 3: Write TipCard.jsx**
 
 ```jsx
 import { Link } from "react-router-dom";
@@ -1745,7 +1745,7 @@ export const SponsoredCard = ({ advert }) => (
 export default TipCard;
 ```
 
-- [ ] **Step 4: Start PetCareTips.css with card + shared styles**
+- [x] **Step 4: Start PetCareTips.css with card + shared styles**
 
 ```css
 /* ── Pet Care Tips — shared feature styles ─────────────────────────── */
@@ -1817,12 +1817,12 @@ export default TipCard;
 .pct-card-sponsored { border-style: dashed; }
 ```
 
-- [ ] **Step 5: Run test to verify pass**
+- [x] **Step 5: Run test to verify pass**
 
 Run: `npm test -- TipCard`
 Expected: PASS (3 tests)
 
-- [ ] **Step 6: Commit (inside `frontend/`)**
+- [x] **Step 6: Commit (inside `frontend/`)**
 
 ```bash
 cd frontend
@@ -1841,7 +1841,7 @@ git commit -m "feat: TipCard and SponsoredCard components with tests"
 - Create: `frontend/src/Pages/PetCareTips/components/FeaturedSection.jsx`
 - Modify: `frontend/src/Pages/PetCareTips/PetCareTips.css` (append)
 
-- [ ] **Step 1: Write AnimalStrip.jsx**
+- [x] **Step 1: Write AnimalStrip.jsx**
 
 ```jsx
 import { ANIMAL_TYPES, ALL_ANIMALS_OPTION } from "../tipTheme";
@@ -1873,7 +1873,7 @@ const AnimalStrip = ({ selected, onSelect }) => {
 export default AnimalStrip;
 ```
 
-- [ ] **Step 2: Write CategoryChips.jsx**
+- [x] **Step 2: Write CategoryChips.jsx**
 
 ```jsx
 import { CATEGORIES, capitalize } from "../tipTheme";
@@ -1905,7 +1905,7 @@ const CategoryChips = ({ selected, onSelect }) => (
 export default CategoryChips;
 ```
 
-- [ ] **Step 3: Write AdvertBanner.jsx**
+- [x] **Step 3: Write AdvertBanner.jsx**
 
 ```jsx
 import { FiHeart, FiArrowRight } from "react-icons/fi";
@@ -1941,7 +1941,7 @@ const AdvertBanner = ({ advert }) => {
 export default AdvertBanner;
 ```
 
-- [ ] **Step 4: Write FeaturedSection.jsx**
+- [x] **Step 4: Write FeaturedSection.jsx**
 
 ```jsx
 import { Link } from "react-router-dom";
@@ -2037,7 +2037,7 @@ const FeaturedSection = ({ tips }) => {
 export default FeaturedSection;
 ```
 
-- [ ] **Step 5: Append styles to PetCareTips.css**
+- [x] **Step 5: Append styles to PetCareTips.css**
 
 ```css
 /* ── Sections & eyebrows ───────────────────────────────────────────── */
@@ -2214,7 +2214,7 @@ export default FeaturedSection;
 }
 ```
 
-- [ ] **Step 6: Commit (inside `frontend/`)**
+- [x] **Step 6: Commit (inside `frontend/`)**
 
 ```bash
 cd frontend
@@ -2232,7 +2232,7 @@ git commit -m "feat: listing building blocks (animal strip, chips, banner ad, fe
 - Modify: `frontend/src/main.jsx`
 - Modify: `frontend/src/Components/NavigationBar/NavigationBar.jsx:34`
 
-- [ ] **Step 1: Write PetCareTipsPage.jsx**
+- [x] **Step 1: Write PetCareTipsPage.jsx**
 
 ```jsx
 import { useState, useEffect, useMemo, useRef } from "react";
@@ -2409,7 +2409,7 @@ const PetCareTipsPage = () => {
 export default PetCareTipsPage;
 ```
 
-- [ ] **Step 2: Append page styles to PetCareTips.css**
+- [x] **Step 2: Append page styles to PetCareTips.css**
 
 ```css
 /* ── Page shell, hero, grid ────────────────────────────────────────── */
@@ -2495,7 +2495,7 @@ export default PetCareTipsPage;
 @media (max-width: 640px) { .pct-grid { grid-template-columns: 1fr; } }
 ```
 
-- [ ] **Step 3: Add route to main.jsx**
+- [x] **Step 3: Add route to main.jsx**
 
 (a) Add import after the `OrderConfirmedPage` import (line 16):
 
@@ -2512,7 +2512,7 @@ import PetCareTipsPage from "./Pages/PetCareTips/PetCareTipsPage.jsx";
       },
 ```
 
-- [ ] **Step 4: Add nav link in NavigationBar.jsx**
+- [x] **Step 4: Add nav link in NavigationBar.jsx**
 
 At `frontend/src/Components/NavigationBar/NavigationBar.jsx:34`, after the Pet Store entry:
 
@@ -2530,7 +2530,7 @@ Verify at `http://localhost:5173/pet-care-tips`:
 - Banner advert shows; sponsored card appears after the 5th tip
 - Cards animate in on scroll
 
-- [ ] **Step 6: Commit (inside `frontend/`)**
+- [x] **Step 6: Commit (inside `frontend/`)**
 
 ```bash
 cd frontend
@@ -2547,7 +2547,7 @@ git commit -m "feat: pet care tips listing page with search, filters, adverts"
 - Create: `frontend/src/Pages/PetCareTips/TipDetail.css`
 - Modify: `frontend/src/main.jsx`
 
-- [ ] **Step 1: Write TipDetailPage.jsx**
+- [x] **Step 1: Write TipDetailPage.jsx**
 
 ```jsx
 import { useState, useEffect } from "react";
@@ -2717,7 +2717,7 @@ const TipDetailPage = () => {
 export default TipDetailPage;
 ```
 
-- [ ] **Step 2: Write TipDetail.css**
+- [x] **Step 2: Write TipDetail.css**
 
 ```css
 /* ── Tip detail page ───────────────────────────────────────────────── */
@@ -2893,7 +2893,7 @@ export default TipDetailPage;
 }
 ```
 
-- [ ] **Step 3: Add route to main.jsx**
+- [x] **Step 3: Add route to main.jsx**
 
 (a) Import after `PetCareTipsPage`:
 
@@ -2917,7 +2917,7 @@ With backend running and seeded, click a card from `/pet-care-tips`:
 - Sidebar shows facts, a sponsored advert, and up to 3 related tips of the same animal
 - A bogus URL like `/pet-care-tips/not-a-real-slug` shows the "Tip not found" state
 
-- [ ] **Step 5: Commit (inside `frontend/`)**
+- [x] **Step 5: Commit (inside `frontend/`)**
 
 ```bash
 cd frontend
@@ -2935,7 +2935,7 @@ git commit -m "feat: tip detail page with rich text body, related tips, sidebar 
 - Modify: `frontend/src/Components/Admin/AdminLayout.jsx:88` (menuItems)
 - Modify: `frontend/src/main.jsx` (admin routes)
 
-- [ ] **Step 1: Write AdminTips.jsx**
+- [x] **Step 1: Write AdminTips.jsx**
 
 ```jsx
 import { useState, useEffect, useMemo } from "react";
@@ -3145,7 +3145,7 @@ const AdminTips = () => {
 export default AdminTips;
 ```
 
-- [ ] **Step 2: Write AdminTips.css**
+- [x] **Step 2: Write AdminTips.css**
 
 ```css
 /* ── Admin tips ────────────────────────────────────────────────────── */
@@ -3232,7 +3232,7 @@ export default AdminTips;
 
 *(Note: if `.admin-modal-backdrop` / `.admin-modal` already exist globally from other admin pages, the duplicate definitions here are harmless overrides with identical look.)*
 
-- [ ] **Step 3: Add sidebar entries in AdminLayout.jsx**
+- [x] **Step 3: Add sidebar entries in AdminLayout.jsx**
 
 (a) Extend the react-icons import (line 5–21) with `FiBookOpen` and `FiSpeaker`:
 
@@ -3259,7 +3259,7 @@ import {
     },
 ```
 
-- [ ] **Step 4: Add admin route in main.jsx**
+- [x] **Step 4: Add admin route in main.jsx**
 
 (a) Import in the Admin imports block (after line 40):
 
@@ -3283,7 +3283,7 @@ Log in as admin → `/admin/tips`:
 - Star toggle features/unfeatures; status pill toggles draft/published
 - Delete shows confirm modal and removes the row
 
-- [ ] **Step 6: Commit (inside `frontend/`)**
+- [x] **Step 6: Commit (inside `frontend/`)**
 
 ```bash
 cd frontend
@@ -3300,7 +3300,7 @@ git commit -m "feat: admin tips management page with featured/published toggles"
 - Create: `frontend/src/Pages/Admin/Tips/AdminTipForm.css`
 - Modify: `frontend/src/main.jsx`
 
-- [ ] **Step 1: Write AdminTipForm.jsx**
+- [x] **Step 1: Write AdminTipForm.jsx**
 
 ```jsx
 import { useState, useEffect } from "react";
@@ -3495,7 +3495,7 @@ const AdminTipForm = () => {
 export default AdminTipForm;
 ```
 
-- [ ] **Step 2: Write AdminTipForm.css**
+- [x] **Step 2: Write AdminTipForm.css**
 
 ```css
 /* ── Admin tip form ────────────────────────────────────────────────── */
@@ -3584,7 +3584,7 @@ export default AdminTipForm;
 }
 ```
 
-- [ ] **Step 3: Add routes in main.jsx**
+- [x] **Step 3: Add routes in main.jsx**
 
 (a) Import after `AdminTips`:
 
@@ -3611,7 +3611,7 @@ import AdminTipForm from "./Pages/Admin/Tips/AdminTipForm";
 - Toggle it published → appears on `/pet-care-tips`
 - Edit the draft seed tip: body loads in the editor, save persists, readTime recalculates
 
-- [ ] **Step 5: Commit (inside `frontend/`)**
+- [x] **Step 5: Commit (inside `frontend/`)**
 
 ```bash
 cd frontend
@@ -3628,7 +3628,7 @@ git commit -m "feat: admin tip create/edit form with rich text editor"
 - Create: `frontend/src/Pages/Admin/Adverts/AdminAdverts.css`
 - Modify: `frontend/src/main.jsx`
 
-- [ ] **Step 1: Write AdminAdverts.jsx**
+- [x] **Step 1: Write AdminAdverts.jsx**
 
 ```jsx
 import { useState, useEffect } from "react";
@@ -3863,7 +3863,7 @@ export default AdminAdverts;
 
 **Note on relative links:** the backend validator requires `link` to be a valid URI for *create*. Relative links like `/petshop` are seeded directly via Mongoose (bypassing Joi), but the admin form posts through the API. If the admin needs relative links from the form, loosen the Joi rule to `Joi.string().min(1)` for `link` — decide during execution and keep validator + form consistent. Default decision: **loosen to `Joi.string().min(1)`** so internal links work (update `advert.validator.js` `link` field and its test accordingly: the "rejects invalid placement" test still covers 400s).
 
-- [ ] **Step 2: Write AdminAdverts.css**
+- [x] **Step 2: Write AdminAdverts.css**
 
 ```css
 /* ── Admin adverts ─────────────────────────────────────────────────── */
@@ -3972,7 +3972,7 @@ git add src/validators/advert.validator.js
 git commit -m "fix: allow relative internal links in advert validator"
 ```
 
-- [ ] **Step 4: Add admin route in main.jsx**
+- [x] **Step 4: Add admin route in main.jsx**
 
 (a) Import after `AdminTipForm`:
 
@@ -3996,7 +3996,7 @@ import AdminAdverts from "./Pages/Admin/Adverts/AdminAdverts";
 - Create a sponsored advert with link `/petshop` → saves, appears on the public tips grid
 - Toggle active off → disappears from public page on refresh
 
-- [ ] **Step 6: Commit (inside `frontend/`)**
+- [x] **Step 6: Commit (inside `frontend/`)**
 
 ```bash
 cd frontend
@@ -4057,12 +4057,12 @@ git commit -m "docs: pet care tips spec + implementation plan; graph update"
 | 6 | Failing adverts API tests | backend | ⬜ Pending |
 | 7 | Advert model/validator/controller/routes → green | backend | ⬜ Pending |
 | 8 | Seed script | backend | ⬜ Pending |
-| 9 | API services + theme constants | frontend | ⬜ Pending |
-| 10 | TipCard + test | frontend | ⬜ Pending |
-| 11 | Listing building blocks | frontend | ⬜ Pending |
-| 12 | Listing page + routes + nav | frontend | ⬜ Pending |
-| 13 | Tip detail page | frontend | ⬜ Pending |
-| 14 | Admin tips list + sidebar | frontend | ⬜ Pending |
-| 15 | Admin tip form | frontend | ⬜ Pending |
-| 16 | Admin adverts | frontend + backend validator fix | ⬜ Pending |
+| 9 | API services + theme constants | frontend | ✅ Done |
+| 10 | TipCard + test | frontend | ✅ Done |
+| 11 | Listing building blocks | frontend | ✅ Done |
+| 12 | Listing page + routes + nav | frontend | ✅ Done |
+| 13 | Tip detail page | frontend | ✅ Done |
+| 14 | Admin tips list + sidebar | frontend | ✅ Done |
+| 15 | Admin tip form | frontend | ✅ Done |
+| 16 | Admin adverts | frontend + backend validator fix | 🟡 Frontend done; backend validator fix pending (with Task 7) |
 | 17 | Final verification + graph update | both + parent | ⬜ Pending |
