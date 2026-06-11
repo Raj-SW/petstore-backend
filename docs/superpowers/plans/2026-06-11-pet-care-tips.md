@@ -62,7 +62,7 @@
 **Files:**
 - Create: `backend/tests/tips.controller.test.js`
 
-- [ ] **Step 1: Write the failing test file**
+- [x] **Step 1: Write the failing test file**
 
 ```js
 /**
@@ -344,7 +344,7 @@ describe('Tip Controller', () => {
 });
 ```
 
-- [ ] **Step 2: Run to verify failure**
+- [x] **Step 2: Run to verify failure**
 
 Run (from `backend/`): `npm test -- tests/tips.controller.test.js`
 Expected: FAIL — `Cannot find module '../src/models/petCareTip.model'`
@@ -358,7 +358,7 @@ Expected: FAIL — `Cannot find module '../src/models/petCareTip.model'`
 **Files:**
 - Create: `backend/src/models/petCareTip.model.js`
 
-- [ ] **Step 1: Write the model**
+- [x] **Step 1: Write the model**
 
 ```js
 const mongoose = require('mongoose');
@@ -464,7 +464,7 @@ petCareTipSchema.statics.DIFFICULTIES = DIFFICULTIES;
 module.exports = mongoose.models.PetCareTip || mongoose.model('PetCareTip', petCareTipSchema);
 ```
 
-- [ ] **Step 2: Re-run tests**
+- [x] **Step 2: Re-run tests**
 
 Run: `npm test -- tests/tips.controller.test.js`
 Expected: FAIL — now on missing routes (404s), not missing module.
@@ -476,7 +476,7 @@ Expected: FAIL — now on missing routes (404s), not missing module.
 **Files:**
 - Create: `backend/src/validators/tip.validator.js`
 
-- [ ] **Step 1: Write the validator**
+- [x] **Step 1: Write the validator**
 
 ```js
 const Joi = require('joi');
@@ -545,7 +545,7 @@ module.exports = { validateTip, validateTipUpdate };
 **Files:**
 - Create: `backend/src/controllers/tip.controller.js`
 
-- [ ] **Step 1: Write the controller**
+- [x] **Step 1: Write the controller**
 
 ```js
 const mongoose = require('mongoose');
@@ -697,7 +697,7 @@ exports.deleteTip = async (req, res, next) => {
 - Create: `backend/src/routes/tip.routes.js`
 - Modify: `backend/src/app.js`
 
-- [ ] **Step 1: Write the router**
+- [x] **Step 1: Write the router**
 
 ```js
 const express = require('express');
@@ -733,7 +733,7 @@ router.delete('/:id', deleteTip);
 module.exports = router;
 ```
 
-- [ ] **Step 2: Wire into app.js**
+- [x] **Step 2: Wire into app.js**
 
 In `backend/src/app.js`:
 
@@ -772,17 +772,17 @@ app.use(express.json({ limit: process.env.BODY_LIMIT || '200kb' }));
 app.use(express.urlencoded({ extended: true, limit: process.env.BODY_LIMIT || '200kb' }));
 ```
 
-- [ ] **Step 3: Run tips tests to green**
+- [x] **Step 3: Run tips tests to green**
 
 Run: `npm test -- tests/tips.controller.test.js`
 Expected: PASS — all tests green.
 
-- [ ] **Step 4: Run full backend suite (no regressions)**
+- [x] **Step 4: Run full backend suite (no regressions)**
 
 Run: `npm test`
 Expected: PASS — all existing suites still green.
 
-- [ ] **Step 5: Commit (inside `backend/`)**
+- [x] **Step 5: Commit (inside `backend/`)**
 
 ```bash
 cd backend
@@ -797,7 +797,7 @@ git commit -m "feat: pet care tips API (model, validator, controller, routes, te
 **Files:**
 - Create: `backend/tests/adverts.controller.test.js`
 
-- [ ] **Step 1: Write the failing test file**
+- [x] **Step 1: Write the failing test file**
 
 ```js
 /**
@@ -952,7 +952,7 @@ describe('Advert Controller', () => {
 });
 ```
 
-- [ ] **Step 2: Run to verify failure**
+- [x] **Step 2: Run to verify failure**
 
 Run: `npm test -- tests/adverts.controller.test.js`
 Expected: FAIL — `Cannot find module '../src/models/advert.model'`
@@ -968,7 +968,7 @@ Expected: FAIL — `Cannot find module '../src/models/advert.model'`
 - Create: `backend/src/routes/advert.routes.js`
 - Modify: `backend/src/app.js`
 
-- [ ] **Step 1: Write the model**
+- [x] **Step 1: Write the model**
 
 ```js
 const mongoose = require('mongoose');
@@ -1018,7 +1018,7 @@ advertSchema.statics.PLACEMENTS = PLACEMENTS;
 module.exports = mongoose.models.Advert || mongoose.model('Advert', advertSchema);
 ```
 
-- [ ] **Step 2: Write the validator**
+- [x] **Step 2: Write the validator**
 
 ```js
 const Joi = require('joi');
@@ -1060,7 +1060,7 @@ const validateAdvertUpdate = (req, res, next) => {
 module.exports = { validateAdvert, validateAdvertUpdate };
 ```
 
-- [ ] **Step 3: Write the controller**
+- [x] **Step 3: Write the controller**
 
 ```js
 const mongoose = require('mongoose');
@@ -1135,7 +1135,7 @@ exports.deleteAdvert = async (req, res, next) => {
 };
 ```
 
-- [ ] **Step 4: Write the router**
+- [x] **Step 4: Write the router**
 
 ```js
 const express = require('express');
@@ -1164,7 +1164,7 @@ router.delete('/:id', deleteAdvert);
 module.exports = router;
 ```
 
-- [ ] **Step 5: Wire into app.js**
+- [x] **Step 5: Wire into app.js**
 
 (a) Add import after `const tipRoutes = ...`:
 
@@ -1178,14 +1178,14 @@ const advertRoutes = require('./routes/advert.routes');
 app.use('/api/adverts', advertRoutes);
 ```
 
-- [ ] **Step 6: Run adverts tests to green, then full suite**
+- [x] **Step 6: Run adverts tests to green, then full suite**
 
 Run: `npm test -- tests/adverts.controller.test.js`
 Expected: PASS
 Run: `npm test`
 Expected: PASS — no regressions.
 
-- [ ] **Step 7: Commit (inside `backend/`)**
+- [x] **Step 7: Commit (inside `backend/`)**
 
 ```bash
 cd backend
@@ -1200,7 +1200,7 @@ git commit -m "feat: adverts API (model, validator, controller, routes, tests)"
 **Files:**
 - Create: `backend/scripts/seed-pet-care-tips.js`
 
-- [ ] **Step 1: Write the seed script**
+- [x] **Step 1: Write the seed script**
 
 ```js
 /**
@@ -1436,7 +1436,7 @@ run().catch((err) => {
 });
 ```
 
-- [ ] **Step 2: Run the seed against the dev database**
+- [x] **Step 2: Run the seed against the dev database**
 
 Run (from `backend/`): `node scripts/seed-pet-care-tips.js --fresh`
 Expected output ends with:
@@ -1446,14 +1446,14 @@ Seeded 4 adverts (3 active)
 Done.
 ```
 
-- [ ] **Step 3: Verify via API (optional but recommended)**
+- [x] **Step 3: Verify via API (optional but recommended)**
 
 Start the server (`npm run dev`) and check:
 - `GET http://localhost:5000/api/tips` → 11 published tips
 - `GET http://localhost:5000/api/tips?featured=true` → 3 tips
 - `GET http://localhost:5000/api/adverts?placement=banner` → 2 adverts
 
-- [ ] **Step 4: Commit (inside `backend/`)**
+- [x] **Step 4: Commit (inside `backend/`)**
 
 ```bash
 cd backend
@@ -3951,7 +3951,7 @@ export default AdminAdverts;
 }
 ```
 
-- [ ] **Step 3: Update advert validator for relative links (backend)**
+- [x] **Step 3: Update advert validator for relative links (backend)**
 
 In `backend/src/validators/advert.validator.js`, change the `link` base field to allow internal paths:
 
@@ -4049,14 +4049,14 @@ git commit -m "docs: pet care tips spec + implementation plan; graph update"
 
 | Task | Description | Repo | Status |
 |---|---|---|---|
-| 1 | Failing tips API tests | backend | ⬜ Pending |
-| 2 | PetCareTip model | backend | ⬜ Pending |
-| 3 | Tip validator | backend | ⬜ Pending |
-| 4 | Tip controller | backend | ⬜ Pending |
-| 5 | Tip routes + app.js → green + commit | backend | ⬜ Pending |
-| 6 | Failing adverts API tests | backend | ⬜ Pending |
-| 7 | Advert model/validator/controller/routes → green | backend | ⬜ Pending |
-| 8 | Seed script | backend | ⬜ Pending |
+| 1 | Failing tips API tests | backend | ✅ Done |
+| 2 | PetCareTip model | backend | ✅ Done |
+| 3 | Tip validator | backend | ✅ Done |
+| 4 | Tip controller | backend | ✅ Done |
+| 5 | Tip routes + app.js → green + commit | backend | ✅ Done |
+| 6 | Failing adverts API tests | backend | ✅ Done |
+| 7 | Advert model/validator/controller/routes → green | backend | ✅ Done |
+| 8 | Seed script | backend | ✅ Done (run against dev DB: 12 tips, 4 adverts) |
 | 9 | API services + theme constants | frontend | ✅ Done |
 | 10 | TipCard + test | frontend | ✅ Done |
 | 11 | Listing building blocks | frontend | ✅ Done |
@@ -4064,5 +4064,5 @@ git commit -m "docs: pet care tips spec + implementation plan; graph update"
 | 13 | Tip detail page | frontend | ✅ Done |
 | 14 | Admin tips list + sidebar | frontend | ✅ Done |
 | 15 | Admin tip form | frontend | ✅ Done |
-| 16 | Admin adverts | frontend + backend validator fix | 🟡 Frontend done; backend validator fix pending (with Task 7) |
-| 17 | Final verification + graph update | both + parent | ⬜ Pending |
+| 16 | Admin adverts | frontend + backend validator fix | ✅ Done |
+| 17 | Final verification + graph update | both + parent | 🟡 API smoke + tests done; browser walkthrough pending |
