@@ -25,19 +25,13 @@ const validateCreateOrder = (req, res, next) => {
 
 const validateUpdateOrderStatus = (req, res, next) => {
   const schema = Joi.object({
+    // Must match the order model enum and the admin dropdown options.
     status: Joi.string()
-      .valid('processing', 'shipped', 'delivered', 'cancelled')
+      .valid('pending', 'processing', 'shipped', 'delivered', 'cancelled')
       .required(),
-    trackingNumber: Joi.string().when('status', {
-      is: 'shipped',
-      then: Joi.required(),
-      otherwise: Joi.optional(),
-    }),
-    estimatedDelivery: Joi.date().when('status', {
-      is: 'shipped',
-      then: Joi.required(),
-      otherwise: Joi.optional(),
-    }),
+    // Optional metadata — the admin status dropdown sends status only.
+    trackingNumber: Joi.string().optional(),
+    estimatedDelivery: Joi.date().optional(),
     notes: Joi.string().max(500),
   });
 
