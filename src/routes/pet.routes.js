@@ -6,7 +6,11 @@ const {
   getPet,
   updatePet,
   deletePet,
+  addPetImages,
+  deletePetImage,
+  setPrimaryPetImage,
 } = require('../controllers/pet.controller');
+const { upload } = require('../middlewares/upload');
 
 const router = express.Router();
 
@@ -27,5 +31,10 @@ router.patch('/:id', updatePet);
 
 // Delete a pet
 router.delete('/:id', deletePet);
+
+// Pet photo management (gallery). All owner-guarded in the controller.
+router.post('/:id/images', upload.array('petImages', 6), addPetImages);
+router.delete('/:id/images/:publicId', deletePetImage);
+router.patch('/:id/images/:publicId/primary', setPrimaryPetImage);
 
 module.exports = router;

@@ -35,6 +35,12 @@ const petSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    images: [
+      {
+        url: { type: String },
+        publicId: { type: String },
+      },
+    ],
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
