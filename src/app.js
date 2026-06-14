@@ -26,6 +26,7 @@ const searchRoutes = require('./routes/search.routes');
 const contactRoutes = require('./routes/contact.routes');
 const tipRoutes = require('./routes/tip.routes');
 const advertRoutes = require('./routes/advert.routes');
+const galleryRoutes = require('./routes/gallery.routes');
 
 const app = express();
 
@@ -73,14 +74,15 @@ app.options('*', cors(corsOptions));
 app.use(mongoSanitize());
 
 // xss-clean irreversibly HTML-encodes JSON bodies, which would destroy the
-// TipTap HTML stored in tip bodies. Tip mutations are admin-only and the
-// frontend renders bodies exclusively through RichTextRenderer (DOMPurify),
-// so we skip xss-clean for tip create/update requests only.
+// TipTap HTML stored in tip and gallery bodies. These mutations are admin-only
+// and the frontend renders bodies exclusively through RichTextRenderer
+// (DOMPurify), so we skip xss-clean for those create/update requests only.
 const xssMiddleware = xss();
 app.use((req, res, next) => {
-  const isTipMutation =
-    req.path.startsWith('/api/tips') && ['POST', 'PATCH', 'PUT'].includes(req.method);
-  if (isTipMutation) return next();
+  const isHtmlMutation =
+    (req.path.startsWith('/api/tips') || req.path.startsWith('/api/gallery')) &&
+    ['POST', 'PATCH', 'PUT'].includes(req.method);
+  if (isHtmlMutation) return next();
   return xssMiddleware(req, res, next);
 });
 
@@ -143,6 +145,7 @@ app.use('/api/search', searchRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/tips', tipRoutes);
 app.use('/api/adverts', advertRoutes);
+app.use('/api/gallery', galleryRoutes);
 
 // Handle unhandled routes
 app.all('*', (req, res, next) => {
