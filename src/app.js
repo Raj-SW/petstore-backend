@@ -27,6 +27,7 @@ const contactRoutes = require('./routes/contact.routes');
 const tipRoutes = require('./routes/tip.routes');
 const advertRoutes = require('./routes/advert.routes');
 const galleryRoutes = require('./routes/gallery.routes');
+const feedbackRoutes = require('./routes/feedback.routes');
 
 const app = express();
 
@@ -146,6 +147,7 @@ app.use('/api/contact', contactRoutes);
 app.use('/api/tips', tipRoutes);
 app.use('/api/adverts', advertRoutes);
 app.use('/api/gallery', galleryRoutes);
+app.use('/api/feedback', feedbackRoutes);
 
 // Handle unhandled routes
 app.all('*', (req, res, next) => {
