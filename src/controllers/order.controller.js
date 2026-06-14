@@ -52,8 +52,8 @@ exports.createOrder = async (req, res, next) => {
         logger.warn(`Insufficient stock for product: ${product._id}`);
         return next(new AppError(`Insufficient stock for ${product.name}`, 400));
       }
-      // Use current price from DB
-      const { price } = product;
+      // Use the current effective price from DB (honors active sale + schedule)
+      const price = product.effectivePrice;
       totalItems += item.quantity;
       totalAmount += price * item.quantity;
       orderItems.push({

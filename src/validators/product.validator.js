@@ -1,6 +1,27 @@
 const Joi = require('joi');
 const { AppError } = require('../middlewares/errorHandler');
 
+// Cross-field sale validation shared by create + update. Returns an error
+// message string, or null if valid. `body` is the Joi-validated value object.
+function saleValidationError(body) {
+  if (!body.onSale) return null;
+  const value = Number(body.discountValue);
+  if (!value || value <= 0) return 'A discount value greater than 0 is required when a product is on sale';
+  if (body.discountType === 'percent') {
+    if (value < 1 || value > 100) return 'Percentage discount must be between 1 and 100';
+  } else if (body.discountType === 'amount') {
+    if (body.price !== undefined && !(value > 0 && value < Number(body.price))) {
+      return 'Fixed sale price must be greater than 0 and less than the product price';
+    }
+  }
+  if (body.saleStartsAt && body.saleEndsAt) {
+    if (new Date(body.saleEndsAt).getTime() <= new Date(body.saleStartsAt).getTime()) {
+      return 'Sale end date must be after the start date';
+    }
+  }
+  return null;
+}
+
 const validateProduct = (req, res, next) => {
   // multipart/form-data sends a single appended value as a string, not an array.
   // Normalise before Joi sees the body.
@@ -52,6 +73,11 @@ const validateProduct = (req, res, next) => {
       }),
     isActive:   Joi.boolean().truthy('true').falsy('false').default(true),
     isFeatured: Joi.boolean().truthy('true').falsy('false').default(false),
+    onSale:        Joi.boolean().truthy('true').falsy('false').default(false),
+    discountType:  Joi.string().valid('percent', 'amount').default('percent'),
+    discountValue: Joi.number().min(0).default(0),
+    saleStartsAt:  Joi.date().allow('', null).optional(),
+    saleEndsAt:    Joi.date().allow('', null).optional(),
     sections:   Joi.string().optional(), // JSON array of { title, body, order }
   });
 
@@ -60,6 +86,8 @@ const validateProduct = (req, res, next) => {
     return next(new AppError(error.details[0].message, 400));
   }
   req.body = value;
+  const saleErr = saleValidationError(value);
+  if (saleErr) return next(new AppError(saleErr, 400));
   next();
 };
 
@@ -103,6 +131,11 @@ const validateProductUpdate = (req, res, next) => {
     }),
     isActive:   Joi.boolean().truthy('true').falsy('false'),
     isFeatured: Joi.boolean().truthy('true').falsy('false'),
+    onSale:        Joi.boolean().truthy('true').falsy('false'),
+    discountType:  Joi.string().valid('percent', 'amount'),
+    discountValue: Joi.number().min(0),
+    saleStartsAt:  Joi.date().allow('', null).optional(),
+    saleEndsAt:    Joi.date().allow('', null).optional(),
     keepImages: Joi.string().optional(), // JSON string of [{url,publicId}] — existing images to preserve
     sections:   Joi.string().optional(), // JSON array of { title, body, order }
   });
@@ -112,6 +145,8 @@ const validateProductUpdate = (req, res, next) => {
     return next(new AppError(error.details[0].message, 400));
   }
   req.body = value;
+  const saleErr = saleValidationError(value);
+  if (saleErr) return next(new AppError(saleErr, 400));
   next();
 };
 

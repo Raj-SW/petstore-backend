@@ -32,7 +32,7 @@ exports.addToCart = async (req, res, next) => {
     // so that concurrent carts don't collide and invalid product references surface
     // only at checkout time with a proper error.
     const product = await Product.findById(productId);
-    const itemPrice = product ? product.price : 0;
+    const itemPrice = product ? product.effectivePrice : 0;
 
     // Get or create cart
     let cart = await Cart.findOne({ user: req.user.id });
@@ -99,7 +99,7 @@ exports.updateCartItem = async (req, res, next) => {
 
     // Update quantity
     cartItem.quantity = quantity;
-    cartItem.price = product.price;
+    cartItem.price = product.effectivePrice;
 
     await cart.save();
 
