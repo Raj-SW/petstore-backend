@@ -1,8 +1,20 @@
 const express = require('express');
-const { submitContact } = require('../controllers/contact.controller');
+const { isAuthenticated, isAdmin } = require('../middlewares/auth.middleware');
+const {
+  submitContact,
+  getContacts,
+  updateContactStatus,
+  deleteContact,
+} = require('../controllers/contact.controller');
 
 const router = express.Router();
 
+// Public
 router.post('/', submitContact);
+
+// Admin
+router.get('/admin/all', isAuthenticated, isAdmin, getContacts);
+router.patch('/:id', isAuthenticated, isAdmin, updateContactStatus);
+router.delete('/:id', isAuthenticated, isAdmin, deleteContact);
 
 module.exports = router;

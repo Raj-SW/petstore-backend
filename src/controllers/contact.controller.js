@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Contact = require('../models/contact.model');
 const { sendEmail } = require('../utils/email');
 const { AppError } = require('../middlewares/errorHandler');
@@ -99,6 +100,20 @@ exports.updateContactStatus = async (req, res, next) => {
     if (!contact) return next(new AppError('Contact not found', 404));
 
     res.status(200).json({ success: true, data: contact });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// DELETE /api/contact/:id  — admin only
+exports.deleteContact = async (req, res, next) => {
+  try {
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      return next(new AppError('Invalid contact id', 400));
+    }
+    const contact = await Contact.findByIdAndDelete(req.params.id);
+    if (!contact) return next(new AppError('Contact not found', 404));
+    res.status(200).json({ success: true, message: 'Contact deleted' });
   } catch (error) {
     next(error);
   }

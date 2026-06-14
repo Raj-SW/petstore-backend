@@ -4,13 +4,13 @@ const { AppError } = require('../middlewares/errorHandler');
 const baseFields = {
   title: Joi.string().min(2).max(120).trim(),
   image: Joi.string().uri().allow(''),
-  // Allows relative internal links like /petshop as well as absolute URLs
-  link: Joi.string().min(1).trim().messages({
-    'string.empty': 'Advert link is required',
+  // Allows relative internal links like /petshop as well as absolute URLs.
+  // Empty allowed at the base so hero slides (and partial updates) can omit it.
+  link: Joi.string().trim().allow(''),
+  placement: Joi.string().valid('banner', 'sponsored', 'hero', 'promo').messages({
+    'any.only': 'Placement must be banner, sponsored, hero, or promo',
   }),
-  placement: Joi.string().valid('banner', 'sponsored').messages({
-    'any.only': 'Placement must be banner or sponsored',
-  }),
+  order: Joi.number().min(0),
   active: Joi.boolean(),
 };
 
@@ -18,7 +18,15 @@ const validateAdvert = (req, res, next) => {
   const schema = Joi.object({
     ...baseFields,
     title: baseFields.title.required(),
-    link: baseFields.link.required(),
+    // Link required (non-empty) for banner/sponsored; optional for hero & promo.
+    link: Joi.string().trim().when('placement', {
+      is: Joi.valid('hero', 'promo'),
+      then: Joi.optional().allow(''),
+      otherwise: Joi.string().trim().min(1).required().messages({
+        'any.required': 'Advert link is required',
+        'string.empty': 'Advert link is required',
+      }),
+    }),
     placement: baseFields.placement.required(),
   });
   const { error, value } = schema.validate(req.body);

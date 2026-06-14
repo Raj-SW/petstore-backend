@@ -8,6 +8,9 @@
  */
 
 jest.mock('../src/utils/email', () => ({ sendEmail: jest.fn().mockResolvedValue(undefined) }));
+jest.mock('../src/utils/cloudinary', () => ({
+  uploadBannerToCloudinary: jest.fn().mockResolvedValue({ url: 'https://cdn.example.com/b.jpg', publicId: 'adverts/b' }),
+}));
 
 const request  = require('supertest');
 const mongoose = require('mongoose');
@@ -154,6 +157,63 @@ describe('Advert Controller', () => {
         .set('Authorization', `Bearer ${adminToken}`);
       expect(res.status).toBe(200);
       expect(await Advert.countDocuments()).toBe(0);
+    });
+  });
+
+  describe('hero placement + image upload', () => {
+    it('creates a hero advert without a link', async () => {
+      const res = await request(app)
+        .post('/api/adverts')
+        .set('Authorization', `Bearer ${adminToken}`)
+        .send({ title: 'Homepage banner', placement: 'hero', image: 'https://cdn.example.com/b.jpg', order: 1 });
+      expect(res.status).toBe(201);
+      expect(res.body.data.placement).toBe('hero');
+    });
+
+    it('still rejects a banner advert with no link (400)', async () => {
+      const res = await request(app)
+        .post('/api/adverts')
+        .set('Authorization', `Bearer ${adminToken}`)
+        .send({ title: 'No link banner', placement: 'banner' });
+      expect(res.status).toBe(400);
+    });
+
+    it('returns active hero adverts sorted by order', async () => {
+      await Advert.create(makeAdvert(adminUser._id, { title: 'Second', placement: 'hero', link: '', order: 2 }));
+      await Advert.create(makeAdvert(adminUser._id, { title: 'First', placement: 'hero', link: '', order: 1 }));
+
+      const res = await request(app).get('/api/adverts?placement=hero');
+      expect(res.status).toBe(200);
+      expect(res.body.data.map((a) => a.title)).toEqual(['First', 'Second']);
+    });
+
+    it('updates a hero advert that has an empty link', async () => {
+      const hero = await Advert.create(makeAdvert(adminUser._id, { title: 'Hero edit', placement: 'hero', link: '', order: 1 }));
+      const res = await request(app)
+        .patch(`/api/adverts/${hero._id}`)
+        .set('Authorization', `Bearer ${adminToken}`)
+        .send({ title: 'Hero edited', link: '', order: 2 });
+      expect(res.status).toBe(200);
+      expect(res.body.data.title).toBe('Hero edited');
+      expect(res.body.data.order).toBe(2);
+    });
+
+    it('creates a promo advert without a link', async () => {
+      const res = await request(app)
+        .post('/api/adverts')
+        .set('Authorization', `Bearer ${adminToken}`)
+        .send({ title: 'Contact promo', placement: 'promo', image: 'https://cdn.example.com/p.jpg', order: 1 });
+      expect(res.status).toBe(201);
+      expect(res.body.data.placement).toBe('promo');
+    });
+
+    it('POST /upload-image returns a Cloudinary url', async () => {
+      const res = await request(app)
+        .post('/api/adverts/upload-image')
+        .set('Authorization', `Bearer ${adminToken}`)
+        .attach('image', Buffer.from('fake-banner-bytes'), 'banner.jpg');
+      expect(res.status).toBe(200);
+      expect(res.body.data.url).toBe('https://cdn.example.com/b.jpg');
     });
   });
 });

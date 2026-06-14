@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const PLACEMENTS = ['banner', 'sponsored'];
+const PLACEMENTS = ['banner', 'sponsored', 'hero', 'promo'];
 
 const advertSchema = new mongoose.Schema(
   {
@@ -18,13 +18,23 @@ const advertSchema = new mongoose.Schema(
     },
     link: {
       type: String,
-      required: [true, 'Advert link is required'],
+      // Required for banner/sponsored; optional for hero & promo slides.
+      required: [
+        function () {
+          return ['banner', 'sponsored'].includes(this.placement);
+        },
+        'Advert link is required',
+      ],
       trim: true,
     },
     placement: {
       type: String,
-      enum: { values: PLACEMENTS, message: 'Placement must be banner or sponsored' },
+      enum: { values: PLACEMENTS, message: 'Placement must be banner, sponsored, hero, or promo' },
       required: [true, 'Placement is required'],
+    },
+    order: {
+      type: Number,
+      default: 0,
     },
     active: {
       type: Boolean,
