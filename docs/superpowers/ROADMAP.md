@@ -12,14 +12,14 @@ A large batch of features was requested and **decomposed into independent sub-pr
 | — | Gallery (mini-blog) | ✅ on `main` | `*-gallery-*` |
 | 1 | Contact Page + Map + Socials | ✅ branch `feature/contact-promo-admin-2026-06-14` (pushed) | `*-contact-page-*` |
 | 1b | Promo banner → admin-managed (`hero`/`promo` adverts) | ✅ same branch | `*-promo-banner-admin-*` |
-| 2 | Homepage Engagement: Question/Feedback tabs + Feedback testimonials | 🔄 IN PROGRESS, branch `feature/feedback-engagement-2026-06-14` | `*-feedback-engagement-*` |
+| 2 | Homepage Engagement: Question/Feedback tabs + Feedback testimonials | ✅ DONE on branch `feature/feedback-engagement-2026-06-14` (backend + frontend; not yet merged to main) | `*-feedback-engagement-*` |
 | 3 | Discounts / On-Sale | 📋 NOT STARTED | — |
 | 4 | Recurring Orders + Benefits/Loyalty | 📋 NOT STARTED (largest; needs its own decomposition) | — |
 
 ## Remaining work — details
 
-### 2. Homepage Engagement (in progress)
-Feedback resource (public submit, name/role/rating/message + up to 3 photos, **admin approval**), tabbed homepage section (Ask a Question | Leave Feedback, Featured-style tabs), and approved feedback driving the `StatsSection` "What Our Clients Say" carousel. See `specs/2026-06-14-feedback-engagement-design.md` + `plans/2026-06-14-feedback-engagement.md`. The question-form admin inbox is already done (AdminContacts).
+### 2. Homepage Engagement ✅ DONE (branch, not merged)
+Feedback resource (public submit, name/role/rating/message + up to 3 photos, **admin approval**), tabbed homepage section (Ask a Question | Leave Feedback, Featured-style tabs), and approved feedback driving the `StatsSection` "What Our Clients Say" carousel. Backend (model/validator/controller/routes/tests) + frontend (feedbackApi, EngagementSection tabs, FeedbackForm w/ stars+photos, StatsSection DB-driven w/ fallback, AdminFeedback moderation at `/admin/feedback`) all done, tested, build clean, live-verified. On branch `feature/feedback-engagement-2026-06-14` — **not yet merged to main**.
 
 ### 3. Discounts / On-Sale (not started)
 Product sale pricing (e.g. `salePrice` or `discountPercent` + `onSale`), "On Sale" badge on cards/detail, admin toggle in AdminProducts, and price display honoring the currency formatting. Brainstorm → spec → plan → build.
