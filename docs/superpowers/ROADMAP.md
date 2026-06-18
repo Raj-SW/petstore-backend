@@ -13,19 +13,21 @@ A large batch of features was requested and **decomposed into independent sub-pr
 | 1 | Contact Page + Map + Socials | ✅ branch `feature/contact-promo-admin-2026-06-14` (pushed) | `*-contact-page-*` |
 | 1b | Promo banner → admin-managed (`hero`/`promo` adverts) | ✅ same branch | `*-promo-banner-admin-*` |
 | 2 | Homepage Engagement: Question/Feedback tabs + Feedback testimonials | ✅ DONE on branch `feature/feedback-engagement-2026-06-14` (backend + frontend; not yet merged to main) | `*-feedback-engagement-*` |
-| 3 | Discounts / On-Sale | 📋 NOT STARTED | — |
-| 4 | Recurring Orders + Benefits/Loyalty | 📋 NOT STARTED (largest; needs its own decomposition) | — |
+| 3 | Discounts / On-Sale | ✅ DONE on branch `feature/feedback-engagement-2026-06-14` (not yet merged) | `*-discounts-on-sale-*` |
+| 4 | Recurring Orders (subscriptions) | ✅ DONE on branch `feature/feedback-engagement-2026-06-14` (backend + frontend; not yet merged). Loyalty/benefits NOT started. | `*-recurring-orders-*` |
 
 ## Remaining work — details
 
 ### 2. Homepage Engagement ✅ DONE (branch, not merged)
 Feedback resource (public submit, name/role/rating/message + up to 3 photos, **admin approval**), tabbed homepage section (Ask a Question | Leave Feedback, Featured-style tabs), and approved feedback driving the `StatsSection` "What Our Clients Say" carousel. Backend (model/validator/controller/routes/tests) + frontend (feedbackApi, EngagementSection tabs, FeedbackForm w/ stars+photos, StatsSection DB-driven w/ fallback, AdminFeedback moderation at `/admin/feedback`) all done, tested, build clean, live-verified. On branch `feature/feedback-engagement-2026-06-14` — **not yet merged to main**.
 
-### 3. Discounts / On-Sale (not started)
-Product sale pricing (e.g. `salePrice` or `discountPercent` + `onSale`), "On Sale" badge on cards/detail, admin toggle in AdminProducts, and price display honoring the currency formatting. Brainstorm → spec → plan → build.
+### 3. Discounts / On-Sale ✅ DONE (branch, not merged)
+Product sale pricing (`onSale`/`discountType`/`discountValue`/`saleStartsAt`/`saleEndsAt` + virtuals `salePrice`/`isOnSaleNow`/`effectivePrice`/`discountPercentLabel`); checkout & cart charge `effectivePrice`; `ProductPrice`+`SaleBadge` on cards/detail/featured; admin sale section. 14/14 sale tests. Commit `e385709`.
 
-### 4. Recurring Orders + Benefits/Loyalty (not started, largest)
-Subscriptions / auto-reorder on orders + a discount/benefits (loyalty) system. Depends on orders/payments and ideally on #3. Needs its own deeper decomposition into sub-pieces before building.
+### 4. Recurring Orders (subscriptions) ✅ DONE (branch, not merged)
+Subscriptions / auto-reorder. **Backend** (commit `a334548`): subscription model + validator (7-day min interval) + controller (customer create/list/pause/skip/cancel, admin list/edit, transactional `process-due` cron runner that builds a discounted pending order, reserves stock via shared `order.service.buildOrder`, advances `nextRunAt`, emails a pay-now link; out-of-stock subs are skipped). `cronAuth.verifyCronSecret` Bearer guard; `subscription-reorder.html`; `/api/subscriptions` mounted; Vercel daily cron (06:00) in `vercel.json`. Tests 9/9. **Frontend** (commit `0d82f1d`): subscriptionsApi, My Subscriptions page + nav, Subscribe & Save product widget, checkout recurring toggle, Admin Subscriptions page + sidebar. MySubscriptions smoke test 2/2, build clean.
+
+**Still open for #4: Benefits/Loyalty** (points/tiers/benefits) — not started; needs its own decomposition.
 
 ## Already satisfied / not needed
 - **Auto-identifiable currency** — `CurrencyContext` already auto-detects via browser locale (`detectCurrency()` → region→currency, default MUR). Only optional upgrade: IP geolocation.
