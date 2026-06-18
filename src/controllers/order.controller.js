@@ -39,7 +39,7 @@ exports.createOrder = async (req, res, next) => {
     // Build the order (validates products, reserves stock, logs movements)
     const order = await buildOrder({
       userId: req.user.id,
-      items: cart.items.map((i) => ({ product: i.product, quantity: i.quantity })),
+      items: cart.items.map((i) => ({ product: i.product, variantId: i.variantId || null, quantity: i.quantity })),
       shippingAddress,
       paymentMethod,
       notes,

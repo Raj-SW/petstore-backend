@@ -33,13 +33,30 @@ async function buildOrder({
     const product = await Product.findById(item.product).session(session);
     if (!product) throw new AppError('Product not found', 404);
     if (!product.isActive) throw new AppError(`Product ${product.name} is not available`, 400);
-    if (product.quantity != null && product.quantity > 0 && product.quantity < item.quantity) {
-      throw new AppError(`Insufficient stock for ${product.name}`, 400);
+
+    let price;
+    let variantLabel = null;
+    if (item.variantId && product.hasVariants) {
+      const v = product.variants.id(item.variantId);
+      if (!v) throw new AppError(`Selected option for ${product.name} is unavailable`, 400);
+      if (v.quantity != null && v.quantity < item.quantity) {
+        throw new AppError(`Insufficient stock for ${product.name} (${v.label})`, 400);
+      }
+      price = product.priceForVariant(item.variantId);
+      variantLabel = v.label;
+    } else {
+      if (product.quantity != null && product.quantity > 0 && product.quantity < item.quantity) {
+        throw new AppError(`Insufficient stock for ${product.name}`, 400);
+      }
+      price = product.effectivePrice;
     }
-    const price = product.effectivePrice;
+
     totalItems += item.quantity;
     totalAmount += price * item.quantity;
-    orderItems.push({ product: product._id, quantity: item.quantity, price });
+    orderItems.push({
+      product: product._id, quantity: item.quantity, price,
+      variantId: item.variantId || null, variantLabel,
+    });
   }
 
   const discount = Math.floor(totalAmount * (Number(discountPercent) || 0) / 100);
@@ -60,14 +77,28 @@ async function buildOrder({
   const movements = [];
   for (const item of orderItems) {
     // eslint-disable-next-line no-await-in-loop
-    const prod = await Product.findById(item.product).lean().session(session);
-    const prevQty = prod
-      ? (prod.quantity !== undefined && prod.quantity !== null ? prod.quantity : (prod.stock ?? 0))
-      : 0;
-    const newQty = Math.max(0, prevQty - item.quantity);
-    const stockField = (prod && prod.quantity !== undefined && prod.quantity !== null) ? 'quantity' : 'stock';
-    // eslint-disable-next-line no-await-in-loop
-    await Product.findByIdAndUpdate(item.product, { $inc: { [stockField]: -item.quantity } }, { session });
+    const prod = await Product.findById(item.product).session(session);
+    let prevQty;
+    let newQty;
+    if (item.variantId && prod && prod.variants && prod.variants.id(item.variantId)) {
+      const v = prod.variants.id(item.variantId);
+      prevQty = v.quantity;
+      newQty = Math.max(0, prevQty - item.quantity);
+      // eslint-disable-next-line no-await-in-loop
+      await Product.updateOne(
+        { _id: item.product, 'variants._id': item.variantId },
+        { $inc: { 'variants.$.quantity': -item.quantity } },
+        { session },
+      );
+    } else {
+      prevQty = prod
+        ? (prod.quantity !== undefined && prod.quantity !== null ? prod.quantity : (prod.stock ?? 0))
+        : 0;
+      newQty = Math.max(0, prevQty - item.quantity);
+      const stockField = (prod && prod.quantity !== undefined && prod.quantity !== null) ? 'quantity' : 'stock';
+      // eslint-disable-next-line no-await-in-loop
+      await Product.findByIdAndUpdate(item.product, { $inc: { [stockField]: -item.quantity } }, { session });
+    }
     movements.push({
       product: item.product, type: 'order', delta: -item.quantity,
       prevQty, newQty, createdBy: userId, orderId: order._id,
