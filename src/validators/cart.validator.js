@@ -4,6 +4,7 @@ const { AppError } = require('../middlewares/errorHandler');
 const validateAddToCart = (req, res, next) => {
   const schema = Joi.object({
     productId: Joi.string().required(),
+    variantId: Joi.string().hex().length(24).optional(),
     quantity: Joi.number().required().min(1),
   });
 
