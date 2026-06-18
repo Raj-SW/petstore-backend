@@ -7,8 +7,8 @@ const baseFields = {
   // Allows relative internal links like /petshop as well as absolute URLs.
   // Empty allowed at the base so hero slides (and partial updates) can omit it.
   link: Joi.string().trim().allow(''),
-  placement: Joi.string().valid('banner', 'sponsored', 'hero', 'promo').messages({
-    'any.only': 'Placement must be banner, sponsored, hero, or promo',
+  placement: Joi.string().valid('banner', 'sponsored', 'hero', 'promo', 'shop').messages({
+    'any.only': 'Placement must be banner, sponsored, hero, promo, or shop',
   }),
   order: Joi.number().min(0),
   active: Joi.boolean(),
@@ -20,7 +20,7 @@ const validateAdvert = (req, res, next) => {
     title: baseFields.title.required(),
     // Link required (non-empty) for banner/sponsored; optional for hero & promo.
     link: Joi.string().trim().when('placement', {
-      is: Joi.valid('hero', 'promo'),
+      is: Joi.valid('hero', 'promo', 'shop'),
       then: Joi.optional().allow(''),
       otherwise: Joi.string().trim().min(1).required().messages({
         'any.required': 'Advert link is required',

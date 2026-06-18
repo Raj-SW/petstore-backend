@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const PLACEMENTS = ['banner', 'sponsored', 'hero', 'promo'];
+const PLACEMENTS = ['banner', 'sponsored', 'hero', 'promo', 'shop'];
 
 const advertSchema = new mongoose.Schema(
   {
@@ -29,7 +29,7 @@ const advertSchema = new mongoose.Schema(
     },
     placement: {
       type: String,
-      enum: { values: PLACEMENTS, message: 'Placement must be banner, sponsored, hero, or promo' },
+      enum: { values: PLACEMENTS, message: 'Placement must be banner, sponsored, hero, promo, or shop' },
       required: [true, 'Placement is required'],
     },
     order: {

@@ -115,6 +115,19 @@ describe('Advert Controller', () => {
       expect(res.body.data.active).toBe(true);
     });
 
+    it('accepts a shop-placement advert without a link and lists it by placement', async () => {
+      const res = await request(app)
+        .post('/api/adverts')
+        .set('Authorization', `Bearer ${adminToken}`)
+        .send({ title: 'Mega Pet Sale', image: 'https://cdn.example.com/shop.jpg', placement: 'shop' });
+      expect(res.status).toBe(201);
+      expect(res.body.data.placement).toBe('shop');
+
+      const list = await request(app).get('/api/adverts?placement=shop');
+      expect(list.status).toBe(200);
+      expect(list.body.data.some((a) => a.title === 'Mega Pet Sale')).toBe(true);
+    });
+
     it('POST allows relative internal links', async () => {
       const res = await request(app)
         .post('/api/adverts')
