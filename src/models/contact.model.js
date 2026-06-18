@@ -25,6 +25,14 @@ const contactSchema = new mongoose.Schema(
       enum: ['new', 'read', 'replied'],
       default: 'new',
     },
+    lastReply: {
+      type: String,
+      trim: true,
+      maxlength: 2000,
+    },
+    repliedAt: {
+      type: Date,
+    },
   },
   { timestamps: true }
 );

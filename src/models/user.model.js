@@ -49,6 +49,9 @@ const userSchema = new mongoose.Schema(
       url: { type: String, trim: true },
       publicId: { type: String, trim: true },
     },
+    emailPreferences: {
+      sales: { type: Boolean, default: true },
+    },
     passwordResetToken: String,
     passwordResetExpires: Date,
     emailVerificationToken: String,
@@ -186,6 +189,7 @@ userSchema.methods.getCustomerData = function () {
     profileImage: this.profileImage,
     role: this.role,
     isEmailVerified: this.isEmailVerified,
+    emailPreferences: this.emailPreferences,
   };
 };
 

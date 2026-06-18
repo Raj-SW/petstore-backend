@@ -24,7 +24,7 @@ exports.getProfile = async (req, res, next) => {
 exports.updateProfile = async (req, res, next) => {
   try {
     const {
-      name, email, phoneNumber, address,
+      name, email, phoneNumber, address, emailPreferences,
     } = req.body;
 
     // Don't allow password updates through this route
@@ -42,11 +42,16 @@ exports.updateProfile = async (req, res, next) => {
       }
     }
 
+    const update = {
+      name, email, phoneNumber, address,
+    };
+    if (emailPreferences && typeof emailPreferences.sales === 'boolean') {
+      update['emailPreferences.sales'] = emailPreferences.sales;
+    }
+
     const user = await User.findByIdAndUpdate(
       req.user.id,
-      {
-        name, email, phoneNumber, address,
-      },
+      update,
       { new: true, runValidators: true },
     ).select('-password');
 

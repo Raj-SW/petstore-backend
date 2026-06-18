@@ -83,6 +83,11 @@ const orderSchema = new mongoose.Schema(
     trackingNumber: String,
     estimatedDelivery: Date,
     notes: String,
+    source: {
+      type: String,
+      enum: ['manual', 'subscription'],
+      default: 'manual',
+    },
   },
   {
     timestamps: true,

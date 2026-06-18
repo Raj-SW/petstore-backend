@@ -9,6 +9,7 @@ const logger = require('../utils/logger');
 const Invoice        = require('../models/invoice.model');
 const Transaction    = require('../models/transaction.model');
 const InvoiceService = require('../services/invoice.service');
+const { buildOrder } = require('../services/order.service');
 
 // Create new order
 exports.createOrder = async (req, res, next) => {
@@ -25,108 +26,28 @@ exports.createOrder = async (req, res, next) => {
       return next(new AppError('Cart is empty', 400));
     }
 
-    // Prepare order items and recalculate totals
-    let totalItems = 0;
-    let totalAmount = 0;
-    const orderItems = [];
-    const logDetails = [];
-
-    for (const item of cart.items) {
-      const product = await Product.findById(item.product).session(session);
-      if (!product) {
-        await session.abortTransaction();
-        session.endSession();
-        logger.warn(`Product not found: ${item.product}`);
-        return next(new AppError('Product not found', 404));
-      }
-      if (!product.isActive) {
-        await session.abortTransaction();
-        session.endSession();
-        logger.warn(`Inactive product: ${product._id}`);
-        return next(new AppError(`Product ${product.name} is not available`, 400));
-      }
-      // Only enforce stock limit when quantity is a positive number (0 = not tracked / unlimited)
-      if (product.quantity != null && product.quantity > 0 && product.quantity < item.quantity) {
-        await session.abortTransaction();
-        session.endSession();
-        logger.warn(`Insufficient stock for product: ${product._id}`);
-        return next(new AppError(`Insufficient stock for ${product.name}`, 400));
-      }
-      // Use the current effective price from DB (honors active sale + schedule)
-      const price = product.effectivePrice;
-      totalItems += item.quantity;
-      totalAmount += price * item.quantity;
-      orderItems.push({
-        product: product._id,
-        quantity: item.quantity,
-        price,
-      });
-      logDetails.push({ product: product._id, quantity: item.quantity, price });
-    }
-
-    // Real discount validation (placeholder: always 0)
-    // TODO: Replace with real discount logic
-    let discount = 0;
+    // Map the cart's discount code to a percent (existing placeholder behavior)
+    let discountPercent = 0;
     let discountCode = null;
-    if (cart.discountCode) {
-      // Example: check if code is "SUMMER10" and not expired
-      if (cart.discountCode === 'SUMMER10') {
-        discount = Math.floor(totalAmount * 0.1); // 10% off
-        discountCode = 'SUMMER10';
-      } else {
-        logger.warn(`Invalid discount code: ${cart.discountCode}`);
-        // Optionally, return error or ignore
-      }
+    if (cart.discountCode === 'SUMMER10') {
+      discountPercent = 10;
+      discountCode = 'SUMMER10';
+    } else if (cart.discountCode) {
+      logger.warn(`Invalid discount code: ${cart.discountCode}`);
     }
 
-    // Create order
-    const order = await Order.create(
-      [
-        {
-          user: req.user.id,
-          items: orderItems,
-          totalItems,
-          totalAmount,
-          discount,
-          discountCode,
-          shippingAddress,
-          paymentMethod,
-          notes,
-        },
-      ],
-      { session },
-    );
-
-    // Update product stock and log movements
-    const orderMovements = [];
-    for (const item of orderItems) {
-      // Use .lean() so we get raw MongoDB fields including legacy `stock` field
-      const prod = await Product.findById(item.product).lean().session(session);
-      // Resolve quantity: prefer `quantity` field; fall back to legacy `stock`
-      const prevQty = prod
-        ? (prod.quantity !== undefined && prod.quantity !== null ? prod.quantity : (prod.stock ?? 0))
-        : 0;
-      const newQty = Math.max(0, prevQty - item.quantity);
-      // Determine which field to decrement (don't create a new `quantity:-n` on legacy-only-stock products)
-      const stockField = (prod && prod.quantity !== undefined && prod.quantity !== null) ? 'quantity' : 'stock';
-      await Product.findByIdAndUpdate(
-        item.product,
-        { $inc: { [stockField]: -item.quantity } },
-        { session },
-      );
-      orderMovements.push({
-        product: item.product,
-        type: 'order',
-        delta: -item.quantity,
-        prevQty,
-        newQty,
-        createdBy: req.user.id,
-        orderId: order[0]._id,
-      });
-    }
-    if (orderMovements.length > 0) {
-      await StockMovement.insertMany(orderMovements, { session });
-    }
+    // Build the order (validates products, reserves stock, logs movements)
+    const order = await buildOrder({
+      userId: req.user.id,
+      items: cart.items.map((i) => ({ product: i.product, quantity: i.quantity })),
+      shippingAddress,
+      paymentMethod,
+      notes,
+      discountPercent,
+      discountCode,
+      source: 'manual',
+      session,
+    });
 
     // Clear cart
     cart.items = [];
@@ -138,7 +59,7 @@ exports.createOrder = async (req, res, next) => {
     session.endSession();
 
     // Log order creation
-    logger.info('Order created', { user: req.user.id, order: order[0]._id, items: logDetails });
+    logger.info('Order created', { user: req.user.id, order: order._id, items: order.items });
 
     // Send order confirmation email — non-critical, never fail the order if email fails
     try {
@@ -148,9 +69,9 @@ exports.createOrder = async (req, res, next) => {
         template: 'order-confirmation',
         data: {
           name: req.user.name,
-          orderId: order[0]._id,
-          totalAmount: order[0].totalAmount,
-          items: order[0].items,
+          orderId: order._id,
+          totalAmount: order.totalAmount,
+          items: order.items,
         },
       });
     } catch (emailErr) {
@@ -158,7 +79,7 @@ exports.createOrder = async (req, res, next) => {
     }
 
     // Sanitize response
-    const sanitizedOrder = order[0].toObject();
+    const sanitizedOrder = order.toObject();
     delete sanitizedOrder.paymentDetails;
 
     res.status(201).json({
