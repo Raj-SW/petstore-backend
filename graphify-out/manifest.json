@@ -50,8 +50,8 @@
     "semantic_hash": "05c9d0accf0e2ad414985853ea73320d"
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\controllers\\cart.controller.js": {
-    "mtime": 1781428674.8274531,
-    "ast_hash": "a2bbb0370f590bfd5c948052dfa0ebab",
+    "mtime": 1781805995.3987565,
+    "ast_hash": "029701cfe496c7f2a68072c3b5e554ec",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\controllers\\contact.controller.js": {
@@ -70,8 +70,8 @@
     "semantic_hash": "1aef7fedb253d3beb4f049179b52b4c9"
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\controllers\\order.controller.js": {
-    "mtime": 1781727369.1737528,
-    "ast_hash": "6713704c6e055f385ed53a85e250ce81",
+    "mtime": 1781806279.803997,
+    "ast_hash": "ce68b289f04c1bc715841b5b8dcdb0bc",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\controllers\\payment.controller.js": {
@@ -85,9 +85,9 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\controllers\\product.controller.js": {
-    "mtime": 1781207043.9491863,
-    "ast_hash": "d3a1d3b40047330d6316c32913c6a9f3",
-    "semantic_hash": "d3a1d3b40047330d6316c32913c6a9f3"
+    "mtime": 1781805660.7176557,
+    "ast_hash": "cc9dd795897ddcd7c71eb9364d81d1d5",
+    "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\controllers\\professionalController.js": {
     "mtime": 1781207043.950197,
@@ -140,9 +140,9 @@
     "semantic_hash": "6e57dabca856155d7a071129779cd57a"
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\models\\cart.model.js": {
-    "mtime": 1781207043.961382,
-    "ast_hash": "4534d8b4f66a6fd2aa0c22446c8aaf7d",
-    "semantic_hash": "4534d8b4f66a6fd2aa0c22446c8aaf7d"
+    "mtime": 1781805821.0859282,
+    "ast_hash": "2d84bd79d4bc6a66e55d9bcba7fb0d30",
+    "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\models\\category.model.js": {
     "mtime": 1781207043.9623766,
@@ -165,8 +165,8 @@
     "semantic_hash": "3a61dd843d264d8e2d90db30854ebfc8"
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\models\\order.model.js": {
-    "mtime": 1781727369.1753926,
-    "ast_hash": "95fa2f5db4702505813a7f85d349bbf9",
+    "mtime": 1781805840.5514383,
+    "ast_hash": "82fde31fc99eeadcd67de0b168445c8d",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\models\\pet.model.js": {
@@ -175,8 +175,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\models\\product.model.js": {
-    "mtime": 1781428518.9326684,
-    "ast_hash": "9e2a4ed2182353bff272dab36d4105c2",
+    "mtime": 1781805452.34557,
+    "ast_hash": "bfaaa7c1273a64d1eaced3e6999cd14a",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\models\\review.model.js": {
@@ -340,9 +340,9 @@
     "semantic_hash": "9bde66e478d42e4032bce7c2d9e039d4"
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\cart.validator.js": {
-    "mtime": 1781207044.0167394,
-    "ast_hash": "1b278f1616c78302b825415bc034f7e7",
-    "semantic_hash": "1b278f1616c78302b825415bc034f7e7"
+    "mtime": 1781805982.7884994,
+    "ast_hash": "53b83722d708a60d317559eed08a2202",
+    "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\order.validator.js": {
     "mtime": 1781355714.7581782,
@@ -350,8 +350,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\product.validator.js": {
-    "mtime": 1781428583.5260913,
-    "ast_hash": "9324abb67e0fe96672368a01ec670ca3",
+    "mtime": 1781805632.7282102,
+    "ast_hash": "d5be022b4a735badeea660c9fe007f30",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\professionalValidator.js": {
@@ -855,8 +855,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\controllers\\subscription.controller.js": {
-    "mtime": 1781764103.8545175,
-    "ast_hash": "eee4b287f3433c0ef349f35786631b9d",
+    "mtime": 1781807204.3151016,
+    "ast_hash": "8997da7347a51a1540254533ce4e14dd",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\controllers\\tip.controller.js": {
@@ -905,8 +905,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\models\\subscription.model.js": {
-    "mtime": 1781437332.3217778,
-    "ast_hash": "8bad33fa8fe7851327a004dc89f5016f",
+    "mtime": 1781805857.0120988,
+    "ast_hash": "65b6f1996ea63f4191834521c3139c6f",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\routes\\advert.routes.js": {
@@ -950,8 +950,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\services\\order.service.js": {
-    "mtime": 1781437356.8165007,
-    "ast_hash": "6d4668317ede4a8fa7fde1eb1a4ac6f9",
+    "mtime": 1781806263.644227,
+    "ast_hash": "c994d59b92351aa3e50fb2310ed32d82",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\utils\\unsubscribeToken.js": {
@@ -985,8 +985,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\subscription.validator.js": {
-    "mtime": 1781763722.6192875,
-    "ast_hash": "f70472b372baef9696c31e95283ccc98",
+    "mtime": 1781806994.154423,
+    "ast_hash": "ab9953c7d39364a4d4141240d79a97a5",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\tip.validator.js": {
@@ -1090,8 +1090,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\tests\\subscription.controller.test.js": {
-    "mtime": 1781437298.3892703,
-    "ast_hash": "46528c4616adc5ccce419c3ce63186b8",
+    "mtime": 1781806747.5555754,
+    "ast_hash": "5bec357b6ab8d3506f5c9a72f6b9c705",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\tests\\teardown.js": {
@@ -1292,6 +1292,36 @@
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\.claude\\launch.json": {
     "mtime": 1781781783.7029195,
     "ast_hash": "b162e8e3f78db6bb82198360b92ce68b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\tests\\cart.variants.test.js": {
+    "mtime": 1781805942.0560439,
+    "ast_hash": "5dd57eb5288a26a0c19e11208ca72a37",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\tests\\order.variants.test.js": {
+    "mtime": 1781806219.092758,
+    "ast_hash": "d6a8cb99c325bebc53384f164d99d2f0",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\tests\\product.variants.api.test.js": {
+    "mtime": 1781805571.6383638,
+    "ast_hash": "e367d82a45cee9e8e7c2dc6beb0e7dfa",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\tests\\product.variants.model.test.js": {
+    "mtime": 1781805396.5611897,
+    "ast_hash": "0e95d9a1fbb32e5acb659fff0a2377d7",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\docs\\superpowers\\plans\\2026-06-18-product-variants.md": {
+    "mtime": 1781805317.3411667,
+    "ast_hash": "9d37012a6142a7992cb7f965e0353203",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\docs\\superpowers\\specs\\2026-06-18-product-variants-design.md": {
+    "mtime": 1781804504.827358,
+    "ast_hash": "9b6db368ebfdca81b639b5c7543745b0",
     "semantic_hash": ""
   }
 }

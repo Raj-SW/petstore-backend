@@ -846,7 +846,7 @@
       "source_file": "api/index.js",
       "source_location": "L1",
       "id": "api_index_js",
-      "community": 73,
+      "community": 15,
       "norm_label": "index.js"
     },
     {
@@ -855,7 +855,7 @@
       "source_file": "api/index.js",
       "source_location": "L2",
       "id": "api_index_app",
-      "community": 73,
+      "community": 15,
       "norm_label": "app"
     },
     {
@@ -864,7 +864,7 @@
       "source_file": "api/index.js",
       "source_location": "L3",
       "id": "api_index_connectdb",
-      "community": 73,
+      "community": 15,
       "norm_label": "connectdb"
     },
     {
@@ -1647,7 +1647,7 @@
       "source_file": "src/server.js",
       "source_location": "L1",
       "id": "src_server_js",
-      "community": 73,
+      "community": 15,
       "norm_label": "server.js"
     },
     {
@@ -1656,7 +1656,7 @@
       "source_file": "src/server.js",
       "source_location": "L2",
       "id": "src_server_app",
-      "community": 73,
+      "community": 15,
       "norm_label": "app"
     },
     {
@@ -1665,7 +1665,7 @@
       "source_file": "src/server.js",
       "source_location": "L3",
       "id": "src_server_connectdb",
-      "community": 73,
+      "community": 15,
       "norm_label": "connectdb"
     },
     {
@@ -1674,7 +1674,7 @@
       "source_file": "src/server.js",
       "source_location": "L4",
       "id": "src_server_logger",
-      "community": 73,
+      "community": 15,
       "norm_label": "logger"
     },
     {
@@ -1683,7 +1683,7 @@
       "source_file": "src/server.js",
       "source_location": "L11",
       "id": "src_server_server",
-      "community": 73,
+      "community": 15,
       "norm_label": "server"
     },
     {
@@ -1692,7 +1692,7 @@
       "source_file": "src/config/database.js",
       "source_location": "L1",
       "id": "src_config_database_js",
-      "community": 73,
+      "community": 15,
       "norm_label": "database.js"
     },
     {
@@ -1701,7 +1701,7 @@
       "source_file": "src/config/database.js",
       "source_location": "L1",
       "id": "config_database_mongoose",
-      "community": 73,
+      "community": 15,
       "norm_label": "mongoose"
     },
     {
@@ -1710,7 +1710,7 @@
       "source_file": "src/config/database.js",
       "source_location": "L2",
       "id": "config_database_logger",
-      "community": 73,
+      "community": 15,
       "norm_label": "logger"
     },
     {
@@ -1719,7 +1719,7 @@
       "source_file": "src/config/database.js",
       "source_location": "L4",
       "id": "config_database_connectdb",
-      "community": 73,
+      "community": 15,
       "norm_label": "connectdb()"
     },
     {
@@ -2178,7 +2178,7 @@
       "source_file": "src/controllers/advert.controller.js",
       "source_location": "L1",
       "id": "src_controllers_advert_controller_js",
-      "community": 120,
+      "community": 29,
       "norm_label": "advert.controller.js"
     },
     {
@@ -2187,7 +2187,7 @@
       "source_file": "src/controllers/advert.controller.js",
       "source_location": "L1",
       "id": "controllers_advert_controller_mongoose",
-      "community": 120,
+      "community": 29,
       "norm_label": "mongoose"
     },
     {
@@ -2196,7 +2196,7 @@
       "source_file": "src/controllers/advert.controller.js",
       "source_location": "L2",
       "id": "controllers_advert_controller_advert",
-      "community": 120,
+      "community": 29,
       "norm_label": "advert"
     },
     {
@@ -2205,7 +2205,7 @@
       "source_file": "src/controllers/advert.controller.js",
       "source_location": "L3",
       "id": "controllers_advert_controller_apperror",
-      "community": 120,
+      "community": 29,
       "norm_label": "{ apperror }"
     },
     {
@@ -2214,7 +2214,7 @@
       "source_file": "src/controllers/advert.controller.js",
       "source_location": "L4",
       "id": "controllers_advert_controller_uploadbannertocloudinary",
-      "community": 120,
+      "community": 29,
       "norm_label": "{ uploadbannertocloudinary }"
     },
     {
@@ -2223,7 +2223,7 @@
       "source_file": "src/controllers/advert.controller.js",
       "source_location": "L5",
       "id": "controllers_advert_controller_logger",
-      "community": 120,
+      "community": 29,
       "norm_label": "logger"
     },
     {
@@ -2232,7 +2232,7 @@
       "source_file": "src/controllers/advert.controller.js",
       "source_location": "L10",
       "id": "controllers_advert_controller_query",
-      "community": 120,
+      "community": 29,
       "norm_label": "query"
     },
     {
@@ -2686,10 +2686,19 @@
       "norm_label": "logger"
     },
     {
+      "label": "v",
+      "file_type": "code",
+      "source_file": "src/controllers/cart.controller.js",
+      "source_location": "L43",
+      "id": "controllers_cart_controller_v",
+      "community": 65,
+      "norm_label": "v"
+    },
+    {
       "label": "existingItem",
       "file_type": "code",
       "source_file": "src/controllers/cart.controller.js",
-      "source_location": "L44",
+      "source_location": "L59",
       "id": "controllers_cart_controller_existingitem",
       "community": 65,
       "norm_label": "existingitem"
@@ -2698,7 +2707,7 @@
       "label": "cartItem",
       "file_type": "code",
       "source_file": "src/controllers/cart.controller.js",
-      "source_location": "L84",
+      "source_location": "L100",
       "id": "controllers_cart_controller_cartitem",
       "community": 65,
       "norm_label": "cartitem"
@@ -2808,7 +2817,7 @@
       "source_file": "src/controllers/faq.controller.js",
       "source_location": "L1",
       "id": "src_controllers_faq_controller_js",
-      "community": 66,
+      "community": 29,
       "norm_label": "faq.controller.js"
     },
     {
@@ -2817,7 +2826,7 @@
       "source_file": "src/controllers/faq.controller.js",
       "source_location": "L1",
       "id": "controllers_faq_controller_mongoose",
-      "community": 66,
+      "community": 29,
       "norm_label": "mongoose"
     },
     {
@@ -2826,7 +2835,7 @@
       "source_file": "src/controllers/faq.controller.js",
       "source_location": "L2",
       "id": "controllers_faq_controller_faq",
-      "community": 66,
+      "community": 29,
       "norm_label": "faq"
     },
     {
@@ -2835,7 +2844,7 @@
       "source_file": "src/controllers/faq.controller.js",
       "source_location": "L3",
       "id": "controllers_faq_controller_apperror",
-      "community": 66,
+      "community": 29,
       "norm_label": "{ apperror }"
     },
     {
@@ -2844,7 +2853,7 @@
       "source_file": "src/controllers/feedback.controller.js",
       "source_location": "L1",
       "id": "src_controllers_feedback_controller_js",
-      "community": 108,
+      "community": 81,
       "norm_label": "feedback.controller.js"
     },
     {
@@ -2853,7 +2862,7 @@
       "source_file": "src/controllers/feedback.controller.js",
       "source_location": "L1",
       "id": "controllers_feedback_controller_mongoose",
-      "community": 108,
+      "community": 81,
       "norm_label": "mongoose"
     },
     {
@@ -2862,7 +2871,7 @@
       "source_file": "src/controllers/feedback.controller.js",
       "source_location": "L2",
       "id": "controllers_feedback_controller_feedback",
-      "community": 108,
+      "community": 81,
       "norm_label": "feedback"
     },
     {
@@ -2871,7 +2880,7 @@
       "source_file": "src/controllers/feedback.controller.js",
       "source_location": "L3",
       "id": "controllers_feedback_controller_apperror",
-      "community": 108,
+      "community": 81,
       "norm_label": "{ apperror }"
     },
     {
@@ -2880,7 +2889,7 @@
       "source_file": "src/controllers/feedback.controller.js",
       "source_location": "L4",
       "id": "controllers_feedback_controller_uploadmultipletocloudinary",
-      "community": 108,
+      "community": 81,
       "norm_label": "{ uploadmultipletocloudinary }"
     },
     {
@@ -2889,7 +2898,7 @@
       "source_file": "src/controllers/feedback.controller.js",
       "source_location": "L5",
       "id": "controllers_feedback_controller_logger",
-      "community": 108,
+      "community": 81,
       "norm_label": "logger"
     },
     {
@@ -2898,7 +2907,7 @@
       "source_file": "src/controllers/feedback.controller.js",
       "source_location": "L10",
       "id": "controllers_feedback_controller_photos",
-      "community": 108,
+      "community": 81,
       "norm_label": "photos"
     },
     {
@@ -2907,7 +2916,7 @@
       "source_file": "src/controllers/feedback.controller.js",
       "source_location": "L30",
       "id": "controllers_feedback_controller_limit",
-      "community": 108,
+      "community": 81,
       "norm_label": "limit"
     },
     {
@@ -3564,7 +3573,7 @@
       "source_file": "src/controllers/pet.controller.js",
       "source_location": "L1",
       "id": "src_controllers_pet_controller_js",
-      "community": 45,
+      "community": 29,
       "norm_label": "pet.controller.js"
     },
     {
@@ -3573,7 +3582,7 @@
       "source_file": "src/controllers/pet.controller.js",
       "source_location": "L1",
       "id": "controllers_pet_controller_pet",
-      "community": 45,
+      "community": 29,
       "norm_label": "pet"
     },
     {
@@ -3582,7 +3591,7 @@
       "source_file": "src/controllers/pet.controller.js",
       "source_location": "L2",
       "id": "controllers_pet_controller_apperror",
-      "community": 45,
+      "community": 29,
       "norm_label": "{ apperror }"
     },
     {
@@ -3591,7 +3600,7 @@
       "source_file": "src/controllers/pet.controller.js",
       "source_location": "L3",
       "id": "controllers_pet_controller_uploadmultipletocloudinary_deletemultiplefromcloudinary_validateimagefile",
-      "community": 45,
+      "community": 29,
       "norm_label": "{\r\n  uploadmultipletocloudinary,\r\n  deletemultiplefromcloudinary,\r\n  validateimagefile,\r\n}"
     },
     {
@@ -3600,7 +3609,7 @@
       "source_file": "src/controllers/pet.controller.js",
       "source_location": "L12",
       "id": "controllers_pet_controller_loadownedpet",
-      "community": 45,
+      "community": 29,
       "norm_label": "loadownedpet()"
     },
     {
@@ -3609,7 +3618,7 @@
       "source_file": "src/controllers/pet.controller.js",
       "source_location": "L196",
       "id": "controllers_pet_controller_exists",
-      "community": 45,
+      "community": 29,
       "norm_label": "exists"
     },
     {
@@ -3618,7 +3627,7 @@
       "source_file": "src/controllers/pet.controller.js",
       "source_location": "L216",
       "id": "controllers_pet_controller_target",
-      "community": 45,
+      "community": 29,
       "norm_label": "target"
     },
     {
@@ -3688,7 +3697,7 @@
       "label": "productData",
       "file_type": "code",
       "source_file": "src/controllers/product.controller.js",
-      "source_location": "L38",
+      "source_location": "L47",
       "id": "controllers_product_controller_productdata",
       "community": 34,
       "norm_label": "productdata"
@@ -3697,7 +3706,7 @@
       "label": "query",
       "file_type": "code",
       "source_file": "src/controllers/product.controller.js",
-      "source_location": "L89",
+      "source_location": "L98",
       "id": "controllers_product_controller_query",
       "community": 34,
       "norm_label": "query"
@@ -3706,7 +3715,7 @@
       "label": "keepImages",
       "file_type": "code",
       "source_file": "src/controllers/product.controller.js",
-      "source_location": "L209",
+      "source_location": "L233",
       "id": "controllers_product_controller_keepimages",
       "community": 34,
       "norm_label": "keepimages"
@@ -3715,7 +3724,7 @@
       "label": "keepPublicIds",
       "file_type": "code",
       "source_file": "src/controllers/product.controller.js",
-      "source_location": "L212",
+      "source_location": "L236",
       "id": "controllers_product_controller_keeppublicids",
       "community": 34,
       "norm_label": "keeppublicids"
@@ -3724,7 +3733,7 @@
       "label": "removedPublicIds",
       "file_type": "code",
       "source_file": "src/controllers/product.controller.js",
-      "source_location": "L213",
+      "source_location": "L237",
       "id": "controllers_product_controller_removedpublicids",
       "community": 34,
       "norm_label": "removedpublicids"
@@ -3733,7 +3742,7 @@
       "label": "newlyUploaded",
       "file_type": "code",
       "source_file": "src/controllers/product.controller.js",
-      "source_location": "L222",
+      "source_location": "L246",
       "id": "controllers_product_controller_newlyuploaded",
       "community": 34,
       "norm_label": "newlyuploaded"
@@ -3742,7 +3751,7 @@
       "label": "publicIds",
       "file_type": "code",
       "source_file": "src/controllers/product.controller.js",
-      "source_location": "L269",
+      "source_location": "L293",
       "id": "controllers_product_controller_publicids",
       "community": 34,
       "norm_label": "publicids"
@@ -3751,7 +3760,7 @@
       "label": "regex",
       "file_type": "code",
       "source_file": "src/controllers/product.controller.js",
-      "source_location": "L300",
+      "source_location": "L324",
       "id": "controllers_product_controller_regex",
       "community": 34,
       "norm_label": "regex"
@@ -3760,7 +3769,7 @@
       "label": "filter",
       "file_type": "code",
       "source_file": "src/controllers/product.controller.js",
-      "source_location": "L301",
+      "source_location": "L325",
       "id": "controllers_product_controller_filter",
       "community": 34,
       "norm_label": "filter"
@@ -3852,7 +3861,7 @@
       "source_file": "src/controllers/review.controller.js",
       "source_location": "L1",
       "id": "src_controllers_review_controller_js",
-      "community": 66,
+      "community": 64,
       "norm_label": "review.controller.js"
     },
     {
@@ -3861,7 +3870,7 @@
       "source_file": "src/controllers/review.controller.js",
       "source_location": "L1",
       "id": "controllers_review_controller_review",
-      "community": 66,
+      "community": 64,
       "norm_label": "review"
     },
     {
@@ -3870,7 +3879,7 @@
       "source_file": "src/controllers/review.controller.js",
       "source_location": "L2",
       "id": "controllers_review_controller_order",
-      "community": 66,
+      "community": 64,
       "norm_label": "order"
     },
     {
@@ -3879,7 +3888,7 @@
       "source_file": "src/controllers/review.controller.js",
       "source_location": "L3",
       "id": "controllers_review_controller_apperror",
-      "community": 66,
+      "community": 64,
       "norm_label": "{ apperror }"
     },
     {
@@ -4066,7 +4075,7 @@
       "label": "notifyReorder()",
       "file_type": "code",
       "source_file": "src/controllers/subscription.controller.js",
-      "source_location": "L196",
+      "source_location": "L201",
       "id": "controllers_subscription_controller_notifyreorder",
       "community": 52,
       "norm_label": "notifyreorder()"
@@ -4158,7 +4167,7 @@
       "source_file": "src/controllers/transaction.controller.js",
       "source_location": "L1",
       "id": "src_controllers_transaction_controller_js",
-      "community": 82,
+      "community": 55,
       "norm_label": "transaction.controller.js"
     },
     {
@@ -4167,7 +4176,7 @@
       "source_file": "src/controllers/transaction.controller.js",
       "source_location": "L1",
       "id": "controllers_transaction_controller_transaction",
-      "community": 82,
+      "community": 55,
       "norm_label": "transaction"
     },
     {
@@ -4176,7 +4185,7 @@
       "source_file": "src/controllers/transaction.controller.js",
       "source_location": "L2",
       "id": "controllers_transaction_controller_apperror",
-      "community": 82,
+      "community": 55,
       "norm_label": "{ apperror }"
     },
     {
@@ -4185,7 +4194,7 @@
       "source_file": "src/controllers/transaction.controller.js",
       "source_location": "L7",
       "id": "controllers_transaction_controller_page",
-      "community": 82,
+      "community": 55,
       "norm_label": "page"
     },
     {
@@ -4194,7 +4203,7 @@
       "source_file": "src/controllers/transaction.controller.js",
       "source_location": "L8",
       "id": "controllers_transaction_controller_limit",
-      "community": 82,
+      "community": 55,
       "norm_label": "limit"
     },
     {
@@ -4203,7 +4212,7 @@
       "source_file": "src/controllers/transaction.controller.js",
       "source_location": "L11",
       "id": "controllers_transaction_controller_filter",
-      "community": 82,
+      "community": 55,
       "norm_label": "filter"
     },
     {
@@ -4338,7 +4347,7 @@
       "source_file": "src/middlewares/errorHandler.js",
       "source_location": "L1",
       "id": "src_middlewares_errorhandler_js",
-      "community": 66,
+      "community": 29,
       "norm_label": "errorhandler.js"
     },
     {
@@ -4347,7 +4356,7 @@
       "source_file": "src/middlewares/errorHandler.js",
       "source_location": "L1",
       "id": "middlewares_errorhandler_logger",
-      "community": 66,
+      "community": 29,
       "norm_label": "logger"
     },
     {
@@ -4356,7 +4365,7 @@
       "source_file": "src/middlewares/errorHandler.js",
       "source_location": "L3",
       "id": "middlewares_errorhandler_apperror",
-      "community": 66,
+      "community": 29,
       "norm_label": "apperror"
     },
     {
@@ -4365,7 +4374,7 @@
       "source_file": "src/middlewares/errorHandler.js",
       "source_location": "L4",
       "id": "middlewares_errorhandler_apperror_constructor",
-      "community": 66,
+      "community": 29,
       "norm_label": ".constructor()"
     },
     {
@@ -4374,7 +4383,7 @@
       "source_file": "src/middlewares/errorHandler.js",
       "source_location": "L14",
       "id": "middlewares_errorhandler_errorhandler",
-      "community": 66,
+      "community": 29,
       "norm_label": "errorhandler()"
     },
     {
@@ -4383,7 +4392,7 @@
       "source_file": "src/middlewares/errorHandler.js",
       "source_location": "L44",
       "id": "middlewares_errorhandler_notfoundhandler",
-      "community": 66,
+      "community": 29,
       "norm_label": "notfoundhandler()"
     },
     {
@@ -4392,7 +4401,7 @@
       "source_file": "src/middlewares/upload.js",
       "source_location": "L1",
       "id": "src_middlewares_upload_js",
-      "community": 80,
+      "community": 44,
       "norm_label": "upload.js"
     },
     {
@@ -4401,7 +4410,7 @@
       "source_file": "src/middlewares/upload.js",
       "source_location": "L1",
       "id": "middlewares_upload_multer",
-      "community": 80,
+      "community": 44,
       "norm_label": "multer"
     },
     {
@@ -4410,7 +4419,7 @@
       "source_file": "src/middlewares/upload.js",
       "source_location": "L2",
       "id": "middlewares_upload_apperror",
-      "community": 80,
+      "community": 44,
       "norm_label": "{ apperror }"
     },
     {
@@ -4419,7 +4428,7 @@
       "source_file": "src/middlewares/upload.js",
       "source_location": "L4",
       "id": "middlewares_upload_filefilter",
-      "community": 80,
+      "community": 44,
       "norm_label": "filefilter()"
     },
     {
@@ -4428,7 +4437,7 @@
       "source_file": "src/middlewares/upload.js",
       "source_location": "L13",
       "id": "middlewares_upload_upload",
-      "community": 80,
+      "community": 44,
       "norm_label": "upload"
     },
     {
@@ -4561,7 +4570,7 @@
       "label": "cartSchema",
       "file_type": "code",
       "source_file": "src/models/cart.model.js",
-      "source_location": "L20",
+      "source_location": "L22",
       "id": "models_cart_model_cartschema",
       "community": 220,
       "norm_label": "cartschema"
@@ -4707,7 +4716,7 @@
       "source_file": "src/models/galleryPost.model.js",
       "source_location": "L1",
       "id": "src_models_gallerypost_model_js",
-      "community": 218,
+      "community": 17,
       "norm_label": "gallerypost.model.js"
     },
     {
@@ -4716,7 +4725,7 @@
       "source_file": "src/models/galleryPost.model.js",
       "source_location": "L1",
       "id": "models_gallerypost_model_mongoose",
-      "community": 218,
+      "community": 17,
       "norm_label": "mongoose"
     },
     {
@@ -4725,7 +4734,7 @@
       "source_file": "src/models/galleryPost.model.js",
       "source_location": "L3",
       "id": "models_gallerypost_model_categories",
-      "community": 218,
+      "community": 17,
       "norm_label": "categories"
     },
     {
@@ -4734,7 +4743,7 @@
       "source_file": "src/models/galleryPost.model.js",
       "source_location": "L5",
       "id": "models_gallerypost_model_gallerypostschema",
-      "community": 218,
+      "community": 17,
       "norm_label": "gallerypostschema"
     },
     {
@@ -4806,7 +4815,7 @@
       "source_file": "src/models/order.model.js",
       "source_location": "L1",
       "id": "src_models_order_model_js",
-      "community": 37,
+      "community": 116,
       "norm_label": "order.model.js"
     },
     {
@@ -4815,7 +4824,7 @@
       "source_file": "src/models/order.model.js",
       "source_location": "L1",
       "id": "models_order_model_mongoose",
-      "community": 37,
+      "community": 116,
       "norm_label": "mongoose"
     },
     {
@@ -4824,16 +4833,16 @@
       "source_file": "src/models/order.model.js",
       "source_location": "L3",
       "id": "models_order_model_orderitemschema",
-      "community": 37,
+      "community": 116,
       "norm_label": "orderitemschema"
     },
     {
       "label": "orderSchema",
       "file_type": "code",
       "source_file": "src/models/order.model.js",
-      "source_location": "L20",
+      "source_location": "L22",
       "id": "models_order_model_orderschema",
-      "community": 37,
+      "community": 116,
       "norm_label": "orderschema"
     },
     {
@@ -4932,7 +4941,7 @@
       "source_file": "src/models/product.model.js",
       "source_location": "L1",
       "id": "src_models_product_model_js",
-      "community": 116,
+      "community": 96,
       "norm_label": "product.model.js"
     },
     {
@@ -4941,7 +4950,7 @@
       "source_file": "src/models/product.model.js",
       "source_location": "L1",
       "id": "models_product_model_mongoose",
-      "community": 116,
+      "community": 96,
       "norm_label": "mongoose"
     },
     {
@@ -4950,35 +4959,35 @@
       "source_file": "src/models/product.model.js",
       "source_location": "L3",
       "id": "models_product_model_productschema",
-      "community": 116,
+      "community": 96,
       "norm_label": "productschema"
     },
     {
       "label": "round2()",
       "file_type": "code",
       "source_file": "src/models/product.model.js",
-      "source_location": "L136",
+      "source_location": "L154",
       "id": "models_product_model_round2",
-      "community": 116,
+      "community": 96,
       "norm_label": "round2()"
     },
     {
-      "label": "pct",
+      "label": "computeSale()",
       "file_type": "code",
       "source_file": "src/models/product.model.js",
-      "source_location": "L141",
-      "id": "models_product_model_pct",
-      "community": 116,
-      "norm_label": "pct"
+      "source_location": "L156",
+      "id": "models_product_model_computesale",
+      "community": 96,
+      "norm_label": "computesale()"
     },
     {
-      "label": "now",
+      "label": "s",
       "file_type": "code",
       "source_file": "src/models/product.model.js",
-      "source_location": "L149",
-      "id": "models_product_model_now",
-      "community": 116,
-      "norm_label": "now"
+      "source_location": "L192",
+      "id": "models_product_model_s",
+      "community": 96,
+      "norm_label": "s"
     },
     {
       "label": "review.model.js",
@@ -5022,7 +5031,7 @@
       "source_file": "src/models/saleAnnouncement.model.js",
       "source_location": "L1",
       "id": "src_models_saleannouncement_model_js",
-      "community": 0,
+      "community": 232,
       "norm_label": "saleannouncement.model.js"
     },
     {
@@ -5031,7 +5040,7 @@
       "source_file": "src/models/saleAnnouncement.model.js",
       "source_location": "L1",
       "id": "models_saleannouncement_model_mongoose",
-      "community": 0,
+      "community": 232,
       "norm_label": "mongoose"
     },
     {
@@ -5040,7 +5049,7 @@
       "source_file": "src/models/saleAnnouncement.model.js",
       "source_location": "L3",
       "id": "models_saleannouncement_model_saleannouncementschema",
-      "community": 0,
+      "community": 232,
       "norm_label": "saleannouncementschema"
     },
     {
@@ -5049,7 +5058,7 @@
       "source_file": "src/models/stockMovement.model.js",
       "source_location": "L1",
       "id": "src_models_stockmovement_model_js",
-      "community": 116,
+      "community": 26,
       "norm_label": "stockmovement.model.js"
     },
     {
@@ -5058,7 +5067,7 @@
       "source_file": "src/models/stockMovement.model.js",
       "source_location": "L1",
       "id": "models_stockmovement_model_mongoose",
-      "community": 116,
+      "community": 26,
       "norm_label": "mongoose"
     },
     {
@@ -5067,7 +5076,7 @@
       "source_file": "src/models/stockMovement.model.js",
       "source_location": "L3",
       "id": "models_stockmovement_model_stockmovementschema",
-      "community": 116,
+      "community": 26,
       "norm_label": "stockmovementschema"
     },
     {
@@ -5076,7 +5085,7 @@
       "source_file": "src/models/subscription.model.js",
       "source_location": "L1",
       "id": "src_models_subscription_model_js",
-      "community": 39,
+      "community": 231,
       "norm_label": "subscription.model.js"
     },
     {
@@ -5085,7 +5094,7 @@
       "source_file": "src/models/subscription.model.js",
       "source_location": "L1",
       "id": "models_subscription_model_mongoose",
-      "community": 39,
+      "community": 231,
       "norm_label": "mongoose"
     },
     {
@@ -5094,16 +5103,16 @@
       "source_file": "src/models/subscription.model.js",
       "source_location": "L3",
       "id": "models_subscription_model_subscriptionitemschema",
-      "community": 39,
+      "community": 231,
       "norm_label": "subscriptionitemschema"
     },
     {
       "label": "subscriptionSchema",
       "file_type": "code",
       "source_file": "src/models/subscription.model.js",
-      "source_location": "L8",
+      "source_location": "L10",
       "id": "models_subscription_model_subscriptionschema",
-      "community": 39,
+      "community": 231,
       "norm_label": "subscriptionschema"
     },
     {
@@ -5112,7 +5121,7 @@
       "source_file": "src/models/transaction.model.js",
       "source_location": "L1",
       "id": "src_models_transaction_model_js",
-      "community": 37,
+      "community": 55,
       "norm_label": "transaction.model.js"
     },
     {
@@ -5121,7 +5130,7 @@
       "source_file": "src/models/transaction.model.js",
       "source_location": "L1",
       "id": "models_transaction_model_mongoose",
-      "community": 37,
+      "community": 55,
       "norm_label": "mongoose"
     },
     {
@@ -5130,7 +5139,7 @@
       "source_file": "src/models/transaction.model.js",
       "source_location": "L3",
       "id": "models_transaction_model_transactionschema",
-      "community": 37,
+      "community": 55,
       "norm_label": "transactionschema"
     },
     {
@@ -5346,7 +5355,7 @@
       "source_file": "src/routes/announcement.routes.js",
       "source_location": "L1",
       "id": "src_routes_announcement_routes_js",
-      "community": 0,
+      "community": 80,
       "norm_label": "announcement.routes.js"
     },
     {
@@ -5355,7 +5364,7 @@
       "source_file": "src/routes/announcement.routes.js",
       "source_location": "L1",
       "id": "routes_announcement_routes_express",
-      "community": 0,
+      "community": 80,
       "norm_label": "express"
     },
     {
@@ -5364,7 +5373,7 @@
       "source_file": "src/routes/announcement.routes.js",
       "source_location": "L2",
       "id": "routes_announcement_routes_isauthenticated_isadmin",
-      "community": 0,
+      "community": 80,
       "norm_label": "{ isauthenticated, isadmin }"
     },
     {
@@ -5373,7 +5382,7 @@
       "source_file": "src/routes/announcement.routes.js",
       "source_location": "L3",
       "id": "routes_announcement_routes_validateannouncement",
-      "community": 0,
+      "community": 80,
       "norm_label": "{ validateannouncement }"
     },
     {
@@ -5382,7 +5391,7 @@
       "source_file": "src/routes/announcement.routes.js",
       "source_location": "L4",
       "id": "routes_announcement_routes_createannouncement_getannouncements_unsubscribe",
-      "community": 0,
+      "community": 80,
       "norm_label": "{\n  createannouncement,\n  getannouncements,\n  unsubscribe,\n}"
     },
     {
@@ -5391,7 +5400,7 @@
       "source_file": "src/routes/announcement.routes.js",
       "source_location": "L10",
       "id": "routes_announcement_routes_router",
-      "community": 0,
+      "community": 80,
       "norm_label": "router"
     },
     {
@@ -5400,7 +5409,7 @@
       "source_file": "src/routes/appointment.routes.js",
       "source_location": "L1",
       "id": "src_routes_appointment_routes_js",
-      "community": 20,
+      "community": 230,
       "norm_label": "appointment.routes.js"
     },
     {
@@ -5409,7 +5418,7 @@
       "source_file": "src/routes/appointment.routes.js",
       "source_location": "L1",
       "id": "routes_appointment_routes_express",
-      "community": 20,
+      "community": 230,
       "norm_label": "express"
     },
     {
@@ -5418,7 +5427,7 @@
       "source_file": "src/routes/appointment.routes.js",
       "source_location": "L3",
       "id": "routes_appointment_routes_router",
-      "community": 20,
+      "community": 230,
       "norm_label": "router"
     },
     {
@@ -5427,7 +5436,7 @@
       "source_file": "src/routes/appointment.routes.js",
       "source_location": "L4",
       "id": "routes_appointment_routes_createappointment_getuserappointments_getprofessionalappointments_getappointmentbyid_updateappointmentstatus_deleteappointment_getpublicprofessionalappointments",
-      "community": 20,
+      "community": 230,
       "norm_label": "{\r\n  createappointment,\r\n  getuserappointments,\r\n  getprofessionalappointments,\r\n  getappointmentbyid,\r\n  updateappointmentstatus,\r\n  deleteappointment,\r\n  getpublicprofessionalappointments,\r\n}"
     },
     {
@@ -5436,7 +5445,7 @@
       "source_file": "src/routes/appointment.routes.js",
       "source_location": "L13",
       "id": "routes_appointment_routes_isauthenticated_isserviceprovider",
-      "community": 20,
+      "community": 230,
       "norm_label": "{ isauthenticated, isserviceprovider }"
     },
     {
@@ -5544,7 +5553,7 @@
       "source_file": "src/routes/contact.routes.js",
       "source_location": "L1",
       "id": "src_routes_contact_routes_js",
-      "community": 96,
+      "community": 42,
       "norm_label": "contact.routes.js"
     },
     {
@@ -5553,7 +5562,7 @@
       "source_file": "src/routes/contact.routes.js",
       "source_location": "L1",
       "id": "routes_contact_routes_express",
-      "community": 96,
+      "community": 42,
       "norm_label": "express"
     },
     {
@@ -5562,7 +5571,7 @@
       "source_file": "src/routes/contact.routes.js",
       "source_location": "L2",
       "id": "routes_contact_routes_isauthenticated_isadmin",
-      "community": 96,
+      "community": 42,
       "norm_label": "{ isauthenticated, isadmin }"
     },
     {
@@ -5571,7 +5580,7 @@
       "source_file": "src/routes/contact.routes.js",
       "source_location": "L3",
       "id": "routes_contact_routes_submitcontact_getcontacts_updatecontactstatus_deletecontact_replytocontact",
-      "community": 96,
+      "community": 42,
       "norm_label": "{\n  submitcontact,\n  getcontacts,\n  updatecontactstatus,\n  deletecontact,\n  replytocontact,\n}"
     },
     {
@@ -5580,7 +5589,7 @@
       "source_file": "src/routes/contact.routes.js",
       "source_location": "L11",
       "id": "routes_contact_routes_router",
-      "community": 96,
+      "community": 42,
       "norm_label": "router"
     },
     {
@@ -5769,7 +5778,7 @@
       "source_file": "src/routes/newsletter.routes.js",
       "source_location": "L1",
       "id": "src_routes_newsletter_routes_js",
-      "community": 56,
+      "community": 121,
       "norm_label": "newsletter.routes.js"
     },
     {
@@ -5778,7 +5787,7 @@
       "source_file": "src/routes/newsletter.routes.js",
       "source_location": "L1",
       "id": "routes_newsletter_routes_express",
-      "community": 56,
+      "community": 121,
       "norm_label": "express"
     },
     {
@@ -5787,7 +5796,7 @@
       "source_file": "src/routes/newsletter.routes.js",
       "source_location": "L2",
       "id": "routes_newsletter_routes_isauthenticated_isadmin",
-      "community": 56,
+      "community": 121,
       "norm_label": "{ isauthenticated, isadmin }"
     },
     {
@@ -5796,7 +5805,7 @@
       "source_file": "src/routes/newsletter.routes.js",
       "source_location": "L3",
       "id": "routes_newsletter_routes_subscribe_getsubscribersadmin",
-      "community": 56,
+      "community": 121,
       "norm_label": "{ subscribe, getsubscribersadmin }"
     },
     {
@@ -5805,7 +5814,7 @@
       "source_file": "src/routes/newsletter.routes.js",
       "source_location": "L5",
       "id": "routes_newsletter_routes_router",
-      "community": 56,
+      "community": 121,
       "norm_label": "router"
     },
     {
@@ -5922,7 +5931,7 @@
       "source_file": "src/routes/pet.routes.js",
       "source_location": "L1",
       "id": "src_routes_pet_routes_js",
-      "community": 80,
+      "community": 44,
       "norm_label": "pet.routes.js"
     },
     {
@@ -5931,7 +5940,7 @@
       "source_file": "src/routes/pet.routes.js",
       "source_location": "L1",
       "id": "routes_pet_routes_express",
-      "community": 80,
+      "community": 44,
       "norm_label": "express"
     },
     {
@@ -5940,7 +5949,7 @@
       "source_file": "src/routes/pet.routes.js",
       "source_location": "L2",
       "id": "routes_pet_routes_isauthenticated",
-      "community": 80,
+      "community": 44,
       "norm_label": "{ isauthenticated }"
     },
     {
@@ -5949,7 +5958,7 @@
       "source_file": "src/routes/pet.routes.js",
       "source_location": "L3",
       "id": "routes_pet_routes_createpet_getmypets_getpet_updatepet_deletepet_addpetimages_deletepetimage_setprimarypetimage",
-      "community": 80,
+      "community": 44,
       "norm_label": "{\r\n  createpet,\r\n  getmypets,\r\n  getpet,\r\n  updatepet,\r\n  deletepet,\r\n  addpetimages,\r\n  deletepetimage,\r\n  setprimarypetimage,\r\n}"
     },
     {
@@ -5958,7 +5967,7 @@
       "source_file": "src/routes/pet.routes.js",
       "source_location": "L13",
       "id": "routes_pet_routes_upload",
-      "community": 80,
+      "community": 44,
       "norm_label": "{ upload }"
     },
     {
@@ -5967,7 +5976,7 @@
       "source_file": "src/routes/pet.routes.js",
       "source_location": "L15",
       "id": "routes_pet_routes_router",
-      "community": 80,
+      "community": 44,
       "norm_label": "router"
     },
     {
@@ -6255,7 +6264,7 @@
       "source_file": "src/routes/tip.routes.js",
       "source_location": "L1",
       "id": "src_routes_tip_routes_js",
-      "community": 46,
+      "community": 62,
       "norm_label": "tip.routes.js"
     },
     {
@@ -6264,7 +6273,7 @@
       "source_file": "src/routes/tip.routes.js",
       "source_location": "L1",
       "id": "routes_tip_routes_express",
-      "community": 46,
+      "community": 62,
       "norm_label": "express"
     },
     {
@@ -6273,7 +6282,7 @@
       "source_file": "src/routes/tip.routes.js",
       "source_location": "L2",
       "id": "routes_tip_routes_isauthenticated_isadmin",
-      "community": 46,
+      "community": 62,
       "norm_label": "{ isauthenticated, isadmin }"
     },
     {
@@ -6282,7 +6291,7 @@
       "source_file": "src/routes/tip.routes.js",
       "source_location": "L3",
       "id": "routes_tip_routes_gettips_gettip_gettipsadmin_gettipadmin_createtip_updatetip_deletetip",
-      "community": 46,
+      "community": 62,
       "norm_label": "{\n  gettips,\n  gettip,\n  gettipsadmin,\n  gettipadmin,\n  createtip,\n  updatetip,\n  deletetip,\n}"
     },
     {
@@ -6291,7 +6300,7 @@
       "source_file": "src/routes/tip.routes.js",
       "source_location": "L12",
       "id": "routes_tip_routes_validatetip_validatetipupdate",
-      "community": 46,
+      "community": 62,
       "norm_label": "{ validatetip, validatetipupdate }"
     },
     {
@@ -6300,7 +6309,7 @@
       "source_file": "src/routes/tip.routes.js",
       "source_location": "L14",
       "id": "routes_tip_routes_router",
-      "community": 46,
+      "community": 62,
       "norm_label": "router"
     },
     {
@@ -6489,7 +6498,7 @@
       "source_file": "src/services/payment.service.js",
       "source_location": "L1",
       "id": "src_services_payment_service_js",
-      "community": 62,
+      "community": 37,
       "norm_label": "payment.service.js"
     },
     {
@@ -6498,7 +6507,7 @@
       "source_file": "src/services/payment.service.js",
       "source_location": "L1",
       "id": "services_payment_service_stripe",
-      "community": 62,
+      "community": 37,
       "norm_label": "stripe"
     },
     {
@@ -6507,7 +6516,7 @@
       "source_file": "src/services/payment.service.js",
       "source_location": "L2",
       "id": "services_payment_service_apperror",
-      "community": 62,
+      "community": 37,
       "norm_label": "{ apperror }"
     },
     {
@@ -6516,7 +6525,7 @@
       "source_file": "src/services/payment.service.js",
       "source_location": "L3",
       "id": "services_payment_service_logger",
-      "community": 62,
+      "community": 37,
       "norm_label": "logger"
     },
     {
@@ -6525,7 +6534,7 @@
       "source_file": "src/services/payment.service.js",
       "source_location": "L5",
       "id": "services_payment_service_paymentservice",
-      "community": 62,
+      "community": 37,
       "norm_label": "paymentservice"
     },
     {
@@ -6534,7 +6543,7 @@
       "source_file": "src/services/payment.service.js",
       "source_location": "L6",
       "id": "services_payment_service_paymentservice_createpaymentintent",
-      "community": 62,
+      "community": 37,
       "norm_label": ".createpaymentintent()"
     },
     {
@@ -6543,7 +6552,7 @@
       "source_file": "src/services/payment.service.js",
       "source_location": "L27",
       "id": "services_payment_service_paymentservice_confirmpayment",
-      "community": 62,
+      "community": 37,
       "norm_label": ".confirmpayment()"
     },
     {
@@ -6552,7 +6561,7 @@
       "source_file": "src/services/payment.service.js",
       "source_location": "L46",
       "id": "services_payment_service_paymentservice_processrefund",
-      "community": 62,
+      "community": 37,
       "norm_label": ".processrefund()"
     },
     {
@@ -6561,7 +6570,7 @@
       "source_file": "src/services/payment.service.js",
       "source_location": "L64",
       "id": "services_payment_service_paymentservice_handlewebhookevent",
-      "community": 62,
+      "community": 37,
       "norm_label": ".handlewebhookevent()"
     },
     {
@@ -7272,7 +7281,7 @@
       "source_file": "src/utils/unsubscribeToken.js",
       "source_location": "L1",
       "id": "src_utils_unsubscribetoken_js",
-      "community": 0,
+      "community": 233,
       "norm_label": "unsubscribetoken.js"
     },
     {
@@ -7281,7 +7290,7 @@
       "source_file": "src/utils/unsubscribeToken.js",
       "source_location": "L1",
       "id": "utils_unsubscribetoken_jwt",
-      "community": 0,
+      "community": 233,
       "norm_label": "jwt"
     },
     {
@@ -7290,7 +7299,7 @@
       "source_file": "src/utils/unsubscribeToken.js",
       "source_location": "L14",
       "id": "utils_unsubscribetoken_decoded",
-      "community": 0,
+      "community": 233,
       "norm_label": "decoded"
     },
     {
@@ -7299,7 +7308,7 @@
       "source_file": "src/utils/validation.js",
       "source_location": "L1",
       "id": "src_utils_validation_js",
-      "community": 66,
+      "community": 29,
       "norm_label": "validation.js"
     },
     {
@@ -7308,7 +7317,7 @@
       "source_file": "src/utils/validation.js",
       "source_location": "L1",
       "id": "utils_validation_mongoose",
-      "community": 66,
+      "community": 29,
       "norm_label": "mongoose"
     },
     {
@@ -7317,7 +7326,7 @@
       "source_file": "src/utils/validation.js",
       "source_location": "L2",
       "id": "utils_validation_apperror",
-      "community": 66,
+      "community": 29,
       "norm_label": "{ apperror }"
     },
     {
@@ -7551,7 +7560,7 @@
       "source_file": "src/validators/announcement.validator.js",
       "source_location": "L1",
       "id": "src_validators_announcement_validator_js",
-      "community": 0,
+      "community": 80,
       "norm_label": "announcement.validator.js"
     },
     {
@@ -7560,7 +7569,7 @@
       "source_file": "src/validators/announcement.validator.js",
       "source_location": "L1",
       "id": "validators_announcement_validator_joi",
-      "community": 0,
+      "community": 80,
       "norm_label": "joi"
     },
     {
@@ -7569,7 +7578,7 @@
       "source_file": "src/validators/announcement.validator.js",
       "source_location": "L2",
       "id": "validators_announcement_validator_apperror",
-      "community": 0,
+      "community": 80,
       "norm_label": "{ apperror }"
     },
     {
@@ -7578,7 +7587,7 @@
       "source_file": "src/validators/announcement.validator.js",
       "source_location": "L4",
       "id": "validators_announcement_validator_validateannouncement",
-      "community": 0,
+      "community": 80,
       "norm_label": "validateannouncement()"
     },
     {
@@ -7783,7 +7792,7 @@
       "label": "validateUpdateCartItem()",
       "file_type": "code",
       "source_file": "src/validators/cart.validator.js",
-      "source_location": "L17",
+      "source_location": "L18",
       "id": "validators_cart_validator_validateupdatecartitem",
       "community": 43,
       "norm_label": "validateupdatecartitem()"
@@ -7792,7 +7801,7 @@
       "label": "validateApplyDiscount()",
       "file_type": "code",
       "source_file": "src/validators/cart.validator.js",
-      "source_location": "L29",
+      "source_location": "L30",
       "id": "validators_cart_validator_validateapplydiscount",
       "community": 43,
       "norm_label": "validateapplydiscount()"
@@ -8062,7 +8071,7 @@
       "label": "validateProductUpdate()",
       "file_type": "code",
       "source_file": "src/validators/product.validator.js",
-      "source_location": "L94",
+      "source_location": "L112",
       "id": "validators_product_validator_validateproductupdate",
       "community": 31,
       "norm_label": "validateproductupdate()"
@@ -8251,7 +8260,7 @@
       "label": "validateUpdateSubscription()",
       "file_type": "code",
       "source_file": "src/validators/subscription.validator.js",
-      "source_location": "L37",
+      "source_location": "L38",
       "id": "validators_subscription_validator_validateupdatesubscription",
       "community": 46,
       "norm_label": "validateupdatesubscription()"
@@ -8262,7 +8271,7 @@
       "source_file": "src/validators/tip.validator.js",
       "source_location": "L1",
       "id": "src_validators_tip_validator_js",
-      "community": 46,
+      "community": 62,
       "norm_label": "tip.validator.js"
     },
     {
@@ -8271,7 +8280,7 @@
       "source_file": "src/validators/tip.validator.js",
       "source_location": "L1",
       "id": "validators_tip_validator_joi",
-      "community": 46,
+      "community": 62,
       "norm_label": "joi"
     },
     {
@@ -8280,7 +8289,7 @@
       "source_file": "src/validators/tip.validator.js",
       "source_location": "L2",
       "id": "validators_tip_validator_apperror",
-      "community": 46,
+      "community": 62,
       "norm_label": "{ apperror }"
     },
     {
@@ -8289,7 +8298,7 @@
       "source_file": "src/validators/tip.validator.js",
       "source_location": "L4",
       "id": "validators_tip_validator_animal_types",
-      "community": 46,
+      "community": 62,
       "norm_label": "animal_types"
     },
     {
@@ -8298,7 +8307,7 @@
       "source_file": "src/validators/tip.validator.js",
       "source_location": "L5",
       "id": "validators_tip_validator_categories",
-      "community": 46,
+      "community": 62,
       "norm_label": "categories"
     },
     {
@@ -8307,7 +8316,7 @@
       "source_file": "src/validators/tip.validator.js",
       "source_location": "L6",
       "id": "validators_tip_validator_difficulties",
-      "community": 46,
+      "community": 62,
       "norm_label": "difficulties"
     },
     {
@@ -8316,7 +8325,7 @@
       "source_file": "src/validators/tip.validator.js",
       "source_location": "L8",
       "id": "validators_tip_validator_basefields",
-      "community": 46,
+      "community": 62,
       "norm_label": "basefields"
     },
     {
@@ -8325,7 +8334,7 @@
       "source_file": "src/validators/tip.validator.js",
       "source_location": "L31",
       "id": "validators_tip_validator_validatetip",
-      "community": 46,
+      "community": 62,
       "norm_label": "validatetip()"
     },
     {
@@ -8334,7 +8343,7 @@
       "source_file": "src/validators/tip.validator.js",
       "source_location": "L46",
       "id": "validators_tip_validator_validatetipupdate",
-      "community": 46,
+      "community": 62,
       "norm_label": "validatetipupdate()"
     },
     {
@@ -8649,7 +8658,7 @@
       "source_file": "tests/announcement.controller.test.js",
       "source_location": "L1",
       "id": "tests_announcement_controller_test_js",
-      "community": 0,
+      "community": 66,
       "norm_label": "announcement.controller.test.js"
     },
     {
@@ -8658,7 +8667,7 @@
       "source_file": "tests/announcement.controller.test.js",
       "source_location": "L10",
       "id": "tests_announcement_controller_test_request",
-      "community": 0,
+      "community": 66,
       "norm_label": "request"
     },
     {
@@ -8667,7 +8676,7 @@
       "source_file": "tests/announcement.controller.test.js",
       "source_location": "L11",
       "id": "tests_announcement_controller_test_mongoose",
-      "community": 0,
+      "community": 66,
       "norm_label": "mongoose"
     },
     {
@@ -8676,7 +8685,7 @@
       "source_file": "tests/announcement.controller.test.js",
       "source_location": "L12",
       "id": "tests_announcement_controller_test_app",
-      "community": 0,
+      "community": 66,
       "norm_label": "app"
     },
     {
@@ -8685,7 +8694,7 @@
       "source_file": "tests/announcement.controller.test.js",
       "source_location": "L13",
       "id": "tests_announcement_controller_test_user",
-      "community": 0,
+      "community": 66,
       "norm_label": "user"
     },
     {
@@ -8694,7 +8703,7 @@
       "source_file": "tests/announcement.controller.test.js",
       "source_location": "L14",
       "id": "tests_announcement_controller_test_product",
-      "community": 0,
+      "community": 66,
       "norm_label": "product"
     },
     {
@@ -8703,7 +8712,7 @@
       "source_file": "tests/announcement.controller.test.js",
       "source_location": "L15",
       "id": "tests_announcement_controller_test_saleannouncement",
-      "community": 0,
+      "community": 66,
       "norm_label": "saleannouncement"
     },
     {
@@ -8712,7 +8721,7 @@
       "source_file": "tests/announcement.controller.test.js",
       "source_location": "L16",
       "id": "tests_announcement_controller_test_sendemail",
-      "community": 0,
+      "community": 66,
       "norm_label": "{ sendemail }"
     },
     {
@@ -8721,7 +8730,7 @@
       "source_file": "tests/announcement.controller.test.js",
       "source_location": "L17",
       "id": "tests_announcement_controller_test_makeunsubscribetoken",
-      "community": 0,
+      "community": 66,
       "norm_label": "{ makeunsubscribetoken }"
     },
     {
@@ -8730,7 +8739,7 @@
       "source_file": "tests/announcement.controller.test.js",
       "source_location": "L19",
       "id": "tests_announcement_controller_test_makeuser",
-      "community": 0,
+      "community": 66,
       "norm_label": "makeuser()"
     },
     {
@@ -8739,7 +8748,7 @@
       "source_file": "tests/announcement.controller.test.js",
       "source_location": "L28",
       "id": "tests_announcement_controller_test_loginas",
-      "community": 0,
+      "community": 66,
       "norm_label": "loginas()"
     },
     {
@@ -8748,7 +8757,7 @@
       "source_file": "tests/announcement.controller.test.js",
       "source_location": "L34",
       "id": "tests_announcement_controller_test_makeproduct",
-      "community": 0,
+      "community": 66,
       "norm_label": "makeproduct()"
     },
     {
@@ -8757,7 +8766,7 @@
       "source_file": "tests/announcement.controller.test.js",
       "source_location": "L133",
       "id": "tests_announcement_controller_test_body",
-      "community": 0,
+      "community": 66,
       "norm_label": "body"
     },
     {
@@ -8766,7 +8775,7 @@
       "source_file": "tests/announcement.controller.test.js",
       "source_location": "L155",
       "id": "tests_announcement_controller_test_token",
-      "community": 0,
+      "community": 66,
       "norm_label": "token"
     },
     {
@@ -8948,6 +8957,105 @@
       "id": "tests_cart_controller_test_fakeid",
       "community": 199,
       "norm_label": "fakeid"
+    },
+    {
+      "label": "cart.variants.test.js",
+      "file_type": "code",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L1",
+      "id": "tests_cart_variants_test_js",
+      "community": 73,
+      "norm_label": "cart.variants.test.js"
+    },
+    {
+      "label": "request",
+      "file_type": "code",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L1",
+      "id": "tests_cart_variants_test_request",
+      "community": 73,
+      "norm_label": "request"
+    },
+    {
+      "label": "mongoose",
+      "file_type": "code",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L2",
+      "id": "tests_cart_variants_test_mongoose",
+      "community": 73,
+      "norm_label": "mongoose"
+    },
+    {
+      "label": "app",
+      "file_type": "code",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L3",
+      "id": "tests_cart_variants_test_app",
+      "community": 73,
+      "norm_label": "app"
+    },
+    {
+      "label": "User",
+      "file_type": "code",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L4",
+      "id": "tests_cart_variants_test_user",
+      "community": 73,
+      "norm_label": "user"
+    },
+    {
+      "label": "Product",
+      "file_type": "code",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L5",
+      "id": "tests_cart_variants_test_product",
+      "community": 73,
+      "norm_label": "product"
+    },
+    {
+      "label": "Cart",
+      "file_type": "code",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L6",
+      "id": "tests_cart_variants_test_cart",
+      "community": 73,
+      "norm_label": "cart"
+    },
+    {
+      "label": "loginNew()",
+      "file_type": "code",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L8",
+      "id": "tests_cart_variants_test_loginnew",
+      "community": 73,
+      "norm_label": "loginnew()"
+    },
+    {
+      "label": "v1",
+      "file_type": "code",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L31",
+      "id": "tests_cart_variants_test_v1",
+      "community": 73,
+      "norm_label": "v1"
+    },
+    {
+      "label": "v2",
+      "file_type": "code",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L32",
+      "id": "tests_cart_variants_test_v2",
+      "community": 73,
+      "norm_label": "v2"
+    },
+    {
+      "label": "line5kg",
+      "file_type": "code",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L39",
+      "id": "tests_cart_variants_test_line5kg",
+      "community": 73,
+      "norm_label": "line5kg"
     },
     {
       "label": "contact.controller.test.js",
@@ -9369,7 +9477,7 @@
       "source_file": "tests/gallery.controller.test.js",
       "source_location": "L1",
       "id": "tests_gallery_controller_test_js",
-      "community": 217,
+      "community": 17,
       "norm_label": "gallery.controller.test.js"
     },
     {
@@ -9378,7 +9486,7 @@
       "source_file": "tests/gallery.controller.test.js",
       "source_location": "L17",
       "id": "tests_gallery_controller_test_request",
-      "community": 217,
+      "community": 17,
       "norm_label": "request"
     },
     {
@@ -9387,7 +9495,7 @@
       "source_file": "tests/gallery.controller.test.js",
       "source_location": "L18",
       "id": "tests_gallery_controller_test_mongoose",
-      "community": 217,
+      "community": 17,
       "norm_label": "mongoose"
     },
     {
@@ -9396,7 +9504,7 @@
       "source_file": "tests/gallery.controller.test.js",
       "source_location": "L19",
       "id": "tests_gallery_controller_test_app",
-      "community": 217,
+      "community": 17,
       "norm_label": "app"
     },
     {
@@ -9405,7 +9513,7 @@
       "source_file": "tests/gallery.controller.test.js",
       "source_location": "L20",
       "id": "tests_gallery_controller_test_user",
-      "community": 217,
+      "community": 17,
       "norm_label": "user"
     },
     {
@@ -9414,7 +9522,7 @@
       "source_file": "tests/gallery.controller.test.js",
       "source_location": "L21",
       "id": "tests_gallery_controller_test_gallerypost",
-      "community": 217,
+      "community": 17,
       "norm_label": "gallerypost"
     },
     {
@@ -9423,7 +9531,7 @@
       "source_file": "tests/gallery.controller.test.js",
       "source_location": "L23",
       "id": "tests_gallery_controller_test_makeuser",
-      "community": 217,
+      "community": 17,
       "norm_label": "makeuser()"
     },
     {
@@ -9432,7 +9540,7 @@
       "source_file": "tests/gallery.controller.test.js",
       "source_location": "L32",
       "id": "tests_gallery_controller_test_makepost",
-      "community": 217,
+      "community": 17,
       "norm_label": "makepost()"
     },
     {
@@ -9441,7 +9549,7 @@
       "source_file": "tests/gallery.controller.test.js",
       "source_location": "L43",
       "id": "tests_gallery_controller_test_loginas",
-      "community": 217,
+      "community": 17,
       "norm_label": "loginas()"
     },
     {
@@ -9450,7 +9558,7 @@
       "source_file": "tests/gallery.model.test.js",
       "source_location": "L1",
       "id": "tests_gallery_model_test_js",
-      "community": 218,
+      "community": 17,
       "norm_label": "gallery.model.test.js"
     },
     {
@@ -9459,7 +9567,7 @@
       "source_file": "tests/gallery.model.test.js",
       "source_location": "L1",
       "id": "tests_gallery_model_test_mongoose",
-      "community": 218,
+      "community": 17,
       "norm_label": "mongoose"
     },
     {
@@ -9468,7 +9576,7 @@
       "source_file": "tests/gallery.model.test.js",
       "source_location": "L2",
       "id": "tests_gallery_model_test_gallerypost",
-      "community": 218,
+      "community": 17,
       "norm_label": "gallerypost"
     },
     {
@@ -9477,7 +9585,7 @@
       "source_file": "tests/gallery.model.test.js",
       "source_location": "L6",
       "id": "tests_gallery_model_test_err",
-      "community": 218,
+      "community": 17,
       "norm_label": "err"
     },
     {
@@ -9632,6 +9740,69 @@
       "id": "tests_order_controller_test_failedresponses",
       "community": 47,
       "norm_label": "failedresponses"
+    },
+    {
+      "label": "order.variants.test.js",
+      "file_type": "code",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L1",
+      "id": "tests_order_variants_test_js",
+      "community": 116,
+      "norm_label": "order.variants.test.js"
+    },
+    {
+      "label": "mongoose",
+      "file_type": "code",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L1",
+      "id": "tests_order_variants_test_mongoose",
+      "community": 116,
+      "norm_label": "mongoose"
+    },
+    {
+      "label": "Product",
+      "file_type": "code",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L2",
+      "id": "tests_order_variants_test_product",
+      "community": 116,
+      "norm_label": "product"
+    },
+    {
+      "label": "User",
+      "file_type": "code",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L3",
+      "id": "tests_order_variants_test_user",
+      "community": 116,
+      "norm_label": "user"
+    },
+    {
+      "label": "Order",
+      "file_type": "code",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L4",
+      "id": "tests_order_variants_test_order",
+      "community": 116,
+      "norm_label": "order"
+    },
+    {
+      "label": "{ buildOrder }",
+      "file_type": "code",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L5",
+      "id": "tests_order_variants_test_buildorder",
+      "community": 116,
+      "norm_label": "{ buildorder }"
+    },
+    {
+      "label": "ADDR",
+      "file_type": "code",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L7",
+      "id": "tests_order_variants_test_addr",
+      "community": 116,
+      "norm_label": "addr"
     },
     {
       "label": "pet.images.test.js",
@@ -10010,6 +10181,114 @@
       "id": "tests_product_sale_test_checkout",
       "community": 183,
       "norm_label": "checkout()"
+    },
+    {
+      "label": "product.variants.api.test.js",
+      "file_type": "code",
+      "source_file": "tests/product.variants.api.test.js",
+      "source_location": "L1",
+      "id": "tests_product_variants_api_test_js",
+      "community": 218,
+      "norm_label": "product.variants.api.test.js"
+    },
+    {
+      "label": "request",
+      "file_type": "code",
+      "source_file": "tests/product.variants.api.test.js",
+      "source_location": "L8",
+      "id": "tests_product_variants_api_test_request",
+      "community": 218,
+      "norm_label": "request"
+    },
+    {
+      "label": "mongoose",
+      "file_type": "code",
+      "source_file": "tests/product.variants.api.test.js",
+      "source_location": "L9",
+      "id": "tests_product_variants_api_test_mongoose",
+      "community": 218,
+      "norm_label": "mongoose"
+    },
+    {
+      "label": "app",
+      "file_type": "code",
+      "source_file": "tests/product.variants.api.test.js",
+      "source_location": "L10",
+      "id": "tests_product_variants_api_test_app",
+      "community": 218,
+      "norm_label": "app"
+    },
+    {
+      "label": "User",
+      "file_type": "code",
+      "source_file": "tests/product.variants.api.test.js",
+      "source_location": "L11",
+      "id": "tests_product_variants_api_test_user",
+      "community": 218,
+      "norm_label": "user"
+    },
+    {
+      "label": "Product",
+      "file_type": "code",
+      "source_file": "tests/product.variants.api.test.js",
+      "source_location": "L12",
+      "id": "tests_product_variants_api_test_product",
+      "community": 218,
+      "norm_label": "product"
+    },
+    {
+      "label": "adminToken()",
+      "file_type": "code",
+      "source_file": "tests/product.variants.api.test.js",
+      "source_location": "L14",
+      "id": "tests_product_variants_api_test_admintoken",
+      "community": 218,
+      "norm_label": "admintoken()"
+    },
+    {
+      "label": "product.variants.model.test.js",
+      "file_type": "code",
+      "source_file": "tests/product.variants.model.test.js",
+      "source_location": "L1",
+      "id": "tests_product_variants_model_test_js",
+      "community": 135,
+      "norm_label": "product.variants.model.test.js"
+    },
+    {
+      "label": "mongoose",
+      "file_type": "code",
+      "source_file": "tests/product.variants.model.test.js",
+      "source_location": "L1",
+      "id": "tests_product_variants_model_test_mongoose",
+      "community": 135,
+      "norm_label": "mongoose"
+    },
+    {
+      "label": "Product",
+      "file_type": "code",
+      "source_file": "tests/product.variants.model.test.js",
+      "source_location": "L2",
+      "id": "tests_product_variants_model_test_product",
+      "community": 135,
+      "norm_label": "product"
+    },
+    {
+      "label": "User",
+      "file_type": "code",
+      "source_file": "tests/product.variants.model.test.js",
+      "source_location": "L3",
+      "id": "tests_product_variants_model_test_user",
+      "community": 135,
+      "norm_label": "user"
+    },
+    {
+      "label": "base()",
+      "file_type": "code",
+      "source_file": "tests/product.variants.model.test.js",
+      "source_location": "L19",
+      "id": "tests_product_variants_model_test_base",
+      "community": 135,
+      "norm_label": "base()"
     },
     {
       "label": "setup.js",
@@ -18220,6 +18499,600 @@
       "norm_label": "self-review"
     },
     {
+      "label": "2026-06-18-product-variants.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1",
+      "id": "docs_superpowers_plans_2026_06_18_product_variants_md",
+      "community": 82,
+      "norm_label": "2026-06-18-product-variants.md"
+    },
+    {
+      "label": "Product Weight/Size Variants Implementation Plan",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1",
+      "id": "plans_2026_06_18_product_variants_product_weight_size_variants_implementation_plan",
+      "community": 82,
+      "norm_label": "product weight/size variants implementation plan"
+    },
+    {
+      "label": "File structure",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L19",
+      "id": "plans_2026_06_18_product_variants_file_structure",
+      "community": 82,
+      "norm_label": "file structure"
+    },
+    {
+      "label": "Phase 1 \u2014 Backend model + pricing",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L38",
+      "id": "plans_2026_06_18_product_variants_phase_1_backend_model_pricing",
+      "community": 82,
+      "norm_label": "phase 1 \u2014 backend model + pricing"
+    },
+    {
+      "label": "Task 1: Product variants, `computeSale`, derive, `variantsView` (TDD)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L40",
+      "id": "plans_2026_06_18_product_variants_task_1_product_variants_computesale_derive_variantsview_tdd",
+      "community": 224,
+      "norm_label": "task 1: product variants, `computesale`, derive, `variantsview` (tdd)"
+    },
+    {
+      "label": "code:javascript (const mongoose = require('mongoose');)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L50",
+      "id": "plans_2026_06_18_product_variants_codeblock_1",
+      "community": 224,
+      "norm_label": "code:javascript (const mongoose = require('mongoose');)"
+    },
+    {
+      "label": "code:javascript (variants: [)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L124",
+      "id": "plans_2026_06_18_product_variants_codeblock_2",
+      "community": 224,
+      "norm_label": "code:javascript (variants: [)"
+    },
+    {
+      "label": "code:javascript (// \u2500\u2500 Sale pricing (one helper drives product-level + per-va)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L138",
+      "id": "plans_2026_06_18_product_variants_codeblock_3",
+      "community": 224,
+      "norm_label": "code:javascript (// \u2500\u2500 sale pricing (one helper drives product-level + per-va)"
+    },
+    {
+      "label": "code:javascript (// For variant products, derive the product-level price (low)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L198",
+      "id": "plans_2026_06_18_product_variants_codeblock_4",
+      "community": 224,
+      "norm_label": "code:javascript (// for variant products, derive the product-level price (low)"
+    },
+    {
+      "label": "code:bash (cd backend)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L222",
+      "id": "plans_2026_06_18_product_variants_codeblock_5",
+      "community": 224,
+      "norm_label": "code:bash (cd backend)"
+    },
+    {
+      "label": "Task 2: Validator + controller accept variants (TDD)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L230",
+      "id": "plans_2026_06_18_product_variants_task_2_validator_controller_accept_variants_tdd",
+      "community": 225,
+      "norm_label": "task 2: validator + controller accept variants (tdd)"
+    },
+    {
+      "label": "code:javascript (process.env.NODE_ENV = 'test';)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L241",
+      "id": "plans_2026_06_18_product_variants_codeblock_6",
+      "community": 225,
+      "norm_label": "code:javascript (process.env.node_env = 'test';)"
+    },
+    {
+      "label": "code:javascript (// Either variants (a non-empty JSON array) or both price an)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L312",
+      "id": "plans_2026_06_18_product_variants_codeblock_7",
+      "community": 225,
+      "norm_label": "code:javascript (// either variants (a non-empty json array) or both price an)"
+    },
+    {
+      "label": "code:javascript (// Parse variants JSON string from FormData)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L336",
+      "id": "plans_2026_06_18_product_variants_codeblock_8",
+      "community": 225,
+      "norm_label": "code:javascript (// parse variants json string from formdata)"
+    },
+    {
+      "label": "code:javascript (if (Array.isArray(updateData.variants) && updateData.variant)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L345",
+      "id": "plans_2026_06_18_product_variants_codeblock_9",
+      "community": 225,
+      "norm_label": "code:javascript (if (array.isarray(updatedata.variants) && updatedata.variant)"
+    },
+    {
+      "label": "code:bash (cd backend)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L364",
+      "id": "plans_2026_06_18_product_variants_codeblock_10",
+      "community": 225,
+      "norm_label": "code:bash (cd backend)"
+    },
+    {
+      "label": "Phase 2 \u2014 Backend purchase flow",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L372",
+      "id": "plans_2026_06_18_product_variants_phase_2_backend_purchase_flow",
+      "community": 108,
+      "norm_label": "phase 2 \u2014 backend purchase flow"
+    },
+    {
+      "label": "Task 3: Add `variantId` + `variantLabel` to cart/order/subscription items",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L374",
+      "id": "plans_2026_06_18_product_variants_task_3_add_variantid_variantlabel_to_cart_order_subscription_items",
+      "community": 108,
+      "norm_label": "task 3: add `variantid` + `variantlabel` to cart/order/subscription items"
+    },
+    {
+      "label": "code:javascript (variantId: { type: mongoose.Schema.Types.ObjectId, default: )",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L383",
+      "id": "plans_2026_06_18_product_variants_codeblock_11",
+      "community": 108,
+      "norm_label": "code:javascript (variantid: { type: mongoose.schema.types.objectid, default: )"
+    },
+    {
+      "label": "code:bash (cd backend)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L397",
+      "id": "plans_2026_06_18_product_variants_codeblock_12",
+      "community": 108,
+      "norm_label": "code:bash (cd backend)"
+    },
+    {
+      "label": "Task 4: Variant-aware add-to-cart (TDD)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L405",
+      "id": "plans_2026_06_18_product_variants_task_4_variant_aware_add_to_cart_tdd",
+      "community": 108,
+      "norm_label": "task 4: variant-aware add-to-cart (tdd)"
+    },
+    {
+      "label": "code:javascript (const request = require('supertest');)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L416",
+      "id": "plans_2026_06_18_product_variants_codeblock_13",
+      "community": 108,
+      "norm_label": "code:javascript (const request = require('supertest');)"
+    },
+    {
+      "label": "code:javascript (const { productId, variantId = null, quantity } = req.body;)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L480",
+      "id": "plans_2026_06_18_product_variants_codeblock_14",
+      "community": 108,
+      "norm_label": "code:javascript (const { productid, variantid = null, quantity } = req.body;)"
+    },
+    {
+      "label": "code:bash (cd backend)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L529",
+      "id": "plans_2026_06_18_product_variants_codeblock_15",
+      "community": 108,
+      "norm_label": "code:bash (cd backend)"
+    },
+    {
+      "label": "Task 5: Variant pricing + stock reservation in `buildOrder` (TDD)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L537",
+      "id": "plans_2026_06_18_product_variants_task_5_variant_pricing_stock_reservation_in_buildorder_tdd",
+      "community": 226,
+      "norm_label": "task 5: variant pricing + stock reservation in `buildorder` (tdd)"
+    },
+    {
+      "label": "code:javascript (const mongoose = require('mongoose');)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L548",
+      "id": "plans_2026_06_18_product_variants_codeblock_16",
+      "community": 226,
+      "norm_label": "code:javascript (const mongoose = require('mongoose');)"
+    },
+    {
+      "label": "code:javascript (// eslint-disable-next-line no-await-in-loop)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L603",
+      "id": "plans_2026_06_18_product_variants_codeblock_17",
+      "community": 226,
+      "norm_label": "code:javascript (// eslint-disable-next-line no-await-in-loop)"
+    },
+    {
+      "label": "code:javascript (// eslint-disable-next-line no-await-in-loop)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L638",
+      "id": "plans_2026_06_18_product_variants_codeblock_18",
+      "community": 226,
+      "norm_label": "code:javascript (// eslint-disable-next-line no-await-in-loop)"
+    },
+    {
+      "label": "code:javascript (items: cart.items.map((i) => ({ product: i.product, variantI)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L672",
+      "id": "plans_2026_06_18_product_variants_codeblock_19",
+      "community": 226,
+      "norm_label": "code:javascript (items: cart.items.map((i) => ({ product: i.product, varianti)"
+    },
+    {
+      "label": "code:bash (cd backend)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L683",
+      "id": "plans_2026_06_18_product_variants_codeblock_20",
+      "community": 226,
+      "norm_label": "code:bash (cd backend)"
+    },
+    {
+      "label": "Task 6: Subscriptions capture the variant (TDD)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L691",
+      "id": "plans_2026_06_18_product_variants_task_6_subscriptions_capture_the_variant_tdd",
+      "community": 229,
+      "norm_label": "task 6: subscriptions capture the variant (tdd)"
+    },
+    {
+      "label": "code:javascript (it('reorders the chosen variant for a due subscription', asy)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L702",
+      "id": "plans_2026_06_18_product_variants_codeblock_21",
+      "community": 229,
+      "norm_label": "code:javascript (it('reorders the chosen variant for a due subscription', asy)"
+    },
+    {
+      "label": "code:javascript (let inStock = true;)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L745",
+      "id": "plans_2026_06_18_product_variants_codeblock_22",
+      "community": 229,
+      "norm_label": "code:javascript (let instock = true;)"
+    },
+    {
+      "label": "code:javascript (items: sub.items.map((i) => ({ product: i.product, variantId)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L762",
+      "id": "plans_2026_06_18_product_variants_codeblock_23",
+      "community": 229,
+      "norm_label": "code:javascript (items: sub.items.map((i) => ({ product: i.product, variantid)"
+    },
+    {
+      "label": "code:bash (cd backend)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L773",
+      "id": "plans_2026_06_18_product_variants_codeblock_24",
+      "community": 229,
+      "norm_label": "code:bash (cd backend)"
+    },
+    {
+      "label": "Phase 3 \u2014 Frontend",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L781",
+      "id": "plans_2026_06_18_product_variants_phase_3_frontend",
+      "community": 228,
+      "norm_label": "phase 3 \u2014 frontend"
+    },
+    {
+      "label": "Task 7: cartApi + CartContext send/track the variant",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L783",
+      "id": "plans_2026_06_18_product_variants_task_7_cartapi_cartcontext_send_track_the_variant",
+      "community": 227,
+      "norm_label": "task 7: cartapi + cartcontext send/track the variant"
+    },
+    {
+      "label": "code:javascript (addToCart: async (productId, quantity = 1, variantId = null))",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L793",
+      "id": "plans_2026_06_18_product_variants_codeblock_25",
+      "community": 227,
+      "norm_label": "code:javascript (addtocart: async (productid, quantity = 1, variantid = null))"
+    },
+    {
+      "label": "code:javascript (const converted = backendCart.items.map((item) => ({)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L806",
+      "id": "plans_2026_06_18_product_variants_codeblock_26",
+      "community": 227,
+      "norm_label": "code:javascript (const converted = backendcart.items.map((item) => ({)"
+    },
+    {
+      "label": "code:javascript (const addItem = useCallback()",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L821",
+      "id": "plans_2026_06_18_product_variants_codeblock_27",
+      "community": 227,
+      "norm_label": "code:javascript (const additem = usecallback()"
+    },
+    {
+      "label": "code:javascript (ruc.items.forEach((item) => {)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L838",
+      "id": "plans_2026_06_18_product_variants_codeblock_28",
+      "community": 227,
+      "norm_label": "code:javascript (ruc.items.foreach((item) => {)"
+    },
+    {
+      "label": "code:bash (cd frontend)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L853",
+      "id": "plans_2026_06_18_product_variants_codeblock_29",
+      "community": 227,
+      "norm_label": "code:bash (cd frontend)"
+    },
+    {
+      "label": "Task 8: Product page size selector",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L861",
+      "id": "plans_2026_06_18_product_variants_task_8_product_page_size_selector",
+      "community": 120,
+      "norm_label": "task 8: product page size selector"
+    },
+    {
+      "label": "code:jsx (const [selectedVariant, setSelectedVariant] = useState(null))",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L871",
+      "id": "plans_2026_06_18_product_variants_codeblock_30",
+      "community": 120,
+      "norm_label": "code:jsx (const [selectedvariant, setselectedvariant] = usestate(null))"
+    },
+    {
+      "label": "code:jsx (useEffect(() => {)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L877",
+      "id": "plans_2026_06_18_product_variants_codeblock_31",
+      "community": 120,
+      "norm_label": "code:jsx (useeffect(() => {)"
+    },
+    {
+      "label": "code:jsx (const hasVariants = Array.isArray(product.variantsView) && p)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L890",
+      "id": "plans_2026_06_18_product_variants_codeblock_32",
+      "community": 120,
+      "norm_label": "code:jsx (const hasvariants = array.isarray(product.variantsview) && p)"
+    },
+    {
+      "label": "code:jsx ({hasVariants && ()",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L905",
+      "id": "plans_2026_06_18_product_variants_codeblock_33",
+      "community": 120,
+      "norm_label": "code:jsx ({hasvariants && ()"
+    },
+    {
+      "label": "code:jsx (const variantId = hasVariants ? selectedVariant?._id : null;)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L930",
+      "id": "plans_2026_06_18_product_variants_codeblock_34",
+      "community": 120,
+      "norm_label": "code:jsx (const variantid = hasvariants ? selectedvariant?._id : null;)"
+    },
+    {
+      "label": "code:css (.ip-variants { margin: 0.4rem 0 0.2rem; })",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L955",
+      "id": "plans_2026_06_18_product_variants_codeblock_35",
+      "community": 120,
+      "norm_label": "code:css (.ip-variants { margin: 0.4rem 0 0.2rem; })"
+    },
+    {
+      "label": "code:bash (cd frontend)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L981",
+      "id": "plans_2026_06_18_product_variants_codeblock_36",
+      "community": 120,
+      "norm_label": "code:bash (cd frontend)"
+    },
+    {
+      "label": "Task 9: Product cards \u2014 \"From\" price + force size choice",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L989",
+      "id": "plans_2026_06_18_product_variants_task_9_product_cards_from_price_force_size_choice",
+      "community": 228,
+      "norm_label": "task 9: product cards \u2014 \"from\" price + force size choice"
+    },
+    {
+      "label": "code:bash (cd frontend)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1009",
+      "id": "plans_2026_06_18_product_variants_codeblock_37",
+      "community": 228,
+      "norm_label": "code:bash (cd frontend)"
+    },
+    {
+      "label": "Task 10: Admin product form \u2014 variants editor",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1017",
+      "id": "plans_2026_06_18_product_variants_task_10_admin_product_form_variants_editor",
+      "community": 217,
+      "norm_label": "task 10: admin product form \u2014 variants editor"
+    },
+    {
+      "label": "code:jsx (const [variants, setVariants] = useState([]); // [{ label, p)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1026",
+      "id": "plans_2026_06_18_product_variants_codeblock_38",
+      "community": 217,
+      "norm_label": "code:jsx (const [variants, setvariants] = usestate([]); // [{ label, p)"
+    },
+    {
+      "label": "code:jsx (setVariants(Array.isArray(p.variants) ? p.variants.map((v) =)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1032",
+      "id": "plans_2026_06_18_product_variants_codeblock_39",
+      "community": 217,
+      "norm_label": "code:jsx (setvariants(array.isarray(p.variants) ? p.variants.map((v) =)"
+    },
+    {
+      "label": "code:jsx (<div className=\"apf-variants\">)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1040",
+      "id": "plans_2026_06_18_product_variants_codeblock_40",
+      "community": 217,
+      "norm_label": "code:jsx (<div classname=\"apf-variants\">)"
+    },
+    {
+      "label": "code:jsx (if (variants.length > 0) {)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1071",
+      "id": "plans_2026_06_18_product_variants_codeblock_41",
+      "community": 217,
+      "norm_label": "code:jsx (if (variants.length > 0) {)"
+    },
+    {
+      "label": "code:css (.apf-variants { margin: 1rem 0; })",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1085",
+      "id": "plans_2026_06_18_product_variants_codeblock_42",
+      "community": 217,
+      "norm_label": "code:css (.apf-variants { margin: 1rem 0; })"
+    },
+    {
+      "label": "code:bash (cd frontend)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1098",
+      "id": "plans_2026_06_18_product_variants_codeblock_43",
+      "community": 217,
+      "norm_label": "code:bash (cd frontend)"
+    },
+    {
+      "label": "Task 11: Show the variant label in cart, checkout, orders, subscriptions",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1106",
+      "id": "plans_2026_06_18_product_variants_task_11_show_the_variant_label_in_cart_checkout_orders_subscriptions",
+      "community": 228,
+      "norm_label": "task 11: show the variant label in cart, checkout, orders, subscriptions"
+    },
+    {
+      "label": "code:jsx ({item.variantLabel && <span className=\"line-variant\"> \u00b7 {ite)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1116",
+      "id": "plans_2026_06_18_product_variants_codeblock_44",
+      "community": 228,
+      "norm_label": "code:jsx ({item.variantlabel && <span classname=\"line-variant\"> \u00b7 {ite)"
+    },
+    {
+      "label": "code:bash (cd frontend)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1129",
+      "id": "plans_2026_06_18_product_variants_codeblock_45",
+      "community": 228,
+      "norm_label": "code:bash (cd frontend)"
+    },
+    {
+      "label": "Task 12: Final verification",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1137",
+      "id": "plans_2026_06_18_product_variants_task_12_final_verification",
+      "community": 82,
+      "norm_label": "task 12: final verification"
+    },
+    {
+      "label": "code:bash (npx cross-env NODE_ENV=test jest --runInBand --forceExit tes)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1142",
+      "id": "plans_2026_06_18_product_variants_codeblock_46",
+      "community": 82,
+      "norm_label": "code:bash (npx cross-env node_env=test jest --runinband --forceexit tes)"
+    },
+    {
+      "label": "code:bash (npx vitest run)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1150",
+      "id": "plans_2026_06_18_product_variants_codeblock_47",
+      "community": 82,
+      "norm_label": "code:bash (npx vitest run)"
+    },
+    {
+      "label": "Self-Review",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1165",
+      "id": "plans_2026_06_18_product_variants_self_review",
+      "community": 82,
+      "norm_label": "self-review"
+    },
+    {
       "label": "2026-06-03-inventory-management-design.md",
       "file_type": "document",
       "source_file": "docs/superpowers/specs/2026-06-03-inventory-management-design.md",
@@ -20992,6 +21865,213 @@
       "norm_label": "open questions (none blocking)"
     },
     {
+      "label": "2026-06-18-product-variants-design.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L1",
+      "id": "docs_superpowers_specs_2026_06_18_product_variants_design_md",
+      "community": 45,
+      "norm_label": "2026-06-18-product-variants-design.md"
+    },
+    {
+      "label": "Product Weight/Size Variants \u2014 Design Spec",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L1",
+      "id": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
+      "community": 45,
+      "norm_label": "product weight/size variants \u2014 design spec"
+    },
+    {
+      "label": "Summary",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L7",
+      "id": "specs_2026_06_18_product_variants_design_summary",
+      "community": 45,
+      "norm_label": "summary"
+    },
+    {
+      "label": "Decisions (locked during brainstorming)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L11",
+      "id": "specs_2026_06_18_product_variants_design_decisions_locked_during_brainstorming",
+      "community": 45,
+      "norm_label": "decisions (locked during brainstorming)"
+    },
+    {
+      "label": "Non-goals",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L20",
+      "id": "specs_2026_06_18_product_variants_design_non_goals",
+      "community": 45,
+      "norm_label": "non-goals"
+    },
+    {
+      "label": "Architecture",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L26",
+      "id": "specs_2026_06_18_product_variants_design_architecture",
+      "community": 45,
+      "norm_label": "architecture"
+    },
+    {
+      "label": "Data model \u2014 `product.model.js`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L28",
+      "id": "specs_2026_06_18_product_variants_design_data_model_product_model_js",
+      "community": 45,
+      "norm_label": "data model \u2014 `product.model.js`"
+    },
+    {
+      "label": "code:js (variants: [)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L32",
+      "id": "specs_2026_06_18_product_variants_design_codeblock_1",
+      "community": 45,
+      "norm_label": "code:js (variants: [)"
+    },
+    {
+      "label": "Pricing & sale",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L46",
+      "id": "specs_2026_06_18_product_variants_design_pricing_sale",
+      "community": 45,
+      "norm_label": "pricing & sale"
+    },
+    {
+      "label": "code:js (// computeSale(basePrice, { onSale, discountType, discountVa)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L50",
+      "id": "specs_2026_06_18_product_variants_design_codeblock_2",
+      "community": 45,
+      "norm_label": "code:js (// computesale(baseprice, { onsale, discounttype, discountva)"
+    },
+    {
+      "label": "Cart / order / subscription items",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L59",
+      "id": "specs_2026_06_18_product_variants_design_cart_order_subscription_items",
+      "community": 45,
+      "norm_label": "cart / order / subscription items"
+    },
+    {
+      "label": "code:js (variantId:    { type: mongoose.Schema.Types.ObjectId, defaul)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L63",
+      "id": "specs_2026_06_18_product_variants_design_codeblock_3",
+      "community": 45,
+      "norm_label": "code:js (variantid:    { type: mongoose.schema.types.objectid, defaul)"
+    },
+    {
+      "label": "Order building \u2014 `order.service.js#buildOrder`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L79",
+      "id": "specs_2026_06_18_product_variants_design_order_building_order_service_js_buildorder",
+      "community": 45,
+      "norm_label": "order building \u2014 `order.service.js#buildorder`"
+    },
+    {
+      "label": "Subscriptions",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L87",
+      "id": "specs_2026_06_18_product_variants_design_subscriptions",
+      "community": 45,
+      "norm_label": "subscriptions"
+    },
+    {
+      "label": "Admin \u2014 `AdminProductForm.jsx`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L93",
+      "id": "specs_2026_06_18_product_variants_design_admin_adminproductform_jsx",
+      "community": 45,
+      "norm_label": "admin \u2014 `adminproductform.jsx`"
+    },
+    {
+      "label": "Frontend \u2014 product page & cards",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L101",
+      "id": "specs_2026_06_18_product_variants_design_frontend_product_page_cards",
+      "community": 45,
+      "norm_label": "frontend \u2014 product page & cards"
+    },
+    {
+      "label": "Data flow",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L107",
+      "id": "specs_2026_06_18_product_variants_design_data_flow",
+      "community": 45,
+      "norm_label": "data flow"
+    },
+    {
+      "label": "Error handling",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L114",
+      "id": "specs_2026_06_18_product_variants_design_error_handling",
+      "community": 45,
+      "norm_label": "error handling"
+    },
+    {
+      "label": "Testing",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L121",
+      "id": "specs_2026_06_18_product_variants_design_testing",
+      "community": 45,
+      "norm_label": "testing"
+    },
+    {
+      "label": "Files (touch-points)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L134",
+      "id": "specs_2026_06_18_product_variants_design_files_touch_points",
+      "community": 45,
+      "norm_label": "files (touch-points)"
+    },
+    {
+      "label": "Open questions (none blocking)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L150",
+      "id": "specs_2026_06_18_product_variants_design_open_questions_none_blocking",
+      "community": 45,
+      "norm_label": "open questions (none blocking)"
+    },
+    {
+      "label": "pct",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L141",
+      "community": 96,
+      "norm_label": "pct",
+      "id": "models_product_model_pct"
+    },
+    {
+      "label": "now",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L149",
+      "community": 96,
+      "norm_label": "now",
+      "id": "models_product_model_now"
+    },
+    {
       "label": "Appointment Confirmation Email Template",
       "file_type": "document",
       "source_file": "backend/src/templates/appointment-confirmation.html",
@@ -22398,9 +23478,9 @@
       "source_file": ".claude/launch.json",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "claude_launch_json",
-      "target": "claude_launch_configurations",
-      "confidence_score": 1.0
+      "target": "claude_launch_configurations"
     },
     {
       "relation": "contains",
@@ -22408,9 +23488,9 @@
       "source_file": ".claude/launch.json",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "claude_launch_json",
-      "target": "claude_launch_version",
-      "confidence_score": 1.0
+      "target": "claude_launch_version"
     },
     {
       "relation": "contains",
@@ -23743,6 +24823,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_cart_variants_test_js",
+      "target": "src_app_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "tests/contact.controller.test.js",
       "source_location": "L13",
       "weight": 1.0,
@@ -23837,6 +24928,17 @@
       "confidence_score": 1.0,
       "source": "tests_product_sale_test_js",
       "target": "src_app_js"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/product.variants.api.test.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "tests_product_variants_api_test_js",
+      "target": "src_app_js",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -25646,6 +26748,16 @@
       "confidence_score": 1.0,
       "source": "src_controllers_cart_controller_js",
       "target": "controllers_cart_controller_product"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/cart.controller.js",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "src_controllers_cart_controller_js",
+      "target": "controllers_cart_controller_v",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -29860,6 +30972,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_cart_variants_test_js",
+      "target": "src_models_cart_model_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "tests/order.controller.test.js",
       "source_location": "L6",
       "weight": 1.0,
@@ -30246,6 +31369,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_order_variants_test_js",
+      "target": "src_models_order_model_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "tests/product.sale.test.js",
       "source_location": "L17",
       "weight": 1.0,
@@ -30381,6 +31515,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/models/product.model.js",
+      "source_location": "L156",
+      "weight": 1.0,
+      "source": "src_models_product_model_js",
+      "target": "models_product_model_computesale",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
       "source_location": "L1",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -30426,6 +31570,16 @@
       "confidence_score": 1.0,
       "source": "src_models_product_model_js",
       "target": "models_product_model_round2"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L192",
+      "weight": 1.0,
+      "source": "src_models_product_model_js",
+      "target": "models_product_model_s",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -30475,12 +31629,34 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_cart_variants_test_js",
+      "target": "src_models_product_model_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "tests/order.controller.test.js",
       "source_location": "L5",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "tests_order_controller_test_js",
       "target": "src_models_product_model_js"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_order_variants_test_js",
+      "target": "src_models_product_model_js",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -30508,12 +31684,45 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "tests/product.variants.api.test.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "tests_product_variants_api_test_js",
+      "target": "src_models_product_model_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/product.variants.model.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_product_variants_model_test_js",
+      "target": "src_models_product_model_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "tests/subscription.controller.test.js",
       "source_location": "L19",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "tests_subscription_controller_test_js",
       "target": "src_models_product_model_js"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L160",
+      "weight": 1.0,
+      "source": "models_product_model_computesale",
+      "target": "models_product_model_round2",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -30810,6 +32019,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_cart_variants_test_js",
+      "target": "src_models_user_model_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "tests/contact.controller.test.js",
       "source_location": "L14",
       "weight": 1.0,
@@ -30876,6 +32096,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_order_variants_test_js",
+      "target": "src_models_user_model_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "tests/pet.images.test.js",
       "source_location": "L28",
       "weight": 1.0,
@@ -30904,6 +32135,28 @@
       "confidence_score": 1.0,
       "source": "tests_product_sale_test_js",
       "target": "src_models_user_model_js"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/product.variants.api.test.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "tests_product_variants_api_test_js",
+      "target": "src_models_user_model_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/product.variants.model.test.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_product_variants_model_test_js",
+      "target": "src_models_user_model_js",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -32642,6 +33895,28 @@
       "confidence_score": 1.0,
       "source": "src_services_order_service_js",
       "target": "services_order_service_stockmovement"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_order_variants_test_js",
+      "target": "src_services_order_service_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_order_variants_test_js",
+      "target": "services_order_service_buildorder",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -35429,6 +36704,117 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_cart_variants_test_js",
+      "target": "tests_cart_variants_test_app",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_cart_variants_test_js",
+      "target": "tests_cart_variants_test_cart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "tests_cart_variants_test_js",
+      "target": "tests_cart_variants_test_line5kg",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tests_cart_variants_test_js",
+      "target": "tests_cart_variants_test_loginnew",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_cart_variants_test_js",
+      "target": "tests_cart_variants_test_mongoose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_cart_variants_test_js",
+      "target": "tests_cart_variants_test_product",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_cart_variants_test_js",
+      "target": "tests_cart_variants_test_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_cart_variants_test_js",
+      "target": "tests_cart_variants_test_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "tests_cart_variants_test_js",
+      "target": "tests_cart_variants_test_v1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "tests_cart_variants_test_js",
+      "target": "tests_cart_variants_test_v2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/cart.variants.test.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "tests_cart_variants_test_loginnew",
+      "target": "tests_cart_variants_test_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "tests/contact.controller.test.js",
       "source_location": "L13",
       "weight": 1.0,
@@ -36187,6 +37573,66 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_order_variants_test_js",
+      "target": "tests_order_variants_test_addr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_order_variants_test_js",
+      "target": "tests_order_variants_test_buildorder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_order_variants_test_js",
+      "target": "tests_order_variants_test_mongoose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_order_variants_test_js",
+      "target": "tests_order_variants_test_order",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_order_variants_test_js",
+      "target": "tests_order_variants_test_product",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/order.variants.test.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_order_variants_test_js",
+      "target": "tests_order_variants_test_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "tests/pet.images.test.js",
       "source_location": "L27",
       "weight": 1.0,
@@ -36705,6 +38151,117 @@
       "confidence_score": 1.0,
       "source": "tests_product_sale_test_checkout",
       "target": "tests_product_sale_test_post"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/product.variants.api.test.js",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "tests_product_variants_api_test_js",
+      "target": "tests_product_variants_api_test_admintoken",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/product.variants.api.test.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "tests_product_variants_api_test_js",
+      "target": "tests_product_variants_api_test_app",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/product.variants.api.test.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "tests_product_variants_api_test_js",
+      "target": "tests_product_variants_api_test_mongoose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/product.variants.api.test.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "tests_product_variants_api_test_js",
+      "target": "tests_product_variants_api_test_product",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/product.variants.api.test.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tests_product_variants_api_test_js",
+      "target": "tests_product_variants_api_test_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/product.variants.api.test.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "tests_product_variants_api_test_js",
+      "target": "tests_product_variants_api_test_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/product.variants.api.test.js",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "tests_product_variants_api_test_admintoken",
+      "target": "tests_product_variants_api_test_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/product.variants.model.test.js",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "tests_product_variants_model_test_js",
+      "target": "tests_product_variants_model_test_base",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/product.variants.model.test.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_product_variants_model_test_js",
+      "target": "tests_product_variants_model_test_mongoose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/product.variants.model.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_product_variants_model_test_js",
+      "target": "tests_product_variants_model_test_product",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/product.variants.model.test.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_product_variants_model_test_js",
+      "target": "tests_product_variants_model_test_user",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -45602,6 +47159,656 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_superpowers_plans_2026_06_18_product_variants_md",
+      "target": "plans_2026_06_18_product_variants_product_weight_size_variants_implementation_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_product_weight_size_variants_implementation_plan",
+      "target": "plans_2026_06_18_product_variants_file_structure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_product_weight_size_variants_implementation_plan",
+      "target": "plans_2026_06_18_product_variants_phase_1_backend_model_pricing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L372",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_product_weight_size_variants_implementation_plan",
+      "target": "plans_2026_06_18_product_variants_phase_2_backend_purchase_flow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L781",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_product_weight_size_variants_implementation_plan",
+      "target": "plans_2026_06_18_product_variants_phase_3_frontend",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1165",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_product_weight_size_variants_implementation_plan",
+      "target": "plans_2026_06_18_product_variants_self_review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1137",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_product_weight_size_variants_implementation_plan",
+      "target": "plans_2026_06_18_product_variants_task_12_final_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_phase_1_backend_model_pricing",
+      "target": "plans_2026_06_18_product_variants_task_1_product_variants_computesale_derive_variantsview_tdd",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L230",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_phase_1_backend_model_pricing",
+      "target": "plans_2026_06_18_product_variants_task_2_validator_controller_accept_variants_tdd",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_1_product_variants_computesale_derive_variantsview_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L124",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_1_product_variants_computesale_derive_variantsview_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_1_product_variants_computesale_derive_variantsview_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_3",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L198",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_1_product_variants_computesale_derive_variantsview_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_4",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L222",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_1_product_variants_computesale_derive_variantsview_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_5",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L364",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_2_validator_controller_accept_variants_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_10",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L241",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_2_validator_controller_accept_variants_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_6",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L312",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_2_validator_controller_accept_variants_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_7",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L336",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_2_validator_controller_accept_variants_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_8",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L345",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_2_validator_controller_accept_variants_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_9",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L374",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_phase_2_backend_purchase_flow",
+      "target": "plans_2026_06_18_product_variants_task_3_add_variantid_variantlabel_to_cart_order_subscription_items",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L405",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_phase_2_backend_purchase_flow",
+      "target": "plans_2026_06_18_product_variants_task_4_variant_aware_add_to_cart_tdd",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L537",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_phase_2_backend_purchase_flow",
+      "target": "plans_2026_06_18_product_variants_task_5_variant_pricing_stock_reservation_in_buildorder_tdd",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L691",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_phase_2_backend_purchase_flow",
+      "target": "plans_2026_06_18_product_variants_task_6_subscriptions_capture_the_variant_tdd",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L383",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_3_add_variantid_variantlabel_to_cart_order_subscription_items",
+      "target": "plans_2026_06_18_product_variants_codeblock_11",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L397",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_3_add_variantid_variantlabel_to_cart_order_subscription_items",
+      "target": "plans_2026_06_18_product_variants_codeblock_12",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L416",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_4_variant_aware_add_to_cart_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_13",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L480",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_4_variant_aware_add_to_cart_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_14",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L529",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_4_variant_aware_add_to_cart_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_15",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L548",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_5_variant_pricing_stock_reservation_in_buildorder_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_16",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L603",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_5_variant_pricing_stock_reservation_in_buildorder_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_17",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L638",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_5_variant_pricing_stock_reservation_in_buildorder_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_18",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L672",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_5_variant_pricing_stock_reservation_in_buildorder_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_19",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L683",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_5_variant_pricing_stock_reservation_in_buildorder_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_20",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L702",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_6_subscriptions_capture_the_variant_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_21",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L745",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_6_subscriptions_capture_the_variant_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_22",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L762",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_6_subscriptions_capture_the_variant_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_23",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L773",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_6_subscriptions_capture_the_variant_tdd",
+      "target": "plans_2026_06_18_product_variants_codeblock_24",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1017",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_phase_3_frontend",
+      "target": "plans_2026_06_18_product_variants_task_10_admin_product_form_variants_editor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1106",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_phase_3_frontend",
+      "target": "plans_2026_06_18_product_variants_task_11_show_the_variant_label_in_cart_checkout_orders_subscriptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L783",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_phase_3_frontend",
+      "target": "plans_2026_06_18_product_variants_task_7_cartapi_cartcontext_send_track_the_variant",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L861",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_phase_3_frontend",
+      "target": "plans_2026_06_18_product_variants_task_8_product_page_size_selector",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L989",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_phase_3_frontend",
+      "target": "plans_2026_06_18_product_variants_task_9_product_cards_from_price_force_size_choice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L793",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_7_cartapi_cartcontext_send_track_the_variant",
+      "target": "plans_2026_06_18_product_variants_codeblock_25",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L806",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_7_cartapi_cartcontext_send_track_the_variant",
+      "target": "plans_2026_06_18_product_variants_codeblock_26",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L821",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_7_cartapi_cartcontext_send_track_the_variant",
+      "target": "plans_2026_06_18_product_variants_codeblock_27",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L838",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_7_cartapi_cartcontext_send_track_the_variant",
+      "target": "plans_2026_06_18_product_variants_codeblock_28",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L853",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_7_cartapi_cartcontext_send_track_the_variant",
+      "target": "plans_2026_06_18_product_variants_codeblock_29",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L871",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_8_product_page_size_selector",
+      "target": "plans_2026_06_18_product_variants_codeblock_30",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L877",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_8_product_page_size_selector",
+      "target": "plans_2026_06_18_product_variants_codeblock_31",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L890",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_8_product_page_size_selector",
+      "target": "plans_2026_06_18_product_variants_codeblock_32",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L905",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_8_product_page_size_selector",
+      "target": "plans_2026_06_18_product_variants_codeblock_33",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L930",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_8_product_page_size_selector",
+      "target": "plans_2026_06_18_product_variants_codeblock_34",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L955",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_8_product_page_size_selector",
+      "target": "plans_2026_06_18_product_variants_codeblock_35",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L981",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_8_product_page_size_selector",
+      "target": "plans_2026_06_18_product_variants_codeblock_36",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1009",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_9_product_cards_from_price_force_size_choice",
+      "target": "plans_2026_06_18_product_variants_codeblock_37",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1026",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_10_admin_product_form_variants_editor",
+      "target": "plans_2026_06_18_product_variants_codeblock_38",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1032",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_10_admin_product_form_variants_editor",
+      "target": "plans_2026_06_18_product_variants_codeblock_39",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1040",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_10_admin_product_form_variants_editor",
+      "target": "plans_2026_06_18_product_variants_codeblock_40",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1071",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_10_admin_product_form_variants_editor",
+      "target": "plans_2026_06_18_product_variants_codeblock_41",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1085",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_10_admin_product_form_variants_editor",
+      "target": "plans_2026_06_18_product_variants_codeblock_42",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1098",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_10_admin_product_form_variants_editor",
+      "target": "plans_2026_06_18_product_variants_codeblock_43",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1116",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_11_show_the_variant_label_in_cart_checkout_orders_subscriptions",
+      "target": "plans_2026_06_18_product_variants_codeblock_44",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1129",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_11_show_the_variant_label_in_cart_checkout_orders_subscriptions",
+      "target": "plans_2026_06_18_product_variants_codeblock_45",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1142",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_12_final_verification",
+      "target": "plans_2026_06_18_product_variants_codeblock_46",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
+      "source_location": "L1150",
+      "weight": 1.0,
+      "source": "plans_2026_06_18_product_variants_task_12_final_verification",
+      "target": "plans_2026_06_18_product_variants_codeblock_47",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/superpowers/specs/2026-06-03-inventory-management-design.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -48560,6 +50767,206 @@
       "target": "specs_2026_06_14_sale_announcements_design_codeblock_1"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_superpowers_specs_2026_06_18_product_variants_design_md",
+      "target": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
+      "target": "specs_2026_06_18_product_variants_design_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L107",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
+      "target": "specs_2026_06_18_product_variants_design_data_flow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
+      "target": "specs_2026_06_18_product_variants_design_decisions_locked_during_brainstorming",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L114",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
+      "target": "specs_2026_06_18_product_variants_design_error_handling",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L134",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
+      "target": "specs_2026_06_18_product_variants_design_files_touch_points",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
+      "target": "specs_2026_06_18_product_variants_design_non_goals",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L150",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
+      "target": "specs_2026_06_18_product_variants_design_open_questions_none_blocking",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
+      "target": "specs_2026_06_18_product_variants_design_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L121",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
+      "target": "specs_2026_06_18_product_variants_design_testing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_architecture",
+      "target": "specs_2026_06_18_product_variants_design_admin_adminproductform_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_architecture",
+      "target": "specs_2026_06_18_product_variants_design_cart_order_subscription_items",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_architecture",
+      "target": "specs_2026_06_18_product_variants_design_data_model_product_model_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L101",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_architecture",
+      "target": "specs_2026_06_18_product_variants_design_frontend_product_page_cards",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_architecture",
+      "target": "specs_2026_06_18_product_variants_design_order_building_order_service_js_buildorder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_architecture",
+      "target": "specs_2026_06_18_product_variants_design_pricing_sale",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_architecture",
+      "target": "specs_2026_06_18_product_variants_design_subscriptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_data_model_product_model_js",
+      "target": "specs_2026_06_18_product_variants_design_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_pricing_sale",
+      "target": "specs_2026_06_18_product_variants_design_codeblock_2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "specs_2026_06_18_product_variants_design_cart_order_subscription_items",
+      "target": "specs_2026_06_18_product_variants_design_codeblock_3",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "implements",
       "confidence": "INFERRED",
       "confidence_score": 0.95,
@@ -49232,5 +51639,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "0b9bbe91c0e6b2d11d94e3b0f138d4a1813db24e"
+  "built_at_commit": "5759ce8475894a8646e23bc13c251fd84f4b023c"
 }
