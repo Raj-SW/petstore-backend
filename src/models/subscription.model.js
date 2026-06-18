@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 const subscriptionItemSchema = new mongoose.Schema({
   product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
+  variantId: { type: mongoose.Schema.Types.ObjectId, default: null },
+  variantLabel: { type: String, default: null },
   quantity: { type: Number, required: true, min: [1, 'Quantity cannot be less than 1'] },
 }, { _id: false });
 
