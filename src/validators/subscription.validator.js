@@ -16,6 +16,7 @@ const validateCreateSubscription = (req, res, next) => {
   const schema = Joi.object({
     items: Joi.array().items(Joi.object({
       product: Joi.string().hex().length(24).required(),
+      variantId: Joi.string().hex().length(24).optional(),
       quantity: Joi.number().integer().min(1).required(),
     })).min(1).required(),
     shippingAddress: addressSchema.required(),
@@ -42,6 +43,7 @@ const validateUpdateSubscription = (req, res, next) => {
     nextRunAt: Joi.date(),
     items: Joi.array().items(Joi.object({
       product: Joi.string().hex().length(24).required(),
+      variantId: Joi.string().hex().length(24).optional(),
       quantity: Joi.number().integer().min(1).required(),
     })).min(1),
     discountPercent: Joi.number().min(0).max(100),

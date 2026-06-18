@@ -226,5 +226,31 @@ describe('Subscription Controller', () => {
       const fresh = await Subscription.findById(sub._id);
       expect(new Date(fresh.nextRunAt).getTime()).toBeGreaterThan(Date.now());
     });
+
+    it('reorders the chosen variant for a due subscription', async () => {
+      const product = await Product.create({
+        name: 'Var Food', description: 'Premium kibble dogs', categories: ['food'], createdBy: admin._id,
+        images: [{ url: 'https://cdn/x.jpg', publicId: 'products/x' }],
+        variants: [{ label: '1kg', price: 300, quantity: 5 }, { label: '5kg', price: 1200, quantity: 8 }],
+      });
+      const v5 = product.variants[1]._id;
+      const sub = await Subscription.create({
+        user: customerId, items: [{ product: product._id, variantId: v5, variantLabel: '5kg', quantity: 1 }],
+        shippingAddress: ADDRESS, paymentMethod: 'stripe', intervalUnit: 'week', intervalCount: 2,
+        discountPercent: 0, nextRunAt: past(), source: 'product',
+      });
+
+      const res = await request(app).get('/api/subscriptions/process-due')
+        .set('Authorization', 'Bearer test-cron-secret');
+      expect(res.status).toBe(200);
+      expect(res.body.processed).toBe(1);
+
+      const orders = await Order.find({ user: customerId });
+      expect(orders[0].items[0].variantLabel).toBe('5kg');
+      expect(orders[0].totalAmount).toBe(1200);
+
+      const fresh = await Product.findById(product._id);
+      expect(fresh.variants.id(v5).quantity).toBe(7);
+    });
   });
 });

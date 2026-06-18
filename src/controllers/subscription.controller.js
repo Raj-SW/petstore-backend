@@ -143,7 +143,12 @@ exports.processDue = async (req, res, next) => {
           for (const it of sub.items) {
             // eslint-disable-next-line no-await-in-loop
             const product = await Product.findById(it.product).session(session);
-            const available = product && product.quantity != null ? product.quantity : 0;
+            let available = 0;
+            if (it.variantId && product && product.variants && product.variants.id(it.variantId)) {
+              available = product.variants.id(it.variantId).quantity ?? 0;
+            } else if (product && product.quantity != null) {
+              available = product.quantity;
+            }
             if (!product || available < it.quantity) { inStock = false; break; }
           }
 
@@ -159,7 +164,7 @@ exports.processDue = async (req, res, next) => {
 
           const order = await buildOrder({
             userId: sub.user,
-            items: sub.items.map((i) => ({ product: i.product, quantity: i.quantity })),
+            items: sub.items.map((i) => ({ product: i.product, variantId: i.variantId || null, quantity: i.quantity })),
             shippingAddress: sub.shippingAddress,
             paymentMethod: sub.paymentMethod,
             notes: 'Recurring subscription order',
