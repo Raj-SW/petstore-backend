@@ -14,7 +14,7 @@ A large batch of features was requested and **decomposed into independent sub-pr
 | 1b | Promo banner → admin-managed (`hero`/`promo` adverts) | ✅ same branch | `*-promo-banner-admin-*` |
 | 2 | Homepage Engagement: Question/Feedback tabs + Feedback testimonials | ✅ DONE on branch `feature/feedback-engagement-2026-06-14` (backend + frontend; not yet merged to main) | `*-feedback-engagement-*` |
 | 3 | Discounts / On-Sale | ✅ DONE on branch `feature/feedback-engagement-2026-06-14` (not yet merged) | `*-discounts-on-sale-*` |
-| 4 | Recurring Orders (subscriptions) | ✅ DONE on branch `feature/feedback-engagement-2026-06-14` (backend + frontend; not yet merged). Loyalty/benefits NOT started. | `*-recurring-orders-*` |
+| 4 | Recurring Orders (subscriptions) | ✅ DONE on branch `feature/feedback-engagement-2026-06-14` (backend + frontend; not yet merged). Loyalty/benefits descoped. | `*-recurring-orders-*` |
 | 4B | Sale Announcements (email broadcast; re-scope of "Loyalty") | ✅ DONE same branch (backend + frontend; not merged) | `*-sale-announcements-*` |
 
 ## Remaining work — details
@@ -28,7 +28,7 @@ Product sale pricing (`onSale`/`discountType`/`discountValue`/`saleStartsAt`/`sa
 ### 4. Recurring Orders (subscriptions) ✅ DONE (branch, not merged)
 Subscriptions / auto-reorder. **Backend** (commit `a334548`): subscription model + validator (7-day min interval) + controller (customer create/list/pause/skip/cancel, admin list/edit, transactional `process-due` cron runner that builds a discounted pending order, reserves stock via shared `order.service.buildOrder`, advances `nextRunAt`, emails a pay-now link; out-of-stock subs are skipped). `cronAuth.verifyCronSecret` Bearer guard; `subscription-reorder.html`; `/api/subscriptions` mounted; Vercel daily cron (06:00) in `vercel.json`. Tests 9/9. **Frontend** (commit `0d82f1d`): subscriptionsApi, My Subscriptions page + nav, Subscribe & Save product widget, checkout recurring toggle, Admin Subscriptions page + sidebar. MySubscriptions smoke test 2/2, build clean.
 
-**Still open for #4: Benefits/Loyalty** (points/tiers/benefits) — not started; needs its own decomposition.
+**Benefits/Loyalty (points/tiers) — descoped** (2026-06-18, user decision). The "Loyalty" ask was re-scoped to Sale Announcements (#4B, done); a points/tiers program is not planned for now.
 
 ## Already satisfied / not needed
 - **Auto-identifiable currency** — `CurrencyContext` already auto-detects via browser locale (`detectCurrency()` → region→currency, default MUR). Only optional upgrade: IP geolocation.
