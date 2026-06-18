@@ -1,16 +1,16 @@
 # Graph Report - backend  (2026-06-18)
 
 ## Corpus Check
-- 177 files · ~138,623 words
+- 178 files · ~138,735 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2372 nodes · 2705 edges · 217 communities (206 shown, 11 thin omitted)
+- 2375 nodes · 2707 edges · 224 communities (212 shown, 12 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 34 edges (avg confidence: 0.92)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `622f3f8b`
+- Built from commit: `0b9bbe91`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -231,6 +231,13 @@
 - [[_COMMUNITY_Community 213|Community 213]]
 - [[_COMMUNITY_Community 214|Community 214]]
 - [[_COMMUNITY_Community 215|Community 215]]
+- [[_COMMUNITY_Community 217|Community 217]]
+- [[_COMMUNITY_Community 218|Community 218]]
+- [[_COMMUNITY_Community 219|Community 219]]
+- [[_COMMUNITY_Community 220|Community 220]]
+- [[_COMMUNITY_Community 221|Community 221]]
+- [[_COMMUNITY_Community 222|Community 222]]
+- [[_COMMUNITY_Community 223|Community 223]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `AppError` - 53 edges
@@ -256,7 +263,7 @@
 - `Contact Admin Email Template` --implements--> `Email Notification System`  [INFERRED]
   backend/src/templates/contact-admin.html → backend/src/templates/welcome.html
 
-## Communities (217 total, 11 thin omitted)
+## Communities (224 total, 12 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.05
@@ -304,7 +311,7 @@ Nodes (28): dependencies, bcryptjs, cloudinary, compression, cors, cross-env, do
 
 ### Community 11 - "Community 11"
 Cohesion: 0.05
-Nodes (40): options, specs, swaggerJsdoc, swaggerUi, adminRoutes, advertRoutes, announcementRoutes, app (+32 more)
+Nodes (36): adminRoutes, advertRoutes, announcementRoutes, app, appointmentRoutes, authRoutes, cartRoutes, compression (+28 more)
 
 ### Community 12 - "Community 12"
 Cohesion: 0.06
@@ -315,8 +322,8 @@ Cohesion: 0.07
 Nodes (26): BACKEND, code:js (const mongoose = require('mongoose');), code:js (const mongoose = require('mongoose');), code:js (const mongoose = require('mongoose');), code:js (const Joi = require('joi');), code:js (const express = require('express');), code:js (uploadImage: async (file) => {), code:jsx (import { describe, it, expect } from 'vitest';) (+18 more)
 
 ### Community 14 - "Community 14"
-Cohesion: 0.09
-Nodes (22): affectedProductIds, { AppError }, Appointment, Cart, dateFormat, filter, { getStartDate, getDateFormat }, limit (+14 more)
+Cohesion: 0.08
+Nodes (25): affectedProductIds, { AppError }, Appointment, Cart, dateFormat, filter, { getStartDate, getDateFormat }, limit (+17 more)
 
 ### Community 15 - "Community 15"
 Cohesion: 0.15
@@ -327,8 +334,8 @@ Cohesion: 0.07
 Nodes (26): Admin-Managed Promo Banner Carousel — Implementation Plan, BACKEND, code:js (// Wide-banner upload — preserves aspect ratio (no square cr), code:js (if (form.title.trim().length < 2 || (form.placement !== 'her), code:js (const mongoose = require('mongoose');), code:js (link: {), code:js (order: { type: Number, default: 0 },), code:js (link: baseFields.link.when('placement', {) (+18 more)
 
 ### Community 17 - "Community 17"
-Cohesion: 0.08
-Nodes (16): CATEGORIES, galleryPostSchema, mongoose, GalleryPost, mongoose, POSTS, User, app (+8 more)
+Cohesion: 0.20
+Nodes (4): GalleryPost, mongoose, POSTS, User
 
 ### Community 18 - "Community 18"
 Cohesion: 0.08
@@ -339,8 +346,8 @@ Cohesion: 0.08
 Nodes (23): admin.controller.js — fix dashboard bug, admin.routes.js — add inventory routes, Backend, Backend Changes, Bug Fixes (prerequisite), code:js ({), code:block2 (getInventory(req, res)           GET /admin/inventory), code:block3 (GET    /admin/inventory              → getInventory) (+15 more)
 
 ### Community 20 - "Community 20"
-Cohesion: 0.11
-Nodes (14): { AppError }, Appointment, { error }, logger, mongoose, Pet, query, { sendEmail } (+6 more)
+Cohesion: 0.09
+Nodes (18): { AppError }, Appointment, { error }, logger, mongoose, Pet, query, { sendEmail } (+10 more)
 
 ### Community 21 - "Community 21"
 Cohesion: 0.09
@@ -482,16 +489,16 @@ Nodes (10): express, {
 }, { isAuthenticated }, router, { upload }, { validateUpdateProfile, validateChangePassword }, { AppError }, Joi (+2 more)
 
 ### Community 45 - "Community 45"
-Cohesion: 0.18
-Nodes (8): { AppError }, exists, Pet, target, {
+Cohesion: 0.29
+Nodes (5): { AppError }, exists, Pet, target, {
   uploadMultipleToCloudinary,
   deleteMultipleFromCloudinary,
   validateImageFile,
-}, mongoose, Pet, petSchema
+}
 
 ### Community 46 - "Community 46"
-Cohesion: 0.15
-Nodes (14): { AppError }, verifyCronSecret(), {
+Cohesion: 0.07
+Nodes (27): { AppError }, verifyCronSecret(), {
   createSubscription,
   getMySubscriptions,
   updateSubscription,
@@ -502,11 +509,11 @@ Nodes (14): { AppError }, verifyCronSecret(), {
 }, express, { isAuthenticated, isAdmin }, router, {
   validateCreateSubscription,
   validateUpdateSubscription,
-}, { verifyCronSecret } (+6 more)
+}, { verifyCronSecret } (+19 more)
 
 ### Community 47 - "Community 47"
-Cohesion: 0.05
-Nodes (41): cartItemSchema, cartSchema, mongoose, app, Cart, fakeId, mongoose, Product (+33 more)
+Cohesion: 0.12
+Nodes (14): agent1, agent2, app, Cart, createUserAndLogin(), failedResponses, fakeId, mongoose (+6 more)
 
 ### Community 48 - "Community 48"
 Cohesion: 0.12
@@ -569,25 +576,17 @@ Nodes (12): express, {
 }, { isAuthenticated, isAdmin }, router (+4 more)
 
 ### Community 56 - "Community 56"
-Cohesion: 0.10
-Nodes (16): { AppError }, decoded, jwt, User, {
-  createAppointment,
-  getUserAppointments,
-  getProfessionalAppointments,
-  getAppointmentById,
-  updateAppointmentStatus,
-  deleteAppointment,
-  getPublicProfessionalAppointments,
-}, express, { isAuthenticated, isServiceProvider }, router (+8 more)
+Cohesion: 0.13
+Nodes (12): { AppError }, decoded, jwt, User, express, { isAuthenticated, isAdmin }, router, { subscribe, getSubscribersAdmin } (+4 more)
 
 ### Community 57 - "Community 57"
-Cohesion: 0.15
-Nodes (11): { AppError }, Order, Review, {
+Cohesion: 0.22
+Nodes (8): {
   createReview,
   getProductReviews,
   updateReview,
   deleteReview,
-}, express, { isAuthenticated }, router, { validateReview } (+3 more)
+}, express, { isAuthenticated }, router, { validateReview }, { AppError }, Joi, validateReview()
 
 ### Community 58 - "Community 58"
 Cohesion: 0.22
@@ -611,11 +610,11 @@ Cohesion: 0.13
 Nodes (12): app, Appointment, Cart, fakeId, mongoose, Order, Pet, Product (+4 more)
 
 ### Community 61 - "Community 61"
-Cohesion: 0.08
-Nodes (21): { AppError }, Product, searchQuery, sortFields, sortQuery, express, router, {
+Cohesion: 0.20
+Nodes (8): { AppError }, Product, searchQuery, sortFields, sortQuery, express, router, {
   searchProducts,
   getSuggestions,
-} (+13 more)
+}
 
 ### Community 62 - "Community 62"
 Cohesion: 0.22
@@ -634,8 +633,8 @@ Cohesion: 0.13
 Nodes (13): { AppError }, Cart, cartItem, existingItem, logger, Product, fs, logFormat (+5 more)
 
 ### Community 66 - "Community 66"
-Cohesion: 0.18
-Nodes (8): { AppError }, Faq, mongoose, AppError, errorHandler(), logger, { AppError }, mongoose
+Cohesion: 0.14
+Nodes (11): { AppError }, Faq, mongoose, { AppError }, Order, Review, AppError, errorHandler() (+3 more)
 
 ### Community 67 - "Community 67"
 Cohesion: 0.15
@@ -746,8 +745,8 @@ Cohesion: 0.20
 Nodes (10): jest, collectCoverageFrom, coverageDirectory, coverageReporters, globalSetup, globalTeardown, setupFiles, testEnvironment (+2 more)
 
 ### Community 88 - "Community 88"
-Cohesion: 0.20
-Nodes (9): Conclusion, Error Handling, Future Enhancements, Monitoring and Logging, Overview, Pet Store Backend Refactoring Guide, Planned Features, Scalability Considerations (+1 more)
+Cohesion: 0.18
+Nodes (10): Conclusion, Data Validation, Future Enhancements, MongoDB Guidelines Compliance, Overview, Pet Store Backend Refactoring Guide, Planned Features, Role-Based Access Control (+2 more)
 
 ### Community 89 - "Community 89"
 Cohesion: 0.20
@@ -1128,8 +1127,8 @@ Cohesion: 0.50
 Nodes (4): code:javascript (userSchema.index({ email: 1 }, { unique: true });), Indexing, Performance Considerations, Query Optimization
 
 ### Community 183 - "Community 183"
-Cohesion: 0.50
-Nodes (4): Data Validation, MongoDB Guidelines Compliance, Role-Based Access Control, Security Enhancements
+Cohesion: 0.21
+Nodes (15): adminToken(), app, baseProduct(), Cart, checkout(), customer(), dbProduct(), json (+7 more)
 
 ### Community 184 - "Community 184"
 Cohesion: 0.50
@@ -1188,8 +1187,8 @@ Cohesion: 0.67
 Nodes (3): extractPublicId(), migrate(), mongoose
 
 ### Community 199 - "Community 199"
-Cohesion: 0.50
-Nodes (3): { AppError }, getDateFormat(), getStartDate()
+Cohesion: 0.18
+Nodes (9): app, Cart, fakeId, mongoose, Product, request, signupAndLogin(), User (+1 more)
 
 ### Community 201 - "Community 201"
 Cohesion: 0.67
@@ -1227,22 +1226,46 @@ Nodes (3): code:js (// backend/src/services/invoice.service.js), code:bash (cd "
 Cohesion: 0.67
 Nodes (3): code:js (emailPreferences: {), code:js (const {), Task 3: User emailPreferences field + updateProfile support
 
+### Community 217 - "Community 217"
+Cohesion: 0.25
+Nodes (6): app, GalleryPost, loginAs(), mongoose, request, User
+
+### Community 218 - "Community 218"
+Cohesion: 0.25
+Nodes (6): CATEGORIES, galleryPostSchema, mongoose, err, GalleryPost, mongoose
+
+### Community 219 - "Community 219"
+Cohesion: 0.40
+Nodes (4): options, specs, swaggerJsdoc, swaggerUi
+
+### Community 220 - "Community 220"
+Cohesion: 0.50
+Nodes (3): cartItemSchema, cartSchema, mongoose
+
+### Community 221 - "Community 221"
+Cohesion: 0.50
+Nodes (3): mongoose, Pet, petSchema
+
+### Community 222 - "Community 222"
+Cohesion: 0.67
+Nodes (3): Error Handling, Monitoring and Logging, Service Layer Logging
+
 ## Knowledge Gaps
-- **1612 isolated node(s):** `node`, `es2021`, `jest`, `extends`, `ecmaVersion` (+1607 more)
+- **1614 isolated node(s):** `node`, `es2021`, `jest`, `extends`, `ecmaVersion` (+1609 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **12 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `AppError` connect `Community 66` to `Community 0`, `Community 4`, `Community 6`, `Community 11`, `Community 12`, `Community 14`, `Community 20`, `Community 26`, `Community 28`, `Community 29`, `Community 31`, `Community 34`, `Community 37`, `Community 38`, `Community 40`, `Community 42`, `Community 43`, `Community 44`, `Community 45`, `Community 46`, `Community 51`, `Community 52`, `Community 55`, `Community 56`, `Community 57`, `Community 59`, `Community 61`, `Community 62`, `Community 65`, `Community 70`, `Community 199`, `Community 78`, `Community 80`, `Community 81`, `Community 82`, `Community 89`, `Community 98`, `Community 108`, `Community 116`, `Community 120`, `Community 121`?**
-  _High betweenness centrality (0.044) - this node is a cross-community bridge._
+- **Why does `AppError` connect `Community 66` to `Community 0`, `Community 4`, `Community 6`, `Community 11`, `Community 12`, `Community 14`, `Community 20`, `Community 26`, `Community 28`, `Community 29`, `Community 31`, `Community 34`, `Community 37`, `Community 38`, `Community 40`, `Community 42`, `Community 43`, `Community 44`, `Community 45`, `Community 46`, `Community 51`, `Community 52`, `Community 55`, `Community 56`, `Community 57`, `Community 59`, `Community 61`, `Community 62`, `Community 65`, `Community 70`, `Community 78`, `Community 80`, `Community 81`, `Community 82`, `Community 89`, `Community 98`, `Community 108`, `Community 116`, `Community 120`, `Community 121`?**
+  _High betweenness centrality (0.041) - this node is a cross-community bridge._
 - **Why does `ValidationUtils` connect `Community 36` to `Community 66`?**
   _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **Why does `Invoicing & Transactions Implementation Plan` connect `Community 53` to `Community 169`, `Community 138`, `Community 171`, `Community 204`, `Community 139`, `Community 206`, `Community 207`, `Community 205`, `Community 208`, `Community 202`, `Community 203`, `Community 170`, `Community 123`?**
   _High betweenness centrality (0.001) - this node is a cross-community bridge._
 - **What connects `node`, `es2021`, `jest` to the rest of the system?**
-  _1612 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1614 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.047474747474747475 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
