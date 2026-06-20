@@ -34,6 +34,31 @@ exports.uploadToCloudinary = async (file, folder = 'products') => {
   }
 };
 
+// Wide-banner upload — preserves aspect ratio (no square crop), caps width.
+exports.uploadBannerToCloudinary = async (file, folder = 'adverts') => {
+  try {
+    const b64 = Buffer.from(file.buffer).toString('base64');
+    const dataURI = `data:${file.mimetype};base64,${b64}`;
+
+    const result = await cloudinary.uploader.upload(dataURI, {
+      folder,
+      resource_type: 'auto',
+      transformation: [
+        { width: 1600, crop: 'limit', quality: 'auto' },
+        { fetch_format: 'auto' },
+      ],
+    });
+
+    return {
+      url: result.secure_url,
+      publicId: result.public_id,
+    };
+  } catch (error) {
+    logger.error('Cloudinary banner upload error:', error);
+    throw new AppError('Error uploading banner to Cloudinary', 500);
+  }
+};
+
 // Upload multiple files to Cloudinary
 exports.uploadMultipleToCloudinary = async (files, folder = 'products') => {
   try {

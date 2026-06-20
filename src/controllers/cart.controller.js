@@ -25,14 +25,29 @@ exports.getCart = async (req, res, next) => {
 // Add item to cart
 exports.addToCart = async (req, res, next) => {
   try {
-    const { productId, quantity } = req.body;
+    const { productId, variantId = null, quantity } = req.body;
 
-    // Look up product for price; if not found or inactive, use 0 as placeholder price.
-    // Strict validation (existence, stock, active status) is deferred to order creation
-    // so that concurrent carts don't collide and invalid product references surface
-    // only at checkout time with a proper error.
+    // Look up product for price; strict validation is deferred to order creation
+    // so concurrent carts don't collide and invalid references surface at checkout.
     const product = await Product.findById(productId);
-    const itemPrice = product ? product.price : 0;
+
+    // Variant products require a variant selection.
+    if (product && product.hasVariants && !variantId) {
+      return next(new AppError('Please select a size/option', 400));
+    }
+
+    let itemPrice = 0;
+    let variantLabel = null;
+    if (product) {
+      if (variantId && product.hasVariants) {
+        const v = product.variants.id(variantId);
+        if (!v) return next(new AppError('Selected option is unavailable', 400));
+        itemPrice = product.priceForVariant(variantId);
+        variantLabel = v.label;
+      } else {
+        itemPrice = product.effectivePrice;
+      }
+    }
 
     // Get or create cart
     let cart = await Cart.findOne({ user: req.user.id });
@@ -40,19 +55,20 @@ exports.addToCart = async (req, res, next) => {
       cart = await Cart.create({ user: req.user.id });
     }
 
-    // Check if product already in cart
+    // A line is identified by product + variant.
     const existingItem = cart.items.find(
-      (item) => item.product.toString() === productId,
+      (item) => item.product.toString() === productId
+        && String(item.variantId || '') === String(variantId || ''),
     );
 
     if (existingItem) {
-      // Update quantity if product already in cart
       existingItem.quantity += quantity;
       if (product) existingItem.price = itemPrice;
     } else {
-      // Add new item to cart
       cart.items.push({
         product: productId,
+        variantId,
+        variantLabel,
         quantity,
         price: itemPrice,
       });
@@ -99,7 +115,7 @@ exports.updateCartItem = async (req, res, next) => {
 
     // Update quantity
     cartItem.quantity = quantity;
-    cartItem.price = product.price;
+    cartItem.price = product.effectivePrice;
 
     await cart.save();
 

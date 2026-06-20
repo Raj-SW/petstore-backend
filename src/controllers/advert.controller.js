@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Advert = require('../models/advert.model');
 const { AppError } = require('../middlewares/errorHandler');
+const { uploadBannerToCloudinary } = require('../utils/cloudinary');
 const logger = require('../utils/logger');
 
 // GET /api/adverts — public, active only
@@ -8,7 +9,7 @@ exports.getAdverts = async (req, res, next) => {
   try {
     const query = { active: true };
     if (req.query.placement) query.placement = req.query.placement;
-    const adverts = await Advert.find(query).sort('-createdAt');
+    const adverts = await Advert.find(query).sort('order -createdAt');
     return res.status(200).json({ success: true, count: adverts.length, data: adverts });
   } catch (error) {
     return next(error);
@@ -42,11 +43,12 @@ exports.updateAdvert = async (req, res, next) => {
     if (!mongoose.isValidObjectId(req.params.id)) {
       return next(new AppError('Invalid advert id', 400));
     }
-    const advert = await Advert.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    // Load + set + save (not findByIdAndUpdate) so the conditional `required`
+    // on `link` evaluates against the real document's placement.
+    const advert = await Advert.findById(req.params.id);
     if (!advert) return next(new AppError('Advert not found', 404));
+    advert.set(req.body);
+    await advert.save();
     logger.info(`Advert updated by admin ${req.user._id}`, { advertId: advert._id });
     return res.status(200).json({ success: true, message: 'Advert updated successfully', data: advert });
   } catch (error) {
@@ -64,6 +66,17 @@ exports.deleteAdvert = async (req, res, next) => {
     if (!advert) return next(new AppError('Advert not found', 404));
     logger.info(`Advert deleted by admin ${req.user._id}`, { advertId: advert._id });
     return res.status(200).json({ success: true, message: 'Advert deleted successfully' });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+// POST /api/adverts/upload-image — admin, single banner image -> Cloudinary URL
+exports.uploadImage = async (req, res, next) => {
+  try {
+    if (!req.file) return next(new AppError('No image uploaded', 400));
+    const result = await uploadBannerToCloudinary(req.file, 'adverts');
+    return res.status(200).json({ success: true, data: { url: result.url } });
   } catch (error) {
     return next(error);
   }

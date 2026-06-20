@@ -1,6 +1,27 @@
 const Joi = require('joi');
 const { AppError } = require('../middlewares/errorHandler');
 
+// Cross-field sale validation shared by create + update. Returns an error
+// message string, or null if valid. `body` is the Joi-validated value object.
+function saleValidationError(body) {
+  if (!body.onSale) return null;
+  const value = Number(body.discountValue);
+  if (!value || value <= 0) return 'A discount value greater than 0 is required when a product is on sale';
+  if (body.discountType === 'percent') {
+    if (value < 1 || value > 100) return 'Percentage discount must be between 1 and 100';
+  } else if (body.discountType === 'amount') {
+    if (body.price !== undefined && !(value > 0 && value < Number(body.price))) {
+      return 'Fixed sale price must be greater than 0 and less than the product price';
+    }
+  }
+  if (body.saleStartsAt && body.saleEndsAt) {
+    if (new Date(body.saleEndsAt).getTime() <= new Date(body.saleStartsAt).getTime()) {
+      return 'Sale end date must be after the start date';
+    }
+  }
+  return null;
+}
+
 const validateProduct = (req, res, next) => {
   // multipart/form-data sends a single appended value as a string, not an array.
   // Normalise before Joi sees the body.
@@ -24,16 +45,14 @@ const validateProduct = (req, res, next) => {
       'string.min': 'Description must be at least 10 characters',
       'any.required': 'Product description is required',
     }),
-    price: Joi.number().required().min(0).messages({
+    price: Joi.number().min(0).messages({
       'number.base': 'Price must be a number',
       'number.min': 'Price cannot be negative',
-      'any.required': 'Product price is required',
     }),
-    quantity: Joi.number().required().integer().min(0).messages({
+    quantity: Joi.number().integer().min(0).messages({
       'number.base': 'Quantity must be a number',
       'number.integer': 'Quantity must be an integer',
       'number.min': 'Quantity cannot be negative',
-      'any.required': 'Quantity in stock is required',
     }),
     categories: Joi.array().items(Joi.string().trim()).min(1).required().messages({
       'array.base': 'Categories must be an array',
@@ -52,7 +71,13 @@ const validateProduct = (req, res, next) => {
       }),
     isActive:   Joi.boolean().truthy('true').falsy('false').default(true),
     isFeatured: Joi.boolean().truthy('true').falsy('false').default(false),
+    onSale:        Joi.boolean().truthy('true').falsy('false').default(false),
+    discountType:  Joi.string().valid('percent', 'amount').default('percent'),
+    discountValue: Joi.number().min(0).default(0),
+    saleStartsAt:  Joi.date().allow('', null).optional(),
+    saleEndsAt:    Joi.date().allow('', null).optional(),
     sections:   Joi.string().optional(), // JSON array of { title, body, order }
+    variants:   Joi.string().optional(), // JSON array of { label, price, quantity }
   });
 
   const { error, value } = schema.validate(req.body);
@@ -60,6 +85,27 @@ const validateProduct = (req, res, next) => {
     return next(new AppError(error.details[0].message, 400));
   }
   req.body = value;
+  const saleErr = saleValidationError(value);
+  if (saleErr) return next(new AppError(saleErr, 400));
+
+  // Either variants (a non-empty JSON array) or both price and quantity must be present.
+  let parsedVariants = [];
+  if (value.variants) {
+    try { parsedVariants = JSON.parse(value.variants); } catch { return next(new AppError('Invalid variants format', 400)); }
+  }
+  if (!Array.isArray(parsedVariants) || parsedVariants.length === 0) {
+    if (value.price === undefined || value.quantity === undefined) {
+      return next(new AppError('Either variants, or price and quantity, are required', 400));
+    }
+  } else {
+    for (const v of parsedVariants) {
+      if (!v.label || typeof v.label !== 'string'
+          || v.price === undefined || Number(v.price) < 0
+          || v.quantity === undefined || Number(v.quantity) < 0) {
+        return next(new AppError('Each variant needs a label, price (>=0) and quantity (>=0)', 400));
+      }
+    }
+  }
   next();
 };
 
@@ -103,8 +149,14 @@ const validateProductUpdate = (req, res, next) => {
     }),
     isActive:   Joi.boolean().truthy('true').falsy('false'),
     isFeatured: Joi.boolean().truthy('true').falsy('false'),
+    onSale:        Joi.boolean().truthy('true').falsy('false'),
+    discountType:  Joi.string().valid('percent', 'amount'),
+    discountValue: Joi.number().min(0),
+    saleStartsAt:  Joi.date().allow('', null).optional(),
+    saleEndsAt:    Joi.date().allow('', null).optional(),
     keepImages: Joi.string().optional(), // JSON string of [{url,publicId}] — existing images to preserve
     sections:   Joi.string().optional(), // JSON array of { title, body, order }
+    variants:   Joi.string().optional(), // JSON array of { label, price, quantity }
   });
 
   const { error, value } = schema.validate(req.body);
@@ -112,6 +164,8 @@ const validateProductUpdate = (req, res, next) => {
     return next(new AppError(error.details[0].message, 400));
   }
   req.body = value;
+  const saleErr = saleValidationError(value);
+  if (saleErr) return next(new AppError(saleErr, 400));
   next();
 };
 

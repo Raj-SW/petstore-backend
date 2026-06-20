@@ -26,6 +26,13 @@ const galleryPostSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Body is required'],
     },
+    sections: [
+      {
+        heading: { type: String, trim: true, maxlength: 150 },
+        body: { type: String },
+        order: { type: Number, default: 0 },
+      },
+    ],
     excerpt: {
       type: String,
       trim: true,

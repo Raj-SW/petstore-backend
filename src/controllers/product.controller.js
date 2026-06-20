@@ -34,6 +34,15 @@ exports.createProduct = async (req, res, next) => {
       }
     }
 
+    // Parse variants JSON string from FormData
+    if (req.body.variants && typeof req.body.variants === 'string') {
+      try {
+        req.body.variants = JSON.parse(req.body.variants);
+      } catch {
+        req.body.variants = [];
+      }
+    }
+
     // Create product data
     const productData = {
       ...req.body,
@@ -191,7 +200,22 @@ exports.updateProduct = async (req, res, next) => {
       }
     }
 
+    // Parse variants JSON string from FormData
+    if (req.body.variants && typeof req.body.variants === 'string') {
+      try {
+        req.body.variants = JSON.parse(req.body.variants);
+      } catch {
+        req.body.variants = [];
+      }
+    }
+
     const { keepImages: keepImagesStr, ...updateData } = req.body;
+
+    // findByIdAndUpdate skips the pre('validate') derive hook, so derive here.
+    if (Array.isArray(updateData.variants) && updateData.variants.length > 0) {
+      updateData.price = Math.min(...updateData.variants.map((v) => Number(v.price)));
+      updateData.quantity = updateData.variants.reduce((s, v) => s + (Number(v.quantity) || 0), 0);
+    }
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return next(new AppError('Invalid product ID format', 400));

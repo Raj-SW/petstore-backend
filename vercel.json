@@ -11,5 +11,11 @@
       "src": "/(.*)",
       "dest": "api/index.js"
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/subscriptions/process-due",
+      "schedule": "0 6 * * *"
+    }
   ]
 }

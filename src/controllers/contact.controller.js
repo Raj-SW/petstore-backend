@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Contact = require('../models/contact.model');
 const { sendEmail } = require('../utils/email');
 const { AppError } = require('../middlewares/errorHandler');
@@ -99,6 +100,53 @@ exports.updateContactStatus = async (req, res, next) => {
     if (!contact) return next(new AppError('Contact not found', 404));
 
     res.status(200).json({ success: true, data: contact });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// POST /api/contact/:id/reply  — admin only
+exports.replyToContact = async (req, res, next) => {
+  try {
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      return next(new AppError('Invalid contact id', 400));
+    }
+    const message = (req.body.message || '').trim();
+    if (!message) {
+      return next(new AppError('Reply message is required', 400));
+    }
+    const contact = await Contact.findById(req.params.id);
+    if (!contact) return next(new AppError('Contact not found', 404));
+
+    // Send the reply — if this throws, status is left unchanged so the admin knows it failed.
+    await sendEmail({
+      to: contact.email,
+      subject: 'Re: your message to VitalPaws',
+      template: 'contact-reply',
+      data: { name: contact.name, message, original: contact.message },
+    });
+
+    contact.status = 'replied';
+    contact.lastReply = message;
+    contact.repliedAt = new Date();
+    await contact.save();
+
+    logger.info('Contact reply sent', { contactId: contact._id });
+    return res.status(200).json({ success: true, message: 'Reply sent', data: contact });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+// DELETE /api/contact/:id  — admin only
+exports.deleteContact = async (req, res, next) => {
+  try {
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      return next(new AppError('Invalid contact id', 400));
+    }
+    const contact = await Contact.findByIdAndDelete(req.params.id);
+    if (!contact) return next(new AppError('Contact not found', 404));
+    res.status(200).json({ success: true, message: 'Contact deleted' });
   } catch (error) {
     next(error);
   }

@@ -27,6 +27,11 @@ const contactRoutes = require('./routes/contact.routes');
 const tipRoutes = require('./routes/tip.routes');
 const advertRoutes = require('./routes/advert.routes');
 const galleryRoutes = require('./routes/gallery.routes');
+const feedbackRoutes = require('./routes/feedback.routes');
+const announcementRoutes = require('./routes/announcement.routes');
+const newsletterRoutes = require('./routes/newsletter.routes');
+const faqRoutes = require('./routes/faq.routes');
+const subscriptionRoutes = require('./routes/subscription.routes');
 
 const app = express();
 
@@ -146,6 +151,11 @@ app.use('/api/contact', contactRoutes);
 app.use('/api/tips', tipRoutes);
 app.use('/api/adverts', advertRoutes);
 app.use('/api/gallery', galleryRoutes);
+app.use('/api/feedback', feedbackRoutes);
+app.use('/api/announcements', announcementRoutes);
+app.use('/api/newsletter', newsletterRoutes);
+app.use('/api/faqs', faqRoutes);
+app.use('/api/subscriptions', subscriptionRoutes);
 
 // Handle unhandled routes
 app.all('*', (req, res, next) => {
