@@ -30,6 +30,11 @@ const baseFields = {
   tags: Joi.array().items(Joi.string().max(40)),
   featured: Joi.boolean(),
   published: Joi.boolean(),
+  sections: Joi.array().items(Joi.object({
+    heading: Joi.string().allow('').max(150).trim(),
+    body: Joi.string().allow(''),
+    order: Joi.number(),
+  })).optional(),
 };
 
 const validateGalleryPost = (req, res, next) => {
