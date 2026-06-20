@@ -26,6 +26,11 @@ const baseFields = {
   difficulty: Joi.string().valid(...DIFFICULTIES),
   featured: Joi.boolean(),
   published: Joi.boolean(),
+  sections: Joi.array().items(Joi.object({
+    heading: Joi.string().allow('').max(150).trim(),
+    body: Joi.string().allow(''),
+    order: Joi.number(),
+  })).optional(),
 };
 
 const validateTip = (req, res, next) => {

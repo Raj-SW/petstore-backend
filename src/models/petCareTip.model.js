@@ -28,6 +28,13 @@ const petCareTipSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Tip body is required'],
     },
+    sections: [
+      {
+        heading: { type: String, trim: true, maxlength: 150 },
+        body: { type: String },
+        order: { type: Number, default: 0 },
+      },
+    ],
     animalType: {
       type: String,
       enum: { values: ANIMAL_TYPES, message: 'Invalid animal type' },
