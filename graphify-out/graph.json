@@ -7954,7 +7954,7 @@
       "label": "validateGalleryPost()",
       "file_type": "code",
       "source_file": "src/validators/gallery.validator.js",
-      "source_location": "L35",
+      "source_location": "L40",
       "id": "validators_gallery_validator_validategallerypost",
       "community": 59,
       "norm_label": "validategallerypost()"
@@ -7963,7 +7963,7 @@
       "label": "validateGalleryPostUpdate()",
       "file_type": "code",
       "source_file": "src/validators/gallery.validator.js",
-      "source_location": "L52",
+      "source_location": "L57",
       "id": "validators_gallery_validator_validategallerypostupdate",
       "community": 59,
       "norm_label": "validategallerypostupdate()"
@@ -8332,7 +8332,7 @@
       "label": "validateTip()",
       "file_type": "code",
       "source_file": "src/validators/tip.validator.js",
-      "source_location": "L31",
+      "source_location": "L36",
       "id": "validators_tip_validator_validatetip",
       "community": 62,
       "norm_label": "validatetip()"
@@ -8341,7 +8341,7 @@
       "label": "validateTipUpdate()",
       "file_type": "code",
       "source_file": "src/validators/tip.validator.js",
-      "source_location": "L46",
+      "source_location": "L51",
       "id": "validators_tip_validator_validatetipupdate",
       "community": 62,
       "norm_label": "validatetipupdate()"
@@ -24826,9 +24826,9 @@
       "source_file": "tests/cart.variants.test.js",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_cart_variants_test_js",
-      "target": "src_app_js",
-      "confidence_score": 1.0
+      "target": "src_app_js"
     },
     {
       "relation": "imports_from",
@@ -24936,9 +24936,9 @@
       "source_file": "tests/product.variants.api.test.js",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_product_variants_api_test_js",
-      "target": "src_app_js",
-      "confidence_score": 1.0
+      "target": "src_app_js"
     },
     {
       "relation": "imports_from",
@@ -26755,9 +26755,9 @@
       "source_file": "src/controllers/cart.controller.js",
       "source_location": "L43",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_controllers_cart_controller_js",
-      "target": "controllers_cart_controller_v",
-      "confidence_score": 1.0
+      "target": "controllers_cart_controller_v"
     },
     {
       "relation": "imports",
@@ -30975,9 +30975,9 @@
       "source_file": "tests/cart.variants.test.js",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_cart_variants_test_js",
-      "target": "src_models_cart_model_js",
-      "confidence_score": 1.0
+      "target": "src_models_cart_model_js"
     },
     {
       "relation": "imports_from",
@@ -31372,9 +31372,9 @@
       "source_file": "tests/order.variants.test.js",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_order_variants_test_js",
-      "target": "src_models_order_model_js",
-      "confidence_score": 1.0
+      "target": "src_models_order_model_js"
     },
     {
       "relation": "imports_from",
@@ -31517,9 +31517,9 @@
       "source_file": "src/models/product.model.js",
       "source_location": "L156",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_models_product_model_js",
-      "target": "models_product_model_computesale",
-      "confidence_score": 1.0
+      "target": "models_product_model_computesale"
     },
     {
       "relation": "contains",
@@ -31577,9 +31577,9 @@
       "source_file": "src/models/product.model.js",
       "source_location": "L192",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_models_product_model_js",
-      "target": "models_product_model_s",
-      "confidence_score": 1.0
+      "target": "models_product_model_s"
     },
     {
       "relation": "imports_from",
@@ -31632,9 +31632,9 @@
       "source_file": "tests/cart.variants.test.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_cart_variants_test_js",
-      "target": "src_models_product_model_js",
-      "confidence_score": 1.0
+      "target": "src_models_product_model_js"
     },
     {
       "relation": "imports_from",
@@ -31654,9 +31654,9 @@
       "source_file": "tests/order.variants.test.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_order_variants_test_js",
-      "target": "src_models_product_model_js",
-      "confidence_score": 1.0
+      "target": "src_models_product_model_js"
     },
     {
       "relation": "imports_from",
@@ -31687,9 +31687,9 @@
       "source_file": "tests/product.variants.api.test.js",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_product_variants_api_test_js",
-      "target": "src_models_product_model_js",
-      "confidence_score": 1.0
+      "target": "src_models_product_model_js"
     },
     {
       "relation": "imports_from",
@@ -31698,9 +31698,9 @@
       "source_file": "tests/product.variants.model.test.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_product_variants_model_test_js",
-      "target": "src_models_product_model_js",
-      "confidence_score": 1.0
+      "target": "src_models_product_model_js"
     },
     {
       "relation": "imports_from",
@@ -31720,9 +31720,9 @@
       "source_file": "src/models/product.model.js",
       "source_location": "L160",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "models_product_model_computesale",
-      "target": "models_product_model_round2",
-      "confidence_score": 1.0
+      "target": "models_product_model_round2"
     },
     {
       "relation": "contains",
@@ -32022,9 +32022,9 @@
       "source_file": "tests/cart.variants.test.js",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_cart_variants_test_js",
-      "target": "src_models_user_model_js",
-      "confidence_score": 1.0
+      "target": "src_models_user_model_js"
     },
     {
       "relation": "imports_from",
@@ -32099,9 +32099,9 @@
       "source_file": "tests/order.variants.test.js",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_order_variants_test_js",
-      "target": "src_models_user_model_js",
-      "confidence_score": 1.0
+      "target": "src_models_user_model_js"
     },
     {
       "relation": "imports_from",
@@ -32143,9 +32143,9 @@
       "source_file": "tests/product.variants.api.test.js",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_product_variants_api_test_js",
-      "target": "src_models_user_model_js",
-      "confidence_score": 1.0
+      "target": "src_models_user_model_js"
     },
     {
       "relation": "imports_from",
@@ -32154,9 +32154,9 @@
       "source_file": "tests/product.variants.model.test.js",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_product_variants_model_test_js",
-      "target": "src_models_user_model_js",
-      "confidence_score": 1.0
+      "target": "src_models_user_model_js"
     },
     {
       "relation": "imports_from",
@@ -33903,9 +33903,9 @@
       "source_file": "tests/order.variants.test.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_order_variants_test_js",
-      "target": "src_services_order_service_js",
-      "confidence_score": 1.0
+      "target": "src_services_order_service_js"
     },
     {
       "relation": "imports",
@@ -33914,9 +33914,9 @@
       "source_file": "tests/order.variants.test.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_order_variants_test_js",
-      "target": "services_order_service_buildorder",
-      "confidence_score": 1.0
+      "target": "services_order_service_buildorder"
     },
     {
       "relation": "contains",
@@ -36707,9 +36707,9 @@
       "source_file": "tests/cart.variants.test.js",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_cart_variants_test_js",
-      "target": "tests_cart_variants_test_app",
-      "confidence_score": 1.0
+      "target": "tests_cart_variants_test_app"
     },
     {
       "relation": "contains",
@@ -36717,9 +36717,9 @@
       "source_file": "tests/cart.variants.test.js",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_cart_variants_test_js",
-      "target": "tests_cart_variants_test_cart",
-      "confidence_score": 1.0
+      "target": "tests_cart_variants_test_cart"
     },
     {
       "relation": "contains",
@@ -36727,9 +36727,9 @@
       "source_file": "tests/cart.variants.test.js",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_cart_variants_test_js",
-      "target": "tests_cart_variants_test_line5kg",
-      "confidence_score": 1.0
+      "target": "tests_cart_variants_test_line5kg"
     },
     {
       "relation": "contains",
@@ -36737,9 +36737,9 @@
       "source_file": "tests/cart.variants.test.js",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_cart_variants_test_js",
-      "target": "tests_cart_variants_test_loginnew",
-      "confidence_score": 1.0
+      "target": "tests_cart_variants_test_loginnew"
     },
     {
       "relation": "contains",
@@ -36747,9 +36747,9 @@
       "source_file": "tests/cart.variants.test.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_cart_variants_test_js",
-      "target": "tests_cart_variants_test_mongoose",
-      "confidence_score": 1.0
+      "target": "tests_cart_variants_test_mongoose"
     },
     {
       "relation": "contains",
@@ -36757,9 +36757,9 @@
       "source_file": "tests/cart.variants.test.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_cart_variants_test_js",
-      "target": "tests_cart_variants_test_product",
-      "confidence_score": 1.0
+      "target": "tests_cart_variants_test_product"
     },
     {
       "relation": "contains",
@@ -36767,9 +36767,9 @@
       "source_file": "tests/cart.variants.test.js",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_cart_variants_test_js",
-      "target": "tests_cart_variants_test_request",
-      "confidence_score": 1.0
+      "target": "tests_cart_variants_test_request"
     },
     {
       "relation": "contains",
@@ -36777,9 +36777,9 @@
       "source_file": "tests/cart.variants.test.js",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_cart_variants_test_js",
-      "target": "tests_cart_variants_test_user",
-      "confidence_score": 1.0
+      "target": "tests_cart_variants_test_user"
     },
     {
       "relation": "contains",
@@ -36787,9 +36787,9 @@
       "source_file": "tests/cart.variants.test.js",
       "source_location": "L31",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_cart_variants_test_js",
-      "target": "tests_cart_variants_test_v1",
-      "confidence_score": 1.0
+      "target": "tests_cart_variants_test_v1"
     },
     {
       "relation": "contains",
@@ -36797,9 +36797,9 @@
       "source_file": "tests/cart.variants.test.js",
       "source_location": "L32",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_cart_variants_test_js",
-      "target": "tests_cart_variants_test_v2",
-      "confidence_score": 1.0
+      "target": "tests_cart_variants_test_v2"
     },
     {
       "relation": "calls",
@@ -36808,9 +36808,9 @@
       "source_file": "tests/cart.variants.test.js",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_cart_variants_test_loginnew",
-      "target": "tests_cart_variants_test_request",
-      "confidence_score": 1.0
+      "target": "tests_cart_variants_test_request"
     },
     {
       "relation": "contains",
@@ -37576,9 +37576,9 @@
       "source_file": "tests/order.variants.test.js",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_order_variants_test_js",
-      "target": "tests_order_variants_test_addr",
-      "confidence_score": 1.0
+      "target": "tests_order_variants_test_addr"
     },
     {
       "relation": "contains",
@@ -37586,9 +37586,9 @@
       "source_file": "tests/order.variants.test.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_order_variants_test_js",
-      "target": "tests_order_variants_test_buildorder",
-      "confidence_score": 1.0
+      "target": "tests_order_variants_test_buildorder"
     },
     {
       "relation": "contains",
@@ -37596,9 +37596,9 @@
       "source_file": "tests/order.variants.test.js",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_order_variants_test_js",
-      "target": "tests_order_variants_test_mongoose",
-      "confidence_score": 1.0
+      "target": "tests_order_variants_test_mongoose"
     },
     {
       "relation": "contains",
@@ -37606,9 +37606,9 @@
       "source_file": "tests/order.variants.test.js",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_order_variants_test_js",
-      "target": "tests_order_variants_test_order",
-      "confidence_score": 1.0
+      "target": "tests_order_variants_test_order"
     },
     {
       "relation": "contains",
@@ -37616,9 +37616,9 @@
       "source_file": "tests/order.variants.test.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_order_variants_test_js",
-      "target": "tests_order_variants_test_product",
-      "confidence_score": 1.0
+      "target": "tests_order_variants_test_product"
     },
     {
       "relation": "contains",
@@ -37626,9 +37626,9 @@
       "source_file": "tests/order.variants.test.js",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_order_variants_test_js",
-      "target": "tests_order_variants_test_user",
-      "confidence_score": 1.0
+      "target": "tests_order_variants_test_user"
     },
     {
       "relation": "contains",
@@ -38158,9 +38158,9 @@
       "source_file": "tests/product.variants.api.test.js",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_product_variants_api_test_js",
-      "target": "tests_product_variants_api_test_admintoken",
-      "confidence_score": 1.0
+      "target": "tests_product_variants_api_test_admintoken"
     },
     {
       "relation": "contains",
@@ -38168,9 +38168,9 @@
       "source_file": "tests/product.variants.api.test.js",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_product_variants_api_test_js",
-      "target": "tests_product_variants_api_test_app",
-      "confidence_score": 1.0
+      "target": "tests_product_variants_api_test_app"
     },
     {
       "relation": "contains",
@@ -38178,9 +38178,9 @@
       "source_file": "tests/product.variants.api.test.js",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_product_variants_api_test_js",
-      "target": "tests_product_variants_api_test_mongoose",
-      "confidence_score": 1.0
+      "target": "tests_product_variants_api_test_mongoose"
     },
     {
       "relation": "contains",
@@ -38188,9 +38188,9 @@
       "source_file": "tests/product.variants.api.test.js",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_product_variants_api_test_js",
-      "target": "tests_product_variants_api_test_product",
-      "confidence_score": 1.0
+      "target": "tests_product_variants_api_test_product"
     },
     {
       "relation": "contains",
@@ -38198,9 +38198,9 @@
       "source_file": "tests/product.variants.api.test.js",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_product_variants_api_test_js",
-      "target": "tests_product_variants_api_test_request",
-      "confidence_score": 1.0
+      "target": "tests_product_variants_api_test_request"
     },
     {
       "relation": "contains",
@@ -38208,9 +38208,9 @@
       "source_file": "tests/product.variants.api.test.js",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_product_variants_api_test_js",
-      "target": "tests_product_variants_api_test_user",
-      "confidence_score": 1.0
+      "target": "tests_product_variants_api_test_user"
     },
     {
       "relation": "calls",
@@ -38219,9 +38219,9 @@
       "source_file": "tests/product.variants.api.test.js",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_product_variants_api_test_admintoken",
-      "target": "tests_product_variants_api_test_request",
-      "confidence_score": 1.0
+      "target": "tests_product_variants_api_test_request"
     },
     {
       "relation": "contains",
@@ -38229,9 +38229,9 @@
       "source_file": "tests/product.variants.model.test.js",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_product_variants_model_test_js",
-      "target": "tests_product_variants_model_test_base",
-      "confidence_score": 1.0
+      "target": "tests_product_variants_model_test_base"
     },
     {
       "relation": "contains",
@@ -38239,9 +38239,9 @@
       "source_file": "tests/product.variants.model.test.js",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_product_variants_model_test_js",
-      "target": "tests_product_variants_model_test_mongoose",
-      "confidence_score": 1.0
+      "target": "tests_product_variants_model_test_mongoose"
     },
     {
       "relation": "contains",
@@ -38249,9 +38249,9 @@
       "source_file": "tests/product.variants.model.test.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_product_variants_model_test_js",
-      "target": "tests_product_variants_model_test_product",
-      "confidence_score": 1.0
+      "target": "tests_product_variants_model_test_product"
     },
     {
       "relation": "contains",
@@ -38259,9 +38259,9 @@
       "source_file": "tests/product.variants.model.test.js",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_product_variants_model_test_js",
-      "target": "tests_product_variants_model_test_user",
-      "confidence_score": 1.0
+      "target": "tests_product_variants_model_test_user"
     },
     {
       "relation": "contains",
@@ -47162,9 +47162,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_superpowers_plans_2026_06_18_product_variants_md",
-      "target": "plans_2026_06_18_product_variants_product_weight_size_variants_implementation_plan",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_product_weight_size_variants_implementation_plan"
     },
     {
       "relation": "contains",
@@ -47172,9 +47172,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_product_weight_size_variants_implementation_plan",
-      "target": "plans_2026_06_18_product_variants_file_structure",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_file_structure"
     },
     {
       "relation": "contains",
@@ -47182,9 +47182,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L38",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_product_weight_size_variants_implementation_plan",
-      "target": "plans_2026_06_18_product_variants_phase_1_backend_model_pricing",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_phase_1_backend_model_pricing"
     },
     {
       "relation": "contains",
@@ -47192,9 +47192,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L372",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_product_weight_size_variants_implementation_plan",
-      "target": "plans_2026_06_18_product_variants_phase_2_backend_purchase_flow",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_phase_2_backend_purchase_flow"
     },
     {
       "relation": "contains",
@@ -47202,9 +47202,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L781",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_product_weight_size_variants_implementation_plan",
-      "target": "plans_2026_06_18_product_variants_phase_3_frontend",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_phase_3_frontend"
     },
     {
       "relation": "contains",
@@ -47212,9 +47212,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L1165",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_product_weight_size_variants_implementation_plan",
-      "target": "plans_2026_06_18_product_variants_self_review",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_self_review"
     },
     {
       "relation": "contains",
@@ -47222,9 +47222,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L1137",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_product_weight_size_variants_implementation_plan",
-      "target": "plans_2026_06_18_product_variants_task_12_final_verification",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_task_12_final_verification"
     },
     {
       "relation": "contains",
@@ -47232,9 +47232,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L40",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_phase_1_backend_model_pricing",
-      "target": "plans_2026_06_18_product_variants_task_1_product_variants_computesale_derive_variantsview_tdd",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_task_1_product_variants_computesale_derive_variantsview_tdd"
     },
     {
       "relation": "contains",
@@ -47242,9 +47242,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L230",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_phase_1_backend_model_pricing",
-      "target": "plans_2026_06_18_product_variants_task_2_validator_controller_accept_variants_tdd",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_task_2_validator_controller_accept_variants_tdd"
     },
     {
       "relation": "contains",
@@ -47252,9 +47252,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L50",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_1_product_variants_computesale_derive_variantsview_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_1",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_1"
     },
     {
       "relation": "contains",
@@ -47262,9 +47262,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L124",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_1_product_variants_computesale_derive_variantsview_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_2",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_2"
     },
     {
       "relation": "contains",
@@ -47272,9 +47272,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L138",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_1_product_variants_computesale_derive_variantsview_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_3",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_3"
     },
     {
       "relation": "contains",
@@ -47282,9 +47282,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L198",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_1_product_variants_computesale_derive_variantsview_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_4",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_4"
     },
     {
       "relation": "contains",
@@ -47292,9 +47292,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L222",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_1_product_variants_computesale_derive_variantsview_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_5",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_5"
     },
     {
       "relation": "contains",
@@ -47302,9 +47302,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L364",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_2_validator_controller_accept_variants_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_10",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_10"
     },
     {
       "relation": "contains",
@@ -47312,9 +47312,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L241",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_2_validator_controller_accept_variants_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_6",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_6"
     },
     {
       "relation": "contains",
@@ -47322,9 +47322,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L312",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_2_validator_controller_accept_variants_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_7",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_7"
     },
     {
       "relation": "contains",
@@ -47332,9 +47332,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L336",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_2_validator_controller_accept_variants_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_8",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_8"
     },
     {
       "relation": "contains",
@@ -47342,9 +47342,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L345",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_2_validator_controller_accept_variants_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_9",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_9"
     },
     {
       "relation": "contains",
@@ -47352,9 +47352,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L374",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_phase_2_backend_purchase_flow",
-      "target": "plans_2026_06_18_product_variants_task_3_add_variantid_variantlabel_to_cart_order_subscription_items",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_task_3_add_variantid_variantlabel_to_cart_order_subscription_items"
     },
     {
       "relation": "contains",
@@ -47362,9 +47362,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L405",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_phase_2_backend_purchase_flow",
-      "target": "plans_2026_06_18_product_variants_task_4_variant_aware_add_to_cart_tdd",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_task_4_variant_aware_add_to_cart_tdd"
     },
     {
       "relation": "contains",
@@ -47372,9 +47372,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L537",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_phase_2_backend_purchase_flow",
-      "target": "plans_2026_06_18_product_variants_task_5_variant_pricing_stock_reservation_in_buildorder_tdd",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_task_5_variant_pricing_stock_reservation_in_buildorder_tdd"
     },
     {
       "relation": "contains",
@@ -47382,9 +47382,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L691",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_phase_2_backend_purchase_flow",
-      "target": "plans_2026_06_18_product_variants_task_6_subscriptions_capture_the_variant_tdd",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_task_6_subscriptions_capture_the_variant_tdd"
     },
     {
       "relation": "contains",
@@ -47392,9 +47392,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L383",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_3_add_variantid_variantlabel_to_cart_order_subscription_items",
-      "target": "plans_2026_06_18_product_variants_codeblock_11",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_11"
     },
     {
       "relation": "contains",
@@ -47402,9 +47402,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L397",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_3_add_variantid_variantlabel_to_cart_order_subscription_items",
-      "target": "plans_2026_06_18_product_variants_codeblock_12",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_12"
     },
     {
       "relation": "contains",
@@ -47412,9 +47412,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L416",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_4_variant_aware_add_to_cart_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_13",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_13"
     },
     {
       "relation": "contains",
@@ -47422,9 +47422,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L480",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_4_variant_aware_add_to_cart_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_14",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_14"
     },
     {
       "relation": "contains",
@@ -47432,9 +47432,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L529",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_4_variant_aware_add_to_cart_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_15",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_15"
     },
     {
       "relation": "contains",
@@ -47442,9 +47442,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L548",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_5_variant_pricing_stock_reservation_in_buildorder_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_16",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_16"
     },
     {
       "relation": "contains",
@@ -47452,9 +47452,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L603",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_5_variant_pricing_stock_reservation_in_buildorder_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_17",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_17"
     },
     {
       "relation": "contains",
@@ -47462,9 +47462,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L638",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_5_variant_pricing_stock_reservation_in_buildorder_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_18",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_18"
     },
     {
       "relation": "contains",
@@ -47472,9 +47472,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L672",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_5_variant_pricing_stock_reservation_in_buildorder_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_19",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_19"
     },
     {
       "relation": "contains",
@@ -47482,9 +47482,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L683",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_5_variant_pricing_stock_reservation_in_buildorder_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_20",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_20"
     },
     {
       "relation": "contains",
@@ -47492,9 +47492,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L702",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_6_subscriptions_capture_the_variant_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_21",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_21"
     },
     {
       "relation": "contains",
@@ -47502,9 +47502,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L745",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_6_subscriptions_capture_the_variant_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_22",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_22"
     },
     {
       "relation": "contains",
@@ -47512,9 +47512,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L762",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_6_subscriptions_capture_the_variant_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_23",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_23"
     },
     {
       "relation": "contains",
@@ -47522,9 +47522,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L773",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_6_subscriptions_capture_the_variant_tdd",
-      "target": "plans_2026_06_18_product_variants_codeblock_24",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_24"
     },
     {
       "relation": "contains",
@@ -47532,9 +47532,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L1017",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_phase_3_frontend",
-      "target": "plans_2026_06_18_product_variants_task_10_admin_product_form_variants_editor",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_task_10_admin_product_form_variants_editor"
     },
     {
       "relation": "contains",
@@ -47542,9 +47542,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L1106",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_phase_3_frontend",
-      "target": "plans_2026_06_18_product_variants_task_11_show_the_variant_label_in_cart_checkout_orders_subscriptions",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_task_11_show_the_variant_label_in_cart_checkout_orders_subscriptions"
     },
     {
       "relation": "contains",
@@ -47552,9 +47552,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L783",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_phase_3_frontend",
-      "target": "plans_2026_06_18_product_variants_task_7_cartapi_cartcontext_send_track_the_variant",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_task_7_cartapi_cartcontext_send_track_the_variant"
     },
     {
       "relation": "contains",
@@ -47562,9 +47562,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L861",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_phase_3_frontend",
-      "target": "plans_2026_06_18_product_variants_task_8_product_page_size_selector",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_task_8_product_page_size_selector"
     },
     {
       "relation": "contains",
@@ -47572,9 +47572,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L989",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_phase_3_frontend",
-      "target": "plans_2026_06_18_product_variants_task_9_product_cards_from_price_force_size_choice",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_task_9_product_cards_from_price_force_size_choice"
     },
     {
       "relation": "contains",
@@ -47582,9 +47582,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L793",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_7_cartapi_cartcontext_send_track_the_variant",
-      "target": "plans_2026_06_18_product_variants_codeblock_25",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_25"
     },
     {
       "relation": "contains",
@@ -47592,9 +47592,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L806",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_7_cartapi_cartcontext_send_track_the_variant",
-      "target": "plans_2026_06_18_product_variants_codeblock_26",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_26"
     },
     {
       "relation": "contains",
@@ -47602,9 +47602,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L821",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_7_cartapi_cartcontext_send_track_the_variant",
-      "target": "plans_2026_06_18_product_variants_codeblock_27",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_27"
     },
     {
       "relation": "contains",
@@ -47612,9 +47612,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L838",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_7_cartapi_cartcontext_send_track_the_variant",
-      "target": "plans_2026_06_18_product_variants_codeblock_28",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_28"
     },
     {
       "relation": "contains",
@@ -47622,9 +47622,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L853",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_7_cartapi_cartcontext_send_track_the_variant",
-      "target": "plans_2026_06_18_product_variants_codeblock_29",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_29"
     },
     {
       "relation": "contains",
@@ -47632,9 +47632,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L871",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_8_product_page_size_selector",
-      "target": "plans_2026_06_18_product_variants_codeblock_30",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_30"
     },
     {
       "relation": "contains",
@@ -47642,9 +47642,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L877",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_8_product_page_size_selector",
-      "target": "plans_2026_06_18_product_variants_codeblock_31",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_31"
     },
     {
       "relation": "contains",
@@ -47652,9 +47652,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L890",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_8_product_page_size_selector",
-      "target": "plans_2026_06_18_product_variants_codeblock_32",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_32"
     },
     {
       "relation": "contains",
@@ -47662,9 +47662,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L905",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_8_product_page_size_selector",
-      "target": "plans_2026_06_18_product_variants_codeblock_33",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_33"
     },
     {
       "relation": "contains",
@@ -47672,9 +47672,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L930",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_8_product_page_size_selector",
-      "target": "plans_2026_06_18_product_variants_codeblock_34",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_34"
     },
     {
       "relation": "contains",
@@ -47682,9 +47682,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L955",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_8_product_page_size_selector",
-      "target": "plans_2026_06_18_product_variants_codeblock_35",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_35"
     },
     {
       "relation": "contains",
@@ -47692,9 +47692,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L981",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_8_product_page_size_selector",
-      "target": "plans_2026_06_18_product_variants_codeblock_36",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_36"
     },
     {
       "relation": "contains",
@@ -47702,9 +47702,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L1009",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_9_product_cards_from_price_force_size_choice",
-      "target": "plans_2026_06_18_product_variants_codeblock_37",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_37"
     },
     {
       "relation": "contains",
@@ -47712,9 +47712,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L1026",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_10_admin_product_form_variants_editor",
-      "target": "plans_2026_06_18_product_variants_codeblock_38",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_38"
     },
     {
       "relation": "contains",
@@ -47722,9 +47722,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L1032",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_10_admin_product_form_variants_editor",
-      "target": "plans_2026_06_18_product_variants_codeblock_39",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_39"
     },
     {
       "relation": "contains",
@@ -47732,9 +47732,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L1040",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_10_admin_product_form_variants_editor",
-      "target": "plans_2026_06_18_product_variants_codeblock_40",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_40"
     },
     {
       "relation": "contains",
@@ -47742,9 +47742,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L1071",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_10_admin_product_form_variants_editor",
-      "target": "plans_2026_06_18_product_variants_codeblock_41",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_41"
     },
     {
       "relation": "contains",
@@ -47752,9 +47752,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L1085",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_10_admin_product_form_variants_editor",
-      "target": "plans_2026_06_18_product_variants_codeblock_42",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_42"
     },
     {
       "relation": "contains",
@@ -47762,9 +47762,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L1098",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_10_admin_product_form_variants_editor",
-      "target": "plans_2026_06_18_product_variants_codeblock_43",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_43"
     },
     {
       "relation": "contains",
@@ -47772,9 +47772,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L1116",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_11_show_the_variant_label_in_cart_checkout_orders_subscriptions",
-      "target": "plans_2026_06_18_product_variants_codeblock_44",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_44"
     },
     {
       "relation": "contains",
@@ -47782,9 +47782,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L1129",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_11_show_the_variant_label_in_cart_checkout_orders_subscriptions",
-      "target": "plans_2026_06_18_product_variants_codeblock_45",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_45"
     },
     {
       "relation": "contains",
@@ -47792,9 +47792,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L1142",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_12_final_verification",
-      "target": "plans_2026_06_18_product_variants_codeblock_46",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_46"
     },
     {
       "relation": "contains",
@@ -47802,9 +47802,9 @@
       "source_file": "docs/superpowers/plans/2026-06-18-product-variants.md",
       "source_location": "L1150",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plans_2026_06_18_product_variants_task_12_final_verification",
-      "target": "plans_2026_06_18_product_variants_codeblock_47",
-      "confidence_score": 1.0
+      "target": "plans_2026_06_18_product_variants_codeblock_47"
     },
     {
       "relation": "contains",
@@ -50772,9 +50772,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_superpowers_specs_2026_06_18_product_variants_design_md",
-      "target": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec"
     },
     {
       "relation": "contains",
@@ -50782,9 +50782,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L26",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
-      "target": "specs_2026_06_18_product_variants_design_architecture",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_architecture"
     },
     {
       "relation": "contains",
@@ -50792,9 +50792,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L107",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
-      "target": "specs_2026_06_18_product_variants_design_data_flow",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_data_flow"
     },
     {
       "relation": "contains",
@@ -50802,9 +50802,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
-      "target": "specs_2026_06_18_product_variants_design_decisions_locked_during_brainstorming",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_decisions_locked_during_brainstorming"
     },
     {
       "relation": "contains",
@@ -50812,9 +50812,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L114",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
-      "target": "specs_2026_06_18_product_variants_design_error_handling",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_error_handling"
     },
     {
       "relation": "contains",
@@ -50822,9 +50822,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L134",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
-      "target": "specs_2026_06_18_product_variants_design_files_touch_points",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_files_touch_points"
     },
     {
       "relation": "contains",
@@ -50832,9 +50832,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
-      "target": "specs_2026_06_18_product_variants_design_non_goals",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_non_goals"
     },
     {
       "relation": "contains",
@@ -50842,9 +50842,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L150",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
-      "target": "specs_2026_06_18_product_variants_design_open_questions_none_blocking",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_open_questions_none_blocking"
     },
     {
       "relation": "contains",
@@ -50852,9 +50852,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
-      "target": "specs_2026_06_18_product_variants_design_summary",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_summary"
     },
     {
       "relation": "contains",
@@ -50862,9 +50862,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L121",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_product_weight_size_variants_design_spec",
-      "target": "specs_2026_06_18_product_variants_design_testing",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_testing"
     },
     {
       "relation": "contains",
@@ -50872,9 +50872,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L93",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_architecture",
-      "target": "specs_2026_06_18_product_variants_design_admin_adminproductform_jsx",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_admin_adminproductform_jsx"
     },
     {
       "relation": "contains",
@@ -50882,9 +50882,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L59",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_architecture",
-      "target": "specs_2026_06_18_product_variants_design_cart_order_subscription_items",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_cart_order_subscription_items"
     },
     {
       "relation": "contains",
@@ -50892,9 +50892,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L28",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_architecture",
-      "target": "specs_2026_06_18_product_variants_design_data_model_product_model_js",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_data_model_product_model_js"
     },
     {
       "relation": "contains",
@@ -50902,9 +50902,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L101",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_architecture",
-      "target": "specs_2026_06_18_product_variants_design_frontend_product_page_cards",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_frontend_product_page_cards"
     },
     {
       "relation": "contains",
@@ -50912,9 +50912,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L79",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_architecture",
-      "target": "specs_2026_06_18_product_variants_design_order_building_order_service_js_buildorder",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_order_building_order_service_js_buildorder"
     },
     {
       "relation": "contains",
@@ -50922,9 +50922,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L46",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_architecture",
-      "target": "specs_2026_06_18_product_variants_design_pricing_sale",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_pricing_sale"
     },
     {
       "relation": "contains",
@@ -50932,9 +50932,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L87",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_architecture",
-      "target": "specs_2026_06_18_product_variants_design_subscriptions",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_subscriptions"
     },
     {
       "relation": "contains",
@@ -50942,9 +50942,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L32",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_data_model_product_model_js",
-      "target": "specs_2026_06_18_product_variants_design_codeblock_1",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_codeblock_1"
     },
     {
       "relation": "contains",
@@ -50952,9 +50952,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L50",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_pricing_sale",
-      "target": "specs_2026_06_18_product_variants_design_codeblock_2",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_codeblock_2"
     },
     {
       "relation": "contains",
@@ -50962,9 +50962,9 @@
       "source_file": "docs/superpowers/specs/2026-06-18-product-variants-design.md",
       "source_location": "L63",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_2026_06_18_product_variants_design_cart_order_subscription_items",
-      "target": "specs_2026_06_18_product_variants_design_codeblock_3",
-      "confidence_score": 1.0
+      "target": "specs_2026_06_18_product_variants_design_codeblock_3"
     },
     {
       "relation": "implements",
@@ -51639,5 +51639,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "5759ce8475894a8646e23bc13c251fd84f4b023c"
+  "built_at_commit": "91e3e5a58cad7c72c4d2149a06090becae59c0ce"
 }

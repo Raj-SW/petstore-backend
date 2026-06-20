@@ -454,11 +454,6 @@
     "ast_hash": "3b5d92d636ad35899b02c5dd1a20e7b4",
     "semantic_hash": "3b5d92d636ad35899b02c5dd1a20e7b4"
   },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\ProfessionalCalendar.jsx": {
-    "mtime": 1769629894.196102,
-    "ast_hash": "8231ef6c17a5cebcb17079efe51b52ca",
-    "semantic_hash": "8231ef6c17a5cebcb17079efe51b52ca"
-  },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\AddToCartComponent\\CartModalComponent.jsx": {
     "mtime": 1769629894.1504214,
     "ast_hash": "d61d07ce344bda2b2aaad3ef0e3a5942",
@@ -593,11 +588,6 @@
     "mtime": 1780778239.8188648,
     "ast_hash": "04f6c0bb2450199326bffc24b2709524",
     "semantic_hash": "04f6c0bb2450199326bffc24b2709524"
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\ProfessionalCalendar\\ProfessionalCalendar.jsx": {
-    "mtime": 1769629894.1786785,
-    "ast_hash": "d9385e0f77133226d85797893728f873",
-    "semantic_hash": "d9385e0f77133226d85797893728f873"
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\frontend\\src\\Components\\HelperComponents\\ProfessionalCard\\ProfessionalCard.jsx": {
     "mtime": 1769629894.1796868,
@@ -885,8 +875,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\models\\galleryPost.model.js": {
-    "mtime": 1781390057.8115976,
-    "ast_hash": "f6437986b8266d561f403e2af284b8ae",
+    "mtime": 1781943129.0038052,
+    "ast_hash": "40ea78385a58366b509db0c36893e321",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\models\\newsletterSubscriber.model.js": {
@@ -895,8 +885,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\models\\petCareTip.model.js": {
-    "mtime": 1781162136.6430223,
-    "ast_hash": "7d12fec7378e44860a082587bb1b645c",
+    "mtime": 1781942710.9654076,
+    "ast_hash": "93d93ad2dff8596da436a14469e029b2",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\models\\saleAnnouncement.model.js": {
@@ -980,8 +970,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\gallery.validator.js": {
-    "mtime": 1781390068.063769,
-    "ast_hash": "a1029a42fade076bd8972e7fcbe119ed",
+    "mtime": 1781943153.5432334,
+    "ast_hash": "f58bc9e48b411bd9f7802f3078b34d72",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\subscription.validator.js": {
@@ -990,8 +980,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\tip.validator.js": {
-    "mtime": 1781162144.1515281,
-    "ast_hash": "aa97c466004fa5e85d6d987f3eeead21",
+    "mtime": 1781942728.652423,
+    "ast_hash": "509b31a8fcc33bda6e102f203049371a",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\tests\\admin.user-management.test.js": {
