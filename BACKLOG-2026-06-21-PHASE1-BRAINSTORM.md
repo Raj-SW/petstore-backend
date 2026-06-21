@@ -219,5 +219,24 @@ Repo legend: BE = `petstore-backend` (this repo), FE = `petstore-frontend`.
 
 ---
 
+## Reusable components register (DRY — build once, reuse everywhere)
+
+Standing rule (user, 2026-06-21): wherever a component/pattern repeats across epics, design it **once as a shared, reusable unit** and consume it — don't re-implement per page. Each spec must call out which of these it builds or reuses.
+
+| Shared unit | Build in | Reused by | Notes |
+|---|---|---|---|
+| **ImageManager** (drag-reorder + set-primary + delete + add upload, Cloudinary cleanup) FE component + the **`imageOrder` manifest** BE upload helper | Epic 6 (products) | Epic 6b (variants), Epic 7b (feedback), Epic 8 (tip cover/section images), gallery | One `<ImageManager>` + one backend `applyImageOrder()` util used by every multi-image resource. |
+| **SearchBar** (reusable, `onSearch`/target prop, token-styled) | Epic 2 (2c) | Epic 3 (Service), Epic 4 (Appointments), Epic 8 (Tips), Petshop | De-gimmicked; the single search input app-wide. |
+| **Select / Dialog / Popover / Tooltip** primitives | Epic 2 | All admin + customer pages (17 selects, modals, menus) | The `src/Components/ui/` set bound to tokens. |
+| **Breadcrumb** | already shared | Epic 1 (gallery), all pages | Ensure every page (incl. gallery) uses it. |
+| **SectionsEditor** (heading + rich body + optional image, drag-order) | reuse existing `atf-sections` editor | Epic 8 (tips), gallery posts, product `sections[]` | One editor for all "sections[]" authoring. |
+| **RichTextEditor / RichTextRenderer** (incl. the image-overflow fix 2d) | already shared | Tips, gallery, Announcements `general` body (9b) | Single renderer; fix images once. |
+| **Email layout partial** (branded header/footer) | Epic 10 | every template incl. `announcement.html` (9b), 9a | All emails extend one layout. |
+| **`urls.js` resolver** (frontend/API base + builders + startup check) | Epic 9a | 9b, auth, subscription, paypal emails | Single source for all email/link URLs. |
+| **`formatMUR` currency util** | Epic 11 / 6c | controllers + invoice PDF + emails | One currency formatter; kills the `$`/MUR split. |
+| **Card** base primitive | Epic 2 (`ui/card`) | product card, professional card (Epic 4), testimonial (Epic 7) | Compose page-specific cards from one base. |
+
+When writing each epic's plan, prefer extracting/reusing the row above over a local copy. If a needed shared unit doesn't exist yet, the first epic to need it builds it as reusable from the start.
+
 ## Suggested phase-2 agenda (per epic: finalize approach + lock acceptance criteria)
 Recommended order for phase 2: **9a (URL bug, with 10), 1, 5, 7a** (high-value bugs) → **2 foundation + 2c/2d** → **6b, 8, 11, 12, 9b** (features) → **4, 3** (UI) → **13** (own project). Quick wins build momentum; design-system foundation unblocks the rest.
