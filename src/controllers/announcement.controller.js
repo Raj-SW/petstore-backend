@@ -6,9 +6,9 @@ const { sendEmail } = require('../utils/email');
 const { makeUnsubscribeToken, verifyUnsubscribeToken } = require('../utils/unsubscribeToken');
 const logger = require('../utils/logger');
 
+const { apiUrl, productUrl, shopUrl } = require('../config/urls');
+
 const MAX_RECIPIENTS = parseInt(process.env.ANNOUNCEMENT_MAX_RECIPIENTS || '500', 10);
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
-const API_PUBLIC_URL = process.env.API_PUBLIC_URL || 'http://localhost:5000/api';
 
 const formatMUR = (amount) => `Rs ${Number(amount || 0).toLocaleString('en-US')}`;
 
@@ -19,6 +19,7 @@ function buildProductRows(products) {
     return {
       name: p.name,
       image: p.images && p.images[0] ? p.images[0].url : '',
+      link: productUrl(p._id),
       priceLabel: formatMUR(p.price),
       salePriceLabel: onSale ? formatMUR(p.salePrice) : null,
       discountLabel: onSale ? `${p.discountPercentLabel}% OFF` : null,
@@ -54,7 +55,7 @@ exports.createAnnouncement = async (req, res, next) => {
     // failures are non-fatal so one bad address never aborts the batch.
     for (const user of capped) {
       try {
-        const unsubscribeUrl = `${API_PUBLIC_URL}/announcements/unsubscribe?token=${makeUnsubscribeToken(user._id)}`;
+        const unsubscribeUrl = `${apiUrl('announcements/unsubscribe')}?token=${makeUnsubscribeToken(user._id)}`;
         // eslint-disable-next-line no-await-in-loop
         await sendEmail({
           to: user.email,
@@ -65,7 +66,7 @@ exports.createAnnouncement = async (req, res, next) => {
             subject,
             message,
             products: rows,
-            shopUrl: `${FRONTEND_URL}/petshop`,
+            shopUrl: shopUrl(),
             unsubscribeUrl,
           },
         });

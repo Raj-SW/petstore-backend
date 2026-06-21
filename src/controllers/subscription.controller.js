@@ -7,8 +7,9 @@ const { AppError } = require('../middlewares/errorHandler');
 const { sendEmail } = require('../utils/email');
 const logger = require('../utils/logger');
 
+const { frontendUrl } = require('../config/urls');
+
 const DEFAULT_DISCOUNT = parseInt(process.env.SUBSCRIPTION_DISCOUNT_PERCENT || '10', 10);
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
 const formatMUR = (amount) => `Rs ${Number(amount || 0).toLocaleString('en-US')}`;
 
@@ -222,7 +223,7 @@ async function notifyReorder(userId, order) {
       subtotal: formatMUR(order.totalAmount),
       discountLabel: order.discount > 0 ? formatMUR(order.discount) : null,
       total: formatMUR(order.totalAmount - (order.discount || 0)),
-      payUrl: `${FRONTEND_URL}/profile/orders`,
+      payUrl: frontendUrl('profile/orders'),
     },
   });
 }
