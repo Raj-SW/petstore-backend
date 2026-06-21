@@ -90,7 +90,7 @@ Repo legend: BE = `petstore-backend` (this repo), FE = `petstore-frontend`.
 
 ---
 
-## Epic 6 — Product images & variants (BE + FE)
+## Epic 6 — Product images, variants & pricing (BE + FE)
 
 ### 6a. Sort which product image displays first — ✅ ALREADY SPECED
 - See `docs/superpowers/specs/2026-06-21-product-bulk-actions-and-image-ordering-design.md` (Feature 2: `imageOrder` manifest + set-primary). No re-brainstorm needed.
@@ -102,6 +102,13 @@ Repo legend: BE = `petstore-backend` (this repo), FE = `petstore-frontend`.
 - **My added ideas:** reuse the same `imageOrder`/set-primary pattern (6a) per variant so variant galleries are also orderable; cap images per variant (e.g., 6); cleanup variant images on variant removal.
 - **Open Q (P2):** required or optional per variant? Fallback to product images when empty (recommended yes)? Max images per variant? Reuse imageOrder per variant?
 - **Draft AC:** admin uploads/reorders images on each variant; product detail shows variant images on selection (falls back to product images); removing a variant deletes its Cloudinary images; create/update validators accept variant images.
+
+### 6c. Products default to MUR — NEW
+- **State:** `Product.price` (and `variants[].price`) is a bare `Number` with **no currency field**; the app renders MUR (`Rs`) purely via frontend formatting, while the invoice PDF hardcodes `$`. Currency is implicit and inconsistent.
+- **Recommended approach:** make **MUR the explicit default**. Minimal: label the admin price/variant-price inputs with `Rs` (MUR) and document that all stored prices are MUR. Fuller (if multi-currency is ever wanted): add `currency` (default `'MUR'`) to the product model and carry it through cart/order/invoice/email formatting. Recommend the explicit-default approach now, with a single shared `formatMUR` used everywhere (already exists in announcement/subscription controllers) and the invoice currency fixed under Epic 11.
+- **My added ideas:** one shared currency util (`formatMUR`) imported by controllers + PDF so there's a single source of truth; a guard/test asserting no `$` leaks into invoices/emails.
+- **Open Q (P2):** is the store ever multi-currency, or MUR-only? (If MUR-only, skip the `currency` field and just standardize formatting + input labels.)
+- **Draft AC:** admin product create/edit shows prices in MUR (Rs) by default on every price input (incl. variants); all customer-facing prices, invoices, and emails render MUR consistently (no `$`); if a `currency` field is added, it defaults to MUR and flows through orders/invoices.
 
 ---
 
@@ -204,7 +211,7 @@ Repo legend: BE = `petstore-backend` (this repo), FE = `petstore-frontend`.
 
 - **Image reorder / set-primary is a recurring pattern** across products (6a), variants (6b), feedback (7b), and tips/gallery (8). Build it **once** as a reusable drag-reorder gallery component (FE) + a consistent ordered-array convention (BE) and reuse everywhere. Recommend doing the product version (already speced) first, then generalizing.
 - **Env-var/URL hygiene (9a)** affects every transactional email, not just announcements — fix centrally (one frontend-base var, one public-API var, startup validation) and it resolves latent bugs in reset/verify/order/subscription emails too.
-- **Currency consistency:** the app is MUR (`Rs`) but the invoice PDF is `$`. Standardize on MUR (with a `currency` field) as part of Epic 11.
+- **Currency consistency:** the app is MUR (`Rs`) but the invoice PDF is `$`, and product prices carry no currency at all. Standardize on **MUR by default** — explicit on admin product inputs (Epic 6c), one shared `formatMUR` util across controllers + PDF, fixed invoice currency (Epic 11). Decide MUR-only vs. multi-currency in phase 2.
 - **Search-component reuse (2c)** unblocks Epics 3, 4, and 8 — sequence it early in the design-system work.
 - **Reorder dependency:** Epics 3/4/8 search items and 2d RTE-image fix all depend on the Epic-2 foundation; doing Epic 2 foundation first reduces rework.
 
