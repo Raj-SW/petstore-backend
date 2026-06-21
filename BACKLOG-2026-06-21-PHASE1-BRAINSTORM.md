@@ -219,6 +219,20 @@ Repo legend: BE = `petstore-backend` (this repo), FE = `petstore-frontend`.
 
 ---
 
+## Epic 14 — Variant-aware inventory management (BE + FE)
+- **State:** product stock for variant products lives on `variants[].quantity` (sum rolls up to product `quantity` via the derive hook); `buildOrder`/cancel already reserve/restore **variant** stock with positional `$inc`. But the **admin inventory layer** (`inventory.controller.js`, `AdminInventory.jsx`, `stockMovement.model`) predates variants and operates on product-level `quantity`.
+- **Recommended approach:** make the inventory tooling variant-aware — admin stock list shows per-variant rows (with product roll-up), manual adjustments target a specific variant, low-stock alerts evaluate per variant, and `StockMovement` records a `variantId`/`variantLabel`. Reuse the variant pricing/labeling already on the product model.
+- **My added ideas:** a per-variant low-stock threshold; surface the Epic-12 demand-prediction shortfall alongside current variant stock in the same admin view (one inventory-health screen).
+- **Open Q (P2):** per-variant low-stock threshold (global default vs per-product)? Should the inventory view merge in subscription demand (Epic 12)? Does `StockMovement` need backfilling for historical product-level moves?
+- **Draft AC:** admin can view/adjust stock per variant (product as roll-up); low-stock alerts fire per variant; `StockMovement` logs the variant; existing product-level (no-variant) flow unchanged.
+
+## Epic 15 — Checkout redesign + payment methods (FE + BE)
+- **State:** `CartCheckOutPage.jsx` is the current checkout; `order.paymentMethod` enum = `credit_card|paypal|stripe`. Epic 11 computes shipping + tax from `StoreSettings` but nothing yet displays/collects them on a unified page.
+- **Recommended approach:** rebuild checkout as **one full responsive page** (design system, Epic 2): address + order summary + shipping/tax (from Epic 11 `StoreSettings`) + payment selection. Expand `paymentMethod` to **`cod` (Cash on Delivery), `card`, `juice_mcb`**. COD = place order, mark payment pending, pay on delivery (no online capture). Card = existing/stripe card flow. **Juice by MCB** = new Mauritian MCB gateway — likely a redirect/callback flow; the integration specifics (API, sandbox, webhook) are the main unknown to resolve in its own brainstorm.
+- **My added ideas:** COD may warrant an order cap or address verification; show the shipping/free-shipping-threshold nudge ("add Rs X for free shipping"); persist the chosen method on the order; a success/confirmation step.
+- **Open Q (P2):** is Juice by MCB a real gateway integration now or a manual/instructions flow first? Which card processor (Stripe is wired) backs "Card"? Single-page vs lightly-stepped within one page? COD eligibility rules?
+- **Draft AC:** checkout is one responsive page showing items, address, shipping + tax (Epic 11), and a payment choice of COD / Card / Juice by MCB; the order persists the method and the Epic-11 amounts; each method completes its flow (COD → pending; Card → capture; Juice → gateway); build + tests pass.
+
 ## Reusable components register (DRY — build once, reuse everywhere)
 
 Standing rule (user, 2026-06-21): wherever a component/pattern repeats across epics, design it **once as a shared, reusable unit** and consume it — don't re-implement per page. Each spec must call out which of these it builds or reuses.
