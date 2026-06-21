@@ -5,6 +5,8 @@
 **Date:** 2026-06-21
 **Repos:** backend (`petstore-backend`) — model/migration/controller/validator; frontend (`petstore-frontend`) — `StatsSection.jsx` (homepage) + `AdminFeedback.jsx` (admin).
 **Status:** ✅ Approved design, pending implementation plan.
+
+> **⚠️ REVISION (2026-06-21):** Part C's admin photo add/reorder/delete uses the **shared immediate-upload `<ImageManager>`** model in `2026-06-21-variant-images-and-mur-pricing-design.md` (not a bespoke multipart manifest). Photos are still upgraded to `[{url, publicId}]`; admin sends the final ordered refs as JSON and the backend diffs for Cloudinary cleanup. Public `submitFeedback` keeps its multipart submit but stores `{url, publicId}`. Part A (storage upgrade) and Part B (homepage fix) are unchanged.
 **Backlog:** `docs/BACKLOG-2026-06-21.md` Epic 7; phase-1 notes in `docs/BACKLOG-2026-06-21-PHASE1-BRAINSTORM.md`. Reuses the image-reorder pattern from `2026-06-21-product-bulk-actions-and-image-ordering-design.md` (Epic 6).
 
 ## Problem

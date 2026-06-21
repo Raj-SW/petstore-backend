@@ -6,6 +6,8 @@
 **Repo:** backend (`petstore-backend`). Frontend admin UI is built separately in `petstore-frontend`; this spec defines the API contract it consumes.
 **Status:** Approved design, pending implementation plan.
 
+> **⚠️ REVISION (2026-06-21):** Feature 2's image handling (`imageOrder` manifest + `keepImages` + deferred multipart) is **superseded** by the shared immediate-upload model in `2026-06-21-variant-images-and-mur-pricing-design.md`. Product images become `images: [{url, publicId}]` sent as ordered JSON (uploaded via `POST /api/products/upload-image`), with the backend diffing for Cloudinary cleanup, and the reorder/set-primary handled by the shared `<ImageManager>`. **Feature 1 (bulk actions) is unaffected.**
+
 ## Goal
 
 Two independent admin-panel enhancements to product management:
