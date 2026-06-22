@@ -8,6 +8,7 @@ const {
   deleteProduct,
   getProductsByCategory,
   getProductAnalytics,
+  getFilterOptions,
 } = require('../controllers/product.controller');
 const { validateProduct, validateProductUpdate } = require('../validators/product.validator');
 const { upload } = require('../middlewares/upload');
@@ -17,6 +18,8 @@ const router = express.Router();
 // Public routes
 router.get('/', getProducts);
 router.get('/category/:category', getProductsByCategory);
+// Distinct filter options for the storefront side panel (before /:id to avoid shadowing)
+router.get('/filter-options', getFilterOptions);
 
 // Admin analytics (registered before /:id to prevent shadowing)
 router.get('/analytics/overview', isAuthenticated, isAdmin, getProductAnalytics);

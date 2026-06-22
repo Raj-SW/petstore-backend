@@ -104,7 +104,9 @@ exports.getProducts = async (req, res, next) => {
 
     if (categories) {
       const categoryArray = Array.isArray(categories) ? categories : [categories];
-      query.categories = { $in: categoryArray };
+      // Case-insensitive exact match so a "Dogs" filter matches stored "dogs"
+      const escapeRegex = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      query.categories = { $in: categoryArray.map((c) => new RegExp(`^${escapeRegex(c)}$`, 'i')) };
     }
 
     if (minPrice || maxPrice) {
@@ -339,6 +341,28 @@ exports.getProductsByCategory = async (req, res, next) => {
     return res.status(200).json({
       success: true,
       data: products,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+// Get distinct filter options (categories/colors/genders) across active products.
+// Drives the Pet Shop side-panel so its options match the stored values.
+exports.getFilterOptions = async (req, res, next) => {
+  try {
+    const [categories, colors, genders] = await Promise.all([
+      Product.distinct('categories', { isActive: true }),
+      Product.distinct('colors', { isActive: true }),
+      Product.distinct('genders', { isActive: true }),
+    ]);
+    return res.status(200).json({
+      success: true,
+      data: {
+        categories: categories.filter(Boolean).sort(),
+        colors: colors.filter(Boolean).sort(),
+        genders: genders.filter(Boolean).sort(),
+      },
     });
   } catch (error) {
     return next(error);
