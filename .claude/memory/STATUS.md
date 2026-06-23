@@ -1,0 +1,48 @@
+# Project Status
+
+**Active branch:** `feat/backlog-impl-2026-06-22` (both `backend/` and `frontend/` repos)
+**Last updated:** 2026-06-23
+
+---
+
+## Done
+
+| Epic | Description | Scope |
+|------|-------------|-------|
+| 1 | Nav/layout — About in navbar, mobile header, gallery breadcrumbs | FE |
+| 2 | Design system foundation — shadcn/ui token binding, SearchBar generalized, RTE img overflow fix | FE (partial — see Remaining) |
+| 3 | Service page — Coming Soon badges, live card links | FE |
+| 5 | Petshop filter — case-insensitive category match, DB-driven filter options, remove dead rating filter | BE + FE |
+| 6 | Product bulk actions — `POST /products/bulk` (activate/feature/sale/delete) + admin toolbar UI | BE + FE |
+| 6b | Variant images — `ImageManager` component; per-variant images in AdminProductForm; variant gallery swap on product detail page | BE + FE |
+| 6c | MUR-only pricing — shared `src/utils/currency.js formatMUR`; Rs labels on price inputs; no $ leaks | BE + FE |
+| 7a | Feedback photo fix — homepage testimonial renders each feedback's own photos, not hardcoded stock images | FE |
+| 7b | Feedback photos BE — `Feedback.photos` → `[{url, publicId}]`; admin upload endpoint; mass-assignment fix | BE |
+| 8 | Tips/gallery cover + section images — `coverImage {url,publicId}`; `sections[].images`; admin forms use ImageManager | BE + FE |
+| 9a | Announcement email URLs — `src/config/urls.js` resolver; all transactional emails use correct frontend base URL | BE |
+| 9b | Typed announcements — `Announcement` model (sale/event/content/general), buckets, typed target fields | BE |
+| 10 | Email template partial — `fmtDate` helper; email infrastructure groundwork | BE (partial — see Remaining) |
+| 11 | StoreSettings + shipping/tax — `StoreSettings` singleton; `buildOrder` adds shippingFee/tax; granular invoice line items | BE |
+| 12 | Subscription analytics BE — `predictDemand`, `productCoverage`, `runsInHorizon`; admin `/analytics` + `/product-coverage` endpoints | BE |
+| 14 | Variant-aware inventory — per-variant rows in inventory table; restock/adjust/history all variant-scoped | BE + FE |
+
+---
+
+## Remaining
+
+| Epic | What's left | Notes |
+|------|-------------|-------|
+| 2 | 17 native `<select>` → shadcn `Select` migrations + `/admin/ui-gallery` verification page | FE; unblocks Epic 4 |
+| 4 | ProfessionalCard visual rebuild on design system; appointment list SearchBar | FE; depends Epic 2 |
+| 9b FE | Typed announcements admin UI — type picker, event fields, CTA fields, content ref picker | FE |
+| 10 | `_layout.html` email wrapper; unify all templates under it; remove orphaned templates | BE; closes Security F5 |
+| 11 FE | `AdminSettings` StoreSettings page (shippingFee, freeShippingThreshold, taxRate toggles); checkout displays shipping/tax | FE; depends Epic 11 BE ✅ |
+| 12 FE | Subscriptions analytics dashboard; enriched admin list/detail; user My Subscriptions view; product-list "Subscribed(N)" badge | FE; depends Epic 12 BE ✅ |
+| 13 | Import/Export full-stack rebuild — `ImportExportApplication` model + routes + admin/applicant emails + FE multi-step form + admin page | BE + FE; depends Epics 2 + 10 |
+| 15 | Checkout redesign + COD/Card/Juice payment method selection; Juice MCB gateway integration | BE + FE; **blocked — MCB Juice merchant credentials not yet provided** |
+
+---
+
+## Security
+
+Five findings from the 2026-06-21 audit are open. See `SECURITY.md`. Awaiting QA sign-off before fixing.

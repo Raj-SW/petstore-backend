@@ -1,3 +1,18 @@
+## Project context
+
+Shared memory files live in `.claude/memory/`. Read these at the start of any session before asking questions or making decisions:
+
+- `STATUS.md` — what's done, what's remaining, what's blocked
+- `ARCHITECTURE.md` — key design decisions and rationale (read before touching images, pricing, inventory, or orders)
+- `SECURITY.md` — five open security findings; do not fix without QA sign-off
+- `PATTERNS.md` — shared components and utilities; build here once, use everywhere
+- `DEFERRED.md` — items explicitly parked; do not reopen without discussion
+- `SPECS-INDEX.md` — every epic's spec file location
+
+Update `STATUS.md` whenever an epic ships.
+
+---
+
 ## graphify
 
 This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
