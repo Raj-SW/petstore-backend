@@ -21,7 +21,9 @@ const LAYOUT_NAME = '_layout';
 // Shared Handlebars helpers used across email fragments.
 handlebars.registerHelper('eq', (a, b) => a === b);
 handlebars.registerHelper('mur', (value) => formatMUR(Number(value) || 0));
-handlebars.registerHelper('date', (value) => {
+// Named `fmtDate` (not `date`) so it never shadows a `{{date}}` data field —
+// e.g. the appointment templates render their date via a `date` field.
+handlebars.registerHelper('fmtDate', (value) => {
   if (!value) return '';
   const d = new Date(value);
   return Number.isNaN(d.getTime()) ? String(value)
