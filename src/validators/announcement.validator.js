@@ -33,11 +33,12 @@ const validateAnnouncement = (req, res, next) => {
       endsAt: Joi.date(),
       location: Joi.string().max(200).allow(''),
       description: Joi.string().max(1000).allow(''),
-      link: Joi.string().uri().allow(''),
+      // http/https only — these render unescaped in the email href
+      link: Joi.string().uri({ scheme: ['http', 'https'] }).allow(''),
     }),
     cta: Joi.object({
       label: Joi.string().max(60),
-      url: Joi.string().uri(),
+      url: Joi.string().uri({ scheme: ['http', 'https'] }),
     }),
     source: Joi.string().valid('inline', 'composer'),
   });
