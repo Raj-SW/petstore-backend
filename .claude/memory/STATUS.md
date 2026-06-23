@@ -46,6 +46,7 @@
 
 - **Frontend URL** — `.env` `FRONTEND_URL`/`CLIENT_URL` = `https://petstore-frontend-ixll.vercel.app`. Update this in the hosting platform env vars dashboard if deploying.
 - **Orphan** — `src/templates/sale-announcement.html` still on disk, not referenced by any controller (superseded by `announcement.html`). Safe to delete anytime.
+- **Subscription savings chooser (2026-06-24)** — Product page + cart now use a shared `SubscriptionChooser` component (two radio cards, "Save N%" pill, strikethrough→green savings math, conditional frequency dropdown). Product page merged Add to Cart + Subscribe into one smart button. Savings math + 7-day rule live in `frontend/src/utils/subscriptionPricing.js`.
 - **Bug fix (2026-06-24)** — Admin products page was silently hiding inactive products. `GET /products` now accepts `isActive=all` to skip the filter; admin fetch passes it. Client-side filter chip works correctly.
 
 ## Security
