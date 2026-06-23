@@ -21,7 +21,7 @@
 | 8 | Tips/gallery cover + section images — `coverImage {url,publicId}`; `sections[].images`; admin forms use ImageManager | BE + FE |
 | 9a | Announcement email URLs — `src/config/urls.js` resolver; all transactional emails use correct frontend base URL | BE |
 | 9b | Typed announcements — `Announcement` model (sale/event/content/general), buckets, typed target fields | BE |
-| 10 | Email template partial — `fmtDate` helper; email infrastructure groundwork | BE (partial — see Remaining) |
+| 10 | Email template unification — `_layout.html` shell, all templates body-only fragments, `{{mur}}`/`{{fmtDate}}` helpers, `email-verification.html` (F5 closed), preview harness, 7/7 tests | BE ✅ |
 | 11 | StoreSettings + shipping/tax — `StoreSettings` singleton; `buildOrder` adds shippingFee/tax; granular invoice line items | BE |
 | 12 | Subscription analytics BE — `predictDemand`, `productCoverage`, `runsInHorizon`; admin `/analytics` + `/product-coverage` endpoints | BE |
 | 14 | Variant-aware inventory — per-variant rows in inventory table; restock/adjust/history all variant-scoped | BE + FE |
@@ -35,7 +35,6 @@
 | 2 | 17 native `<select>` → shadcn `Select` migrations + `/admin/ui-gallery` verification page | FE; unblocks Epic 4 |
 | 4 | ProfessionalCard visual rebuild on design system; appointment list SearchBar | FE; depends Epic 2 |
 | 9b FE | Typed announcements admin UI — type picker, event fields, CTA fields, content ref picker | FE |
-| 10 | `_layout.html` email wrapper; unify all templates under it; remove orphaned templates | BE; closes Security F5 |
 | 11 FE | `AdminSettings` StoreSettings page (shippingFee, freeShippingThreshold, taxRate toggles); checkout displays shipping/tax | FE; depends Epic 11 BE ✅ |
 | 12 FE | Subscriptions analytics dashboard; enriched admin list/detail; user My Subscriptions view; product-list "Subscribed(N)" badge | FE; depends Epic 12 BE ✅ |
 | 13 | Import/Export full-stack rebuild — `ImportExportApplication` model + routes + admin/applicant emails + FE multi-step form + admin page | BE + FE; depends Epics 2 + 10 |
@@ -43,6 +42,11 @@
 
 ---
 
+## Notes
+
+- **Frontend URL** — `.env` `FRONTEND_URL`/`CLIENT_URL` = `https://petstore-frontend-ixll.vercel.app`. Update this in the hosting platform env vars dashboard if deploying.
+- **Orphan** — `src/templates/sale-announcement.html` still on disk, not referenced by any controller (superseded by `announcement.html`). Safe to delete anytime.
+
 ## Security
 
-Five findings from the 2026-06-21 audit are open. See `SECURITY.md`. Awaiting QA sign-off before fixing.
+F5 (missing verification template) closed by Epic 10. Four findings remain open. See `SECURITY.md`. Awaiting QA sign-off before fixing.

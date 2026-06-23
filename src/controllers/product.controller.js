@@ -99,12 +99,15 @@ exports.getProducts = async (req, res, next) => {
       colors,
       genders,
       search,
-      isActive = true,
+      isActive: isActiveRaw = 'true',
       isFeatured,
     } = req.query;
 
-    // Build query
-    const query = { isActive };
+    // Build query — 'all' skips the filter (admin view)
+    const query = {};
+    if (isActiveRaw !== 'all') {
+      query.isActive = isActiveRaw === 'false' ? false : true;
+    }
 
     // Filter by featured flag when explicitly requested
     if (isFeatured !== undefined) {

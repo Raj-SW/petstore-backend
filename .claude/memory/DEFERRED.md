@@ -4,6 +4,22 @@ Things explicitly parked — not forgotten, not in scope right now.
 
 ---
 
+## BUG — Subscription Reorder Ignores Product `isActive`
+
+**Severity:** Medium
+**File:** `src/controllers/subscription.controller.js` — recurring reorder handler
+**Found:** 2026-06-23
+
+**Problem:** When a scheduled subscription reorder fires, the controller does not check whether the product is still active before attempting to build the order. `buildOrder` in `order.service.js` does throw `"Product X is not available"` when `!product.isActive`, but the subscription controller likely swallows that error silently — the customer gets no notification, the reorder fails quietly, and the subscription keeps scheduling future attempts.
+
+**Fix (when ready):**
+1. In the subscription reorder handler, check `product.isActive` before calling `buildOrder`. If inactive, skip the reorder and send the customer an email notifying them the product is no longer available on their subscription.
+2. Optionally flag the subscription line item as `unavailable` so the admin can see it.
+
+**When to fix:** During Epic 12 FE — the admin subscription detail view should surface these failed reorders anyway, making this the natural time to harden the reorder path.
+
+---
+
 ## MCB Juice Payment Gateway (blocks Epic 15)
 
 Epic 15 (checkout redesign) is fully designed and the abstraction layer is ready (`PaymentProvider` interface with `card: StripeService`, `juice_mcb: JuiceService`, `cod: no-op`). Everything except the Juice integration can ship.
