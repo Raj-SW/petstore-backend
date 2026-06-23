@@ -14,12 +14,13 @@ describe('Feedback model', () => {
   });
 
   it('rejects more than 3 photos', () => {
-    const e = new Feedback({ name: 'Amy', rating: 5, message: 'Lovely place', photos: ['a', 'b', 'c', 'd'] }).validateSync();
+    const photos = [{ url: 'a' }, { url: 'b' }, { url: 'c' }, { url: 'd' }];
+    const e = new Feedback({ name: 'Amy', rating: 5, message: 'Lovely place', photos }).validateSync();
     expect(e.errors.photos).toBeDefined();
   });
 
   it('defaults approved to false and accepts a valid doc', () => {
-    const fb = new Feedback({ name: 'Amy', rating: 5, message: 'Lovely place', photos: ['a'] });
+    const fb = new Feedback({ name: 'Amy', rating: 5, message: 'Lovely place', photos: [{ url: 'a', publicId: 'p' }] });
     expect(fb.approved).toBe(false);
     expect(fb.validateSync()).toBeUndefined();
   });
