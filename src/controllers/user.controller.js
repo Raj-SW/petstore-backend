@@ -48,6 +48,9 @@ exports.updateProfile = async (req, res, next) => {
     if (emailPreferences && typeof emailPreferences.sales === 'boolean') {
       update['emailPreferences.sales'] = emailPreferences.sales;
     }
+    if (emailPreferences && typeof emailPreferences.news === 'boolean') {
+      update['emailPreferences.news'] = emailPreferences.news;
+    }
 
     const user = await User.findByIdAndUpdate(
       req.user.id,

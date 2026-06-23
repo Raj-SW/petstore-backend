@@ -50,7 +50,10 @@ const userSchema = new mongoose.Schema(
       publicId: { type: String, trim: true },
     },
     emailPreferences: {
+      // `sales` backs the "promotions" announcement bucket (kept for back-compat);
+      // `news` backs the "news" bucket (events, tips/posts, general).
       sales: { type: Boolean, default: true },
+      news: { type: Boolean, default: true },
     },
     passwordResetToken: String,
     passwordResetExpires: Date,

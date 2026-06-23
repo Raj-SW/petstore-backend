@@ -1,16 +1,20 @@
-const SaleAnnouncement = require('../models/saleAnnouncement.model');
+const Announcement = require('../models/announcement.model');
+const { bucketForType } = require('../models/announcement.model');
 const Product = require('../models/product.model');
+const PetCareTip = require('../models/petCareTip.model');
+const GalleryPost = require('../models/galleryPost.model');
 const User = require('../models/user.model');
 const { AppError } = require('../middlewares/errorHandler');
 const { sendEmail } = require('../utils/email');
-const { makeUnsubscribeToken, verifyUnsubscribeToken } = require('../utils/unsubscribeToken');
+const { makeUnsubscribeToken, verifyUnsubscribeToken, BUCKET_FIELD } = require('../utils/unsubscribeToken');
 const logger = require('../utils/logger');
 
-const { apiUrl, productUrl, shopUrl } = require('../config/urls');
+const { apiUrl, productUrl, shopUrl, frontendUrl } = require('../config/urls');
+const { formatMUR } = require('../utils/currency');
 
 const MAX_RECIPIENTS = parseInt(process.env.ANNOUNCEMENT_MAX_RECIPIENTS || '500', 10);
 
-const { formatMUR } = require('../utils/currency');
+const PRODUCT_TYPES = new Set(['sale', 'new_product', 'price_drop', 'restock']);
 
 // Build per-email product rows (Handlebars can't compute, so precompute here).
 function buildProductRows(products) {
@@ -27,26 +31,74 @@ function buildProductRows(products) {
   });
 }
 
+function formatEventWhen(event) {
+  if (!event?.startsAt) return '';
+  const opts = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+  const start = new Date(event.startsAt).toLocaleString('en-GB', opts);
+  if (event.endsAt) return `${start} – ${new Date(event.endsAt).toLocaleString('en-GB', opts)}`;
+  return start;
+}
+
+// Resolve the announcement target and assemble the per-type template data.
+async function resolveTarget(body) {
+  const { type } = body;
+
+  if (PRODUCT_TYPES.has(type)) {
+    const products = await Product.find({ _id: { $in: body.productIds } });
+    if (!products.length) throw new AppError('No valid products found for this announcement', 400);
+    return {
+      productRefs: products.map((p) => p._id),
+      data: { isProductType: true, products: buildProductRows(products), shopUrl: shopUrl() },
+    };
+  }
+
+  if (type === 'new_tip' || type === 'new_post') {
+    const { kind, id } = body.contentRef;
+    const Model = kind === 'tip' ? PetCareTip : GalleryPost;
+    const doc = await Model.findById(id);
+    if (!doc) throw new AppError('The referenced tip or post no longer exists', 400);
+    const readUrl = kind === 'tip' ? frontendUrl(`pet-care-tips/${doc.slug}`) : frontendUrl(`gallery/${doc.slug}`);
+    return {
+      contentRef: { kind, id: doc._id },
+      data: {
+        isContent: true,
+        content: {
+          title: doc.title,
+          coverImage: doc.coverImage?.url || doc.coverImage || '',
+          excerpt: doc.excerpt || '',
+          readUrl,
+        },
+      },
+    };
+  }
+
+  if (type === 'event') {
+    return {
+      event: body.event,
+      data: { isEvent: true, event: { ...body.event, whenLabel: formatEventWhen(body.event) }, cta: body.cta || null },
+    };
+  }
+
+  // general
+  return { cta: body.cta || null, data: { isGeneral: true, cta: body.cta || null } };
+}
+
 // POST /api/announcements — admin
 exports.createAnnouncement = async (req, res, next) => {
   try {
-    const {
-      subject, message = '', productIds, source = 'composer',
-    } = req.body;
+    const { subject, message = '', source = 'composer', type } = req.body;
+    const bucket = bucketForType(type);
+    const prefField = BUCKET_FIELD[bucket]; // 'sales' | 'news'
 
-    const products = await Product.find({ _id: { $in: productIds } });
-    if (!products.length) {
-      return next(new AppError('No valid products found for this announcement', 400));
-    }
+    const resolved = await resolveTarget(req.body);
 
     const recipients = await User.find({
       role: 'customer',
-      'emailPreferences.sales': { $ne: false },
+      [`emailPreferences.${prefField}`]: { $ne: false },
     }).select('name email');
 
     const audienceCount = recipients.length;
     const capped = recipients.slice(0, MAX_RECIPIENTS);
-    const rows = buildProductRows(products);
 
     let sentCount = 0;
     let failedCount = 0;
@@ -55,19 +107,18 @@ exports.createAnnouncement = async (req, res, next) => {
     // failures are non-fatal so one bad address never aborts the batch.
     for (const user of capped) {
       try {
-        const unsubscribeUrl = `${apiUrl('announcements/unsubscribe')}?token=${makeUnsubscribeToken(user._id)}`;
+        const unsubscribeUrl = `${apiUrl('announcements/unsubscribe')}?token=${makeUnsubscribeToken(user._id, bucket)}`;
         // eslint-disable-next-line no-await-in-loop
         await sendEmail({
           to: user.email,
           subject,
-          template: 'sale-announcement',
+          template: 'announcement',
           data: {
             name: user.name,
             subject,
             message,
-            products: rows,
-            shopUrl: shopUrl(),
             unsubscribeUrl,
+            ...resolved.data,
           },
         });
         sentCount += 1;
@@ -77,10 +128,14 @@ exports.createAnnouncement = async (req, res, next) => {
       }
     }
 
-    const announcement = await SaleAnnouncement.create({
+    const announcement = await Announcement.create({
+      type,
       subject,
       message,
-      products: products.map((p) => p._id),
+      products: resolved.productRefs || [],
+      contentRef: resolved.contentRef,
+      event: resolved.event,
+      cta: resolved.cta,
       audienceCount,
       sentCount,
       failedCount,
@@ -93,17 +148,17 @@ exports.createAnnouncement = async (req, res, next) => {
       ? `Sent to the first ${MAX_RECIPIENTS} of ${audienceCount} subscribers (cap).`
       : `Sent to ${sentCount} of ${audienceCount} subscribers.`;
 
-    logger.info(`Sale announcement sent by admin ${req.user._id}`, { announcementId: announcement._id, sentCount, failedCount });
+    logger.info(`Announcement (${type}) sent by admin ${req.user._id}`, { announcementId: announcement._id, sentCount, failedCount });
     return res.status(201).json({ success: true, message: note, data: announcement });
   } catch (error) {
     return next(error);
   }
 };
 
-// GET /api/announcements — admin history
+// GET /api/announcements — admin history (new collection)
 exports.getAnnouncements = async (req, res, next) => {
   try {
-    const announcements = await SaleAnnouncement.find()
+    const announcements = await Announcement.find()
       .sort('-createdAt')
       .populate('products', 'name');
     return res.status(200).json({ success: true, count: announcements.length, data: announcements });
@@ -112,7 +167,8 @@ exports.getAnnouncements = async (req, res, next) => {
   }
 };
 
-// GET /api/announcements/unsubscribe?token= — public, no auth
+// GET /api/announcements/unsubscribe?token= — public, no auth. Flips the
+// announcement bucket encoded in the token (promotions → sales, news → news).
 exports.unsubscribe = async (req, res) => {
   const page = (status, heading, sub = '') =>
     res.status(status).send(
@@ -123,10 +179,11 @@ exports.unsubscribe = async (req, res) => {
   try {
     const { token } = req.query;
     if (!token) return page(400, 'Invalid unsubscribe link.');
-    const userId = verifyUnsubscribeToken(token);
-    if (!userId) return page(400, 'This unsubscribe link is invalid or has expired.');
-    await User.findByIdAndUpdate(userId, { 'emailPreferences.sales': false });
-    return page(200, 'You have been unsubscribed from sale emails.', 'You can re-enable them anytime in your VitalPaws profile.');
+    const result = verifyUnsubscribeToken(token);
+    if (!result) return page(400, 'This unsubscribe link is invalid or has expired.');
+    await User.findByIdAndUpdate(result.userId, { [`emailPreferences.${result.field}`]: false });
+    const label = result.bucket === 'news' ? 'news & updates' : 'sale & promotional';
+    return page(200, `You have been unsubscribed from ${label} emails.`, 'You can re-enable them anytime in your VitalPaws profile.');
   } catch {
     return page(400, 'Something went wrong. Please try again later.');
   }
