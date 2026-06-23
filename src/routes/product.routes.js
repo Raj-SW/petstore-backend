@@ -10,6 +10,7 @@ const {
   getProductAnalytics,
   getFilterOptions,
   bulkAction,
+  uploadProductImage,
 } = require('../controllers/product.controller');
 const { validateProduct, validateProductUpdate } = require('../validators/product.validator');
 const { validateBulkAction } = require('../validators/bulkAction.validator');
@@ -30,6 +31,9 @@ router.get('/:id', getProduct);
 
 // Admin-only routes
 router.use(isAuthenticated, isAdmin);
+
+// Single image upload (admin) — immediate-upload flow for product/variant images
+router.post('/upload-image', upload.single('image'), uploadProductImage);
 
 // Bulk actions on multiple products (Admin only)
 router.post('/bulk', validateBulkAction, bulkAction);

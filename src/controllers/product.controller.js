@@ -3,6 +3,7 @@ const Product = require('../models/product.model');
 const { AppError } = require('../middlewares/errorHandler');
 const logger = require('../utils/logger');
 const {
+  uploadToCloudinary,
   uploadMultipleToCloudinary,
   deleteMultipleFromCloudinary,
   validateImageFile,
@@ -310,6 +311,19 @@ exports.deleteProduct = async (req, res, next) => {
       message: 'Product deleted successfully',
       data: null,
     });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+// Upload a single product/variant image (admin) — immediate-upload ImageManager
+// flow. Returns { url, publicId } for the client to hold and submit as a ref.
+exports.uploadProductImage = async (req, res, next) => {
+  try {
+    if (!req.file) return next(new AppError('No image file provided', 400));
+    validateImageFile(req.file);
+    const result = await uploadToCloudinary(req.file, 'products');
+    return res.status(200).json({ success: true, data: result });
   } catch (error) {
     return next(error);
   }

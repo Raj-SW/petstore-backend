@@ -110,6 +110,14 @@ const productSchema = new mongoose.Schema(
         label:    { type: String, required: true, trim: true, maxlength: 40 },
         price:    { type: Number, required: true, min: 0 },
         quantity: { type: Number, required: true, min: 0, default: 0 },
+        images: {
+          type: [{ url: String, publicId: String }],
+          default: [],
+          validate: {
+            validator: (arr) => arr.length <= 6,
+            message: 'A variant can have at most 6 images',
+          },
+        },
       },
     ],
     createdBy: {
