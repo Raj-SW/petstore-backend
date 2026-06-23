@@ -36,7 +36,7 @@
 | 4 | ProfessionalCard visual rebuild on design system; appointment list SearchBar | FE; depends Epic 2 |
 | 9b FE | Typed announcements admin UI — type picker, event fields, CTA fields, content ref picker | FE |
 | 11 FE | `AdminSettings` StoreSettings page (shippingFee, freeShippingThreshold, taxRate toggles); checkout displays shipping/tax | FE; depends Epic 11 BE ✅ |
-| 12 FE | Subscriptions analytics dashboard; enriched admin list/detail; user My Subscriptions view; product-list "Subscribed(N)" badge | FE; depends Epic 12 BE ✅ |
+| 12 FE | Subscriptions analytics dashboard; enriched admin list/detail; user My Subscriptions view; product-list "Subscribed(N)" badge | FE; depends Epic 12 BE ✅ **— NOW HIGH PRIORITY** (see Notes) |
 | 13 | Import/Export full-stack rebuild — `ImportExportApplication` model + routes + admin/applicant emails + FE multi-step form + admin page | BE + FE; depends Epics 2 + 10 |
 | 15 | Checkout redesign + COD/Card/Juice payment method selection; Juice MCB gateway integration | BE + FE; **blocked — MCB Juice merchant credentials not yet provided** |
 
@@ -47,6 +47,7 @@
 - **Frontend URL** — `.env` `FRONTEND_URL`/`CLIENT_URL` = `https://petstore-frontend-ixll.vercel.app`. Update this in the hosting platform env vars dashboard if deploying.
 - **Orphan** — `src/templates/sale-announcement.html` still on disk, not referenced by any controller (superseded by `announcement.html`). Safe to delete anytime.
 - **Subscription savings chooser (2026-06-24)** — Product page + cart now use a shared `SubscriptionChooser` component (two radio cards, "Save N%" pill, strikethrough→green savings math, conditional frequency dropdown). Product page merged Add to Cart + Subscribe into one smart button. Savings math + 7-day rule live in `frontend/src/utils/subscriptionPricing.js`.
+- **DESIGN GAP — Cart checkout subscription discount (2026-06-24):** The `SubscriptionChooser` on the cart page shows a discounted price (e.g. Rs 270 instead of Rs 300) but the actual order placed today is at **full price**. The 10% discount only applies from the 2nd recurring delivery onward (the subscription's `discountPercent` is applied by the backend on future reorder runs, not on `createOrder`). Three options to resolve — needs a decision before this surface is considered done: (A) fix copy to say "Save from your 2nd delivery"; (B) apply the discount to the first checkout order too (backend `createOrder` change); (C) remove chooser from cart, keep a plain "Make recurring" checkbox with honest wording. See DEFERRED.md for full analysis.
 - **Bug fix (2026-06-24)** — Admin products page was silently hiding inactive products. `GET /products` now accepts `isActive=all` to skip the filter; admin fetch passes it. Client-side filter chip works correctly.
 
 ## Security
