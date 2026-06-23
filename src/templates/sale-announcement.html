@@ -1,56 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>{{subject}}</title>
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background: #f4f4f4; }
-    .container { max-width: 600px; margin: 30px auto; background: #fff; border-radius: 8px; overflow: hidden; }
-    .header { background: #2c7a4b; padding: 32px 24px; text-align: center; }
-    .header h1 { color: #fff; margin: 0; font-size: 24px; }
-    .content { padding: 28px 24px; }
-    .content p { margin: 0 0 16px; }
-    .product { border: 1px solid #eee; border-radius: 8px; padding: 12px; margin-bottom: 14px; }
-    .product img { width: 100%; max-height: 200px; object-fit: cover; border-radius: 6px; }
-    .product-name { font-weight: bold; font-size: 16px; margin: 10px 0 4px; }
-    .price-was { color: #999; text-decoration: line-through; margin-right: 8px; }
-    .price-now { color: #c0392b; font-weight: bold; font-size: 16px; }
-    .badge { display: inline-block; background: #c0392b; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 4px; margin-left: 8px; }
-    .btn { display: inline-block; margin: 20px 0 8px; padding: 12px 28px; background: #2c7a4b; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 15px; }
-    .footer { background: #f8f9fa; text-align: center; padding: 20px 24px; font-size: 12px; color: #888; }
-    .footer a { color: #888; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <h1>🐾 {{subject}}</h1>
-    </div>
-    <div class="content">
-      <p>Hi <strong>{{name}}</strong>,</p>
-      {{#if message}}<p>{{message}}</p>{{/if}}
-      {{#each products}}
-      <div class="product">
-        {{#if this.image}}<img src="{{this.image}}" alt="{{this.name}}">{{/if}}
-        <div class="product-name">{{this.name}}</div>
-        <div>
-          {{#if this.salePriceLabel}}
-            <span class="price-was">{{this.priceLabel}}</span>
-            <span class="price-now">{{this.salePriceLabel}}</span>
-            {{#if this.discountLabel}}<span class="badge">{{this.discountLabel}}</span>{{/if}}
-          {{else}}
-            <span class="price-now">{{this.priceLabel}}</span>
-          {{/if}}
-        </div>
-        {{#if this.link}}<div style="margin-top:8px"><a href="{{this.link}}" class="product-link" style="color:#001C10;font-weight:600;text-decoration:none">View product &rarr;</a></div>{{/if}}
-      </div>
-      {{/each}}
-      <a href="{{shopUrl}}" class="btn">Shop the sale</a>
-    </div>
-    <div class="footer">
-      <p>© 2026 VitalPaws &middot; You're receiving this because you have sale emails enabled.</p>
-      <p><a href="{{unsubscribeUrl}}">Unsubscribe from sale emails</a></p>
-    </div>
+<h1>🐾 {{subject}}</h1>
+<p>Hi <strong>{{name}}</strong>,</p>
+{{#if message}}<p>{{message}}</p>{{/if}}
+{{#each products}}
+<div class="vp-panel" style="text-align:center;">
+  {{#if this.image}}<img src="{{this.image}}" alt="{{this.name}}" style="max-width:160px;border-radius:8px;margin-bottom:8px;">{{/if}}
+  <div style="font-weight:700;color:#001C10;margin-bottom:4px;">{{this.name}}</div>
+  <div>
+    {{#if this.salePriceLabel}}
+      <span style="text-decoration:line-through;color:#9a8f82;margin-right:6px;">{{this.priceLabel}}</span>
+      <span style="color:#BA7517;font-weight:700;">{{this.salePriceLabel}}</span>
+      {{#if this.discountLabel}}<span style="background:#D99A2B;color:#fff;font-size:12px;padding:2px 8px;border-radius:6px;margin-left:6px;">{{this.discountLabel}}</span>{{/if}}
+    {{else}}
+      <span style="color:#001C10;font-weight:700;">{{this.priceLabel}}</span>
+    {{/if}}
   </div>
-</body>
-</html>
+  {{#if this.link}}<div style="margin-top:8px;"><a href="{{this.link}}" style="color:#001C10;font-weight:600;text-decoration:none;">View product &rarr;</a></div>{{/if}}
+</div>
+{{/each}}
+<a href="{{shopUrl}}" class="btn">Shop the sale</a>

@@ -1,43 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>New Contact Message</title>
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background: #f4f4f4; }
-    .container { max-width: 600px; margin: 30px auto; background: #fff; border-radius: 8px; overflow: hidden; }
-    .header { background: #1a1a2e; padding: 28px 24px; text-align: center; }
-    .header h1 { color: #fff; margin: 0; font-size: 22px; }
-    .header p { color: #aaa; margin: 6px 0 0; font-size: 13px; }
-    .content { padding: 32px 24px; }
-    .content p { margin: 0 0 12px; }
-    .field-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #888; margin-bottom: 4px; }
-    .field-value { background: #f5f5f5; border-radius: 6px; padding: 12px 16px; font-size: 0.95rem; color: #222; margin-bottom: 18px; white-space: pre-wrap; word-break: break-word; }
-    .id-note { font-size: 0.78rem; color: #aaa; margin-top: 24px; }
-    .footer { background: #f8f9fa; text-align: center; padding: 20px 24px; font-size: 12px; color: #888; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <h1>📬 New Contact Message</h1>
-      <p>Submitted via VitalPaws contact form</p>
-    </div>
-    <div class="content">
-      <div class="field-label">Name</div>
-      <div class="field-value">{{name}}</div>
-
-      <div class="field-label">Email</div>
-      <div class="field-value">{{email}}</div>
-
-      <div class="field-label">Message</div>
-      <div class="field-value">{{message}}</div>
-
-      <p class="id-note">Contact ID: {{contactId}}</p>
-    </div>
-    <div class="footer">
-      <p>© 2026 VitalPaws Admin &middot; Internal notification</p>
-    </div>
-  </div>
-</body>
-</html>
+<h1>📬 New contact message</h1>
+<p>Submitted via the VitalPaws contact form.</p>
+<div class="vp-panel">
+  <p><strong>Name:</strong> {{name}}</p>
+  <p><strong>Email:</strong> {{email}}</p>
+  <p><strong>Message:</strong></p>
+  <p style="white-space:pre-wrap;">{{message}}</p>
+</div>
+<p style="font-size:12px;color:#8a7f72;">Contact ID: {{contactId}}</p>

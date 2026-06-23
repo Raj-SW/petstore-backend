@@ -298,10 +298,10 @@ const resendVerificationEmail = async (req, res, next) => {
       await sendEmail({
         to: user.email,
         subject: 'Verify your VitalPaws email',
-        template: 'password-reset',
+        template: 'email-verification',
         data: {
           name: user.name,
-          resetUrl: verificationUrl,
+          verificationUrl,
         },
       });
     } catch (emailErr) {

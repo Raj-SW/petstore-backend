@@ -3,6 +3,7 @@ const logger = require('./logger');
 const fs = require('fs');
 const path = require('path');
 const handlebars = require('handlebars');
+const { formatMUR } = require('./currency');
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || 'smtp.resend.com',
@@ -14,11 +15,35 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Render a Handlebars HTML template with data
-function renderTemplate(templateName, data = {}) {
+const SUPPORT_EMAIL = process.env.SUPPORT_EMAIL || 'support@vitalpaws.com';
+const LAYOUT_NAME = '_layout';
+
+// Shared Handlebars helpers used across email fragments.
+handlebars.registerHelper('eq', (a, b) => a === b);
+handlebars.registerHelper('mur', (value) => formatMUR(Number(value) || 0));
+handlebars.registerHelper('date', (value) => {
+  if (!value) return '';
+  const d = new Date(value);
+  return Number.isNaN(d.getTime()) ? String(value)
+    : d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+});
+
+function compileTemplate(templateName, data) {
   const templatePath = path.join(__dirname, '../templates', `${templateName}.html`);
   const source = fs.readFileSync(templatePath, 'utf8');
   return handlebars.compile(source)(data);
+}
+
+// Render a content fragment and wrap it in the branded `_layout.html` shell.
+function renderTemplate(templateName, data = {}) {
+  if (templateName === LAYOUT_NAME) return compileTemplate(LAYOUT_NAME, data);
+  const body = compileTemplate(templateName, data);
+  return compileTemplate(LAYOUT_NAME, {
+    ...data,
+    body,
+    year: new Date().getFullYear(),
+    supportEmail: SUPPORT_EMAIL,
+  });
 }
 
 /**

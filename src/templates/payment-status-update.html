@@ -1,38 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Payment Status Update</title>
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background: #f4f4f4; }
-    .container { max-width: 600px; margin: 30px auto; background: #fff; border-radius: 8px; overflow: hidden; }
-    .header { background: #2c7a4b; padding: 32px 24px; text-align: center; }
-    .header h1 { color: #fff; margin: 0; font-size: 24px; }
-    .content { padding: 32px 24px; }
-    .content p { margin: 0 0 16px; }
-    .status-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 16px 20px; margin-bottom: 20px; }
-    .status-box p { margin: 4px 0; font-size: 14px; }
-    .footer { background: #f8f9fa; text-align: center; padding: 20px 24px; font-size: 12px; color: #888; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <h1>💳 Payment Status Update</h1>
-    </div>
-    <div class="content">
-      <p>Hi <strong>{{name}}</strong>,</p>
-      <p>The payment status for your order has been updated.</p>
-      <div class="status-box">
-        <p><strong>Order ID:</strong> #{{orderId}}</p>
-        <p><strong>Payment Status:</strong> {{paymentStatus}}</p>
-        <p><strong>Amount:</strong> ${{amount}}</p>
-      </div>
-      <p>If you have any questions, contact our support team.</p>
-    </div>
-    <div class="footer">
-      <p>© 2026 VitalPaws &middot; This is an automated message, please do not reply.</p>
-    </div>
-  </div>
-</body>
-</html>
+<h1>💳 Payment status update</h1>
+<p>Hi <strong>{{name}}</strong>,</p>
+<p>The payment status for your order has been updated.</p>
+<div class="vp-panel">
+  <p><strong>Order ID:</strong> #{{orderId}}</p>
+  <p><strong>Payment status:</strong> {{paymentStatus}}</p>
+  <p><strong>Amount:</strong> {{mur amount}}</p>
+</div>
+<p>If you have any questions, contact our support team.</p>

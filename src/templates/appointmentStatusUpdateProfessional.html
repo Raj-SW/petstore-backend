@@ -1,95 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Appointment Status Update</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        color: #333;
-      }
-      .container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-      }
-      .header {
-        text-align: center;
-        padding: 20px 0;
-        background-color: #f8f9fa;
-      }
-      .content {
-        padding: 20px 0;
-      }
-      .status {
-        padding: 10px;
-        margin: 10px 0;
-        border-radius: 5px;
-        text-align: center;
-        font-weight: bold;
-      }
-      .status.confirmed {
-        background-color: #d4edda;
-        color: #155724;
-      }
-      .status.cancelled {
-        background-color: #fff3cd;
-        color: #856404;
-      }
-      .status.rejected {
-        background-color: #f8d7da;
-        color: #721c24;
-      }
-      .status.completed {
-        background-color: #cce5ff;
-        color: #004085;
-      }
-      .footer {
-        text-align: center;
-        padding: 20px 0;
-        font-size: 12px;
-        color: #666;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="header">
-        <h1>Appointment Status Update</h1>
-      </div>
-      <div class="content">
-        <p>Dear {{recipientName}},</p>
-        <div class="status {{status}}">Appointment Status: {{status}}</div>
-        {{#if (eq status 'confirmed')}}
-        <p>
-          You have <strong>confirmed</strong> an appointment request from
-          <strong>{{customerName}}</strong> for pet <strong>{{petName}}</strong>.
-        </p>
-        {{else if (eq status 'cancelled')}}
-        <p>
-          You have <strong>cancelled</strong> an appointment request from
-          <strong>{{customerName}}</strong> for pet <strong>{{petName}}</strong>.
-        </p>
-        {{else if (eq status 'rejected')}}
-        <p>
-          You have <strong>rejected</strong> an appointment request from
-          <strong>{{customerName}}</strong> for pet <strong>{{petName}}</strong>.
-        </p>
-        {{else}}
-        <p>
-          You have updated the appointment request from <strong>{{customerName}}</strong> for pet
-          <strong>{{petName}}</strong>. Status: <strong>{{status}}</strong>.
-        </p>
-        {{/if}}
-        <p>
-          <strong>Description:</strong> {{description}}<br />
-          <strong>Location:</strong> {{address}}<br />
-          <strong>Date & Time:</strong> {{dateTime}}
-        </p>
-      </div>
-      <div class="footer">
-        <p>This is an automated message. Please do not reply to this email.</p>
-      </div>
-    </div>
-  </body>
-</html>
+<h1>Appointment status update</h1>
+<p>Dear {{recipientName}},</p>
+<div class="vp-note"><strong>Appointment status:</strong> {{status}}</div>
+{{#if (eq status 'confirmed')}}
+<p>You have <strong>confirmed</strong> an appointment request from <strong>{{customerName}}</strong> for pet <strong>{{petName}}</strong>.</p>
+{{else if (eq status 'cancelled')}}
+<p>You have <strong>cancelled</strong> an appointment request from <strong>{{customerName}}</strong> for pet <strong>{{petName}}</strong>.</p>
+{{else if (eq status 'rejected')}}
+<p>You have <strong>rejected</strong> an appointment request from <strong>{{customerName}}</strong> for pet <strong>{{petName}}</strong>.</p>
+{{else}}
+<p>You have updated the appointment request from <strong>{{customerName}}</strong> for pet <strong>{{petName}}</strong>. Status: <strong>{{status}}</strong>.</p>
+{{/if}}
+<div class="vp-panel">
+  <p><strong>Description:</strong> {{description}}</p>
+  <p><strong>Location:</strong> {{address}}</p>
+  <p><strong>Date &amp; time:</strong> {{dateTime}}</p>
+</div>

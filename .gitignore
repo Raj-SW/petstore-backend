@@ -54,4 +54,4 @@ AUDIT.md
 graphify-out/.graphify_*.json
 graphify-out/.graphify_*.txt
 graphify-out/**/.graphify_*.json
-graphify-out/.graphify_python
+graphify-out/.graphify_pythontmp/
