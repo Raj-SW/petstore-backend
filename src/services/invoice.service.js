@@ -3,6 +3,7 @@ const PDFDocument = require('pdfkit');
 const Counter     = require('../models/counter.model');
 const Invoice     = require('../models/invoice.model');
 const Order       = require('../models/order.model');
+const { formatMUR } = require('../utils/currency');
 
 // ── Generate and persist an Invoice for a completed order ──────────────
 async function generateInvoice(orderId, userId) {
@@ -119,8 +120,8 @@ function generatePDF(invoice, user) {
       doc.fontSize(9).fillColor('#333')
         .text(item.name,                       60,  y, { width: 230 })
         .text(String(item.quantity),          300,  y, { width: 60,  align: 'right' })
-        .text(`$${item.unitPrice.toFixed(2)}`, 370, y, { width: 85,  align: 'right' })
-        .text(`$${item.total.toFixed(2)}`,    460,  y, { width: 75,  align: 'right' });
+        .text(formatMUR(item.unitPrice), 370, y, { width: 85,  align: 'right' })
+        .text(formatMUR(item.total),    460,  y, { width: 75,  align: 'right' });
       y += 22;
     });
 
@@ -132,11 +133,11 @@ function generatePDF(invoice, user) {
     if (invoice.discount > 0) {
       doc.fontSize(9).fillColor('#555')
         .text('Subtotal:',  350, y, { width: 100 })
-        .text(`$${invoice.subtotal.toFixed(2)}`, 460, y, { width: 75, align: 'right' });
+        .text(formatMUR(invoice.subtotal), 460, y, { width: 75, align: 'right' });
       y += 18;
       doc.fillColor(RED)
         .text('Discount:',  350, y, { width: 100 })
-        .text(`-$${invoice.discount.toFixed(2)}`, 460, y, { width: 75, align: 'right' });
+        .text(`-${formatMUR(invoice.discount)}`, 460, y, { width: 75, align: 'right' });
       y += 18;
       doc.moveTo(350, y).lineTo(545, y).strokeColor(BORDER).stroke();
       y += 10;
@@ -144,7 +145,7 @@ function generatePDF(invoice, user) {
 
     doc.fontSize(13).fillColor(BRAND)
       .text('TOTAL:',              350, y, { width: 100 })
-      .text(`$${invoice.total.toFixed(2)}`, 460, y, { width: 75, align: 'right' });
+      .text(formatMUR(invoice.total), 460, y, { width: 75, align: 'right' });
 
     // ── Footer ────────────────────────────────────────────────────
     doc.fontSize(8).fillColor(MUTED)

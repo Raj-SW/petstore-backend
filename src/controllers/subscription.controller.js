@@ -12,7 +12,7 @@ const { predictDemand, productCoverage } = require('../services/subscription.ana
 
 const DEFAULT_DISCOUNT = parseInt(process.env.SUBSCRIPTION_DISCOUNT_PERCENT || '10', 10);
 
-const formatMUR = (amount) => `Rs ${Number(amount || 0).toLocaleString('en-US')}`;
+const { formatMUR } = require('../utils/currency');
 
 // Advance a date by intervalCount units (day/week) from a base date.
 function addInterval(base, unit, count) {

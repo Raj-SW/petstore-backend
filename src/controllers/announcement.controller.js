@@ -10,7 +10,7 @@ const { apiUrl, productUrl, shopUrl } = require('../config/urls');
 
 const MAX_RECIPIENTS = parseInt(process.env.ANNOUNCEMENT_MAX_RECIPIENTS || '500', 10);
 
-const formatMUR = (amount) => `Rs ${Number(amount || 0).toLocaleString('en-US')}`;
+const { formatMUR } = require('../utils/currency');
 
 // Build per-email product rows (Handlebars can't compute, so precompute here).
 function buildProductRows(products) {
