@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const GalleryPost = require('../models/galleryPost.model');
 const { AppError } = require('../middlewares/errorHandler');
-const { uploadToCloudinary } = require('../utils/cloudinary');
+const { uploadToCloudinary, deleteMultipleFromCloudinary } = require('../utils/cloudinary');
+const { coerceCoverImage, collectImagePublicIds } = require('../utils/contentImages');
 const logger = require('../utils/logger');
 
 // GET /api/gallery — public, published only
@@ -97,7 +98,10 @@ exports.getPost = async (req, res, next) => {
 // POST /api/gallery — admin
 exports.createPost = async (req, res, next) => {
   try {
-    const post = await GalleryPost.create({ ...req.body, createdBy: req.user._id });
+    const payload = { ...req.body, createdBy: req.user._id };
+    const cover = coerceCoverImage(req.body.coverImage);
+    if (cover !== undefined) payload.coverImage = cover;
+    const post = await GalleryPost.create(payload);
     logger.info(`Gallery post created by admin ${req.user._id}`, { postId: post._id, title: post.title });
     return res.status(201).json({ success: true, message: 'Gallery post created successfully', data: post });
   } catch (error) {
@@ -118,8 +122,19 @@ exports.updatePost = async (req, res, next) => {
     const post = await GalleryPost.findById(req.params.id);
     if (!post) return next(new AppError('Gallery post not found', 404));
 
-    post.set(req.body);
+    const oldIds = new Set(collectImagePublicIds(post));
+    const update = { ...req.body };
+    const cover = coerceCoverImage(req.body.coverImage);
+    if (cover !== undefined) update.coverImage = cover;
+
+    post.set(update);
     await post.save();
+
+    const newIds = new Set(collectImagePublicIds(post));
+    const removed = [...oldIds].filter((id) => id && !newIds.has(id));
+    if (removed.length) {
+      try { await deleteMultipleFromCloudinary(removed); } catch (e) { logger.warn('Gallery image cleanup failed (non-fatal)', { error: e.message }); }
+    }
 
     logger.info(`Gallery post updated by admin ${req.user._id}`, { postId: post._id });
     return res.status(200).json({ success: true, message: 'Gallery post updated successfully', data: post });
@@ -151,7 +166,7 @@ exports.uploadImage = async (req, res, next) => {
   try {
     if (!req.file) return next(new AppError('No image uploaded', 400));
     const result = await uploadToCloudinary(req.file, 'gallery');
-    return res.status(200).json({ success: true, data: { url: result.url } });
+    return res.status(200).json({ success: true, data: { url: result.url, publicId: result.publicId } });
   } catch (error) {
     return next(error);
   }

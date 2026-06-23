@@ -18,9 +18,8 @@ const galleryPostSchema = new mongoose.Schema(
       index: true,
     },
     coverImage: {
-      type: String,
-      trim: true,
-      default: '',
+      url: { type: String, trim: true, default: '' },
+      publicId: { type: String, trim: true, default: '' },
     },
     body: {
       type: String,
@@ -31,6 +30,14 @@ const galleryPostSchema = new mongoose.Schema(
         heading: { type: String, trim: true, maxlength: 150 },
         body: { type: String },
         order: { type: Number, default: 0 },
+        images: {
+          type: [{ url: String, publicId: String }],
+          default: [],
+          validate: {
+            validator: (arr) => arr.length <= 8,
+            message: 'A section can have at most 8 images',
+          },
+        },
       },
     ],
     excerpt: {

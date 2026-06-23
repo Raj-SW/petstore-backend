@@ -8,8 +8,10 @@ const {
   createTip,
   updateTip,
   deleteTip,
+  uploadImage,
 } = require('../controllers/tip.controller');
 const { validateTip, validateTipUpdate } = require('../validators/tip.validator');
+const { upload } = require('../middlewares/upload');
 
 const router = express.Router();
 
@@ -24,6 +26,7 @@ router.get('/:idOrSlug', getTip);
 
 // Admin mutations
 router.use(isAuthenticated, isAdmin);
+router.post('/upload-image', upload.single('image'), uploadImage);
 router.post('/', validateTip, createTip);
 router.patch('/:id', validateTipUpdate, updateTip);
 router.delete('/:id', deleteTip);

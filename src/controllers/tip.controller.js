@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const PetCareTip = require('../models/petCareTip.model');
 const { AppError } = require('../middlewares/errorHandler');
+const { uploadToCloudinary, deleteMultipleFromCloudinary } = require('../utils/cloudinary');
+const { coerceCoverImage, collectImagePublicIds } = require('../utils/contentImages');
 const logger = require('../utils/logger');
 
 // GET /api/tips — public, published only
@@ -89,7 +91,10 @@ exports.getTip = async (req, res, next) => {
 // POST /api/tips — admin
 exports.createTip = async (req, res, next) => {
   try {
-    const tip = await PetCareTip.create({ ...req.body, createdBy: req.user._id });
+    const payload = { ...req.body, createdBy: req.user._id };
+    const cover = coerceCoverImage(req.body.coverImage);
+    if (cover !== undefined) payload.coverImage = cover;
+    const tip = await PetCareTip.create(payload);
     logger.info(`Tip created by admin ${req.user._id}`, { tipId: tip._id, title: tip.title });
     return res.status(201).json({ success: true, message: 'Tip created successfully', data: tip });
   } catch (error) {
@@ -110,8 +115,20 @@ exports.updateTip = async (req, res, next) => {
     const tip = await PetCareTip.findById(req.params.id);
     if (!tip) return next(new AppError('Tip not found', 404));
 
-    tip.set(req.body);
+    // Diff cover + section image refs to clean up removed Cloudinary assets.
+    const oldIds = new Set(collectImagePublicIds(tip));
+    const update = { ...req.body };
+    const cover = coerceCoverImage(req.body.coverImage);
+    if (cover !== undefined) update.coverImage = cover;
+
+    tip.set(update);
     await tip.save();
+
+    const newIds = new Set(collectImagePublicIds(tip));
+    const removed = [...oldIds].filter((id) => id && !newIds.has(id));
+    if (removed.length) {
+      try { await deleteMultipleFromCloudinary(removed); } catch (e) { logger.warn('Tip image cleanup failed (non-fatal)', { error: e.message }); }
+    }
 
     logger.info(`Tip updated by admin ${req.user._id}`, { tipId: tip._id });
     return res.status(200).json({ success: true, message: 'Tip updated successfully', data: tip });
@@ -119,6 +136,17 @@ exports.updateTip = async (req, res, next) => {
     if (error.code === 11000) {
       return next(new AppError('A tip with this title already exists', 409));
     }
+    return next(error);
+  }
+};
+
+// POST /api/tips/upload-image — admin, single image -> { url, publicId }
+exports.uploadImage = async (req, res, next) => {
+  try {
+    if (!req.file) return next(new AppError('No image uploaded', 400));
+    const result = await uploadToCloudinary(req.file, 'tips');
+    return res.status(200).json({ success: true, data: { url: result.url, publicId: result.publicId } });
+  } catch (error) {
     return next(error);
   }
 };
