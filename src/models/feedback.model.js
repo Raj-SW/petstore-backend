@@ -29,7 +29,7 @@ const feedbackSchema = new mongoose.Schema(
       maxlength: [1000, 'Message cannot exceed 1000 characters'],
     },
     photos: {
-      type: [String],
+      type: [{ url: String, publicId: String }],
       default: [],
       validate: {
         validator: (arr) => arr.length <= 3,

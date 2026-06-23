@@ -7,10 +7,12 @@ const { AppError } = require('../middlewares/errorHandler');
 const { sendEmail } = require('../utils/email');
 const logger = require('../utils/logger');
 
-const DEFAULT_DISCOUNT = parseInt(process.env.SUBSCRIPTION_DISCOUNT_PERCENT || '10', 10);
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
+const { frontendUrl } = require('../config/urls');
+const { predictDemand, productCoverage } = require('../services/subscription.analytics.service');
 
-const formatMUR = (amount) => `Rs ${Number(amount || 0).toLocaleString('en-US')}`;
+const DEFAULT_DISCOUNT = parseInt(process.env.SUBSCRIPTION_DISCOUNT_PERCENT || '10', 10);
+
+const { formatMUR } = require('../utils/currency');
 
 // Advance a date by intervalCount units (day/week) from a base date.
 function addInterval(base, unit, count) {
@@ -121,6 +123,28 @@ exports.updateSubscriptionAdmin = async (req, res, next) => {
   }
 };
 
+// GET /api/subscriptions/admin/analytics?horizon=30 — demand-vs-stock prediction
+exports.getSubscriptionAnalytics = async (req, res, next) => {
+  try {
+    const horizonDays = Math.min(365, Math.max(1, parseInt(req.query.horizon, 10) || 30));
+    const safetyMargin = Number(req.query.safetyMargin) || 0;
+    const data = await predictDemand({ horizonDays, safetyMargin });
+    res.status(200).json({ status: 'success', data });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// GET /api/subscriptions/admin/product-coverage — productId -> {activeSubs, unitsPerCycle}
+exports.getProductCoverage = async (req, res, next) => {
+  try {
+    const data = await productCoverage();
+    res.status(200).json({ status: 'success', data });
+  } catch (err) {
+    next(err);
+  }
+};
+
 // GET|POST /api/subscriptions/process-due — cron runner (Bearer CRON_SECRET)
 exports.processDue = async (req, res, next) => {
   try {
@@ -222,7 +246,7 @@ async function notifyReorder(userId, order) {
       subtotal: formatMUR(order.totalAmount),
       discountLabel: order.discount > 0 ? formatMUR(order.discount) : null,
       total: formatMUR(order.totalAmount - (order.discount || 0)),
-      payUrl: `${FRONTEND_URL}/profile/orders`,
+      payUrl: frontendUrl('profile/orders'),
     },
   });
 }

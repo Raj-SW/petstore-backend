@@ -1,40 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>New Login to Your Account</title>
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background: #f4f4f4; }
-    .container { max-width: 600px; margin: 30px auto; background: #fff; border-radius: 8px; overflow: hidden; }
-    .header { background: #1d4ed8; padding: 32px 24px; text-align: center; }
-    .header h1 { color: #fff; margin: 0; font-size: 24px; }
-    .content { padding: 32px 24px; }
-    .content p { margin: 0 0 16px; }
-    .info-box { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 16px 20px; margin-bottom: 20px; }
-    .info-box p { margin: 4px 0; font-size: 14px; }
-    .info-box strong { color: #1d4ed8; }
-    .btn { display: inline-block; margin: 8px 0 24px; padding: 12px 28px; background: #dc2626; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 15px; }
-    .footer { background: #f8f9fa; text-align: center; padding: 20px 24px; font-size: 12px; color: #888; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <h1>🔔 New Sign-In Detected</h1>
-    </div>
-    <div class="content">
-      <p>Hi <strong>{{name}}</strong>,</p>
-      <p>We noticed a new sign-in to your VitalPaws account.</p>
-      <div class="info-box">
-        <p><strong>Time:</strong> {{loginTime}}</p>
-      </div>
-      <p>If this was you, no action is needed.</p>
-      <p>If you don't recognise this sign-in, please reset your password immediately:</p>
-      <a href="{{resetUrl}}" class="btn">Secure My Account</a>
-    </div>
-    <div class="footer">
-      <p>© 2026 VitalPaws &middot; This is an automated message, please do not reply.</p>
-    </div>
-  </div>
-</body>
-</html>
+<h1>🔔 New sign-in detected</h1>
+<p>Hi <strong>{{name}}</strong>,</p>
+<p>We noticed a new sign-in to your VitalPaws account.</p>
+<div class="vp-panel">
+  <p><strong>Time:</strong> {{loginTime}}</p>
+</div>
+<p>If this was you, no action is needed.</p>
+<p>If you don't recognise this sign-in, please secure your account immediately:</p>
+<a href="{{resetUrl}}" class="btn">Secure My Account</a>

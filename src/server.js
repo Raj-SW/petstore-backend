@@ -2,9 +2,13 @@ require('dotenv').config();
 const app = require('./app');
 const connectDB = require('./config/database');
 const logger = require('./utils/logger');
+const { validateUrlConfig } = require('./config/urls');
 
 // Connect to MongoDB
 connectDB();
+
+// Warn if email-critical URL env vars are missing in production
+validateUrlConfig();
 
 const PORT = process.env.PORT;
 

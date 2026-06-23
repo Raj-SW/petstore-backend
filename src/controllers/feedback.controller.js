@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Feedback = require('../models/feedback.model');
 const { AppError } = require('../middlewares/errorHandler');
-const { uploadMultipleToCloudinary } = require('../utils/cloudinary');
+const { uploadMultipleToCloudinary, deleteMultipleFromCloudinary } = require('../utils/cloudinary');
 const logger = require('../utils/logger');
 
 // POST /api/feedback — public (multipart: up to 3 photos)
@@ -10,7 +10,7 @@ exports.submitFeedback = async (req, res, next) => {
     let photos = [];
     if (req.files && req.files.length) {
       const results = await uploadMultipleToCloudinary(req.files.slice(0, 3), 'feedback');
-      photos = results.map((r) => r.url);
+      photos = results.map((r) => ({ url: r.url, publicId: r.publicId }));
     }
     const feedback = await Feedback.create({ ...req.body, photos, approved: false });
     logger.info('Feedback submitted', { feedbackId: feedback._id });
@@ -19,6 +19,17 @@ exports.submitFeedback = async (req, res, next) => {
       message: "Thanks! Your feedback will appear once it's approved.",
       data: { _id: feedback._id },
     });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+// POST /api/feedback/upload-image — admin, single image -> { url, publicId }
+exports.uploadFeedbackImage = async (req, res, next) => {
+  try {
+    if (!req.file) return next(new AppError('No image file provided', 400));
+    const [result] = await uploadMultipleToCloudinary([req.file], 'feedback');
+    return res.status(200).json({ success: true, data: { url: result.url, publicId: result.publicId } });
   } catch (error) {
     return next(error);
   }
@@ -51,7 +62,27 @@ exports.updateFeedback = async (req, res, next) => {
     if (!mongoose.isValidObjectId(req.params.id)) {
       return next(new AppError('Invalid feedback id', 400));
     }
-    const feedback = await Feedback.findByIdAndUpdate(req.params.id, req.body, {
+    // Restrict writable fields (no mass-assignment from req.body)
+    const ALLOWED = ['name', 'role', 'rating', 'message', 'approved', 'photos'];
+    const updates = {};
+    for (const key of ALLOWED) {
+      if (req.body[key] !== undefined) updates[key] = req.body[key];
+    }
+
+    // When photos are being replaced, clean up Cloudinary assets no longer referenced.
+    if (Array.isArray(updates.photos)) {
+      const existing = await Feedback.findById(req.params.id).select('photos');
+      if (!existing) return next(new AppError('Feedback not found', 404));
+      const keepPublicIds = new Set(updates.photos.map((p) => p.publicId).filter(Boolean));
+      const removedPublicIds = (existing.photos || [])
+        .map((p) => p.publicId)
+        .filter((pid) => pid && !keepPublicIds.has(pid));
+      if (removedPublicIds.length > 0) {
+        await deleteMultipleFromCloudinary(removedPublicIds);
+      }
+    }
+
+    const feedback = await Feedback.findByIdAndUpdate(req.params.id, updates, {
       new: true,
       runValidators: true,
     });

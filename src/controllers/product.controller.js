@@ -3,45 +3,54 @@ const Product = require('../models/product.model');
 const { AppError } = require('../middlewares/errorHandler');
 const logger = require('../utils/logger');
 const {
+  uploadToCloudinary,
   uploadMultipleToCloudinary,
   deleteMultipleFromCloudinary,
   validateImageFile,
 } = require('../utils/cloudinary');
+const { deriveProductFromVariants } = require('../utils/productVariants');
+
+// Parse a JSON field that may arrive as a string (FormData) or be absent.
+function parseJsonField(value, fallback) {
+  if (value === undefined || value === null) return fallback;
+  if (typeof value !== 'string') return value;
+  try { return JSON.parse(value); } catch { return fallback; }
+}
 
 // Create new product (Admin only)
 exports.createProduct = async (req, res, next) => {
   let uploadedImages = [];
   try {
-    // Check if images are provided
-    if (!req.files || req.files.length === 0) {
-      return next(new AppError('At least one product image is required', 400));
+    // ImageManager flow: pre-uploaded refs arrive as `imageRefs` JSON; legacy
+    // flow attaches files under `images`. Refs take precedence when present.
+    const imageRefs = parseJsonField(req.body.imageRefs, null);
+    const hasRefs = Array.isArray(imageRefs) && imageRefs.length > 0;
+
+    if (hasRefs) {
+      uploadedImages = imageRefs;
+    } else {
+      // Check if images are provided
+      if (!req.files || req.files.length === 0) {
+        return next(new AppError('At least one product image is required', 400));
+      }
+
+      // Validate all image files
+      req.files.forEach((file) => {
+        validateImageFile(file);
+      });
+
+      // Upload images to Cloudinary
+      uploadedImages = await uploadMultipleToCloudinary(req.files, 'products');
     }
-
-    // Validate all image files
-    req.files.forEach((file) => {
-      validateImageFile(file);
-    });
-
-    // Upload images to Cloudinary
-    uploadedImages = await uploadMultipleToCloudinary(req.files, 'products');
 
     // Parse sections JSON string from FormData
-    if (req.body.sections && typeof req.body.sections === 'string') {
-      try {
-        req.body.sections = JSON.parse(req.body.sections);
-      } catch {
-        req.body.sections = [];
-      }
-    }
+    req.body.sections = parseJsonField(req.body.sections, []);
 
     // Parse variants JSON string from FormData
-    if (req.body.variants && typeof req.body.variants === 'string') {
-      try {
-        req.body.variants = JSON.parse(req.body.variants);
-      } catch {
-        req.body.variants = [];
-      }
-    }
+    req.body.variants = parseJsonField(req.body.variants, []);
+
+    // `imageRefs` is a transport field, not a model field
+    delete req.body.imageRefs;
 
     // Create product data
     const productData = {
@@ -90,12 +99,15 @@ exports.getProducts = async (req, res, next) => {
       colors,
       genders,
       search,
-      isActive = true,
+      isActive: isActiveRaw = 'true',
       isFeatured,
     } = req.query;
 
-    // Build query
-    const query = { isActive };
+    // Build query — 'all' skips the filter (admin view)
+    const query = {};
+    if (isActiveRaw !== 'all') {
+      query.isActive = isActiveRaw === 'false' ? false : true;
+    }
 
     // Filter by featured flag when explicitly requested
     if (isFeatured !== undefined) {
@@ -104,7 +116,9 @@ exports.getProducts = async (req, res, next) => {
 
     if (categories) {
       const categoryArray = Array.isArray(categories) ? categories : [categories];
-      query.categories = { $in: categoryArray };
+      // Case-insensitive exact match so a "Dogs" filter matches stored "dogs"
+      const escapeRegex = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      query.categories = { $in: categoryArray.map((c) => new RegExp(`^${escapeRegex(c)}$`, 'i')) };
     }
 
     if (minPrice || maxPrice) {
@@ -192,29 +206,26 @@ exports.updateProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
     // Parse sections JSON string from FormData
-    if (req.body.sections && typeof req.body.sections === 'string') {
-      try {
-        req.body.sections = JSON.parse(req.body.sections);
-      } catch {
-        req.body.sections = [];
-      }
-    }
+    req.body.sections = req.body.sections !== undefined
+      ? parseJsonField(req.body.sections, [])
+      : undefined;
+    if (req.body.sections === undefined) delete req.body.sections;
 
     // Parse variants JSON string from FormData
-    if (req.body.variants && typeof req.body.variants === 'string') {
-      try {
-        req.body.variants = JSON.parse(req.body.variants);
-      } catch {
-        req.body.variants = [];
-      }
-    }
+    req.body.variants = req.body.variants !== undefined
+      ? parseJsonField(req.body.variants, [])
+      : undefined;
+    if (req.body.variants === undefined) delete req.body.variants;
 
-    const { keepImages: keepImagesStr, ...updateData } = req.body;
+    // ImageManager flow: final ordered refs arrive as `imageRefs` JSON.
+    const imageRefs = parseJsonField(req.body.imageRefs, undefined);
+    const { keepImages: keepImagesStr, imageRefs: _ignore, ...updateData } = req.body;
 
     // findByIdAndUpdate skips the pre('validate') derive hook, so derive here.
     if (Array.isArray(updateData.variants) && updateData.variants.length > 0) {
-      updateData.price = Math.min(...updateData.variants.map((v) => Number(v.price)));
-      updateData.quantity = updateData.variants.reduce((s, v) => s + (Number(v.quantity) || 0), 0);
+      const derived = deriveProductFromVariants(updateData.variants);
+      updateData.price = derived.price;
+      updateData.quantity = derived.quantity;
     }
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -228,8 +239,21 @@ exports.updateProduct = async (req, res, next) => {
 
     let updatedImages = existingProduct.images;
 
-    // keepImages is always sent from the edit form — process image changes
-    if (keepImagesStr !== undefined) {
+    if (Array.isArray(imageRefs)) {
+      // New contract: refs are the final image set. Diff for Cloudinary cleanup.
+      if (imageRefs.length === 0) {
+        return next(new AppError('At least one product image is required', 400));
+      }
+      const keepPublicIds = new Set(imageRefs.map((img) => img.publicId).filter(Boolean));
+      const removedPublicIds = existingProduct.images
+        .map((img) => img.publicId)
+        .filter((pid) => pid && !keepPublicIds.has(pid));
+      if (removedPublicIds.length > 0) {
+        await deleteMultipleFromCloudinary(removedPublicIds);
+      }
+      updatedImages = imageRefs.map((img) => ({ url: img.url, publicId: img.publicId }));
+    } else if (keepImagesStr !== undefined) {
+      // Legacy contract: keepImages + freshly-attached files.
       const keepImages = JSON.parse(keepImagesStr); // [{url, publicId}]
 
       // Delete images that were removed by the admin
@@ -250,6 +274,24 @@ exports.updateProduct = async (req, res, next) => {
       }
 
       updatedImages = [...keepImages, ...newlyUploaded];
+    }
+
+    // Variant-image cleanup: delete Cloudinary assets dropped from any variant.
+    if (Array.isArray(updateData.variants)) {
+      const oldVariantPublicIds = new Set(
+        (existingProduct.variants || [])
+          .flatMap((v) => (v.images || []).map((img) => img.publicId))
+          .filter(Boolean)
+      );
+      const newVariantPublicIds = new Set(
+        updateData.variants
+          .flatMap((v) => (v.images || []).map((img) => img.publicId))
+          .filter(Boolean)
+      );
+      const removedVariantPublicIds = [...oldVariantPublicIds].filter((pid) => !newVariantPublicIds.has(pid));
+      if (removedVariantPublicIds.length > 0) {
+        await deleteMultipleFromCloudinary(removedVariantPublicIds);
+      }
     }
 
     const updatedProduct = await Product.findByIdAndUpdate(
@@ -311,6 +353,82 @@ exports.deleteProduct = async (req, res, next) => {
   }
 };
 
+// Upload a single product/variant image (admin) — immediate-upload ImageManager
+// flow. Returns { url, publicId } for the client to hold and submit as a ref.
+exports.uploadProductImage = async (req, res, next) => {
+  try {
+    if (!req.file) return next(new AppError('No image file provided', 400));
+    validateImageFile(req.file);
+    const result = await uploadToCloudinary(req.file, 'products');
+    return res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+// Bulk actions on multiple products (Admin only)
+exports.bulkAction = async (req, res, next) => {
+  try {
+    const { action, ids, options } = req.body;
+
+    if (action === 'delete') {
+      const products = await Product.find({ _id: { $in: ids } });
+      const publicIds = products
+        .flatMap((p) => p.images.map((img) => img.publicId))
+        .filter(Boolean);
+      try {
+        await deleteMultipleFromCloudinary(publicIds);
+      } catch (cleanupErr) {
+        logger.error('Bulk delete: Cloudinary cleanup failed (non-fatal)', { error: cleanupErr.message });
+      }
+      const result = await Product.deleteMany({ _id: { $in: ids } });
+      logger.info(`Bulk delete by admin ${req.user._id}`, { deleted: result.deletedCount });
+      return res.status(200).json({
+        success: true,
+        message: `${result.deletedCount} product(s) deleted`,
+        data: { requested: ids.length, deleted: result.deletedCount },
+      });
+    }
+
+    const updateMap = {
+      activate: { isActive: true },
+      deactivate: { isActive: false },
+      feature: { isFeatured: true },
+      unfeature: { isFeatured: false },
+      clearSale: {
+        onSale: false, discountValue: 0, saleStartsAt: null, saleEndsAt: null,
+      },
+    };
+
+    let update;
+    if (action === 'sale') {
+      update = {
+        onSale: true,
+        discountType: options.discountType,
+        discountValue: options.discountValue,
+        saleStartsAt: options.saleStartsAt || null,
+        saleEndsAt: options.saleEndsAt || null,
+      };
+    } else {
+      update = updateMap[action];
+    }
+
+    const result = await Product.updateMany({ _id: { $in: ids } }, { $set: update });
+    logger.info(`Bulk ${action} by admin ${req.user._id}`, { modified: result.modifiedCount });
+    return res.status(200).json({
+      success: true,
+      message: `${result.modifiedCount} product(s) updated`,
+      data: {
+        requested: ids.length,
+        matched: result.matchedCount,
+        modified: result.modifiedCount,
+      },
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 // Get products by category (for the existing ProductService)
 exports.getProductsByCategory = async (req, res, next) => {
   try {
@@ -339,6 +457,28 @@ exports.getProductsByCategory = async (req, res, next) => {
     return res.status(200).json({
       success: true,
       data: products,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+// Get distinct filter options (categories/colors/genders) across active products.
+// Drives the Pet Shop side-panel so its options match the stored values.
+exports.getFilterOptions = async (req, res, next) => {
+  try {
+    const [categories, colors, genders] = await Promise.all([
+      Product.distinct('categories', { isActive: true }),
+      Product.distinct('colors', { isActive: true }),
+      Product.distinct('genders', { isActive: true }),
+    ]);
+    return res.status(200).json({
+      success: true,
+      data: {
+        categories: categories.filter(Boolean).sort(),
+        colors: colors.filter(Boolean).sort(),
+        genders: genders.filter(Boolean).sort(),
+      },
     });
   } catch (error) {
     return next(error);

@@ -31,6 +31,12 @@ const productSchema = new mongoose.Schema(
       min: [0, 'Quantity cannot be negative'],
       default: 0,
     },
+    // Optional per-product low-stock threshold override (else the global default)
+    lowStockThreshold: {
+      type: Number,
+      default: null,
+      min: 0,
+    },
     genders: [
       {
         type: String,
@@ -104,6 +110,14 @@ const productSchema = new mongoose.Schema(
         label:    { type: String, required: true, trim: true, maxlength: 40 },
         price:    { type: Number, required: true, min: 0 },
         quantity: { type: Number, required: true, min: 0, default: 0 },
+        images: {
+          type: [{ url: String, publicId: String }],
+          default: [],
+          validate: {
+            validator: (arr) => arr.length <= 6,
+            message: 'A variant can have at most 6 images',
+          },
+        },
       },
     ],
     createdBy: {
@@ -192,6 +206,7 @@ productSchema.virtual('variantsView').get(function () {
     const s = computeSale(v.price, this);
     return {
       _id: v._id, label: v.label, quantity: v.quantity, price: v.price,
+      images: Array.isArray(v.images) ? v.images : [],
       salePrice: s.salePrice, isOnSaleNow: s.isOnSaleNow,
       effectivePrice: s.effectivePrice, discountPercentLabel: s.discountPercentLabel,
     };

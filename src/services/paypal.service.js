@@ -8,6 +8,7 @@ const {
 const https = require('https');
 const { AppError } = require('../middlewares/errorHandler');
 const logger = require('../utils/logger');
+const { frontendUrl } = require('../config/urls');
 
 // Configure PayPal client
 const paypalClient = new Client({
@@ -62,8 +63,8 @@ class PayPalService {
             brandName: 'PetStore',
             landingPage: 'NO_PREFERENCE',
             userAction: 'PAY_NOW',
-            returnUrl: `${process.env.FRONTEND_URL}/payment/success`,
-            cancelUrl: `${process.env.FRONTEND_URL}/payment/cancel`,
+            returnUrl: frontendUrl('payment/success'),
+            cancelUrl: frontendUrl('payment/cancel'),
           },
         },
         prefer: 'return=representation',

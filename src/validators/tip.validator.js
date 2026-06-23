@@ -10,8 +10,11 @@ const baseFields = {
     'string.min': 'Title must be at least 2 characters',
     'string.max': 'Title cannot exceed 150 characters',
   }),
-  coverImage: Joi.string().uri().allow('').messages({
-    'string.uri': 'Cover image must be a valid URL',
+  coverImage: Joi.alternatives().try(
+    Joi.string().uri().allow(''),
+    Joi.object({ url: Joi.string().uri().allow(''), publicId: Joi.string().allow('') }),
+  ).messages({
+    'alternatives.match': 'Cover image must be a URL or a url/publicId object',
   }),
   body: Joi.string().min(1).messages({
     'string.empty': 'Tip body is required',
@@ -30,6 +33,12 @@ const baseFields = {
     heading: Joi.string().allow('').max(150).trim(),
     body: Joi.string().allow(''),
     order: Joi.number(),
+    images: Joi.array().items(Joi.object({
+      url: Joi.string().allow(''),
+      publicId: Joi.string().allow(''),
+    })).max(8).messages({
+      'array.max': 'A section can have at most 8 images',
+    }),
   })).optional(),
 };
 

@@ -12,7 +12,9 @@ const mongoose = require('mongoose');
 const app = require('../src/app');
 const User = require('../src/models/user.model');
 const Product = require('../src/models/product.model');
-const SaleAnnouncement = require('../src/models/saleAnnouncement.model');
+// Epic 9b: new announcements are written to the Announcement collection;
+// SaleAnnouncement is retained read-only as legacy.
+const SaleAnnouncement = require('../src/models/announcement.model');
 const { sendEmail } = require('../src/utils/email');
 const { makeUnsubscribeToken } = require('../src/utils/unsubscribeToken');
 
@@ -139,8 +141,8 @@ describe('Sale Announcement Controller', () => {
   describe('GET /api/announcements', () => {
     it('returns history newest-first (admin only)', async () => {
       const product = await makeProduct(adminUser._id);
-      await SaleAnnouncement.create({ subject: 'Old', products: [product._id], source: 'composer', createdBy: adminUser._id });
-      await SaleAnnouncement.create({ subject: 'New', products: [product._id], source: 'composer', createdBy: adminUser._id });
+      await SaleAnnouncement.create({ type: 'sale', subject: 'Old', products: [product._id], source: 'composer', createdBy: adminUser._id });
+      await SaleAnnouncement.create({ type: 'sale', subject: 'New', products: [product._id], source: 'composer', createdBy: adminUser._id });
 
       expect((await request(app).get('/api/announcements')).status).toBe(401);
       const res = await request(app).get('/api/announcements').set('Authorization', `Bearer ${adminToken}`);

@@ -3,6 +3,8 @@ const PDFDocument = require('pdfkit');
 const Counter     = require('../models/counter.model');
 const Invoice     = require('../models/invoice.model');
 const Order       = require('../models/order.model');
+const User        = require('../models/user.model');
+const { formatMUR } = require('../utils/currency');
 
 // ── Generate and persist an Invoice for a completed order ──────────────
 async function generateInvoice(orderId, userId) {
@@ -23,31 +25,61 @@ async function generateInvoice(orderId, userId) {
 
   const lineItems = order.items.map((item) => {
     const productName = item.product?.name || item.product?.title || 'Product';
+    const originalUnitPrice = item.originalPrice ?? null;
+    // Per-line savings (was/now) when an original price was snapshotted above the paid price.
+    const lineDiscount = originalUnitPrice && originalUnitPrice > item.price
+      ? (originalUnitPrice - item.price) * item.quantity
+      : 0;
     return {
-      name:      productName,
-      quantity:  item.quantity,
-      unitPrice: item.price,
-      total:     item.price * item.quantity,
+      name:              productName,
+      variantLabel:      item.variantLabel || null,
+      quantity:          item.quantity,
+      unitPrice:         item.price,
+      originalUnitPrice,
+      lineDiscount,
+      total:             item.price * item.quantity,
     };
   });
 
   const subtotal = order.totalAmount;
   const discount = order.discount || 0;
-  const total    = typeof order.finalAmount === 'number'
-    ? order.finalAmount
-    : subtotal - discount;
+  const shippingFee = order.shippingFee || 0;
+  const tax = order.tax || 0;
+  const taxInclusive = order.taxInclusive !== false;
+  // Prefer the order's snapshotted grandTotal; fall back for legacy orders.
+  const grandTotal = typeof order.grandTotal === 'number' && order.grandTotal > 0
+    ? order.grandTotal
+    : (subtotal - discount) + shippingFee + (taxInclusive ? 0 : tax);
+  const total = grandTotal;
+
+  // Snapshot customer details so the invoice stays stable after profile edits.
+  const customerUser = await User.findById(userId).select('name email phoneNumber');
 
   const invoice = await Invoice.create({
     invoiceNumber,
     order:    order._id,
     user:     userId,
+    currency: 'MUR',
     lineItems,
     subtotal,
     discount,
+    discountCode:  order.discountCode || null,
+    shippingFee,
+    tax,
+    taxInclusive,
+    grandTotal,
     total,
     shippingAddress: order.shippingAddress,
+    billingAddress:  order.shippingAddress, // billing defaults to shipping
+    customer: customerUser ? {
+      name:  customerUser.name,
+      email: customerUser.email,
+      phone: customerUser.phoneNumber,
+    } : undefined,
     paymentMethod:   order.paymentDetails?.paymentMethod || order.paymentMethod,
     transactionId:   order.paymentDetails?.transactionId,
+    orderDate:       order.createdAt,
+    source:          order.source || 'manual',
     paidAt:          order.paymentDetails?.paymentDate || new Date(),
     status:          'issued',
   });
@@ -83,12 +115,13 @@ function generatePDF(invoice, user) {
     doc.moveTo(50, 100).lineTo(545, 100).strokeColor(BORDER).stroke();
 
     // ── Addresses ─────────────────────────────────────────────────
+    const cust = invoice.customer || {};
     doc.fontSize(9).fillColor(BRAND).text('BILL TO', 50, 115);
     doc.fillColor('#333')
-      .text(user.name || 'Customer', 50, 130)
-      .text(user.email || '', 50, 143);
+      .text(cust.name || user.name || 'Customer', 50, 130)
+      .text(cust.email || user.email || '', 50, 143);
 
-    const addr = invoice.shippingAddress || {};
+    const addr = invoice.billingAddress || invoice.shippingAddress || {};
     doc.text(`${addr.street || ''}`, 50, 158);
     doc.text(`${addr.city || ''}, ${addr.state || ''} ${addr.zipCode || ''}`, 50, 171);
     doc.text(addr.country || '', 50, 184);
@@ -115,13 +148,19 @@ function generatePDF(invoice, user) {
 
     let y = TABLE_TOP + 28;
     invoice.lineItems.forEach((item, i) => {
-      if (i % 2 === 1) doc.rect(50, y - 4, 495, 22).fill(LIGHT);
+      const rowH = (item.originalUnitPrice && item.originalUnitPrice > item.unitPrice) ? 30 : 22;
+      if (i % 2 === 1) doc.rect(50, y - 4, 495, rowH).fill(LIGHT);
+      const label = item.variantLabel ? `${item.name} (${item.variantLabel})` : item.name;
       doc.fontSize(9).fillColor('#333')
-        .text(item.name,                       60,  y, { width: 230 })
+        .text(label,                       60,  y, { width: 230 })
         .text(String(item.quantity),          300,  y, { width: 60,  align: 'right' })
-        .text(`$${item.unitPrice.toFixed(2)}`, 370, y, { width: 85,  align: 'right' })
-        .text(`$${item.total.toFixed(2)}`,    460,  y, { width: 75,  align: 'right' });
-      y += 22;
+        .text(formatMUR(item.unitPrice), 370, y, { width: 85,  align: 'right' })
+        .text(formatMUR(item.total),    460,  y, { width: 75,  align: 'right' });
+      if (item.originalUnitPrice && item.originalUnitPrice > item.unitPrice) {
+        doc.fontSize(7).fillColor(RED)
+          .text(`was ${formatMUR(item.originalUnitPrice)} · you saved ${formatMUR(item.lineDiscount)}`, 60, y + 11, { width: 230 });
+      }
+      y += rowH;
     });
 
     // ── Totals ────────────────────────────────────────────────────
@@ -129,22 +168,32 @@ function generatePDF(invoice, user) {
     doc.moveTo(350, y).lineTo(545, y).strokeColor(BORDER).stroke();
     y += 12;
 
+    const totalRow = (label, value, color = '#555') => {
+      doc.fontSize(9).fillColor(color)
+        .text(label, 350, y, { width: 100 })
+        .text(value, 460, y, { width: 75, align: 'right' });
+      y += 18;
+    };
+
+    totalRow('Subtotal:', formatMUR(invoice.subtotal));
     if (invoice.discount > 0) {
-      doc.fontSize(9).fillColor('#555')
-        .text('Subtotal:',  350, y, { width: 100 })
-        .text(`$${invoice.subtotal.toFixed(2)}`, 460, y, { width: 75, align: 'right' });
-      y += 18;
-      doc.fillColor(RED)
-        .text('Discount:',  350, y, { width: 100 })
-        .text(`-$${invoice.discount.toFixed(2)}`, 460, y, { width: 75, align: 'right' });
-      y += 18;
-      doc.moveTo(350, y).lineTo(545, y).strokeColor(BORDER).stroke();
-      y += 10;
+      totalRow(invoice.discountCode ? `Discount (${invoice.discountCode}):` : 'Discount:', `-${formatMUR(invoice.discount)}`, RED);
     }
+    totalRow('Shipping:', invoice.shippingFee > 0 ? formatMUR(invoice.shippingFee) : 'FREE');
+    if (invoice.tax > 0) {
+      totalRow(invoice.taxInclusive ? 'VAT (incl.):' : 'VAT:', formatMUR(invoice.tax));
+    }
+    doc.moveTo(350, y).lineTo(545, y).strokeColor(BORDER).stroke();
+    y += 10;
 
     doc.fontSize(13).fillColor(BRAND)
       .text('TOTAL:',              350, y, { width: 100 })
-      .text(`$${invoice.total.toFixed(2)}`, 460, y, { width: 75, align: 'right' });
+      .text(formatMUR(invoice.grandTotal || invoice.total), 460, y, { width: 75, align: 'right' });
+
+    if (invoice.source === 'subscription') {
+      y += 22;
+      doc.fontSize(8).fillColor(MUTED).text('Recurring subscription order', 350, y, { width: 185, align: 'right' });
+    }
 
     // ── Footer ────────────────────────────────────────────────────
     doc.fontSize(8).fillColor(MUTED)

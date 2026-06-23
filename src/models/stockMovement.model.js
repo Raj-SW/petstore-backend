@@ -7,6 +7,15 @@ const stockMovementSchema = new mongoose.Schema(
       ref: 'Product',
       required: true,
     },
+    // Variant-level movements (null for product-level / legacy moves)
+    variantId: {
+      type: mongoose.Schema.Types.ObjectId,
+      default: null,
+    },
+    variantLabel: {
+      type: String,
+      default: null,
+    },
     type: {
       type: String,
       enum: ['order', 'cancellation', 'restock', 'adjustment'],
@@ -50,6 +59,7 @@ const stockMovementSchema = new mongoose.Schema(
 
 // Indexes for efficient querying
 stockMovementSchema.index({ product: 1, createdAt: -1 });
+stockMovementSchema.index({ product: 1, variantId: 1, createdAt: -1 });
 stockMovementSchema.index({ createdAt: -1 });
 stockMovementSchema.index({ type: 1 });
 

@@ -5,6 +5,7 @@ const { AppError } = require('../middlewares/errorHandler');
 const User = require('../models/user.model');
 const { sendEmail } = require('../utils/email');
 const logger = require('../utils/logger');
+const { frontendUrl } = require('../config/urls');
 
 // Generate tokens
 const generateTokens = (user) => {
@@ -42,7 +43,7 @@ const signup = async (req, res, next) => {
         template: 'welcome',
         data: {
           name: user.name,
-          shopUrl: `${process.env.FRONTEND_URL}/petshop`,
+          shopUrl: frontendUrl('petshop'),
         },
       });
     } catch (emailErr) {
@@ -87,7 +88,7 @@ const login = async (req, res, next) => {
         data: {
           name: user.name,
           loginTime: new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }),
-          resetUrl: `${process.env.FRONTEND_URL}/reset-password`,
+          resetUrl: frontendUrl('reset-password'),
         },
       });
     } catch (emailErr) {
@@ -180,7 +181,7 @@ const forgotPassword = async (req, res, next) => {
     await user.save();
 
     // Send reset email
-    const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+    const resetUrl = frontendUrl(`reset-password/${resetToken}`);
 
     // Password reset email — critical: re-throw if it fails so user knows to retry
     try {
@@ -290,17 +291,17 @@ const resendVerificationEmail = async (req, res, next) => {
     await user.save();
 
     // Send verification email
-    const verificationUrl = `${process.env.FRONTEND_URL}/verify-email/${verificationToken}`;
+    const verificationUrl = frontendUrl(`verify-email/${verificationToken}`);
 
     // Verification email — critical: re-throw if it fails so user knows to retry
     try {
       await sendEmail({
         to: user.email,
         subject: 'Verify your VitalPaws email',
-        template: 'password-reset',
+        template: 'email-verification',
         data: {
           name: user.name,
-          resetUrl: verificationUrl,
+          verificationUrl,
         },
       });
     } catch (emailErr) {
