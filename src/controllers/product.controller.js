@@ -7,6 +7,7 @@ const {
   deleteMultipleFromCloudinary,
   validateImageFile,
 } = require('../utils/cloudinary');
+const { deriveProductFromVariants } = require('../utils/productVariants');
 
 // Create new product (Admin only)
 exports.createProduct = async (req, res, next) => {
@@ -215,8 +216,9 @@ exports.updateProduct = async (req, res, next) => {
 
     // findByIdAndUpdate skips the pre('validate') derive hook, so derive here.
     if (Array.isArray(updateData.variants) && updateData.variants.length > 0) {
-      updateData.price = Math.min(...updateData.variants.map((v) => Number(v.price)));
-      updateData.quantity = updateData.variants.reduce((s, v) => s + (Number(v.quantity) || 0), 0);
+      const derived = deriveProductFromVariants(updateData.variants);
+      updateData.price = derived.price;
+      updateData.quantity = derived.quantity;
     }
 
     if (!mongoose.Types.ObjectId.isValid(id)) {

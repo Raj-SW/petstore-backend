@@ -31,6 +31,12 @@ const productSchema = new mongoose.Schema(
       min: [0, 'Quantity cannot be negative'],
       default: 0,
     },
+    // Optional per-product low-stock threshold override (else the global default)
+    lowStockThreshold: {
+      type: Number,
+      default: null,
+      min: 0,
+    },
     genders: [
       {
         type: String,
