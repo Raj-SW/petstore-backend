@@ -315,6 +315,69 @@ exports.deleteProduct = async (req, res, next) => {
   }
 };
 
+// Bulk actions on multiple products (Admin only)
+exports.bulkAction = async (req, res, next) => {
+  try {
+    const { action, ids, options } = req.body;
+
+    if (action === 'delete') {
+      const products = await Product.find({ _id: { $in: ids } });
+      const publicIds = products
+        .flatMap((p) => p.images.map((img) => img.publicId))
+        .filter(Boolean);
+      try {
+        await deleteMultipleFromCloudinary(publicIds);
+      } catch (cleanupErr) {
+        logger.error('Bulk delete: Cloudinary cleanup failed (non-fatal)', { error: cleanupErr.message });
+      }
+      const result = await Product.deleteMany({ _id: { $in: ids } });
+      logger.info(`Bulk delete by admin ${req.user._id}`, { deleted: result.deletedCount });
+      return res.status(200).json({
+        success: true,
+        message: `${result.deletedCount} product(s) deleted`,
+        data: { requested: ids.length, deleted: result.deletedCount },
+      });
+    }
+
+    const updateMap = {
+      activate: { isActive: true },
+      deactivate: { isActive: false },
+      feature: { isFeatured: true },
+      unfeature: { isFeatured: false },
+      clearSale: {
+        onSale: false, discountValue: 0, saleStartsAt: null, saleEndsAt: null,
+      },
+    };
+
+    let update;
+    if (action === 'sale') {
+      update = {
+        onSale: true,
+        discountType: options.discountType,
+        discountValue: options.discountValue,
+        saleStartsAt: options.saleStartsAt || null,
+        saleEndsAt: options.saleEndsAt || null,
+      };
+    } else {
+      update = updateMap[action];
+    }
+
+    const result = await Product.updateMany({ _id: { $in: ids } }, { $set: update });
+    logger.info(`Bulk ${action} by admin ${req.user._id}`, { modified: result.modifiedCount });
+    return res.status(200).json({
+      success: true,
+      message: `${result.modifiedCount} product(s) updated`,
+      data: {
+        requested: ids.length,
+        matched: result.matchedCount,
+        modified: result.modifiedCount,
+      },
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 // Get products by category (for the existing ProductService)
 exports.getProductsByCategory = async (req, res, next) => {
   try {

@@ -9,8 +9,10 @@ const {
   getProductsByCategory,
   getProductAnalytics,
   getFilterOptions,
+  bulkAction,
 } = require('../controllers/product.controller');
 const { validateProduct, validateProductUpdate } = require('../validators/product.validator');
+const { validateBulkAction } = require('../validators/bulkAction.validator');
 const { upload } = require('../middlewares/upload');
 
 const router = express.Router();
@@ -28,6 +30,9 @@ router.get('/:id', getProduct);
 
 // Admin-only routes
 router.use(isAuthenticated, isAdmin);
+
+// Bulk actions on multiple products (Admin only)
+router.post('/bulk', validateBulkAction, bulkAction);
 
 // Product CRUD operations (Admin only)
 router.post('/', upload.array('images', 10), validateProduct, createProduct);
