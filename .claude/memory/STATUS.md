@@ -1,7 +1,7 @@
 # Project Status
 
 **Active branch:** `feat/backlog-impl-2026-06-22` (both `backend/` and `frontend/` repos)
-**Last updated:** 2026-06-23
+**Last updated:** 2026-06-24
 
 ---
 
@@ -46,6 +46,7 @@
 
 - **Frontend URL** — `.env` `FRONTEND_URL`/`CLIENT_URL` = `https://petstore-frontend-ixll.vercel.app`. Update this in the hosting platform env vars dashboard if deploying.
 - **Orphan** — `src/templates/sale-announcement.html` still on disk, not referenced by any controller (superseded by `announcement.html`). Safe to delete anytime.
+- **Bug fix (2026-06-24)** — Admin products page was silently hiding inactive products. `GET /products` now accepts `isActive=all` to skip the filter; admin fetch passes it. Client-side filter chip works correctly.
 
 ## Security
 
