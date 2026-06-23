@@ -43,6 +43,7 @@ build/
 # Temporary files
 *.tmp
 *.temp
+tmp/
 
 # Git worktrees
 .worktrees/
