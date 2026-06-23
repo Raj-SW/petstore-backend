@@ -17,6 +17,12 @@ const orderItemSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  // Snapshot of the product/variant base (non-sale) price at order time, so
+  // invoices can show was/now savings even after later product edits.
+  originalPrice: {
+    type: Number,
+    default: null,
+  },
 });
 
 const orderSchema = new mongoose.Schema(
@@ -40,6 +46,12 @@ const orderSchema = new mongoose.Schema(
       default: 0,
     },
     discountCode: String,
+    // Checkout-computed shipping + tax (snapshot of the rate/mode used).
+    shippingFee:  { type: Number, default: 0 },
+    tax:          { type: Number, default: 0 },
+    taxRate:      { type: Number, default: 0 },
+    taxInclusive: { type: Boolean, default: true },
+    grandTotal:   { type: Number, default: 0 },
     shippingAddress: {
       street: {
         type: String,
