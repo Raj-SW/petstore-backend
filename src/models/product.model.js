@@ -206,6 +206,7 @@ productSchema.virtual('variantsView').get(function () {
     const s = computeSale(v.price, this);
     return {
       _id: v._id, label: v.label, quantity: v.quantity, price: v.price,
+      images: Array.isArray(v.images) ? v.images : [],
       salePrice: s.salePrice, isOnSaleNow: s.isOnSaleNow,
       effectivePrice: s.effectivePrice, discountPercentLabel: s.discountPercentLabel,
     };

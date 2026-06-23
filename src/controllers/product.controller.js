@@ -10,40 +10,47 @@ const {
 } = require('../utils/cloudinary');
 const { deriveProductFromVariants } = require('../utils/productVariants');
 
+// Parse a JSON field that may arrive as a string (FormData) or be absent.
+function parseJsonField(value, fallback) {
+  if (value === undefined || value === null) return fallback;
+  if (typeof value !== 'string') return value;
+  try { return JSON.parse(value); } catch { return fallback; }
+}
+
 // Create new product (Admin only)
 exports.createProduct = async (req, res, next) => {
   let uploadedImages = [];
   try {
-    // Check if images are provided
-    if (!req.files || req.files.length === 0) {
-      return next(new AppError('At least one product image is required', 400));
+    // ImageManager flow: pre-uploaded refs arrive as `imageRefs` JSON; legacy
+    // flow attaches files under `images`. Refs take precedence when present.
+    const imageRefs = parseJsonField(req.body.imageRefs, null);
+    const hasRefs = Array.isArray(imageRefs) && imageRefs.length > 0;
+
+    if (hasRefs) {
+      uploadedImages = imageRefs;
+    } else {
+      // Check if images are provided
+      if (!req.files || req.files.length === 0) {
+        return next(new AppError('At least one product image is required', 400));
+      }
+
+      // Validate all image files
+      req.files.forEach((file) => {
+        validateImageFile(file);
+      });
+
+      // Upload images to Cloudinary
+      uploadedImages = await uploadMultipleToCloudinary(req.files, 'products');
     }
-
-    // Validate all image files
-    req.files.forEach((file) => {
-      validateImageFile(file);
-    });
-
-    // Upload images to Cloudinary
-    uploadedImages = await uploadMultipleToCloudinary(req.files, 'products');
 
     // Parse sections JSON string from FormData
-    if (req.body.sections && typeof req.body.sections === 'string') {
-      try {
-        req.body.sections = JSON.parse(req.body.sections);
-      } catch {
-        req.body.sections = [];
-      }
-    }
+    req.body.sections = parseJsonField(req.body.sections, []);
 
     // Parse variants JSON string from FormData
-    if (req.body.variants && typeof req.body.variants === 'string') {
-      try {
-        req.body.variants = JSON.parse(req.body.variants);
-      } catch {
-        req.body.variants = [];
-      }
-    }
+    req.body.variants = parseJsonField(req.body.variants, []);
+
+    // `imageRefs` is a transport field, not a model field
+    delete req.body.imageRefs;
 
     // Create product data
     const productData = {
@@ -196,24 +203,20 @@ exports.updateProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
     // Parse sections JSON string from FormData
-    if (req.body.sections && typeof req.body.sections === 'string') {
-      try {
-        req.body.sections = JSON.parse(req.body.sections);
-      } catch {
-        req.body.sections = [];
-      }
-    }
+    req.body.sections = req.body.sections !== undefined
+      ? parseJsonField(req.body.sections, [])
+      : undefined;
+    if (req.body.sections === undefined) delete req.body.sections;
 
     // Parse variants JSON string from FormData
-    if (req.body.variants && typeof req.body.variants === 'string') {
-      try {
-        req.body.variants = JSON.parse(req.body.variants);
-      } catch {
-        req.body.variants = [];
-      }
-    }
+    req.body.variants = req.body.variants !== undefined
+      ? parseJsonField(req.body.variants, [])
+      : undefined;
+    if (req.body.variants === undefined) delete req.body.variants;
 
-    const { keepImages: keepImagesStr, ...updateData } = req.body;
+    // ImageManager flow: final ordered refs arrive as `imageRefs` JSON.
+    const imageRefs = parseJsonField(req.body.imageRefs, undefined);
+    const { keepImages: keepImagesStr, imageRefs: _ignore, ...updateData } = req.body;
 
     // findByIdAndUpdate skips the pre('validate') derive hook, so derive here.
     if (Array.isArray(updateData.variants) && updateData.variants.length > 0) {
@@ -233,8 +236,21 @@ exports.updateProduct = async (req, res, next) => {
 
     let updatedImages = existingProduct.images;
 
-    // keepImages is always sent from the edit form — process image changes
-    if (keepImagesStr !== undefined) {
+    if (Array.isArray(imageRefs)) {
+      // New contract: refs are the final image set. Diff for Cloudinary cleanup.
+      if (imageRefs.length === 0) {
+        return next(new AppError('At least one product image is required', 400));
+      }
+      const keepPublicIds = new Set(imageRefs.map((img) => img.publicId).filter(Boolean));
+      const removedPublicIds = existingProduct.images
+        .map((img) => img.publicId)
+        .filter((pid) => pid && !keepPublicIds.has(pid));
+      if (removedPublicIds.length > 0) {
+        await deleteMultipleFromCloudinary(removedPublicIds);
+      }
+      updatedImages = imageRefs.map((img) => ({ url: img.url, publicId: img.publicId }));
+    } else if (keepImagesStr !== undefined) {
+      // Legacy contract: keepImages + freshly-attached files.
       const keepImages = JSON.parse(keepImagesStr); // [{url, publicId}]
 
       // Delete images that were removed by the admin
@@ -255,6 +271,24 @@ exports.updateProduct = async (req, res, next) => {
       }
 
       updatedImages = [...keepImages, ...newlyUploaded];
+    }
+
+    // Variant-image cleanup: delete Cloudinary assets dropped from any variant.
+    if (Array.isArray(updateData.variants)) {
+      const oldVariantPublicIds = new Set(
+        (existingProduct.variants || [])
+          .flatMap((v) => (v.images || []).map((img) => img.publicId))
+          .filter(Boolean)
+      );
+      const newVariantPublicIds = new Set(
+        updateData.variants
+          .flatMap((v) => (v.images || []).map((img) => img.publicId))
+          .filter(Boolean)
+      );
+      const removedVariantPublicIds = [...oldVariantPublicIds].filter((pid) => !newVariantPublicIds.has(pid));
+      if (removedVariantPublicIds.length > 0) {
+        await deleteMultipleFromCloudinary(removedVariantPublicIds);
+      }
     }
 
     const updatedProduct = await Product.findByIdAndUpdate(

@@ -2,8 +2,10 @@
  * Tests for Epic 7b — feedback photos {url,publicId}, mass-assignment fix, upload.
  */
 jest.mock('../src/utils/email', () => ({ sendEmail: jest.fn().mockResolvedValue(undefined) }));
+const mockDelete = jest.fn().mockResolvedValue(undefined);
 jest.mock('../src/utils/cloudinary', () => ({
   uploadMultipleToCloudinary: jest.fn().mockResolvedValue([{ url: 'https://c/f.jpg', publicId: 'feedback/f' }]),
+  deleteMultipleFromCloudinary: (...args) => mockDelete(...args),
 }));
 jest.mock('../src/middlewares/upload', () => {
   const multer = require('multer');
@@ -57,6 +59,23 @@ describe('Feedback photos + admin (Epic 7b)', () => {
     expect(res.body.data.approved).toBe(true);
     expect(String(res.body.data._id)).toBe(String(fb._id)); // _id not overwritten
     expect(res.body.data.bogus).toBeUndefined();
+  });
+
+  it('updateFeedback deletes Cloudinary assets for removed photos', async () => {
+    mockDelete.mockClear();
+    const fb = await Feedback.create({
+      name: 'Customer', rating: 4, message: 'nice product', approved: true,
+      photos: [
+        { url: 'https://c/p1.jpg', publicId: 'feedback/p1' },
+        { url: 'https://c/p2.jpg', publicId: 'feedback/p2' },
+      ],
+    });
+    const res = await request(app).patch(`/api/feedback/${fb._id}`)
+      .set('Authorization', `Bearer ${adminToken}`)
+      .send({ photos: [{ url: 'https://c/p2.jpg', publicId: 'feedback/p2' }] });
+    expect(res.status).toBe(200);
+    expect(res.body.data.photos).toHaveLength(1);
+    expect(mockDelete).toHaveBeenCalledWith(['feedback/p1']);
   });
 
   it('upload-image returns { url, publicId }', async () => {

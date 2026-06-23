@@ -76,8 +76,9 @@ const validateProduct = (req, res, next) => {
     discountValue: Joi.number().min(0).default(0),
     saleStartsAt:  Joi.date().allow('', null).optional(),
     saleEndsAt:    Joi.date().allow('', null).optional(),
+    imageRefs:  Joi.string().optional(), // JSON array of pre-uploaded { url, publicId }
     sections:   Joi.string().optional(), // JSON array of { title, body, order }
-    variants:   Joi.string().optional(), // JSON array of { label, price, quantity }
+    variants:   Joi.string().optional(), // JSON array of { label, price, quantity, images }
   });
 
   const { error, value } = schema.validate(req.body);
@@ -155,8 +156,9 @@ const validateProductUpdate = (req, res, next) => {
     saleStartsAt:  Joi.date().allow('', null).optional(),
     saleEndsAt:    Joi.date().allow('', null).optional(),
     keepImages: Joi.string().optional(), // JSON string of [{url,publicId}] — existing images to preserve
+    imageRefs:  Joi.string().optional(), // JSON array of final ordered { url, publicId } (ImageManager)
     sections:   Joi.string().optional(), // JSON array of { title, body, order }
-    variants:   Joi.string().optional(), // JSON array of { label, price, quantity }
+    variants:   Joi.string().optional(), // JSON array of { label, price, quantity, images }
   });
 
   const { error, value } = schema.validate(req.body);

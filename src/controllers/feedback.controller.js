@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Feedback = require('../models/feedback.model');
 const { AppError } = require('../middlewares/errorHandler');
-const { uploadMultipleToCloudinary } = require('../utils/cloudinary');
+const { uploadMultipleToCloudinary, deleteMultipleFromCloudinary } = require('../utils/cloudinary');
 const logger = require('../utils/logger');
 
 // POST /api/feedback — public (multipart: up to 3 photos)
@@ -68,6 +68,20 @@ exports.updateFeedback = async (req, res, next) => {
     for (const key of ALLOWED) {
       if (req.body[key] !== undefined) updates[key] = req.body[key];
     }
+
+    // When photos are being replaced, clean up Cloudinary assets no longer referenced.
+    if (Array.isArray(updates.photos)) {
+      const existing = await Feedback.findById(req.params.id).select('photos');
+      if (!existing) return next(new AppError('Feedback not found', 404));
+      const keepPublicIds = new Set(updates.photos.map((p) => p.publicId).filter(Boolean));
+      const removedPublicIds = (existing.photos || [])
+        .map((p) => p.publicId)
+        .filter((pid) => pid && !keepPublicIds.has(pid));
+      if (removedPublicIds.length > 0) {
+        await deleteMultipleFromCloudinary(removedPublicIds);
+      }
+    }
+
     const feedback = await Feedback.findByIdAndUpdate(req.params.id, updates, {
       new: true,
       runValidators: true,
