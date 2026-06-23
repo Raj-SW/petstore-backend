@@ -12,6 +12,8 @@ const {
   cancelSubscription,
   getSubscriptionsAdmin,
   updateSubscriptionAdmin,
+  getSubscriptionAnalytics,
+  getProductCoverage,
   processDue,
 } = require('../controllers/subscription.controller');
 
@@ -23,6 +25,8 @@ router.post('/process-due', verifyCronSecret, processDue);
 
 // Admin
 router.get('/admin', isAuthenticated, isAdmin, getSubscriptionsAdmin);
+router.get('/admin/analytics', isAuthenticated, isAdmin, getSubscriptionAnalytics);
+router.get('/admin/product-coverage', isAuthenticated, isAdmin, getProductCoverage);
 router.patch('/admin/:id', isAuthenticated, isAdmin, updateSubscriptionAdmin);
 
 // Customer

@@ -8,6 +8,7 @@ const { sendEmail } = require('../utils/email');
 const logger = require('../utils/logger');
 
 const { frontendUrl } = require('../config/urls');
+const { predictDemand, productCoverage } = require('../services/subscription.analytics.service');
 
 const DEFAULT_DISCOUNT = parseInt(process.env.SUBSCRIPTION_DISCOUNT_PERCENT || '10', 10);
 
@@ -117,6 +118,28 @@ exports.updateSubscriptionAdmin = async (req, res, next) => {
     const subscription = await Subscription.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
     if (!subscription) return next(new AppError('Subscription not found', 404));
     res.status(200).json({ status: 'success', data: subscription });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// GET /api/subscriptions/admin/analytics?horizon=30 — demand-vs-stock prediction
+exports.getSubscriptionAnalytics = async (req, res, next) => {
+  try {
+    const horizonDays = Math.min(365, Math.max(1, parseInt(req.query.horizon, 10) || 30));
+    const safetyMargin = Number(req.query.safetyMargin) || 0;
+    const data = await predictDemand({ horizonDays, safetyMargin });
+    res.status(200).json({ status: 'success', data });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// GET /api/subscriptions/admin/product-coverage — productId -> {activeSubs, unitsPerCycle}
+exports.getProductCoverage = async (req, res, next) => {
+  try {
+    const data = await productCoverage();
+    res.status(200).json({ status: 'success', data });
   } catch (err) {
     next(err);
   }
