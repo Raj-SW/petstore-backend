@@ -108,4 +108,52 @@ async function productCoverage() {
   return map;
 }
 
-module.exports = { runsInHorizon, predictDemand, productCoverage };
+/**
+ * Enrich a subscription with computed financials + metadata.
+ * `sub.items[].product` must be a populated full product document (so the
+ * effectivePrice virtual / priceForVariant method work). `sub.createdOrders`
+ * may be populated with { totalAmount, discount, status, createdAt }.
+ */
+function enrichSubscription(sub) {
+  const base = typeof sub.toObject === 'function' ? sub.toObject({ virtuals: true }) : { ...sub };
+  const discountPct = Number(sub.discountPercent) || 0;
+
+  let preDiscountTotal = 0;
+  for (const it of sub.items || []) {
+    const p = it.product;
+    if (!p || typeof p === 'string') continue; // unpopulated → skip
+    let unit;
+    if (it.variantId && typeof p.priceForVariant === 'function') {
+      unit = p.priceForVariant(it.variantId);
+    } else {
+      unit = p.effectivePrice != null ? p.effectivePrice : p.price;
+    }
+    preDiscountTotal += (Number(unit) || 0) * (Number(it.quantity) || 0);
+  }
+
+  const preRounded = Math.round(preDiscountTotal);
+  const perCycleTotal = Math.round(preDiscountTotal * (1 - discountPct / 100));
+  const savings = preRounded - perCycleTotal;
+
+  const count = Number(sub.intervalCount) || 1;
+  const unitLabel = sub.intervalUnit === 'week' ? 'week' : 'day';
+  const cadenceLabel = `every ${count} ${unitLabel}${count > 1 ? 's' : ''}`;
+
+  let nextRunInDays = null;
+  if (sub.nextRunAt) {
+    nextRunInDays = Math.max(0, Math.ceil((new Date(sub.nextRunAt).getTime() - Date.now()) / DAY_MS));
+  }
+
+  const orderHistory = (Array.isArray(sub.createdOrders) ? sub.createdOrders : [])
+    .filter((o) => o && typeof o === 'object' && o.totalAmount != null)
+    .map((o) => ({
+      id: o._id,
+      date: o.createdAt,
+      total: (Number(o.totalAmount) || 0) - (Number(o.discount) || 0),
+      status: o.status,
+    }));
+
+  return { ...base, perCycleTotal, savings, cadenceLabel, nextRunInDays, orderHistory };
+}
+
+module.exports = { runsInHorizon, predictDemand, productCoverage, enrichSubscription };
