@@ -8,7 +8,7 @@ const { sendEmail } = require('../utils/email');
 const logger = require('../utils/logger');
 
 const { frontendUrl } = require('../config/urls');
-const { predictDemand, productCoverage } = require('../services/subscription.analytics.service');
+const { predictDemand, productCoverage, enrichSubscription } = require('../services/subscription.analytics.service');
 
 const DEFAULT_DISCOUNT = parseInt(process.env.SUBSCRIPTION_DISCOUNT_PERCENT || '10', 10);
 
@@ -50,13 +50,14 @@ exports.createSubscription = async (req, res, next) => {
   }
 };
 
-// GET /api/subscriptions/mine — caller's subscriptions
+// GET /api/subscriptions/mine — caller's subscriptions (enriched)
 exports.getMySubscriptions = async (req, res, next) => {
   try {
     const subscriptions = await Subscription.find({ user: req.user.id })
-      .populate('items.product', 'name price images')
+      .populate('items.product')
+      .populate('createdOrders', 'totalAmount discount status createdAt')
       .sort('-createdAt');
-    res.status(200).json({ status: 'success', data: subscriptions });
+    res.status(200).json({ status: 'success', data: subscriptions.map(enrichSubscription) });
   } catch (err) {
     next(err);
   }
@@ -99,14 +100,42 @@ exports.cancelSubscription = async (req, res, next) => {
   }
 };
 
-// GET /api/subscriptions/admin — admin list (all users)
+// GET /api/subscriptions/admin — admin list (all users, enriched)
 exports.getSubscriptionsAdmin = async (req, res, next) => {
   try {
     const subscriptions = await Subscription.find()
       .populate('user', 'name email')
-      .populate('items.product', 'name price')
+      .populate('items.product')
+      .populate('createdOrders', 'totalAmount discount status createdAt')
       .sort('-createdAt');
-    res.status(200).json({ status: 'success', data: subscriptions });
+    res.status(200).json({ status: 'success', data: subscriptions.map(enrichSubscription) });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// GET /api/subscriptions/mine/:id — owner enriched detail
+exports.getMySubscriptionDetail = async (req, res, next) => {
+  try {
+    const sub = await Subscription.findOne({ _id: req.params.id, user: req.user.id })
+      .populate('items.product')
+      .populate('createdOrders', 'totalAmount discount status createdAt');
+    if (!sub) return next(new AppError('Subscription not found', 404));
+    res.status(200).json({ status: 'success', data: enrichSubscription(sub) });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// GET /api/subscriptions/admin/:id — admin enriched detail
+exports.getSubscriptionDetailAdmin = async (req, res, next) => {
+  try {
+    const sub = await Subscription.findById(req.params.id)
+      .populate('user', 'name email')
+      .populate('items.product')
+      .populate('createdOrders', 'totalAmount discount status createdAt');
+    if (!sub) return next(new AppError('Subscription not found', 404));
+    res.status(200).json({ status: 'success', data: enrichSubscription(sub) });
   } catch (err) {
     next(err);
   }
