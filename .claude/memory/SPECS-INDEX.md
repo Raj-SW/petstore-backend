@@ -28,6 +28,7 @@ Task-level implementation plans (TDD, bite-sized steps) live in `docs/superpower
 | Plan | File |
 |------|------|
 | Epic 14 FE — variant-aware inventory UI | `docs/superpowers/plans/2026-06-23-epic14-inventory-variant-fe.md` |
+| Epic 12 — subscription enrichment & detail views | `docs/superpowers/plans/2026-06-24-epic12-subscription-enrichment.md` |
 
 ## Backlog Overview
 
