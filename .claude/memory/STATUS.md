@@ -1,7 +1,7 @@
 # Project Status
 
 **Active branch:** `feat/backlog-impl-2026-06-22` (both `backend/` and `frontend/` repos)
-**Last updated:** 2026-06-24
+**Last updated:** 2026-06-24 (Epic 12 complete)
 
 ---
 
@@ -24,6 +24,7 @@
 | 10 | Email template unification — `_layout.html` shell, all templates body-only fragments, `{{mur}}`/`{{fmtDate}}` helpers, `email-verification.html` (F5 closed), preview harness, 7/7 tests | BE ✅ |
 | 11 | StoreSettings + shipping/tax — `StoreSettings` singleton; `buildOrder` adds shippingFee/tax; granular invoice line items | BE |
 | 12 | Subscription analytics BE — `predictDemand`, `productCoverage`, `runsInHorizon`; admin `/analytics` + `/product-coverage` endpoints | BE |
+| 12 FE | Subscription enrichment + detail views — `enrichSubscription` service (per-cycle total, savings, cadence, next-run-in-days, order history), enriched `/mine` + `/admin` lists, `/mine/:id` + `/admin/:id` detail endpoints, product-analytics subscriptions block, admin detail drawer + status/due-soon filters, My Subscriptions financials/image/history | BE + FE |
 | 14 | Variant-aware inventory — per-variant rows in inventory table; restock/adjust/history all variant-scoped | BE + FE |
 
 ---
@@ -36,7 +37,7 @@
 | 4 | ProfessionalCard visual rebuild on design system; appointment list SearchBar | FE; depends Epic 2 |
 | 9b FE | Typed announcements admin UI — type picker, event fields, CTA fields, content ref picker | FE |
 | 11 FE | `AdminSettings` StoreSettings page (shippingFee, freeShippingThreshold, taxRate toggles); checkout displays shipping/tax | FE; depends Epic 11 BE ✅ |
-| 12 FE | Subscriptions analytics dashboard; enriched admin list/detail; user My Subscriptions view; product-list "Subscribed(N)" badge | FE; depends Epic 12 BE ✅ **— NOW HIGH PRIORITY** (see Notes) |
+| ~~12 FE~~ | ~~Subscriptions analytics dashboard; enriched admin list/detail; user My Subscriptions view~~ | **DONE 2026-06-24** |
 | 13 | Import/Export full-stack rebuild — `ImportExportApplication` model + routes + admin/applicant emails + FE multi-step form + admin page | BE + FE; depends Epics 2 + 10 |
 | 15 | Checkout redesign + COD/Card/Juice payment method selection; Juice MCB gateway integration | BE + FE; **blocked — MCB Juice merchant credentials not yet provided** |
 
@@ -48,6 +49,7 @@
 - **Orphan** — `src/templates/sale-announcement.html` still on disk, not referenced by any controller (superseded by `announcement.html`). Safe to delete anytime.
 - **Subscription savings chooser (2026-06-24)** — Product page + cart now use a shared `SubscriptionChooser` component (two radio cards, "Save N%" pill, strikethrough→green savings math, conditional frequency dropdown). Product page merged Add to Cart + Subscribe into one smart button. Savings math + 7-day rule live in `frontend/src/utils/subscriptionPricing.js`.
 - **DESIGN GAP — Cart checkout subscription discount (2026-06-24):** The `SubscriptionChooser` on the cart page shows a discounted price (e.g. Rs 270 instead of Rs 300) but the actual order placed today is at **full price**. The 10% discount only applies from the 2nd recurring delivery onward (the subscription's `discountPercent` is applied by the backend on future reorder runs, not on `createOrder`). Three options to resolve — needs a decision before this surface is considered done: (A) fix copy to say "Save from your 2nd delivery"; (B) apply the discount to the first checkout order too (backend `createOrder` change); (C) remove chooser from cart, keep a plain "Make recurring" checkbox with honest wording. See DEFERRED.md for full analysis.
+- **Epic 12 completed (2026-06-24)** — The "FE" label was a misnomer: it required building the shared server-side `enrichSubscription` function (never built despite Epic 12 BE being marked done). Financials are server-side because the FE payload lacks variant/sale prices. Demand forecast, admin list, and "Subscribed (N)" badge were already shipped in the prior merge. New in this epic: `enrichSubscription` service, enriched list responses, `/mine/:id` + `/admin/:id` detail endpoints, subscriptions block in product analytics overview, admin enriched detail drawer + status/due-soon filters, My Subscriptions financials + item image + order history. Branch: `feat/epic12-subscription-enrichment` (both repos).
 - **Bug fix (2026-06-24)** — Admin products page was silently hiding inactive products. `GET /products` now accepts `isActive=all` to skip the filter; admin fetch passes it. Client-side filter chip works correctly.
 
 ## Security

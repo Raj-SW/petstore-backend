@@ -8,9 +8,11 @@ const {
 const {
   createSubscription,
   getMySubscriptions,
+  getMySubscriptionDetail,
   updateSubscription,
   cancelSubscription,
   getSubscriptionsAdmin,
+  getSubscriptionDetailAdmin,
   updateSubscriptionAdmin,
   getSubscriptionAnalytics,
   getProductCoverage,
@@ -27,11 +29,13 @@ router.post('/process-due', verifyCronSecret, processDue);
 router.get('/admin', isAuthenticated, isAdmin, getSubscriptionsAdmin);
 router.get('/admin/analytics', isAuthenticated, isAdmin, getSubscriptionAnalytics);
 router.get('/admin/product-coverage', isAuthenticated, isAdmin, getProductCoverage);
+router.get('/admin/:id', isAuthenticated, isAdmin, getSubscriptionDetailAdmin);
 router.patch('/admin/:id', isAuthenticated, isAdmin, updateSubscriptionAdmin);
 
 // Customer
 router.post('/', isAuthenticated, validateCreateSubscription, createSubscription);
 router.get('/mine', isAuthenticated, getMySubscriptions);
+router.get('/mine/:id', isAuthenticated, getMySubscriptionDetail);
 router.patch('/:id', isAuthenticated, validateUpdateSubscription, updateSubscription);
 router.delete('/:id', isAuthenticated, cancelSubscription);
 
