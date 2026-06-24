@@ -4,6 +4,29 @@ Things explicitly parked — not forgotten, not in scope right now.
 
 ---
 
+## BACKLOG — Subscription & Inventory Background Jobs
+
+**Raised:** 2026-06-24
+**Priority:** Medium — revisit after Epic 15 (checkout) ships
+
+The current background processing is bare-bones and needs a proper job infrastructure before the platform scales.
+
+**Subscription processing (`processDue`):**
+- Currently exposed as a plain HTTP endpoint (`GET|POST /api/subscriptions/process-due`) protected by `CRON_SECRET`. It runs synchronously in a single request — no queue, no retry, no dead-letter. If the request times out (e.g. on Vercel's 10s function limit) mid-batch, some subs are processed and some are not, with no record of which.
+- Needs: a job queue (BullMQ / Agenda) with per-subscription jobs, retry on failure, and a run-log the admin can inspect.
+
+**Inventory alert job:**
+- No background job currently watches stock levels and alerts the admin when a product hits the low-stock threshold. The admin only sees low-stock counts on the analytics overview — there is no proactive push.
+- Needs: a scheduled job (e.g. nightly) that queries `quantity < threshold`, compares against upcoming subscription demand from `predictDemand`, and emails the admin a restock report.
+
+**Subscription reorder failure notifications:**
+- When `processDue` skips a subscription due to out-of-stock, the customer gets no notification. This ties into the `isActive` bug below.
+- Needs: email to customer on skip ("Your scheduled order for X couldn't be fulfilled — we'll try again on [date]") and an admin alert for repeated failures.
+
+**When to revisit:** After Epic 15 ships. Also consider this before any production launch with real subscription volume.
+
+---
+
 ## BUG — Subscription Reorder Ignores Product `isActive`
 
 **Severity:** Medium
