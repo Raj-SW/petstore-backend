@@ -9,6 +9,7 @@ const {
   validateImageFile,
 } = require('../utils/cloudinary');
 const { deriveProductFromVariants } = require('../utils/productVariants');
+const { predictDemand, productCoverage } = require('../services/subscription.analytics.service');
 
 // Parse a JSON field that may arrive as a string (FormData) or be absent.
 function parseJsonField(value, fallback) {
@@ -529,6 +530,14 @@ exports.getProductAnalytics = async (req, res, next) => {
       },
     ]);
 
+    const demand = await predictDemand({});
+    const coverage = await productCoverage();
+    const subscriptions = {
+      totalActiveSubscriptions: demand.totalActiveSubscriptions,
+      productsWithSubscriptions: Object.keys(coverage).length,
+      productsNeedingRestock: demand.productsAtRisk,
+    };
+
     res.status(200).json({
       success: true,
       data: {
@@ -539,6 +548,7 @@ exports.getProductAnalytics = async (req, res, next) => {
         },
         categoryStats,
         priceRangeStats,
+        subscriptions,
       },
     });
   } catch (error) {
