@@ -9,6 +9,10 @@ const validateUpdateProfile = (req, res, next) => {
       .pattern(/^[0-9]{8}$/)
       .message('Phone number must be 8 digits'),
     address: Joi.string().min(5).max(200),
+    emailPreferences: Joi.object({
+      sales: Joi.boolean(),
+      news: Joi.boolean(),
+    }),
   });
 
   const { error } = schema.validate(req.body);
