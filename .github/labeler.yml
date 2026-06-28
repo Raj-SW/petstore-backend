@@ -1,0 +1,20 @@
+# Auto-label PRs by the files they touch (actions/labeler@v5 syntax).
+tests:
+  - changed-files:
+      - any-glob-to-any-file: ['tests/**', 'src/**/*.test.js']
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file: ['.github/**']
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file: ['**/*.md', 'docs/**']
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file: ['package.json', 'package-lock.json']
+
+backend:
+  - changed-files:
+      - any-glob-to-any-file: ['src/**']

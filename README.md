@@ -1,5 +1,9 @@
 # VitalPaws Backend API
 
+[![CI](https://github.com/Raj-SW/petstore-backend/actions/workflows/ci.yml/badge.svg)](https://github.com/Raj-SW/petstore-backend/actions/workflows/ci.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Raj-SW_petstore-backend&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Raj-SW_petstore-backend)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Raj-SW_petstore-backend&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Raj-SW_petstore-backend)
+
 A comprehensive REST API for a pet store e-commerce platform with appointment booking, professional management, and admin tooling.
 
 - **Base URL (local):** `http://localhost:5000/api`
