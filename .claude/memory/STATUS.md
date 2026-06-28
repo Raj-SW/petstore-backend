@@ -64,8 +64,13 @@ Branch `docs/testing-architecture-cicd` (local, unpushed). Spec: `docs/superpowe
 - Removed dead services `ProductService.js` + `userService.js` (zero references).
 - Suite: 42 suites / 311 tests green.
 
+**Done (Phase 1b — unit-test backfill, 2026-06-28):**
+- Added co-located unit tests for **all 18 validators** (Joi schemas + cross-field rules), 5 utils (`validation`/ValidationUtils, `dateUtils`, `productVariants`, `unsubscribeToken`, `contentImages`), and 2 middlewares (`errorHandler`, `validateRequest`). **+234 unit tests → unit project now 32 suites / 263 tests, all green.**
+- Fixed latent bug: `errorHandler` never exported `createError` although `validateRequest` + `professionalController` imported it → validation failures threw a `TypeError` (500) instead of a clean 4xx. Added the `createError(statusCode, message)` factory.
+
 **Open (Phases 2–3):**
 - Coverage is **58%, not 90%.** Ratchet gate NOT enabled yet (would block all PRs).
+- ⚠️ **Integration suite is currently RED (pre-existing, not from the unit work).** ~178/282 integration tests fail with `E11000 duplicate key` on fixed emails (`admin@test.com` / `admin@example.com`): per-file `beforeEach` `deleteMany` is not effectively isolating state, so setup aborts and `res.body.data.accessToken` is undefined downstream. Root cause is the connect-per-file + manual-cleanup pattern across all 35 files. Needs a shared connect-once + global collection-clear setup (`setupFilesAfterEach`) and removal of per-file `mongoose.connect`/`close`. **This blocks the CI `integration` job.**
 - Untested service/feature areas: **payments** (`payment.service` 14%, `paypal.service` 17% — `payment.controller` has no tests) and **professionals** (`professionalService` 5% — `professionalController` has no tests). These are the biggest coverage wins.
 - E2E layer (black-box API) not built — only scaffolded.
 - 35 integration files still carry inline `makeUser`/`signupAndLogin`; migrate to `tests/helpers/factories.js` incrementally.
