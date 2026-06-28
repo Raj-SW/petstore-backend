@@ -33,16 +33,16 @@ module.exports = {
     {
       displayName: 'unit',
       testEnvironment: 'node',
-      setupFiles: ['<rootDir>/tests/env-setup.js'],
+      setupFiles: ['<rootDir>/tests/helpers/env-setup.js'],
       testMatch: ['<rootDir>/src/**/*.test.js'],
     },
     {
       displayName: 'integration',
       testEnvironment: 'node',
-      globalSetup: '<rootDir>/tests/setup.js',
-      globalTeardown: '<rootDir>/tests/teardown.js',
-      setupFiles: ['<rootDir>/tests/env-setup.js'],
-      testMatch: ['<rootDir>/tests/**/*.test.js'],
+      globalSetup: '<rootDir>/tests/helpers/setup.js',
+      globalTeardown: '<rootDir>/tests/helpers/teardown.js',
+      setupFiles: ['<rootDir>/tests/helpers/env-setup.js'],
+      testMatch: ['<rootDir>/tests/integration/**/*.test.js'],
     },
   ],
 };
