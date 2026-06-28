@@ -120,9 +120,9 @@
     "semantic_hash": "a755e188cf29e5fd7b5c977b7c737335"
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\middlewares\\errorHandler.js": {
-    "mtime": 1781207043.9577217,
-    "ast_hash": "6d286f849e095673fffde4deb221e4ff",
-    "semantic_hash": "6d286f849e095673fffde4deb221e4ff"
+    "mtime": 1782665391.6820924,
+    "ast_hash": "4e411e28cee8199f95d4731ed6447369",
+    "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\middlewares\\upload.js": {
     "mtime": 1781207043.958357,
@@ -740,8 +740,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\package.json": {
-    "mtime": 1782648672.040004,
-    "ast_hash": "45fa3575fd5f814c58ac43cb4a97fe72",
+    "mtime": 1782654604.6729033,
+    "ast_hash": "3a1afe98a08d069c4714c02a48ad0d45",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\vercel.json": {
@@ -975,8 +975,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\README.md": {
-    "mtime": 1780143097.0377195,
-    "ast_hash": "fc37393afaa1ea8911fa7c861ac369b8",
+    "mtime": 1782654897.7822878,
+    "ast_hash": "700fc87a184f15e6daf358de2ceaa49f",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\docs\\CHANGELOG.md": {
@@ -1150,8 +1150,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\jest.config.js": {
-    "mtime": 1782652199.8776038,
-    "ast_hash": "28df1533e11941dfeef8b18bb52044ad",
+    "mtime": 1782654628.2473931,
+    "ast_hash": "88ed65d39090dc1c148a783b1681ff34",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\scripts\\export-products.js": {
@@ -1454,111 +1454,6 @@
     "ast_hash": "78428b85cb46bab7f94d9470942c55ba",
     "semantic_hash": ""
   },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-announcement-email-links-design.md": {
-    "mtime": 1782066955.2767234,
-    "ast_hash": "193e131b6688a8ea00a76aa7ce6ade42",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-announcements-generalization-design.md": {
-    "mtime": 1782066955.2792702,
-    "ast_hash": "31da928e3ccf0e2806fa34034c74bdcb",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-checkout-redesign-and-payments-design.md": {
-    "mtime": 1782066955.2812946,
-    "ast_hash": "48b75fdccf6c16b5b28fd25f4fbead41",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-design-system-foundation-design.md": {
-    "mtime": 1782066955.2828066,
-    "ast_hash": "2b4e7e06c6ff0ade5f326a04679733ce",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-email-template-unification-design.md": {
-    "mtime": 1782066955.2838283,
-    "ast_hash": "8fbe56ad56fd307a9760e657818fbc2e",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-feedback-photos-fix-and-admin-reorder-design.md": {
-    "mtime": 1782066955.2848263,
-    "ast_hash": "7b588f0ca6d2b2e2b0b763f76c901bf3",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-import-export-rebuild-design.md": {
-    "mtime": 1782066955.2868447,
-    "ast_hash": "0b6c06d0fa4ca7341acf14c1ca85799a",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-invoices-granular-and-shipping-tax-design.md": {
-    "mtime": 1782066955.287836,
-    "ast_hash": "68d35547401b4154638f664b6f61ed9c",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-nav-and-layout-design.md": {
-    "mtime": 1782066955.2903812,
-    "ast_hash": "c306539213aa308f428e290d8c70f401",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-petshop-filter-fix-design.md": {
-    "mtime": 1782066955.2916646,
-    "ast_hash": "dc8147f93e62c1a84dbd9970a7b7cc28",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-product-bulk-actions-and-image-ordering-design.md": {
-    "mtime": 1782066955.2938848,
-    "ast_hash": "83c729f8d53408e8eed5d3af2c4b963c",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-product-bulk-actions-and-image-ordering-plan.md": {
-    "mtime": 1782066955.2938848,
-    "ast_hash": "c17d85e4cf0c0d1aef924283caeab425",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-professional-card-and-appointments-search-design.md": {
-    "mtime": 1782066955.2938848,
-    "ast_hash": "e237d1907461a7e7a659f309a8815d20",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-service-page-design.md": {
-    "mtime": 1782066955.2938848,
-    "ast_hash": "4e278c94fe8a14eef64b0aee5f43c137",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-subscriptions-admin-analytics-design.md": {
-    "mtime": 1782066955.2938848,
-    "ast_hash": "c56b44484cf8cb4b13c66571ae3d3f48",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-tips-gallery-authoring-design.md": {
-    "mtime": 1782066955.2994719,
-    "ast_hash": "2b2966a28f3f14766fcf66454204daec",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-variant-aware-inventory-design.md": {
-    "mtime": 1782066955.2994719,
-    "ast_hash": "d135cd8d1fd08a2a797db0e400f8aa91",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\2026-06-21-variant-images-and-mur-pricing-design.md": {
-    "mtime": 1782066955.3015037,
-    "ast_hash": "e2ae5f9d4cfe926ef63ee6266888df25",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\BACKLOG-2026-06-21-PHASE1-BRAINSTORM.md": {
-    "mtime": 1782066955.3015037,
-    "ast_hash": "c826e71b7ed0cb66b41412a1706058bd",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\BACKLOG-2026-06-21.md": {
-    "mtime": 1782066955.3030193,
-    "ast_hash": "ddf9fa0d3cd92decb001ee7a7fda3be5",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\SECURITY-REMEDIATION-2026-06-21.md": {
-    "mtime": 1782066955.3030193,
-    "ast_hash": "0828e6664ed5f03db4f63484659a3002",
-    "semantic_hash": ""
-  },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\.claude\\memory\\ARCHITECTURE.md": {
     "mtime": 1782280546.927424,
     "ast_hash": "766221a282efb7f140a61d4a40c493a7",
@@ -1590,28 +1485,13 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\.github\\workflows\\ci.yml": {
-    "mtime": 1782651409.868041,
-    "ast_hash": "a898d935830d8cc87a195b90d2db7309",
+    "mtime": 1782654881.667151,
+    "ast_hash": "d03aaefebe1355ca05e61dded4f8f0bb",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\.github\\workflows\\sonarcloud.yml": {
-    "mtime": 1782280546.944386,
-    "ast_hash": "db9cd11fafab48258db2f791a002a33e",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\docs\\BACKLOG-2026-06-21-PHASE1-BRAINSTORM.md": {
-    "mtime": 1782066955.3050587,
-    "ast_hash": "0abf39b0a3da0c84b209b4317bbf6154",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\docs\\BACKLOG-2026-06-21.md": {
-    "mtime": 1782066955.3050587,
-    "ast_hash": "6f6d9702d8c345501f97406375dc1698",
-    "semantic_hash": ""
-  },
-  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\docs\\SECURITY-REMEDIATION-2026-06-21.md": {
-    "mtime": 1782066955.3079398,
-    "ast_hash": "50d80354aa14babb6e6bc487708d5d85",
+    "mtime": 1782654859.0547667,
+    "ast_hash": "9cb17a33ff269a20ecf00cd12a7f5d0f",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\docs\\superpowers\\plans\\2026-06-21-product-bulk-actions-and-image-ordering.md": {
@@ -1737,6 +1617,156 @@
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\tests\\e2e\\README.md": {
     "mtime": 1782652221.604932,
     "ast_hash": "a1957ba5fe108af90b9fa49f0c55b959",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\middlewares\\errorHandler.test.js": {
+    "mtime": 1782664850.6973848,
+    "ast_hash": "f6ec7d1f175d44b86b7c11fe9b18cac8",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\middlewares\\validateRequest.test.js": {
+    "mtime": 1782664859.7205803,
+    "ast_hash": "1c81b809096013357e84765db7b8067e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\utils\\contentImages.test.js": {
+    "mtime": 1782664935.1565285,
+    "ast_hash": "015ba19182ffa48a61b75942eb0f36ec",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\utils\\dateUtils.test.js": {
+    "mtime": 1782664902.1828165,
+    "ast_hash": "e8b3f5b58f73122a6d030ae671f11606",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\utils\\productVariants.test.js": {
+    "mtime": 1782664909.5538516,
+    "ast_hash": "b75f181212733232f538ce431766b345",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\utils\\unsubscribeToken.test.js": {
+    "mtime": 1782664924.7288513,
+    "ast_hash": "fc70e4e7eda43c6f2fe0b93b60d758c0",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\utils\\validation.test.js": {
+    "mtime": 1782664889.9223924,
+    "ast_hash": "ed39a246c7f714ee4650c803f4feb63a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\admin.validator.test.js": {
+    "mtime": 1782665169.7127094,
+    "ast_hash": "887b4b910af38a5911184ba2b505de48",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\advert.validator.test.js": {
+    "mtime": 1782665160.6505208,
+    "ast_hash": "7155c0582111ea0545b09f3df642a7fa",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\announcement.validator.test.js": {
+    "mtime": 1782665128.9596977,
+    "ast_hash": "f493eae32a2cfd758d9bd3f291f36cb2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\appointment.validator.test.js": {
+    "mtime": 1782665088.7260811,
+    "ast_hash": "93a8476a4e1d26ecccec5a91d32f220f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\auth.validator.test.js": {
+    "mtime": 1782664984.7677279,
+    "ast_hash": "e5789543e7fdb556ba8361c0a58da12f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\bulkAction.validator.test.js": {
+    "mtime": 1782665151.679577,
+    "ast_hash": "8eab031a46ba176999a2e52eae82b150",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\cart.validator.test.js": {
+    "mtime": 1782664995.0032032,
+    "ast_hash": "5c17109272d20c857918d50444e2a00a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\faq.validator.test.js": {
+    "mtime": 1782665183.0846076,
+    "ast_hash": "8e63c119025ef33eb29deb49a87a8700",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\feedback.validator.test.js": {
+    "mtime": 1782665096.462879,
+    "ast_hash": "33e8c7e6d494403f4aa6fa78da460e97",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\gallery.validator.test.js": {
+    "mtime": 1782665202.554739,
+    "ast_hash": "2f269abe930aaac155cdcfd46771b476",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\order.validator.test.js": {
+    "mtime": 1782665007.5845523,
+    "ast_hash": "f341c8ad5e1ee5dee393a33c9effdcec",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\product.validator.test.js": {
+    "mtime": 1782665044.3145373,
+    "ast_hash": "5759600d09d01ac639df9f81e9f9617e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\professionalValidator.test.js": {
+    "mtime": 1782665241.9527473,
+    "ast_hash": "7405e2c609c0fd34ddc595b83e1707f2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\review.validator.test.js": {
+    "mtime": 1782665023.7112281,
+    "ast_hash": "99068bb1cbc8b2698e2a1d7c55f9ce29",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\settings.validator.test.js": {
+    "mtime": 1782665176.2478397,
+    "ast_hash": "5dd203de527cb18c37f4d1bab5540ed5",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\subscription.validator.test.js": {
+    "mtime": 1782665109.8264394,
+    "ast_hash": "250786ac1ab57de3ae173009b32ed553",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\tip.validator.test.js": {
+    "mtime": 1782665193.043111,
+    "ast_hash": "8edf2742f8db84a705ef21c9b9d1d84b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\user.validator.test.js": {
+    "mtime": 1782665016.9531956,
+    "ast_hash": "e53abe8a1f2dafbe52f43c52500c4a21",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\.github\\labeler.yml": {
+    "mtime": 1782655398.4433486,
+    "ast_hash": "3b8c6806a1527613a3fd352e147b9014",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\.github\\workflows\\ai-summary.yml": {
+    "mtime": 1782655511.779593,
+    "ast_hash": "4cdecbb1133d599d3415ad186242eb31",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\.github\\workflows\\codeql.yml": {
+    "mtime": 1782655336.2000563,
+    "ast_hash": "53a3c5175b6e9c7e348d2a65da06c055",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\.github\\workflows\\labeler.yml": {
+    "mtime": 1782655416.7626727,
+    "ast_hash": "219fa5b9018b112204c6335f312445ce",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\docs\\superpowers\\specs\\2026-06-28-ci-output-suite-design.md": {
+    "mtime": 1782654583.8412316,
+    "ast_hash": "d64d40f113ea4672e5974dace7bdc295",
     "semantic_hash": ""
   }
 }
