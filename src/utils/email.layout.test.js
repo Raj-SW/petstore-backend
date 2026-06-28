@@ -6,9 +6,9 @@
  */
 const fs = require('fs');
 const path = require('path');
-const { renderTemplate } = require('../src/utils/email');
+const { renderTemplate } = require('./email');
 
-const TEMPLATES_DIR = path.join(__dirname, '../src/templates');
+const TEMPLATES_DIR = path.join(__dirname, '../templates');
 
 describe('Email layout unification (Epic 10)', () => {
   it('wraps a content fragment in the branded layout shell', () => {
@@ -53,7 +53,7 @@ describe('Email layout unification (Epic 10)', () => {
   });
 
   it('every template referenced by sendEmail resolves to a file (no broken refs)', () => {
-    const scanDirs = ['src/controllers', 'src/services'].map((d) => path.join(__dirname, '..', d));
+    const scanDirs = ['controllers', 'services'].map((d) => path.join(__dirname, '..', d));
     const referenced = new Set();
     for (const dir of scanDirs) {
       if (!fs.existsSync(dir)) continue;

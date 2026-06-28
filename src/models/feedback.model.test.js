@@ -1,4 +1,4 @@
-const Feedback = require('../src/models/feedback.model');
+const Feedback = require('./feedback.model');
 
 describe('Feedback model', () => {
   it('requires name, rating, message', () => {

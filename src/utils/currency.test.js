@@ -1,4 +1,4 @@
-const { formatMUR } = require('../src/utils/currency');
+const { formatMUR } = require('./currency');
 
 describe('formatMUR (Epic 6c)', () => {
   it('formats whole numbers with thousands separators', () => {

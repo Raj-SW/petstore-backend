@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const GalleryPost = require('../src/models/galleryPost.model');
+const GalleryPost = require('./galleryPost.model');
 
 describe('GalleryPost model', () => {
   it('requires title, body, category, eventDate, createdBy', () => {

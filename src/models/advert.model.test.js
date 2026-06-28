@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Advert = require('../src/models/advert.model');
+const Advert = require('./advert.model');
 
 describe('Advert model — hero', () => {
   it('accepts placement "hero" without a link', () => {

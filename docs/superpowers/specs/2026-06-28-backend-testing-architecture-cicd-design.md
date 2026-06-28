@@ -1,9 +1,33 @@
 # Backend Testing Architecture & CI/CD — Design
 
 **Date:** 2026-06-28
-**Status:** Approved (design); pending implementation plan
+**Status:** Phase 1 implemented (runner split + CI). Phases 2–3 (unit backfill to 90%, e2e) pending.
 **Repo:** `backend/`
-**Branch (current):** `main`
+**Branch:** `docs/testing-architecture-cicd`
+
+---
+
+## Update 2026-06-28 — Final decisions & Phase 1 shipped
+
+Two decisions changed from the first draft after review:
+
+- **Runner: stay on Jest** (not Vitest). Lowest risk; the chosen folder/projects conventions are Jest-native. No migration of the existing suite.
+- **Unit-test location: co-located** next to source (`src/**/*.test.js`), per the established convention — *not* a separate `tests/unit/` folder. `tests/` holds integration (and later e2e) only.
+
+**Measured baseline (honest scope — controllers, services, models, middlewares, validators, utils):**
+
+| Metric | Coverage |
+|--------|----------|
+| Statements | 57.85% (2157/3728) |
+| Branches | 46.52% (898/1930) |
+| Functions | 56.78% (247/435) |
+| Lines | **58.34%** (2044/3503) |
+
+Suite: **42 test suites / 311 tests green** (7 unit co-located + 35 integration). The old narrow `collectCoverageFrom` hid this — services/models/utils were never in the denominator.
+
+**Phase 1 delivered:** Jest `projects` split (`unit` / `integration`), co-located the 7 existing unit tests, `test:unit` / `test:integration` / `test:all` scripts, corrected coverage scope, and a GitHub Actions `ci.yml` running unit→integration+coverage on push/PR to `main`/`develop`. The 90% ratchet gate and e2e layer are deferred to Phases 2–3.
+
+The sections below are the original design; where they say "Vitest," read "Jest," and where they say `tests/unit/`, read co-located `src/**/*.test.js`.
 
 ---
 

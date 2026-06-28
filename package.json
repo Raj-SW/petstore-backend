@@ -8,6 +8,9 @@
         "dev": "nodemon src/server.js",
         "debug": "nodemon --inspect src/server.js",
         "test": "cross-env NODE_ENV=test jest --runInBand --forceExit",
+        "test:unit": "cross-env NODE_ENV=test jest --selectProjects unit --forceExit",
+        "test:integration": "cross-env NODE_ENV=test jest --selectProjects integration --runInBand --forceExit",
+        "test:all": "npm run test:unit && npm run test:integration",
         "test:coverage": "cross-env NODE_ENV=test jest --runInBand --forceExit --coverage",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
@@ -50,27 +53,6 @@
         "mongodb-memory-server": "^11.2.0",
         "nodemon": "^2.0.22",
         "supertest": "^6.3.4"
-    },
-    "jest": {
-        "testEnvironment": "node",
-        "globalSetup": "./tests/setup.js",
-        "globalTeardown": "./tests/teardown.js",
-        "setupFiles": [
-            "./tests/env-setup.js"
-        ],
-        "testTimeout": 30000,
-        "testPathIgnorePatterns": [
-            "/node_modules/",
-            "/.worktrees/"
-        ],
-        "collectCoverageFrom": [
-            "src/controllers/**/*.js",
-            "src/middlewares/**/*.js",
-            "src/validators/**/*.js",
-            "!src/**/*.test.js"
-        ],
-        "coverageReporters": ["text", "lcov", "text-summary"],
-        "coverageDirectory": "coverage"
     },
     "engines": {
         "node": ">=14.0.0"

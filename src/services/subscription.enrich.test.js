@@ -1,4 +1,4 @@
-const { enrichSubscription } = require('../src/services/subscription.analytics.service');
+const { enrichSubscription } = require('./subscription.analytics.service');
 
 // Minimal product doubles exposing the same surface enrichSubscription uses.
 function product({ effectivePrice, variantPrice }) {

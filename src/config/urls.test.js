@@ -8,7 +8,7 @@ function loadUrls(overrides = {}) {
   jest.resetModules();
   ENV_KEYS.forEach((k) => delete process.env[k]);
   Object.assign(process.env, overrides);
-  return require('../src/config/urls');
+  return require('./urls');
 }
 
 describe('config/urls', () => {
