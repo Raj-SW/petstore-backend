@@ -26,8 +26,18 @@ module.exports = {
     'src/utils/**/*.js',
     '!src/**/*.test.js',
   ],
-  coverageReporters: ['text', 'lcov', 'text-summary'],
+  // text/text-summary for logs, lcov for Sonar, json (coverage-final) is the
+  // mergeable raw data for the A2 nyc-merge, json-summary for the PR comment.
+  coverageReporters: ['text', 'text-summary', 'lcov', 'json', 'json-summary'],
   coverageDirectory: 'coverage',
+
+  // 'default' keeps console output; jest-junit emits JUnit XML for the
+  // test-results report. Output path/name overridden per job via
+  // JEST_JUNIT_OUTPUT_DIR / JEST_JUNIT_OUTPUT_NAME env vars in CI.
+  reporters: [
+    'default',
+    ['jest-junit', { outputDirectory: 'reports/junit', outputName: 'junit.xml' }],
+  ],
 
   projects: [
     {

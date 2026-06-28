@@ -21,6 +21,12 @@ jobs:
 
       - run: npm ci
 
+      # Generate coverage so Sonar reports the real % instead of 0.0%.
+      # A single Jest run over both projects auto-merges coverage into
+      # coverage/lcov.info (the path sonar-project.properties points at).
+      - name: Generate coverage
+        run: npm run test:coverage
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
