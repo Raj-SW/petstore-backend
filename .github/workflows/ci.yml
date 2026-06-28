@@ -12,8 +12,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
-    name: Unit + Integration
+  unit:
+    name: Unit tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -28,20 +28,45 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Fail fast: unit tests are quick and need no database.
-      - name: Unit tests
-        run: npm run test:unit
+      # Fast, no database required.
+      - name: Run unit tests
+        run: npm run test:unit -- --coverage
 
-      # Integration tests use an in-memory MongoDB replica set
-      # (mongodb-memory-server), so no service container is required.
-      # Run with coverage so the artifact reflects unit + integration combined.
-      - name: Integration tests + coverage
-        run: npm run test:coverage
-
-      - name: Upload coverage report
+      - name: Upload unit coverage
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: coverage
+          name: coverage-unit
+          path: coverage/
+          if-no-files-found: warn
+
+  integration:
+    name: Integration tests
+    runs-on: ubuntu-latest
+    # Fail fast: don't spend the slower integration job if units are red.
+    needs: unit
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Uses an in-memory MongoDB replica set (mongodb-memory-server);
+      # no service container required.
+      - name: Run integration tests
+        run: npm run test:integration -- --coverage
+
+      - name: Upload integration coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-integration
           path: coverage/
           if-no-files-found: warn

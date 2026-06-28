@@ -25,7 +25,7 @@ Two decisions changed from the first draft after review:
 
 Suite: **42 test suites / 311 tests green** (7 unit co-located + 35 integration). The old narrow `collectCoverageFrom` hid this — services/models/utils were never in the denominator.
 
-**Phase 1 delivered:** Jest `projects` split (`unit` / `integration`), co-located the 7 existing unit tests, `test:unit` / `test:integration` / `test:all` scripts, corrected coverage scope, and a GitHub Actions `ci.yml` running unit→integration+coverage on push/PR to `main`/`develop`. The 90% ratchet gate and e2e layer are deferred to Phases 2–3.
+**Phase 1 delivered:** Jest `projects` split (`unit` / `integration`), co-located the 7 existing unit tests, `test:unit` / `test:integration` / `test:all` scripts, corrected coverage scope, and a GitHub Actions `ci.yml` with **two separate jobs** — `unit` and `integration` (the latter `needs: unit` for fail-fast) — each producing its own coverage artifact, on push/PR to `main`/`develop`. The 90% ratchet gate and e2e layer are deferred to Phases 2–3.
 
 The sections below are the original design; where they say "Vitest," read "Jest," and where they say `tests/unit/`, read co-located `src/**/*.test.js`.
 
