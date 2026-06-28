@@ -45,8 +45,15 @@ const notFoundHandler = (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 };
 
+// Factory helper used by validateRequest and professionalController. Mirrors the
+// (statusCode, message) argument order those call sites expect. Without this the
+// `createError` import resolves to undefined and validation failures throw a
+// TypeError (surfacing as a 500 instead of the intended 4xx).
+const createError = (statusCode, message) => new AppError(message, statusCode);
+
 module.exports = {
   AppError,
+  createError,
   errorHandler,
   notFoundHandler,
 };
