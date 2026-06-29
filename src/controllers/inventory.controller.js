@@ -58,10 +58,10 @@ function expandProduct(p, globalThreshold) {
 // Query: status (out|low|in), category, search, threshold, page, limit
 exports.getInventory = async (req, res, next) => {
   try {
-    const page = Math.max(1, parseInt(req.query.page, 10) || 1);
-    const limit = Math.min(200, Math.max(1, parseInt(req.query.limit, 10) || 50));
+    const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
+    const limit = Math.min(200, Math.max(1, Number.parseInt(req.query.limit, 10) || 50));
     const skip = (page - 1) * limit;
-    const threshold = parseInt(req.query.threshold, 10) || 10;
+    const threshold = Number.parseInt(req.query.threshold, 10) || 10;
 
     const filter = {};
 
@@ -125,8 +125,8 @@ exports.getInventory = async (req, res, next) => {
 // Per-variant low-stock detection for variant products.
 exports.getLowStock = async (req, res, next) => {
   try {
-    const threshold = parseInt(req.query.threshold, 10) || 10;
-    const limit = Math.min(100, parseInt(req.query.limit, 10) || 20);
+    const threshold = Number.parseInt(req.query.threshold, 10) || 10;
+    const limit = Math.min(100, Number.parseInt(req.query.limit, 10) || 20);
 
     const products = await Product.find({}).lean();
     const rows = products
@@ -146,8 +146,8 @@ exports.getLowStock = async (req, res, next) => {
 exports.getMovements = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const page = Math.max(1, parseInt(req.query.page, 10) || 1);
-    const limit = Math.min(100, Math.max(1, parseInt(req.query.limit, 10) || 50));
+    const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
+    const limit = Math.min(100, Math.max(1, Number.parseInt(req.query.limit, 10) || 50));
     const skip = (page - 1) * limit;
 
     const product = await Product.findById(id).lean();
@@ -247,7 +247,7 @@ async function applyStockChange({
 // Body: { units: Number (>0), variantId?, note? }
 exports.restockProduct = async (req, res, next) => {
   try {
-    const units = parseInt(req.body.units, 10);
+    const units = Number.parseInt(req.body.units, 10);
     if (!units || units <= 0) {
       return next(new AppError('units must be a positive integer', 400));
     }
@@ -269,7 +269,7 @@ exports.restockProduct = async (req, res, next) => {
 // Body: { newQuantity: Number (>=0), variantId?, note (required) }
 exports.adjustStock = async (req, res, next) => {
   try {
-    const newQty = parseInt(req.body.newQuantity, 10);
+    const newQty = Number.parseInt(req.body.newQuantity, 10);
     const note = req.body.note?.trim();
 
     if (newQty == null || Number.isNaN(newQty) || newQty < 0) {

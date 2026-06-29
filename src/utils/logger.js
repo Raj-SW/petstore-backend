@@ -1,5 +1,5 @@
 const winston = require('winston');
-const path = require('path');
+const path = require('node:path');
 
 // Define log format
 const logFormat = winston.format.combine(
@@ -29,7 +29,7 @@ const transports = [
 
 if (isDevelopment) {
   try {
-    const fs = require('fs');
+    const fs = require('node:fs');
     const logsDir = path.join(__dirname, '../../logs');
     if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir, { recursive: true });
     transports.push(

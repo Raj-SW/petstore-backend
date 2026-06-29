@@ -108,6 +108,16 @@ describe('ValidationUtils.validateEmail', () => {
     expect(() => ValidationUtils.validateEmail('')).toThrow('required');
     expect(() => ValidationUtils.validateEmail('nope')).toThrow('Invalid Email format');
   });
+  // Regression net for the bounded-quantifier ReDoS fix (S8786): common
+  // real-world addresses must still pass after the regex change.
+  it('accepts plus-tags, dots and subdomains', () => {
+    expect(() => ValidationUtils.validateEmail('user.name+tag@sub.example.co.uk')).not.toThrow();
+    expect(() => ValidationUtils.validateEmail('nsseetohul@gmail.com')).not.toThrow();
+  });
+  it('still rejects addresses with spaces or a missing dot in the domain', () => {
+    expect(() => ValidationUtils.validateEmail('a b@c.com')).toThrow('Invalid Email format');
+    expect(() => ValidationUtils.validateEmail('a@bcom')).toThrow('Invalid Email format');
+  });
 });
 
 describe('ValidationUtils.validatePhoneNumber', () => {

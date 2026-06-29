@@ -28,8 +28,8 @@ exports.getTips = async (req, res, next) => {
       query.$or = [{ title: rx }, { breed: rx }];
     }
 
-    const pageNum = Math.max(1, parseInt(page, 10) || 1);
-    const limitNum = Math.min(50, Math.max(1, parseInt(limit, 10) || 12));
+    const pageNum = Math.max(1, Number.parseInt(page, 10) || 1);
+    const limitNum = Math.min(50, Math.max(1, Number.parseInt(limit, 10) || 12));
 
     const [tips, total] = await Promise.all([
       PetCareTip.find(query)

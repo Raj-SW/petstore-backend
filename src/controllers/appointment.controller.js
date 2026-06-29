@@ -175,7 +175,7 @@ exports.getUserAppointments = async (req, res, next) => {
       ])
       .sort({ dateTime: -1 })
       .skip(skip)
-      .limit(parseInt(limit, 10));
+      .limit(Number.parseInt(limit, 10));
 
     const total = await Appointment.countDocuments(query);
 
@@ -184,7 +184,7 @@ exports.getUserAppointments = async (req, res, next) => {
       data: appointments,
       pagination: {
         total,
-        page: parseInt(page, 10),
+        page: Number.parseInt(page, 10),
         pages: Math.ceil(total / limit),
       },
     });
@@ -216,7 +216,7 @@ exports.getProfessionalAppointments = async (req, res, next) => {
       ])
       .sort({ dateTime: 1 })
       .skip(skip)
-      .limit(parseInt(limit, 10));
+      .limit(Number.parseInt(limit, 10));
 
     const total = await Appointment.countDocuments(query);
 
@@ -225,7 +225,7 @@ exports.getProfessionalAppointments = async (req, res, next) => {
       data: appointments,
       pagination: {
         total,
-        page: parseInt(page, 10),
+        page: Number.parseInt(page, 10),
         pages: Math.ceil(total / limit),
       },
     });

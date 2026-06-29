@@ -1,5 +1,5 @@
 const winston = require('winston');
-const path = require('path');
+const path = require('node:path');
 
 const logFormat = winston.format.combine(
   winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),

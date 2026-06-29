@@ -46,4 +46,18 @@ describe('config/urls', () => {
     expect(u.FRONTEND_BASE).toBe('http://localhost:5173');
     expect(u.API_BASE).toBe('http://localhost:5000/api');
   });
+
+  // Regression net for the regex->loop slash-trim refactor (ReDoS fix, S8786):
+  // behaviour must be identical to the old /^\/+|\/+$/ implementation.
+  it('strips multiple leading and trailing slashes from path segments', () => {
+    const u = loadUrls({ FRONTEND_URL: 'https://app.example.com', API_PUBLIC_URL: 'https://api.example.com' });
+    expect(u.frontendUrl('///petshop///')).toBe('https://app.example.com/petshop');
+    expect(u.frontendUrl('')).toBe('https://app.example.com');
+    expect(u.apiUrl('//a/b//')).toBe('https://api.example.com/a/b');
+  });
+
+  it('collapses trailing slashes on the resolved base URL', () => {
+    expect(loadUrls({ FRONTEND_URL: 'https://f.example.com////' }).FRONTEND_BASE)
+      .toBe('https://f.example.com');
+  });
 });

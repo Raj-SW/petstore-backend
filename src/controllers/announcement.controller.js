@@ -12,7 +12,7 @@ const logger = require('../utils/logger');
 const { apiUrl, productUrl, shopUrl, frontendUrl } = require('../config/urls');
 const { formatMUR } = require('../utils/currency');
 
-const MAX_RECIPIENTS = parseInt(process.env.ANNOUNCEMENT_MAX_RECIPIENTS || '500', 10);
+const MAX_RECIPIENTS = Number.parseInt(process.env.ANNOUNCEMENT_MAX_RECIPIENTS || '500', 10);
 
 const PRODUCT_TYPES = new Set(['sale', 'new_product', 'price_drop', 'restock']);
 

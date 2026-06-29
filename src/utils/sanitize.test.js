@@ -1,4 +1,4 @@
-const { toSafeString, escapeRegExp } = require('./sanitize');
+const { toSafeString, escapeRegExp, sanitizeForLog } = require('./sanitize');
 
 describe('toSafeString', () => {
   it('returns a plain string unchanged', () => {
@@ -47,5 +47,26 @@ describe('escapeRegExp', () => {
   it('returns an empty string for null or undefined', () => {
     expect(escapeRegExp(null)).toBe('');
     expect(escapeRegExp(undefined)).toBe('');
+  });
+});
+
+describe('sanitizeForLog', () => {
+  it('leaves a clean string unchanged', () => {
+    expect(sanitizeForLog('SUMMER10')).toBe('SUMMER10');
+  });
+
+  it('keeps normal spaces', () => {
+    expect(sanitizeForLog('hi there friend')).toBe('hi there friend');
+  });
+
+  it('strips CR and LF so user input cannot forge new log lines', () => {
+    expect(sanitizeForLog('code\r\nINFO fake admin login')).toBe('codeINFO fake admin login');
+    expect(sanitizeForLog('a\nb')).toBe('ab');
+  });
+
+  it('coerces non-strings and returns empty for null/undefined', () => {
+    expect(sanitizeForLog(42)).toBe('42');
+    expect(sanitizeForLog(null)).toBe('');
+    expect(sanitizeForLog(undefined)).toBe('');
   });
 });

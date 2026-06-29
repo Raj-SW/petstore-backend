@@ -4,6 +4,7 @@ const Product = require('../models/product.model');
 const StockMovement = require('../models/stockMovement.model');
 const { AppError } = require('../middlewares/errorHandler');
 const { sendEmail } = require('../utils/email');
+const { sanitizeForLog } = require('../utils/sanitize');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const logger = require('../utils/logger');
 const Invoice        = require('../models/invoice.model');
@@ -33,7 +34,7 @@ exports.createOrder = async (req, res, next) => {
       discountPercent = 10;
       discountCode = 'SUMMER10';
     } else if (cart.discountCode) {
-      logger.warn(`Invalid discount code: ${cart.discountCode}`);
+      logger.warn(`Invalid discount code: ${sanitizeForLog(cart.discountCode)}`);
     }
 
     // Build the order (validates products, reserves stock, logs movements)
@@ -97,8 +98,8 @@ exports.createOrder = async (req, res, next) => {
 // Get all orders (admin only)
 exports.getOrders = async (req, res, next) => {
   try {
-    const page = Math.max(1, parseInt(req.query.page, 10) || 1);
-    const limit = Math.max(1, parseInt(req.query.limit, 10) || 20);
+    const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
+    const limit = Math.max(1, Number.parseInt(req.query.limit, 10) || 20);
     const skip = (page - 1) * limit;
 
     const total = await Order.countDocuments();

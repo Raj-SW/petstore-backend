@@ -270,7 +270,7 @@ class ProfessionalService {
       'saturday',
       'sunday',
     ];
-    const timeRegex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
+    const timeRegex = /^([0-1]?\d|2[0-3]):[0-5]\d$/;
 
     Object.keys(availability).forEach((day) => {
       if (!validDays.includes(day.toLowerCase())) {

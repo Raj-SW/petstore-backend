@@ -38,7 +38,7 @@ exports.uploadFeedbackImage = async (req, res, next) => {
 // GET /api/feedback — public, approved only
 exports.getFeedback = async (req, res, next) => {
   try {
-    const limit = Math.min(50, Math.max(1, parseInt(req.query.limit, 10) || 12));
+    const limit = Math.min(50, Math.max(1, Number.parseInt(req.query.limit, 10) || 12));
     const feedback = await Feedback.find({ approved: true }).sort('-createdAt').limit(limit);
     return res.status(200).json({ success: true, count: feedback.length, data: feedback });
   } catch (error) {

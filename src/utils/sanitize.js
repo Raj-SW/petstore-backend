@@ -36,4 +36,24 @@ function escapeRegExp(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-module.exports = { toSafeString, escapeRegExp };
+/**
+ * Strip control characters (including CR/LF) from a user-supplied value before
+ * it is interpolated into a log message, preventing log-forging / log-injection
+ * (SonarQube jssecurity:S5145). Char-code filtering is used instead of a
+ * control-character regex literal so the source stays free of control chars.
+ *
+ * @param {*} value
+ * @returns {string}
+ */
+function sanitizeForLog(value) {
+  if (value === null || value === undefined) return '';
+  let out = '';
+  const str = String(value);
+  for (let i = 0; i < str.length; i += 1) {
+    const code = str.charCodeAt(i);
+    if (code > 0x1f && code !== 0x7f) out += str[i];
+  }
+  return out;
+}
+
+module.exports = { toSafeString, escapeRegExp, sanitizeForLog };
