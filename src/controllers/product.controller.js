@@ -477,9 +477,9 @@ exports.getFilterOptions = async (req, res, next) => {
     return res.status(200).json({
       success: true,
       data: {
-        categories: categories.filter(Boolean).sort(),
-        colors: colors.filter(Boolean).sort(),
-        genders: genders.filter(Boolean).sort(),
+        categories: categories.filter(Boolean).sort((a, b) => a.localeCompare(b)),
+        colors: colors.filter(Boolean).sort((a, b) => a.localeCompare(b)),
+        genders: genders.filter(Boolean).sort((a, b) => a.localeCompare(b)),
       },
     });
   } catch (error) {
