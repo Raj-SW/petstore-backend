@@ -306,12 +306,17 @@ exports.cancelOrder = async (req, res, next) => {
       // Use .lean() so we get raw MongoDB fields including legacy `stock` field
       const prod = await Product.findById(item.product).lean();
       // Resolve quantity: prefer `quantity` field; fall back to legacy `stock`
-      const prevQty = prod
-        ? (prod.quantity !== undefined && prod.quantity !== null ? prod.quantity : (prod.stock ?? 0))
-        : 0;
+      let prevQty;
+      if (!prod) {
+        prevQty = 0;
+      } else if (prod.quantity != null) {
+        prevQty = prod.quantity;
+      } else {
+        prevQty = prod.stock ?? 0;
+      }
       const newQty = prevQty + item.quantity;
       // Restore the correct field (match whichever field was decremented)
-      const stockField = (prod && prod.quantity !== undefined && prod.quantity !== null) ? 'quantity' : 'stock';
+      const stockField = prod?.quantity != null ? 'quantity' : 'stock';
       await Product.findByIdAndUpdate(item.product, {
         $inc: { [stockField]: item.quantity },
       });

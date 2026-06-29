@@ -19,7 +19,7 @@ function collectImagePublicIds(source) {
     for (const section of source.sections) {
       if (Array.isArray(section.images)) {
         for (const img of section.images) {
-          if (img && img.publicId) ids.push(img.publicId);
+          if (img?.publicId) ids.push(img.publicId);
         }
       }
     }

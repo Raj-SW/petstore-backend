@@ -421,7 +421,7 @@ exports.deleteAppointment = async (req, res, next) => {
             appointmentType: appointment.appointmentType,
             status: 'cancelled',
             dateTime: appointment.dateTime,
-            petName: appointment.petId.name || (appointment.petId && appointment.petId.name),
+            petName: appointment.petId?.name,
           },
         });
       } catch (emailError) {
@@ -438,7 +438,7 @@ exports.deleteAppointment = async (req, res, next) => {
             appointmentType: appointment.appointmentType,
             status: 'cancelled',
             dateTime: appointment.dateTime,
-            petName: appointment.petId.name || (appointment.petId && appointment.petId.name),
+            petName: appointment.petId?.name,
           },
         });
       } catch (emailError) {

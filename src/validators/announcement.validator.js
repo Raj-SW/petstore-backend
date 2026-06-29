@@ -1,8 +1,8 @@
 const Joi = require('joi');
 const { AppError } = require('../middlewares/errorHandler');
 
-const PRODUCT_TYPES = ['sale', 'new_product', 'price_drop', 'restock'];
-const CONTENT_TYPES = ['new_tip', 'new_post'];
+const PRODUCT_TYPES = new Set(['sale', 'new_product', 'price_drop', 'restock']);
+const CONTENT_TYPES = new Set(['new_tip', 'new_post']);
 const ALL_TYPES = [...PRODUCT_TYPES, ...CONTENT_TYPES, 'event', 'general'];
 
 const validateAnnouncement = (req, res, next) => {
@@ -48,23 +48,23 @@ const validateAnnouncement = (req, res, next) => {
 
   // Per-type target requirements
   const t = value.type;
-  if (PRODUCT_TYPES.includes(t)) {
+  if (PRODUCT_TYPES.has(t)) {
     if (!Array.isArray(value.productIds) || value.productIds.length === 0) {
       return next(new AppError('Select at least one product', 400));
     }
-  } else if (CONTENT_TYPES.includes(t)) {
-    if (!value.contentRef || !value.contentRef.kind || !value.contentRef.id) {
+  } else if (CONTENT_TYPES.has(t)) {
+    if (!value.contentRef?.kind || !value.contentRef?.id) {
       return next(new AppError('A tip or post must be selected', 400));
     }
   } else if (t === 'event') {
-    if (!value.event || !value.event.title || !value.event.startsAt) {
+    if (!value.event?.title || !value.event?.startsAt) {
       return next(new AppError('Event title and start date are required', 400));
     }
     if (value.event.endsAt && new Date(value.event.endsAt) < new Date(value.event.startsAt)) {
       return next(new AppError('Event end date must be on or after the start date', 400));
     }
   } else if (t === 'general') {
-    if (!value.message && !(value.cta && value.cta.url)) {
+    if (!value.message && !value.cta?.url) {
       return next(new AppError('A general announcement needs a message or a call-to-action', 400));
     }
   }

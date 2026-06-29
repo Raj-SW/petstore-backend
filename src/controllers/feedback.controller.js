@@ -8,7 +8,7 @@ const logger = require('../utils/logger');
 exports.submitFeedback = async (req, res, next) => {
   try {
     let photos = [];
-    if (req.files && req.files.length) {
+    if (req.files?.length) {
       const results = await uploadMultipleToCloudinary(req.files.slice(0, 3), 'feedback');
       photos = results.map((r) => ({ url: r.url, publicId: r.publicId }));
     }

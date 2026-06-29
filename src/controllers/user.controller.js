@@ -108,7 +108,7 @@ exports.uploadAvatar = async (req, res, next) => {
     const user = await User.findById(req.user.id);
 
     // Delete old Cloudinary image if present
-    if (user.profileImage && user.profileImage.publicId) {
+    if (user.profileImage?.publicId) {
       await deleteMultipleFromCloudinary([user.profileImage.publicId]);
     }
 

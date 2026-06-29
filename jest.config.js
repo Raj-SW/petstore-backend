@@ -52,6 +52,8 @@ module.exports = {
       globalSetup: '<rootDir>/tests/helpers/setup.js',
       globalTeardown: '<rootDir>/tests/helpers/teardown.js',
       setupFiles: ['<rootDir>/tests/helpers/env-setup.js'],
+      // Shared connect-once + clear-all-collections isolation (see db-lifecycle.js).
+      setupFilesAfterEnv: ['<rootDir>/tests/helpers/db-lifecycle.js'],
       testMatch: ['<rootDir>/tests/integration/**/*.test.js'],
     },
   ],

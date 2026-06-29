@@ -11,12 +11,12 @@ const validateRequest = (schema, property = 'body') => (req, res, next) => {
     stripUnknown: true,
   });
 
-  if (!error) {
-    next();
-  } else {
+  if (error) {
     const { details } = error;
     const message = details.map((i) => i.message).join(', ');
     next(createError(400, message));
+  } else {
+    next();
   }
 };
 

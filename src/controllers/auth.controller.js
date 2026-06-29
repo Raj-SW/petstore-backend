@@ -161,6 +161,7 @@ const refreshToken = async (req, res, next) => {
       data: tokens,
     });
   } catch (error) {
+    logger.warn('Refresh token verification failed', { error: error.message });
     next(new AppError('Invalid refresh token', 401));
   }
 };

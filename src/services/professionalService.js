@@ -195,7 +195,7 @@ class ProfessionalService {
       return professionals
         .filter((prof) => {
           const availability = prof.professionalInfo.availability.get(day);
-          if (!availability || !availability.isAvailable) return false;
+          if (!availability?.isAvailable) return false;
 
           const { startTime } = availability;
           const { endTime } = availability;
@@ -261,7 +261,7 @@ class ProfessionalService {
     }
 
     // Validate availability format
-    const validDays = [
+    const validDays = new Set([
       'monday',
       'tuesday',
       'wednesday',
@@ -269,11 +269,11 @@ class ProfessionalService {
       'friday',
       'saturday',
       'sunday',
-    ];
+    ]);
     const timeRegex = /^([0-1]?\d|2[0-3]):[0-5]\d$/;
 
     Object.keys(availability).forEach((day) => {
-      if (!validDays.includes(day.toLowerCase())) {
+      if (!validDays.has(day.toLowerCase())) {
         throw new AppError(`Invalid day: ${day}`, 400);
       }
 

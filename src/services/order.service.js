@@ -118,7 +118,7 @@ async function buildOrder({
     const prod = await Product.findById(item.product).session(session);
     let prevQty;
     let newQty;
-    if (item.variantId && prod && prod.variants && prod.variants.id(item.variantId)) {
+    if (item.variantId && prod?.variants?.id(item.variantId)) {
       const v = prod.variants.id(item.variantId);
       prevQty = v.quantity;
       newQty = Math.max(0, prevQty - item.quantity);
@@ -129,11 +129,15 @@ async function buildOrder({
         { session },
       );
     } else {
-      prevQty = prod
-        ? (prod.quantity !== undefined && prod.quantity !== null ? prod.quantity : (prod.stock ?? 0))
-        : 0;
+      if (!prod) {
+        prevQty = 0;
+      } else if (prod.quantity != null) {
+        prevQty = prod.quantity;
+      } else {
+        prevQty = prod.stock ?? 0;
+      }
       newQty = Math.max(0, prevQty - item.quantity);
-      const stockField = (prod && prod.quantity !== undefined && prod.quantity !== null) ? 'quantity' : 'stock';
+      const stockField = prod?.quantity != null ? 'quantity' : 'stock';
       // eslint-disable-next-line no-await-in-loop
       await Product.findByIdAndUpdate(item.product, { $inc: { [stockField]: -item.quantity } }, { session });
     }

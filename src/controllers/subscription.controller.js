@@ -197,9 +197,9 @@ exports.processDue = async (req, res, next) => {
             // eslint-disable-next-line no-await-in-loop
             const product = await Product.findById(it.product).session(session);
             let available = 0;
-            if (it.variantId && product && product.variants && product.variants.id(it.variantId)) {
+            if (it.variantId && product?.variants?.id(it.variantId)) {
               available = product.variants.id(it.variantId).quantity ?? 0;
-            } else if (product && product.quantity != null) {
+            } else if (product?.quantity != null) {
               available = product.quantity;
             }
             if (!product || available < it.quantity) { inStock = false; break; }

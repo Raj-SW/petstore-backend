@@ -108,7 +108,7 @@ exports.getProducts = async (req, res, next) => {
     // Build query — 'all' skips the filter (admin view)
     const query = {};
     if (isActiveRaw !== 'all') {
-      query.isActive = isActiveRaw === 'false' ? false : true;
+      query.isActive = isActiveRaw !== 'false';
     }
 
     // Filter by featured flag when explicitly requested
@@ -221,7 +221,8 @@ exports.updateProduct = async (req, res, next) => {
 
     // ImageManager flow: final ordered refs arrive as `imageRefs` JSON.
     const imageRefs = parseJsonField(req.body.imageRefs, undefined);
-    const { keepImages: keepImagesStr, imageRefs: _ignore, ...updateData } = req.body;
+    const { keepImages: keepImagesStr, ...updateData } = req.body;
+    delete updateData.imageRefs;
 
     // findByIdAndUpdate skips the pre('validate') derive hook, so derive here.
     if (Array.isArray(updateData.variants) && updateData.variants.length > 0) {

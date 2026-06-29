@@ -32,7 +32,7 @@ exports.addToCart = async (req, res, next) => {
     const product = await Product.findById(productId);
 
     // Variant products require a variant selection.
-    if (product && product.hasVariants && !variantId) {
+    if (product?.hasVariants && !variantId) {
       return next(new AppError('Please select a size/option', 400));
     }
 
