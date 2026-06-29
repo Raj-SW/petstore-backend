@@ -19,7 +19,8 @@ const signup = async (req, res, next) => {
   try {
     const { name, email, phoneNumber, address, password } = req.body;
 
-    const existingUser = await User.findOne({ email });
+    // String()-cast guards against NoSQL operator injection (e.g. { $ne: null })
+    const existingUser = await User.findOne({ email: String(email) });
     if (existingUser) {
       return next(new AppError('Email already registered', 400));
     }
@@ -66,7 +67,7 @@ const login = async (req, res, next) => {
     const { email, password } = req.body;
 
     // findOne with +password because password field has select: false on the schema
-    const user = await User.findOne({ email }).select('+password');
+    const user = await User.findOne({ email: String(email) }).select('+password');
     if (!user || !(await user.comparePassword(password))) {
       return next(new AppError('Invalid email or password', 401));
     }
@@ -169,7 +170,7 @@ const forgotPassword = async (req, res, next) => {
   try {
     const { email } = req.body;
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: String(email) });
     if (!user) {
       return next(new AppError('No user found with that email', 404));
     }
@@ -214,7 +215,7 @@ const resetPassword = async (req, res, next) => {
     const { token, password } = req.body;
 
     const user = await User.findOne({
-      passwordResetToken: token,
+      passwordResetToken: String(token),
       passwordResetExpires: { $gt: Date.now() },
     });
 
@@ -275,7 +276,7 @@ const resendVerificationEmail = async (req, res, next) => {
   try {
     const { email } = req.body;
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: String(email) });
     if (!user) {
       return next(new AppError('No user found with that email', 404));
     }

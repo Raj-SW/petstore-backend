@@ -1,5 +1,6 @@
 const Transaction  = require('../models/transaction.model');
 const { AppError } = require('../middlewares/errorHandler');
+const { toSafeString } = require('../utils/sanitize');
 
 // ── GET /admin/transactions ──────────────────────────────────────────
 exports.getTransactions = async (req, res, next) => {
@@ -9,9 +10,12 @@ exports.getTransactions = async (req, res, next) => {
     const skip  = (page - 1) * limit;
 
     const filter = {};
-    if (req.query.type)          filter.type          = req.query.type;
-    if (req.query.paymentMethod) filter.paymentMethod = req.query.paymentMethod;
-    if (req.query.status)        filter.status        = req.query.status;
+    const type          = toSafeString(req.query.type);
+    const paymentMethod = toSafeString(req.query.paymentMethod);
+    const status        = toSafeString(req.query.status);
+    if (type)          filter.type          = type;
+    if (paymentMethod) filter.paymentMethod = paymentMethod;
+    if (status)        filter.status        = status;
     if (req.query.dateFrom || req.query.dateTo) {
       filter.createdAt = {};
       if (req.query.dateFrom) filter.createdAt.$gte = new Date(req.query.dateFrom);

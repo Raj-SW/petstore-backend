@@ -10,6 +10,7 @@ const {
 } = require('../utils/cloudinary');
 const { deriveProductFromVariants } = require('../utils/productVariants');
 const { predictDemand, productCoverage } = require('../services/subscription.analytics.service');
+const { escapeRegExp } = require('../utils/sanitize');
 
 // Parse a JSON field that may arrive as a string (FormData) or be absent.
 function parseJsonField(value, fallback) {
@@ -118,8 +119,7 @@ exports.getProducts = async (req, res, next) => {
     if (categories) {
       const categoryArray = Array.isArray(categories) ? categories : [categories];
       // Case-insensitive exact match so a "Dogs" filter matches stored "dogs"
-      const escapeRegex = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      query.categories = { $in: categoryArray.map((c) => new RegExp(`^${escapeRegex(c)}$`, 'i')) };
+      query.categories = { $in: categoryArray.map((c) => new RegExp(`^${escapeRegExp(c)}$`, 'i')) };
     }
 
     if (minPrice || maxPrice) {
@@ -139,10 +139,11 @@ exports.getProducts = async (req, res, next) => {
     }
 
     if (search) {
+      const safeSearch = escapeRegExp(search);
       query.$or = [
-        { name: { $regex: search, $options: 'i' } },
-        { description: { $regex: search, $options: 'i' } },
-        { categories: { $regex: search, $options: 'i' } },
+        { name: { $regex: safeSearch, $options: 'i' } },
+        { description: { $regex: safeSearch, $options: 'i' } },
+        { categories: { $regex: safeSearch, $options: 'i' } },
       ];
     }
 
@@ -440,7 +441,7 @@ exports.getProductsByCategory = async (req, res, next) => {
       return next(new AppError('Category is required', 400));
     }
 
-    const regex = new RegExp(category, 'i');
+    const regex = new RegExp(escapeRegExp(category), 'i');
     const filter = {
       categories: { $elemMatch: { $regex: regex } },
       isActive: true,

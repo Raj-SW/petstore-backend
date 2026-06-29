@@ -36,7 +36,7 @@ exports.updateProfile = async (req, res, next) => {
 
     // Check if email is already taken by another user
     if (email) {
-      const existingUser = await User.findOne({ email, _id: { $ne: req.user.id } });
+      const existingUser = await User.findOne({ email: String(email), _id: { $ne: req.user.id } });
       if (existingUser) {
         return next(new AppError('Email is already in use', 400));
       }

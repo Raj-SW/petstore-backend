@@ -3,6 +3,7 @@ const Contact = require('../models/contact.model');
 const { sendEmail } = require('../utils/email');
 const { AppError } = require('../middlewares/errorHandler');
 const logger = require('../utils/logger');
+const { toSafeString } = require('../utils/sanitize');
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || process.env.SMTP_FROM;
 
@@ -60,7 +61,8 @@ exports.getContacts = async (req, res, next) => {
     const skip  = (page - 1) * limit;
 
     const filter = {};
-    if (req.query.status) filter.status = req.query.status;
+    const status = toSafeString(req.query.status);
+    if (status) filter.status = status;
 
     const [contacts, total] = await Promise.all([
       Contact.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit),

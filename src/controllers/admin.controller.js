@@ -248,7 +248,9 @@ exports.listUsers = async (req, res, next) => {
 
     const filter = {};
     if (role) {
-      filter.role = role;
+      // role is already constrained to VALID_ROLES above; String() cast also
+      // satisfies static NoSQL-injection analysis
+      filter.role = String(role);
     }
 
     const sensitiveFields = '-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires';

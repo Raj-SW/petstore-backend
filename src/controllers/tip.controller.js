@@ -4,6 +4,7 @@ const { AppError } = require('../middlewares/errorHandler');
 const { uploadToCloudinary, deleteMultipleFromCloudinary } = require('../utils/cloudinary');
 const { coerceCoverImage, collectImagePublicIds } = require('../utils/contentImages');
 const logger = require('../utils/logger');
+const { toSafeString, escapeRegExp } = require('../utils/sanitize');
 
 // GET /api/tips — public, published only
 exports.getTips = async (req, res, next) => {
@@ -14,13 +15,16 @@ exports.getTips = async (req, res, next) => {
     } = req.query;
 
     const query = { published: true };
-    if (animalType) query.animalType = animalType;
-    if (category) query.category = category;
-    if (difficulty) query.difficulty = difficulty;
+    const safeAnimalType = toSafeString(animalType);
+    const safeCategory = toSafeString(category);
+    const safeDifficulty = toSafeString(difficulty);
+    if (safeAnimalType) query.animalType = safeAnimalType;
+    if (safeCategory) query.category = safeCategory;
+    if (safeDifficulty) query.difficulty = safeDifficulty;
     if (featured !== undefined) query.featured = featured === 'true';
-    if (exclude && mongoose.isValidObjectId(exclude)) query._id = { $ne: exclude };
+    if (exclude && mongoose.isValidObjectId(exclude)) query._id = { $ne: String(exclude) };
     if (search) {
-      const rx = new RegExp(search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
+      const rx = new RegExp(escapeRegExp(search), 'i');
       query.$or = [{ title: rx }, { breed: rx }];
     }
 

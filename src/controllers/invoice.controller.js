@@ -3,6 +3,7 @@ const Transaction    = require('../models/transaction.model');
 const Order          = require('../models/order.model');
 const { generateInvoice, generatePDF } = require('../services/invoice.service');
 const { AppError }   = require('../middlewares/errorHandler');
+const { toSafeString, escapeRegExp } = require('../utils/sanitize');
 
 // ── GET /admin/invoices ──────────────────────────────────────────────
 exports.getInvoices = async (req, res, next) => {
@@ -12,14 +13,15 @@ exports.getInvoices = async (req, res, next) => {
     const skip  = (page - 1) * limit;
 
     const filter = {};
-    if (req.query.status) filter.status = req.query.status;
+    const status = toSafeString(req.query.status);
+    if (status) filter.status = status;
     if (req.query.dateFrom || req.query.dateTo) {
       filter.paidAt = {};
       if (req.query.dateFrom) filter.paidAt.$gte = new Date(req.query.dateFrom);
       if (req.query.dateTo)   filter.paidAt.$lte = new Date(req.query.dateTo);
     }
     if (req.query.search) {
-      filter.invoiceNumber = { $regex: req.query.search, $options: 'i' };
+      filter.invoiceNumber = { $regex: escapeRegExp(req.query.search), $options: 'i' };
     }
 
     const [invoices, total] = await Promise.all([

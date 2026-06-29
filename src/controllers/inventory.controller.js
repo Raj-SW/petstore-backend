@@ -2,6 +2,7 @@ const Product = require('../models/product.model');
 const StockMovement = require('../models/stockMovement.model');
 const { AppError } = require('../middlewares/errorHandler');
 const { deriveProductFromVariants } = require('../utils/productVariants');
+const { toSafeString } = require('../utils/sanitize');
 
 // ── Helpers ───────────────────────────────────────────────────────────
 
@@ -153,7 +154,8 @@ exports.getMovements = async (req, res, next) => {
     if (!product) return next(new AppError('Product not found', 404));
 
     const query = { product: id };
-    if (req.query.variantId) query.variantId = req.query.variantId;
+    const variantId = toSafeString(req.query.variantId);
+    if (variantId) query.variantId = variantId;
 
     const [movements, total] = await Promise.all([
       StockMovement.find(query)

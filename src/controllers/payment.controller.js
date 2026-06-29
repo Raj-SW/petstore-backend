@@ -254,7 +254,7 @@ exports.handleWebhook = async (req, res, next) => {
 
     if (result) {
       const order = await Order.findOne({
-        'paymentDetails.transactionId': result.paymentIntentId,
+        'paymentDetails.transactionId': String(result.paymentIntentId),
       });
 
       if (order) {

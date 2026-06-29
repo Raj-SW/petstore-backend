@@ -43,7 +43,7 @@ exports.createAppointment = async (req, res, next) => {
 
     // Validate that the professional exists and has the correct role
     const professional = await User.findOne({
-      _id: professionalId,
+      _id: String(professionalId),
       role: { $in: ['veterinarian', 'groomer', 'trainer'] },
       'professionalInfo.isActive': true,
     });
@@ -64,7 +64,7 @@ exports.createAppointment = async (req, res, next) => {
 
     // Check if time slot is available for professional
     const existingAppointment = await Appointment.findOne({
-      professionalId,
+      professionalId: String(professionalId),
       dateTime: new Date(dateTime),
       status: { $in: ['PENDING', 'CONFIRMED'] },
     });
@@ -74,7 +74,7 @@ exports.createAppointment = async (req, res, next) => {
 
     // Check if time slot is available for pet (double-booking prevention)
     const petDoubleBooking = await Appointment.findOne({
-      petId,
+      petId: String(petId),
       dateTime: new Date(dateTime),
       status: { $in: ['PENDING', 'CONFIRMED'] },
     });
