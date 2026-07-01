@@ -52,7 +52,6 @@ describe('Cart Controller', () => {
   let adminUser;
 
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URI);
   });
 
   beforeEach(async () => {
@@ -69,7 +68,6 @@ describe('Cart Controller', () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.close();
   });
 
   // ─── GET /api/cart ───────────────────────────────────────────────────────────

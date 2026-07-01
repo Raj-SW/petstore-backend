@@ -43,7 +43,7 @@ exports.createAppointment = async (req, res, next) => {
 
     // Validate that the professional exists and has the correct role
     const professional = await User.findOne({
-      _id: professionalId,
+      _id: String(professionalId),
       role: { $in: ['veterinarian', 'groomer', 'trainer'] },
       'professionalInfo.isActive': true,
     });
@@ -64,7 +64,7 @@ exports.createAppointment = async (req, res, next) => {
 
     // Check if time slot is available for professional
     const existingAppointment = await Appointment.findOne({
-      professionalId,
+      professionalId: String(professionalId),
       dateTime: new Date(dateTime),
       status: { $in: ['PENDING', 'CONFIRMED'] },
     });
@@ -74,7 +74,7 @@ exports.createAppointment = async (req, res, next) => {
 
     // Check if time slot is available for pet (double-booking prevention)
     const petDoubleBooking = await Appointment.findOne({
-      petId,
+      petId: String(petId),
       dateTime: new Date(dateTime),
       status: { $in: ['PENDING', 'CONFIRMED'] },
     });
@@ -175,7 +175,7 @@ exports.getUserAppointments = async (req, res, next) => {
       ])
       .sort({ dateTime: -1 })
       .skip(skip)
-      .limit(parseInt(limit, 10));
+      .limit(Number.parseInt(limit, 10));
 
     const total = await Appointment.countDocuments(query);
 
@@ -184,7 +184,7 @@ exports.getUserAppointments = async (req, res, next) => {
       data: appointments,
       pagination: {
         total,
-        page: parseInt(page, 10),
+        page: Number.parseInt(page, 10),
         pages: Math.ceil(total / limit),
       },
     });
@@ -216,7 +216,7 @@ exports.getProfessionalAppointments = async (req, res, next) => {
       ])
       .sort({ dateTime: 1 })
       .skip(skip)
-      .limit(parseInt(limit, 10));
+      .limit(Number.parseInt(limit, 10));
 
     const total = await Appointment.countDocuments(query);
 
@@ -225,7 +225,7 @@ exports.getProfessionalAppointments = async (req, res, next) => {
       data: appointments,
       pagination: {
         total,
-        page: parseInt(page, 10),
+        page: Number.parseInt(page, 10),
         pages: Math.ceil(total / limit),
       },
     });
@@ -421,7 +421,7 @@ exports.deleteAppointment = async (req, res, next) => {
             appointmentType: appointment.appointmentType,
             status: 'cancelled',
             dateTime: appointment.dateTime,
-            petName: appointment.petId.name || (appointment.petId && appointment.petId.name),
+            petName: appointment.petId?.name,
           },
         });
       } catch (emailError) {
@@ -438,7 +438,7 @@ exports.deleteAppointment = async (req, res, next) => {
             appointmentType: appointment.appointmentType,
             status: 'cancelled',
             dateTime: appointment.dateTime,
-            petName: appointment.petId.name || (appointment.petId && appointment.petId.name),
+            petName: appointment.petId?.name,
           },
         });
       } catch (emailError) {

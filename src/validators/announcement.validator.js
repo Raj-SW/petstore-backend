@@ -1,9 +1,33 @@
 const Joi = require('joi');
 const { AppError } = require('../middlewares/errorHandler');
 
-const PRODUCT_TYPES = ['sale', 'new_product', 'price_drop', 'restock'];
-const CONTENT_TYPES = ['new_tip', 'new_post'];
+const PRODUCT_TYPES = new Set(['sale', 'new_product', 'price_drop', 'restock']);
+const CONTENT_TYPES = new Set(['new_tip', 'new_post']);
 const ALL_TYPES = [...PRODUCT_TYPES, ...CONTENT_TYPES, 'event', 'general'];
+
+// Per-type target requirements. Returns an error message, or null when valid.
+function typeTargetError(value) {
+  const t = value.type;
+  if (PRODUCT_TYPES.has(t)) {
+    if (!Array.isArray(value.productIds) || value.productIds.length === 0) {
+      return 'Select at least one product';
+    }
+  } else if (CONTENT_TYPES.has(t)) {
+    if (!value.contentRef?.kind || !value.contentRef?.id) {
+      return 'A tip or post must be selected';
+    }
+  } else if (t === 'event') {
+    if (!value.event?.title || !value.event?.startsAt) {
+      return 'Event title and start date are required';
+    }
+    if (value.event.endsAt && new Date(value.event.endsAt) < new Date(value.event.startsAt)) {
+      return 'Event end date must be on or after the start date';
+    }
+  } else if (t === 'general' && !value.message && !value.cta?.url) {
+    return 'A general announcement needs a message or a call-to-action';
+  }
+  return null;
+}
 
 const validateAnnouncement = (req, res, next) => {
   // Back-compat: an inline product-form notify sends productIds with no type → sale.
@@ -47,27 +71,8 @@ const validateAnnouncement = (req, res, next) => {
   if (error) return next(new AppError(error.details[0].message, 400));
 
   // Per-type target requirements
-  const t = value.type;
-  if (PRODUCT_TYPES.includes(t)) {
-    if (!Array.isArray(value.productIds) || value.productIds.length === 0) {
-      return next(new AppError('Select at least one product', 400));
-    }
-  } else if (CONTENT_TYPES.includes(t)) {
-    if (!value.contentRef || !value.contentRef.kind || !value.contentRef.id) {
-      return next(new AppError('A tip or post must be selected', 400));
-    }
-  } else if (t === 'event') {
-    if (!value.event || !value.event.title || !value.event.startsAt) {
-      return next(new AppError('Event title and start date are required', 400));
-    }
-    if (value.event.endsAt && new Date(value.event.endsAt) < new Date(value.event.startsAt)) {
-      return next(new AppError('Event end date must be on or after the start date', 400));
-    }
-  } else if (t === 'general') {
-    if (!value.message && !(value.cta && value.cta.url)) {
-      return next(new AppError('A general announcement needs a message or a call-to-action', 400));
-    }
-  }
+  const targetError = typeTargetError(value);
+  if (targetError) return next(new AppError(targetError, 400));
 
   req.body = value;
   next();

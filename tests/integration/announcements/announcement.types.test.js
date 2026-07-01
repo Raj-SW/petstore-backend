@@ -18,9 +18,6 @@ describe('Typed announcements (Epic 9b)', () => {
   let adminId;
   let product;
 
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
-  afterAll(async () => { await mongoose.disconnect(); });
-
   beforeEach(async () => {
     await User.deleteMany({}); await Product.deleteMany({}); await Announcement.deleteMany({});
     sendEmail.mockClear();

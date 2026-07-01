@@ -35,8 +35,6 @@ let userId;
 let product;
 
 describe('buildOrder shipping + tax + original price (Epic 11)', () => {
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
-  afterAll(async () => { await mongoose.connection.close(); });
 
   beforeEach(async () => {
     await Product.deleteMany({}); await User.deleteMany({}); await Order.deleteMany({}); await StoreSettings.deleteMany({});

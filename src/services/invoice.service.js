@@ -47,9 +47,10 @@ async function generateInvoice(orderId, userId) {
   const tax = order.tax || 0;
   const taxInclusive = order.taxInclusive !== false;
   // Prefer the order's snapshotted grandTotal; fall back for legacy orders.
+  const taxComponent = taxInclusive ? 0 : tax;
   const grandTotal = typeof order.grandTotal === 'number' && order.grandTotal > 0
     ? order.grandTotal
-    : (subtotal - discount) + shippingFee + (taxInclusive ? 0 : tax);
+    : (subtotal - discount) + shippingFee + taxComponent;
   const total = grandTotal;
 
   // Snapshot customer details so the invoice stays stable after profile edits.

@@ -110,6 +110,14 @@ jobs:
           npx nyc merge _merge .nyc_output/out.json
           npx nyc report --reporter=lcov --reporter=json-summary --reporter=text-summary --report-dir=coverage
 
+      - name: Upload merged coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-merged
+          path: coverage/lcov.info
+          if-no-files-found: error
+
       - name: Merge test results
         run: |
           mkdir -p reports
@@ -161,13 +169,18 @@ jobs:
           cache: npm
       - run: npm ci
 
-      # Inline suggestions on changed lines only, so the ~1268 pre-existing
-      # lint errors don't flood the PR. Never blocks the build (fail_level: none).
+      # Inline suggestions + a real gate, scoped to LITERALLY ADDED lines via
+      # filter_mode: added (not diff_context — that also matches surrounding
+      # unchanged context lines within a diff hunk, which on a long-lived
+      # branch surfaces pre-existing errors merely adjacent to a real change,
+      # not introduced by it). fail_level: error blocks the build only on
+      # ESLint *error*-severity findings on added lines; warning-severity
+      # findings still get inline comments but don't fail the build.
       - uses: reviewdog/action-eslint@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           eslint_flags: ". --ext .js"
-          filter_mode: diff_context
-          fail_level: none
+          filter_mode: added
+          fail_level: error
           level: warning

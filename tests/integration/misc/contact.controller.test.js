@@ -37,7 +37,6 @@ describe('Contact Controller', () => {
   let customerToken;
 
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URI);
   });
 
   beforeEach(async () => {
@@ -53,7 +52,6 @@ describe('Contact Controller', () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.close();
   });
 
   const submit = () =>

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const User = require('../models/user.model');
 const { AppError } = require('../middlewares/errorHandler');
+const { escapeRegExp } = require('../utils/sanitize');
 
 // Helper function to validate ObjectId
 const validateObjectId = (id, fieldName = 'ID') => {
@@ -36,22 +37,22 @@ class ProfessionalService {
 
     // Add filters
     if (specialization) {
-      query['professionalInfo.specialization'] = new RegExp(specialization, 'i');
+      query['professionalInfo.specialization'] = new RegExp(escapeRegExp(specialization), 'i');
     }
     if (role && ['veterinarian', 'groomer', 'trainer'].includes(role)) {
       query.role = role;
     }
     if (rating) {
-      query['professionalInfo.rating'] = { $gte: parseFloat(rating) };
+      query['professionalInfo.rating'] = { $gte: Number.parseFloat(rating) };
     }
     if (isActive !== undefined) {
       query['professionalInfo.isActive'] = isActive === 'true';
     }
     if (city) {
-      query['professionalInfo.location.city'] = new RegExp(city, 'i');
+      query['professionalInfo.location.city'] = new RegExp(escapeRegExp(city), 'i');
     }
     if (state) {
-      query['professionalInfo.location.state'] = new RegExp(state, 'i');
+      query['professionalInfo.location.state'] = new RegExp(escapeRegExp(state), 'i');
     }
 
     // Calculate skip value for pagination
@@ -61,7 +62,7 @@ class ProfessionalService {
     const professionals = await User.find(query)
       .sort({ [sortBy]: sortOrder === 'desc' ? -1 : 1 })
       .skip(skip)
-      .limit(parseInt(limit, 10))
+      .limit(Number.parseInt(limit, 10))
       .select(
         '-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v'
       );
@@ -73,7 +74,7 @@ class ProfessionalService {
       professionals: professionals.map((prof) => prof.getProfessionalData()),
       pagination: {
         total,
-        page: parseInt(page, 10),
+        page: Number.parseInt(page, 10),
         pages: Math.ceil(total / limit),
         hasNext: page < Math.ceil(total / limit),
         hasPrev: page > 1,
@@ -182,7 +183,7 @@ class ProfessionalService {
     };
 
     if (specialization) {
-      query['professionalInfo.specialization'] = new RegExp(specialization, 'i');
+      query['professionalInfo.specialization'] = new RegExp(escapeRegExp(specialization), 'i');
     }
 
     const professionals = await User.find(query).select(
@@ -194,7 +195,7 @@ class ProfessionalService {
       return professionals
         .filter((prof) => {
           const availability = prof.professionalInfo.availability.get(day);
-          if (!availability || !availability.isAvailable) return false;
+          if (!availability?.isAvailable) return false;
 
           const { startTime } = availability;
           const { endTime } = availability;
@@ -260,7 +261,7 @@ class ProfessionalService {
     }
 
     // Validate availability format
-    const validDays = [
+    const validDays = new Set([
       'monday',
       'tuesday',
       'wednesday',
@@ -268,11 +269,11 @@ class ProfessionalService {
       'friday',
       'saturday',
       'sunday',
-    ];
-    const timeRegex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
+    ]);
+    const timeRegex = /^([0-1]?\d|2[0-3]):[0-5]\d$/;
 
     Object.keys(availability).forEach((day) => {
-      if (!validDays.includes(day.toLowerCase())) {
+      if (!validDays.has(day.toLowerCase())) {
         throw new AppError(`Invalid day: ${day}`, 400);
       }
 

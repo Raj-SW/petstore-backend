@@ -236,6 +236,7 @@ exports.handleWebhook = async (req, res, next) => {
         );
         result = await PaymentService.handleWebhookEvent(event);
       } catch (err) {
+        logger.warn('Stripe webhook signature verification failed', { error: err.message });
         return next(new AppError('Stripe webhook signature verification failed', 400));
       }
     } else if (paymentMethod === 'paypal') {
@@ -254,7 +255,7 @@ exports.handleWebhook = async (req, res, next) => {
 
     if (result) {
       const order = await Order.findOne({
-        'paymentDetails.transactionId': result.paymentIntentId,
+        'paymentDetails.transactionId': String(result.paymentIntentId),
       });
 
       if (order) {

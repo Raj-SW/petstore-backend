@@ -12,7 +12,7 @@ const logger = require('../utils/logger');
 const { apiUrl, productUrl, shopUrl, frontendUrl } = require('../config/urls');
 const { formatMUR } = require('../utils/currency');
 
-const MAX_RECIPIENTS = parseInt(process.env.ANNOUNCEMENT_MAX_RECIPIENTS || '500', 10);
+const MAX_RECIPIENTS = Number.parseInt(process.env.ANNOUNCEMENT_MAX_RECIPIENTS || '500', 10);
 
 const PRODUCT_TYPES = new Set(['sale', 'new_product', 'price_drop', 'restock']);
 
@@ -22,7 +22,7 @@ function buildProductRows(products) {
     const onSale = p.isOnSaleNow;
     return {
       name: p.name,
-      image: p.images && p.images[0] ? p.images[0].url : '',
+      image: p.images?.[0] ? p.images[0].url : '',
       link: productUrl(p._id),
       priceLabel: formatMUR(p.price),
       salePriceLabel: onSale ? formatMUR(p.salePrice) : null,
@@ -170,12 +170,14 @@ exports.getAnnouncements = async (req, res, next) => {
 // GET /api/announcements/unsubscribe?token= — public, no auth. Flips the
 // announcement bucket encoded in the token (promotions → sales, news → news).
 exports.unsubscribe = async (req, res) => {
-  const page = (status, heading, sub = '') =>
-    res.status(status).send(
+  const page = (status, heading, sub = '') => {
+    const subHtml = sub ? `<p>${sub}</p>` : '';
+    return res.status(status).send(
       '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>'
       + '<body style="font-family:Arial,sans-serif;text-align:center;padding:60px 20px;color:#333">'
-      + `<h2>${heading}</h2>${sub ? `<p>${sub}</p>` : ''}</body></html>`
+      + `<h2>${heading}</h2>${subHtml}</body></html>`,
     );
+  };
   try {
     const { token } = req.query;
     if (!token) return page(400, 'Invalid unsubscribe link.');

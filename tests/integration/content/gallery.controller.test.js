@@ -55,7 +55,6 @@ describe('Gallery Controller', () => {
   let customerToken;
 
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URI);
   });
 
   beforeEach(async () => {
@@ -72,7 +71,6 @@ describe('Gallery Controller', () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.close();
   });
 
   describe('GET /api/gallery', () => {

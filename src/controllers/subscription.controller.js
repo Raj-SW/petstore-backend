@@ -10,7 +10,7 @@ const logger = require('../utils/logger');
 const { frontendUrl } = require('../config/urls');
 const { predictDemand, productCoverage, enrichSubscription } = require('../services/subscription.analytics.service');
 
-const DEFAULT_DISCOUNT = parseInt(process.env.SUBSCRIPTION_DISCOUNT_PERCENT || '10', 10);
+const DEFAULT_DISCOUNT = Number.parseInt(process.env.SUBSCRIPTION_DISCOUNT_PERCENT || '10', 10);
 
 const { formatMUR } = require('../utils/currency');
 
@@ -44,9 +44,9 @@ exports.createSubscription = async (req, res, next) => {
       source,
     });
 
-    res.status(201).json({ status: 'success', data: subscription });
+    return res.status(201).json({ status: 'success', data: subscription });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
@@ -57,9 +57,9 @@ exports.getMySubscriptions = async (req, res, next) => {
       .populate('items.product')
       .populate('createdOrders', 'totalAmount discount status createdAt')
       .sort('-createdAt');
-    res.status(200).json({ status: 'success', data: subscriptions.map(enrichSubscription) });
+    return res.status(200).json({ status: 'success', data: subscriptions.map(enrichSubscription) });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
@@ -73,15 +73,19 @@ exports.updateSubscription = async (req, res, next) => {
 
     // "skip" pushes the next run one interval forward without other edits.
     if (action === 'skip') {
-      subscription.nextRunAt = addInterval(subscription.nextRunAt, subscription.intervalUnit, subscription.intervalCount);
+      subscription.nextRunAt = addInterval(
+        subscription.nextRunAt,
+        subscription.intervalUnit,
+        subscription.intervalCount,
+      );
     }
 
     Object.assign(subscription, updates);
     await subscription.save();
 
-    res.status(200).json({ status: 'success', data: subscription });
+    return res.status(200).json({ status: 'success', data: subscription });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
@@ -94,9 +98,9 @@ exports.cancelSubscription = async (req, res, next) => {
     subscription.status = 'cancelled';
     await subscription.save();
 
-    res.status(200).json({ status: 'success', data: subscription });
+    return res.status(200).json({ status: 'success', data: subscription });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
@@ -108,9 +112,9 @@ exports.getSubscriptionsAdmin = async (req, res, next) => {
       .populate('items.product')
       .populate('createdOrders', 'totalAmount discount status createdAt')
       .sort('-createdAt');
-    res.status(200).json({ status: 'success', data: subscriptions.map(enrichSubscription) });
+    return res.status(200).json({ status: 'success', data: subscriptions.map(enrichSubscription) });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
@@ -121,9 +125,9 @@ exports.getMySubscriptionDetail = async (req, res, next) => {
       .populate('items.product')
       .populate('createdOrders', 'totalAmount discount status createdAt');
     if (!sub) return next(new AppError('Subscription not found', 404));
-    res.status(200).json({ status: 'success', data: enrichSubscription(sub) });
+    return res.status(200).json({ status: 'success', data: enrichSubscription(sub) });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
@@ -135,32 +139,36 @@ exports.getSubscriptionDetailAdmin = async (req, res, next) => {
       .populate('items.product')
       .populate('createdOrders', 'totalAmount discount status createdAt');
     if (!sub) return next(new AppError('Subscription not found', 404));
-    res.status(200).json({ status: 'success', data: enrichSubscription(sub) });
+    return res.status(200).json({ status: 'success', data: enrichSubscription(sub) });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
 // PATCH /api/subscriptions/admin/:id — admin edit
 exports.updateSubscriptionAdmin = async (req, res, next) => {
   try {
-    const subscription = await Subscription.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const subscription = await Subscription.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true },
+    );
     if (!subscription) return next(new AppError('Subscription not found', 404));
-    res.status(200).json({ status: 'success', data: subscription });
+    return res.status(200).json({ status: 'success', data: subscription });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
 // GET /api/subscriptions/admin/analytics?horizon=30 — demand-vs-stock prediction
 exports.getSubscriptionAnalytics = async (req, res, next) => {
   try {
-    const horizonDays = Math.min(365, Math.max(1, parseInt(req.query.horizon, 10) || 30));
+    const horizonDays = Math.min(365, Math.max(1, Number.parseInt(req.query.horizon, 10) || 30));
     const safetyMargin = Number(req.query.safetyMargin) || 0;
     const data = await predictDemand({ horizonDays, safetyMargin });
-    res.status(200).json({ status: 'success', data });
+    return res.status(200).json({ status: 'success', data });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
@@ -168,9 +176,9 @@ exports.getSubscriptionAnalytics = async (req, res, next) => {
 exports.getProductCoverage = async (req, res, next) => {
   try {
     const data = await productCoverage();
-    res.status(200).json({ status: 'success', data });
+    return res.status(200).json({ status: 'success', data });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
@@ -188,7 +196,7 @@ exports.processDue = async (req, res, next) => {
       // eslint-disable-next-line no-await-in-loop
       const session = await mongoose.startSession();
       try {
-        // eslint-disable-next-line no-loop-func
+        // eslint-disable-next-line no-loop-func, no-await-in-loop
         await session.withTransaction(async () => {
           // Pre-check stock so an out-of-stock run is a clean "skip" (advance,
           // no order) rather than a hard failure.
@@ -197,9 +205,9 @@ exports.processDue = async (req, res, next) => {
             // eslint-disable-next-line no-await-in-loop
             const product = await Product.findById(it.product).session(session);
             let available = 0;
-            if (it.variantId && product && product.variants && product.variants.id(it.variantId)) {
+            if (it.variantId && product?.variants?.id(it.variantId)) {
               available = product.variants.id(it.variantId).quantity ?? 0;
-            } else if (product && product.quantity != null) {
+            } else if (product?.quantity != null) {
               available = product.quantity;
             }
             if (!product || available < it.quantity) { inStock = false; break; }
@@ -217,7 +225,9 @@ exports.processDue = async (req, res, next) => {
 
           const order = await buildOrder({
             userId: sub.user,
-            items: sub.items.map((i) => ({ product: i.product, variantId: i.variantId || null, quantity: i.quantity })),
+            items: sub.items.map((i) => ({
+              product: i.product, variantId: i.variantId || null, quantity: i.quantity,
+            })),
             shippingAddress: sub.shippingAddress,
             paymentMethod: sub.paymentMethod,
             notes: 'Recurring subscription order',
@@ -242,11 +252,11 @@ exports.processDue = async (req, res, next) => {
       }
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       status: 'success', processed, skipped, failed,
     });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 

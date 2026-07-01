@@ -214,7 +214,7 @@ productSchema.virtual('variantsView').get(function () {
 });
 
 productSchema.methods.priceForVariant = function (variantId) {
-  const v = this.variants && this.variants.id(variantId);
+  const v = this.variants?.id(variantId);
   if (!v) return null;
   return computeSale(v.price, this).effectivePrice;
 };

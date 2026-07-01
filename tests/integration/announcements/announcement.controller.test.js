@@ -54,8 +54,6 @@ describe('Sale Announcement Controller', () => {
   let adminToken;
   let customerToken;
 
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
-
   beforeEach(async () => {
     await User.deleteMany({});
     await Product.deleteMany({});
@@ -67,8 +65,6 @@ describe('Sale Announcement Controller', () => {
     adminToken = a.body.data.accessToken;
     customerToken = await loginAs(makeUser());
   });
-
-  afterAll(async () => { await mongoose.connection.close(); });
 
   describe('POST /api/announcements', () => {
     it('sends to opted-in customers only and records counts (201)', async () => {

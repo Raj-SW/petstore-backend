@@ -22,9 +22,6 @@ async function makeAdmin() {
 describe('Pet Shop filter (Epic 5)', () => {
   let adminId;
 
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
-  afterAll(async () => { await mongoose.disconnect(); });
-
   beforeEach(async () => {
     await User.deleteMany({});
     await Product.deleteMany({});

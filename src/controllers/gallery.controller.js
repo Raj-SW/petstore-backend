@@ -4,6 +4,7 @@ const { AppError } = require('../middlewares/errorHandler');
 const { uploadToCloudinary, deleteMultipleFromCloudinary } = require('../utils/cloudinary');
 const { coerceCoverImage, collectImagePublicIds } = require('../utils/contentImages');
 const logger = require('../utils/logger');
+const { toSafeString, escapeRegExp } = require('../utils/sanitize');
 
 // GET /api/gallery — public, published only
 exports.getPosts = async (req, res, next) => {
@@ -14,16 +15,17 @@ exports.getPosts = async (req, res, next) => {
     } = req.query;
 
     const query = { published: true };
-    if (category) query.category = category;
-    if (tag) query.tags = tag.toLowerCase();
+    const safeCategory = toSafeString(category);
+    const safeTag = toSafeString(tag);
+    if (safeCategory) query.category = safeCategory;
+    if (safeTag) query.tags = safeTag.toLowerCase();
     if (featured !== undefined) query.featured = featured === 'true';
     if (search) {
-      const rx = new RegExp(search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
-      query.title = rx;
+      query.title = new RegExp(escapeRegExp(search), 'i');
     }
 
-    const pageNum = Math.max(1, parseInt(page, 10) || 1);
-    const limitNum = Math.min(50, Math.max(1, parseInt(limit, 10) || 12));
+    const pageNum = Math.max(1, Number.parseInt(page, 10) || 1);
+    const limitNum = Math.min(50, Math.max(1, Number.parseInt(limit, 10) || 12));
 
     const [posts, total] = await Promise.all([
       GalleryPost.find(query)

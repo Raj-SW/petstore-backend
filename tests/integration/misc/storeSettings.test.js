@@ -13,9 +13,6 @@ describe('StoreSettings (Epic 11)', () => {
   let adminToken;
   let customerToken;
 
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
-  afterAll(async () => { await mongoose.disconnect(); });
-
   beforeEach(async () => {
     await User.deleteMany({});
     await StoreSettings.deleteMany({});

@@ -237,8 +237,8 @@ const VALID_ROLES = ['customer', 'veterinarian', 'groomer', 'trainer', 'petTaxi'
 // List all users with pagination and optional role filter
 exports.listUsers = async (req, res, next) => {
   try {
-    const page = Math.max(1, parseInt(req.query.page, 10) || 1);
-    const limit = Math.min(100, Math.max(1, parseInt(req.query.limit, 10) || 20));
+    const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
+    const limit = Math.min(100, Math.max(1, Number.parseInt(req.query.limit, 10) || 20));
     const skip = (page - 1) * limit;
 
     const { role } = req.query;
@@ -248,7 +248,9 @@ exports.listUsers = async (req, res, next) => {
 
     const filter = {};
     if (role) {
-      filter.role = role;
+      // role is already constrained to VALID_ROLES above; String() cast also
+      // satisfies static NoSQL-injection analysis
+      filter.role = String(role);
     }
 
     const sensitiveFields = '-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires';
@@ -498,14 +500,14 @@ exports.getAllAppointments = async (req, res, next) => {
       ])
       .sort({ dateTime: -1 })
       .skip(skip)
-      .limit(parseInt(limit, 10));
+      .limit(Number.parseInt(limit, 10));
 
     const total = await Appointment.countDocuments(query);
 
     res.status(200).json({
       success: true,
       data: appointments,
-      pagination: { total, page: parseInt(page, 10), pages: Math.ceil(total / limit) },
+      pagination: { total, page: Number.parseInt(page, 10), pages: Math.ceil(total / limit) },
     });
   } catch (error) {
     next(error);

@@ -70,8 +70,8 @@ class ValidationUtils {
   static validatePagination(params = {}, maxLimit = 100) {
     const { page = 1, limit = 10 } = params;
 
-    const validatedPage = Math.max(1, parseInt(page, 10) || 1);
-    const validatedLimit = Math.min(maxLimit, Math.max(1, parseInt(limit, 10) || 10));
+    const validatedPage = Math.max(1, Number.parseInt(page, 10) || 1);
+    const validatedLimit = Math.min(maxLimit, Math.max(1, Number.parseInt(limit, 10) || 10));
 
     return {
       page: validatedPage,
@@ -116,7 +116,8 @@ class ValidationUtils {
       throw new AppError(`${fieldName} is required`, 400);
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Bounded quantifiers (RFC-aligned lengths) avoid super-linear backtracking (S8786)
+    const emailRegex = /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{1,255}$/;
     if (!emailRegex.test(email)) {
       throw new AppError(`Invalid ${fieldName} format`, 400);
     }
@@ -134,7 +135,7 @@ class ValidationUtils {
     }
 
     // Allow various phone number formats
-    const phoneRegex = /^\+?[\d\s\-\(\)]{10,}$/;
+    const phoneRegex = /^\+?[\d\s()-]{10,}$/;
     if (!phoneRegex.test(phone)) {
       throw new AppError(`Invalid ${fieldName} format`, 400);
     }
@@ -186,7 +187,7 @@ class ValidationUtils {
     }
 
     const dateObj = new Date(date);
-    if (isNaN(dateObj.getTime())) {
+    if (Number.isNaN(dateObj.getTime())) {
       throw new AppError(`Invalid ${fieldName} format`, 400);
     }
 
@@ -211,7 +212,7 @@ class ValidationUtils {
    * @throws {AppError} - If value is out of range
    */
   static validateNumericRange(value, fieldName = 'Value', options = {}) {
-    if (typeof value !== 'number' || isNaN(value)) {
+    if (typeof value !== 'number' || Number.isNaN(value)) {
       throw new AppError(`${fieldName} must be a valid number`, 400);
     }
 
@@ -240,7 +241,7 @@ class ValidationUtils {
       throw new AppError(`${fieldName} must be a string`, 400);
     }
 
-    const sanitized = options.trim !== false ? value.trim() : value;
+    const sanitized = options.trim === false ? value : value.trim();
 
     if (options.minLength && sanitized.length < options.minLength) {
       throw new AppError(`${fieldName} must be at least ${options.minLength} characters long`, 400);
