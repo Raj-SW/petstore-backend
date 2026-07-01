@@ -44,7 +44,7 @@ function fetchPage(page) {
     const lib = parsed.protocol === 'https:' ? https : http;
     const req = lib.request(options, (res) => {
       let data = '';
-      res.on('data', (chunk) => (data += chunk));
+      res.on('data', (chunk) => { data += chunk; });
       res.on('end', () => {
         if (res.statusCode !== 200) {
           reject(new Error(`HTTP ${res.statusCode}: ${data}`));
@@ -62,12 +62,13 @@ function fetchPage(page) {
 async function fetchAllIssues() {
   console.log(`Fetching issues from ${HOST} for project "${PROJECT_KEY}"…`);
   const first = await fetchPage(1);
-  const total = first.total;
+  const { total } = first;
   const pages = Math.ceil(total / 100);
   console.log(`Total issues: ${total} across ${pages} page(s)`);
 
   let issues = [...first.issues];
-  for (let p = 2; p <= pages; p++) {
+  for (let p = 2; p <= pages; p += 1) {
+    // eslint-disable-next-line no-await-in-loop -- sequential pagination, avoids hammering the API
     const data = await fetchPage(p);
     issues = issues.concat(data.issues);
     process.stdout.write(`  Fetched page ${p}/${pages}\r`);
@@ -86,7 +87,7 @@ const SEVERITY_EMOJI = {
 };
 
 function buildReport(issues) {
-  const now = new Date().toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
+  const now = `${new Date().toISOString().replace('T', ' ').slice(0, 19)} UTC`;
 
   // Group by severity
   const bySeverity = {};
@@ -102,7 +103,7 @@ function buildReport(issues) {
   for (const issue of issues) {
     const t = issue.type || 'UNKNOWN';
     if (!byType[t]) byType[t] = 0;
-    byType[t]++;
+    byType[t] += 1;
   }
 
   // Group by file
@@ -116,7 +117,7 @@ function buildReport(issues) {
 
   const lines = [];
 
-  lines.push(`# SonarQube Issues Report`);
+  lines.push('# SonarQube Issues Report');
   lines.push(`**Project:** \`${PROJECT_KEY}\`  `);
   lines.push(`**Generated:** ${now}  `);
   lines.push(`**Total issues:** ${issues.length}`);
@@ -146,7 +147,8 @@ function buildReport(issues) {
   lines.push('');
   lines.push('| File | Issues |');
   lines.push('|------|--------|');
-  for (const [file, fileIssues] of Object.entries(byFile).sort((a, b) => b[1].length - a[1].length)) {
+  const sortedFiles = Object.entries(byFile).sort((a, b) => b[1].length - a[1].length);
+  for (const [file, fileIssues] of sortedFiles) {
     lines.push(`| \`${file}\` | ${fileIssues.length} |`);
   }
   lines.push('');
@@ -157,10 +159,9 @@ function buildReport(issues) {
   lines.push('## Issues by Severity');
   lines.push('');
 
-  for (const sev of SEVERITY_ORDER) {
+  const nonEmptySeverities = SEVERITY_ORDER.filter((sev) => bySeverity[sev].length > 0);
+  for (const sev of nonEmptySeverities) {
     const sevIssues = bySeverity[sev];
-    if (sevIssues.length === 0) continue;
-
     lines.push(`### ${SEVERITY_EMOJI[sev]} ${sev} (${sevIssues.length})`);
     lines.push('');
 

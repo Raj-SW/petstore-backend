@@ -29,6 +29,8 @@ const transports = [
 
 if (isDevelopment) {
   try {
+    // Lazy: only load fs when file-logging is on
+    // eslint-disable-next-line global-require
     const fs = require('node:fs');
     const logsDir = path.join(__dirname, '../../logs');
     if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir, { recursive: true });

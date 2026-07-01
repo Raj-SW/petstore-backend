@@ -63,7 +63,7 @@ function ghRequest(apiPath) {
 
     const req = https.request(options, (res) => {
       let data = '';
-      res.on('data', (chunk) => (data += chunk));
+      res.on('data', (chunk) => { data += chunk; });
       res.on('end', () => {
         if (res.statusCode < 200 || res.statusCode >= 300) {
           reject(new Error(`HTTP ${res.statusCode} for ${apiPath}: ${data}`));
@@ -127,7 +127,7 @@ async function fetchReviewComments(prNumber) {
 }
 
 function buildCodeQLReport(alerts) {
-  const now = new Date().toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
+  const now = `${new Date().toISOString().replace('T', ' ').slice(0, 19)} UTC`;
   const lines = [
     '# CodeQL Alerts Report',
     `**Repo:** \`${REPO}\`  `,
@@ -168,7 +168,7 @@ function buildCodeQLReport(alerts) {
 }
 
 function buildReviewdogReport(pr, comments) {
-  const now = new Date().toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
+  const now = `${new Date().toISOString().replace('T', ' ').slice(0, 19)} UTC`;
   const lines = [
     '# Reviewdog / PR Review Comments Report',
     `**Repo:** \`${REPO}\`  `,

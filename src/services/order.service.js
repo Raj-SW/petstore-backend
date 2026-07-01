@@ -25,7 +25,9 @@ function computeChargesFromSettings(base, settings) {
     tax = round2(base * rate);
     grandTotal = round2(base + tax + shippingFee);
   }
-  return { shippingFee, tax, taxRate: Number(settings.taxRatePercent) || 0, taxInclusive, grandTotal };
+  return {
+    shippingFee, tax, taxRate: Number(settings.taxRatePercent) || 0, taxInclusive, grandTotal,
+  };
 }
 
 /**
@@ -57,7 +59,9 @@ function resolveOrderItemPrice(product, item) {
     if (v.quantity != null && v.quantity < item.quantity) {
       throw new AppError(`Insufficient stock for ${product.name} (${v.label})`, 400);
     }
-    return { price: product.priceForVariant(item.variantId), originalPrice: v.price, variantLabel: v.label };
+    return {
+      price: product.priceForVariant(item.variantId), originalPrice: v.price, variantLabel: v.label,
+    };
   }
 
   if (product.quantity != null && product.quantity > 0 && product.quantity < item.quantity) {
@@ -85,7 +89,11 @@ async function reserveItemStock(item, session) {
   else if (prod.quantity != null) prevQty = prod.quantity;
   else prevQty = prod.stock ?? 0;
   const stockField = prod?.quantity != null ? 'quantity' : 'stock';
-  await Product.findByIdAndUpdate(item.product, { $inc: { [stockField]: -item.quantity } }, { session });
+  await Product.findByIdAndUpdate(
+    item.product,
+    { $inc: { [stockField]: -item.quantity } },
+    { session },
+  );
   return { prevQty, newQty: Math.max(0, prevQty - item.quantity) };
 }
 
@@ -105,12 +113,16 @@ async function buildOrder({
     totalItems += item.quantity;
     totalAmount += price * item.quantity;
     orderItems.push({
-      product: product._id, quantity: item.quantity, price, originalPrice,
-      variantId: item.variantId || null, variantLabel,
+      product: product._id,
+      quantity: item.quantity,
+      price,
+      originalPrice,
+      variantId: item.variantId || null,
+      variantLabel,
     });
   }
 
-  const discount = Math.floor(totalAmount * (Number(discountPercent) || 0) / 100);
+  const discount = Math.floor((totalAmount * (Number(discountPercent) || 0)) / 100);
 
   // Shipping + tax from store settings, computed on the post-discount base.
   const settings = await StoreSettings.getSettings();
@@ -124,11 +136,11 @@ async function buildOrder({
     totalAmount,
     discount,
     discountCode,
-    shippingFee:  charges.shippingFee,
-    tax:          charges.tax,
-    taxRate:      charges.taxRate,
+    shippingFee: charges.shippingFee,
+    tax: charges.tax,
+    taxRate: charges.taxRate,
     taxInclusive: charges.taxInclusive,
-    grandTotal:   charges.grandTotal,
+    grandTotal: charges.grandTotal,
     shippingAddress,
     paymentMethod,
     notes,
@@ -140,8 +152,13 @@ async function buildOrder({
     // eslint-disable-next-line no-await-in-loop
     const { prevQty, newQty } = await reserveItemStock(item, session);
     movements.push({
-      product: item.product, type: 'order', delta: -item.quantity,
-      prevQty, newQty, createdBy: userId, orderId: order._id,
+      product: item.product,
+      type: 'order',
+      delta: -item.quantity,
+      prevQty,
+      newQty,
+      createdBy: userId,
+      orderId: order._id,
     });
   }
   if (movements.length) await StockMovement.insertMany(movements, { session });

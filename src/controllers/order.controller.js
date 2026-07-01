@@ -5,10 +5,9 @@ const StockMovement = require('../models/stockMovement.model');
 const { AppError } = require('../middlewares/errorHandler');
 const { sendEmail } = require('../utils/email');
 const { sanitizeForLog } = require('../utils/sanitize');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const logger = require('../utils/logger');
-const Invoice        = require('../models/invoice.model');
-const Transaction    = require('../models/transaction.model');
+const Invoice = require('../models/invoice.model');
+const Transaction = require('../models/transaction.model');
 const InvoiceService = require('../services/invoice.service');
 const { buildOrder } = require('../services/order.service');
 
@@ -40,7 +39,9 @@ exports.createOrder = async (req, res, next) => {
     // Build the order (validates products, reserves stock, logs movements)
     const order = await buildOrder({
       userId: req.user.id,
-      items: cart.items.map((i) => ({ product: i.product, variantId: i.variantId || null, quantity: i.quantity })),
+      items: cart.items.map((i) => ({
+        product: i.product, variantId: i.variantId || null, quantity: i.quantity,
+      })),
       shippingAddress,
       paymentMethod,
       notes,
@@ -83,7 +84,7 @@ exports.createOrder = async (req, res, next) => {
     const sanitizedOrder = order.toObject();
     delete sanitizedOrder.paymentDetails;
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       data: sanitizedOrder,
     });
@@ -91,7 +92,7 @@ exports.createOrder = async (req, res, next) => {
     await session.abortTransaction();
     session.endSession();
     logger.error('Order creation failed', { error });
-    next(error);
+    return next(error);
   }
 };
 
@@ -110,7 +111,7 @@ exports.getOrders = async (req, res, next) => {
       .skip(skip)
       .limit(limit);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: orders,
       pagination: {
@@ -120,7 +121,7 @@ exports.getOrders = async (req, res, next) => {
       },
     });
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
@@ -140,12 +141,12 @@ exports.getOrder = async (req, res, next) => {
       return next(new AppError('Not authorized to view this order', 403));
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: order,
     });
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
@@ -156,12 +157,12 @@ exports.getMyOrders = async (req, res, next) => {
       .populate('items.product', 'name images')
       .sort('-createdAt');
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: orders,
     });
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
@@ -203,12 +204,12 @@ exports.updateOrderStatus = async (req, res, next) => {
       logger.warn('Order status email failed (non-fatal)', { error: emailErr.message });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: order,
     });
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
@@ -239,17 +240,18 @@ exports.updatePaymentStatus = async (req, res, next) => {
       try {
         const existing = await Invoice.findOne({ order: order._id });
         if (!existing) {
-          const invoice = await InvoiceService.generateInvoice(order._id, order.user._id || order.user);
+          const orderOwnerId = order.user._id || order.user;
+          const invoice = await InvoiceService.generateInvoice(order._id, orderOwnerId);
           await Transaction.create({
-            order:         order._id,
-            invoice:       invoice._id,
-            user:          order.user._id || order.user,
-            type:          'payment',
-            amount:        order.finalAmount,
-            currency:      'USD',
+            order: order._id,
+            invoice: invoice._id,
+            user: order.user._id || order.user,
+            type: 'payment',
+            amount: order.finalAmount,
+            currency: 'USD',
             paymentMethod: order.paymentDetails?.paymentMethod || order.paymentMethod,
             transactionId: transactionId || order.paymentDetails?.transactionId,
-            status:        'completed',
+            status: 'completed',
           });
         }
       } catch (invoiceErr) {
@@ -274,12 +276,12 @@ exports.updatePaymentStatus = async (req, res, next) => {
       logger.warn('Payment status email failed (non-fatal)', { error: emailErr.message });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: order,
     });
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
@@ -304,6 +306,7 @@ exports.cancelOrder = async (req, res, next) => {
     const cancelMovements = [];
     for (const item of order.items) {
       // Use .lean() so we get raw MongoDB fields including legacy `stock` field
+      // eslint-disable-next-line no-await-in-loop -- sequential restore, mirrors order.service.js
       const prod = await Product.findById(item.product).lean();
       // Resolve quantity: prefer `quantity` field; fall back to legacy `stock`
       let prevQty;
@@ -317,6 +320,7 @@ exports.cancelOrder = async (req, res, next) => {
       const newQty = prevQty + item.quantity;
       // Restore the correct field (match whichever field was decremented)
       const stockField = prod?.quantity != null ? 'quantity' : 'stock';
+      // eslint-disable-next-line no-await-in-loop -- sequential restore, mirrors order.service.js
       await Product.findByIdAndUpdate(item.product, {
         $inc: { [stockField]: item.quantity },
       });
@@ -349,11 +353,11 @@ exports.cancelOrder = async (req, res, next) => {
       logger.warn('Order cancellation email failed (non-fatal)', { error: emailErr.message });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: order,
     });
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };

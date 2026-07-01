@@ -275,9 +275,13 @@ exports.updateProduct = async (req, res, next) => {
       return next(new AppError('Product not found', 404));
     }
 
-    const { images: updatedImages, error: imageError } = await resolveUpdatedImages(
-      existingProduct, imageRefs, keepImagesStr, req.files,
+    const imageResolution = await resolveUpdatedImages(
+      existingProduct,
+      imageRefs,
+      keepImagesStr,
+      req.files,
     );
+    const { images: updatedImages, error: imageError } = imageResolution;
     if (imageError) return next(new AppError(imageError, 400));
 
     // Variant-image cleanup: delete Cloudinary assets dropped from any variant.
@@ -285,14 +289,15 @@ exports.updateProduct = async (req, res, next) => {
       const oldVariantPublicIds = new Set(
         (existingProduct.variants || [])
           .flatMap((v) => (v.images || []).map((img) => img.publicId))
-          .filter(Boolean)
+          .filter(Boolean),
       );
       const newVariantPublicIds = new Set(
         updateData.variants
           .flatMap((v) => (v.images || []).map((img) => img.publicId))
-          .filter(Boolean)
+          .filter(Boolean),
       );
-      const removedVariantPublicIds = [...oldVariantPublicIds].filter((pid) => !newVariantPublicIds.has(pid));
+      const removedVariantPublicIds = [...oldVariantPublicIds]
+        .filter((pid) => !newVariantPublicIds.has(pid));
       if (removedVariantPublicIds.length > 0) {
         await deleteMultipleFromCloudinary(removedVariantPublicIds);
       }
@@ -301,7 +306,7 @@ exports.updateProduct = async (req, res, next) => {
     const updatedProduct = await Product.findByIdAndUpdate(
       id,
       { ...pickUpdatableProductFields(updateData), images: updatedImages },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     ).populate('createdBy', 'name email');
 
     logger.info(`Product updated successfully by admin ${req.user._id}`, {
