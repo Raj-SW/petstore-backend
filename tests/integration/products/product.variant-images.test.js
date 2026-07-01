@@ -28,7 +28,6 @@ describe('Product variant images + upload (Epic 6b)', () => {
   let adminToken;
   let adminId;
 
-
   beforeEach(async () => {
     await User.deleteMany({});
     await Product.deleteMany({});

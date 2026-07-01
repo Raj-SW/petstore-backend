@@ -37,7 +37,6 @@ describe('Feedback Controller', () => {
   let adminToken;
   let customerToken;
 
-
   beforeEach(async () => {
     await User.deleteMany({});
     await Feedback.deleteMany({});
@@ -46,7 +45,6 @@ describe('Feedback Controller', () => {
     adminToken = a.body.data.accessToken;
     customerToken = await loginAs(makeUser());
   });
-
 
   const submit = (over = {}) =>
     request(app).post('/api/feedback').send({ name: 'Jane', rating: 5, message: 'Wonderful clinic and staff', ...over });

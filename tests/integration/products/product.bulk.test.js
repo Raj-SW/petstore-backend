@@ -20,7 +20,6 @@ describe('POST /api/products/bulk (Epic 6)', () => {
   let adminId;
   let customerToken;
 
-
   beforeEach(async () => {
     await User.deleteMany({});
     await Product.deleteMany({});

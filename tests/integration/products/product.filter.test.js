@@ -22,7 +22,6 @@ async function makeAdmin() {
 describe('Pet Shop filter (Epic 5)', () => {
   let adminId;
 
-
   beforeEach(async () => {
     await User.deleteMany({});
     await Product.deleteMany({});

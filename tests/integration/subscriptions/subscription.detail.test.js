@@ -13,7 +13,6 @@ const uniqEmail = (p) => `${p}-${Date.now()}-${Math.random()}@x.com`;
 describe('Subscription enriched detail (Epic 12)', () => {
   let admin, adminToken, customer, customerToken, product, sub;
 
-
   beforeEach(async () => {
     await User.deleteMany({}); await Product.deleteMany({}); await Subscription.deleteMany({});
 

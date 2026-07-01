@@ -13,7 +13,6 @@ describe('StoreSettings (Epic 11)', () => {
   let adminToken;
   let customerToken;
 
-
   beforeEach(async () => {
     await User.deleteMany({});
     await StoreSettings.deleteMany({});

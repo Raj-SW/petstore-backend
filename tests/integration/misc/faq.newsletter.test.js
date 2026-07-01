@@ -30,7 +30,6 @@ describe('FAQ + Newsletter', () => {
   let adminToken;
   let customerToken;
 
-
   beforeEach(async () => {
     await User.deleteMany({});
     await Faq.deleteMany({});
@@ -40,7 +39,6 @@ describe('FAQ + Newsletter', () => {
     adminToken = a.body.data.accessToken;
     customerToken = await loginAs(makeUser());
   });
-
 
   describe('FAQ', () => {
     it('GET /api/faqs returns active FAQs ordered (public)', async () => {

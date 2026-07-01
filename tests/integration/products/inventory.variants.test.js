@@ -14,7 +14,6 @@ describe('Variant-aware inventory (Epic 14)', () => {
   let adminToken;
   let adminId;
 
-
   beforeEach(async () => {
     await User.deleteMany({});
     await Product.deleteMany({});

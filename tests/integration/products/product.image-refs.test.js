@@ -33,7 +33,6 @@ describe('Product image-refs contract (Epic 6b ImageManager)', () => {
   let adminId;
   let adminToken;
 
-
   beforeEach(async () => {
     await User.deleteMany({});
     await Product.deleteMany({});

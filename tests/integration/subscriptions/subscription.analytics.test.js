@@ -16,7 +16,6 @@ const soon = () => new Date(Date.now() + 1 * 24 * 60 * 60 * 1000);
 describe('Subscription analytics (Epic 12)', () => {
   let userId;
 
-
   beforeEach(async () => {
     await Subscription.deleteMany({});
     await Product.deleteMany({});

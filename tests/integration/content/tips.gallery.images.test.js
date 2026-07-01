@@ -28,7 +28,6 @@ describe('Tips cover + section images (Epic 8)', () => {
   let adminToken;
   let adminId;
 
-
   beforeEach(async () => {
     await User.deleteMany({}); await PetCareTip.deleteMany({});
     mockDelete.mockClear();

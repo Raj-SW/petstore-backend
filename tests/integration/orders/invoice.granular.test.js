@@ -15,7 +15,6 @@ describe('Granular invoice (Epic 11)', () => {
   let user;
   let product;
 
-
   beforeEach(async () => {
     await User.deleteMany({}); await Product.deleteMany({}); await Order.deleteMany({}); await Invoice.deleteMany({}); await Counter.deleteMany({});
     user = await User.create({ name: 'Jane Buyer', email: `j-${Date.now()}-${Math.random()}@t.com`, phoneNumber: '57123456', address: 'x', password: 'Password123*' });

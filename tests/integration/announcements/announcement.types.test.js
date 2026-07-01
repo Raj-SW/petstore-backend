@@ -18,7 +18,6 @@ describe('Typed announcements (Epic 9b)', () => {
   let adminId;
   let product;
 
-
   beforeEach(async () => {
     await User.deleteMany({}); await Product.deleteMany({}); await Announcement.deleteMany({});
     sendEmail.mockClear();

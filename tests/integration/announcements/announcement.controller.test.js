@@ -54,7 +54,6 @@ describe('Sale Announcement Controller', () => {
   let adminToken;
   let customerToken;
 
-
   beforeEach(async () => {
     await User.deleteMany({});
     await Product.deleteMany({});
@@ -66,7 +65,6 @@ describe('Sale Announcement Controller', () => {
     adminToken = a.body.data.accessToken;
     customerToken = await loginAs(makeUser());
   });
-
 
   describe('POST /api/announcements', () => {
     it('sends to opted-in customers only and records counts (201)', async () => {

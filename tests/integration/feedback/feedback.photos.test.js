@@ -26,7 +26,6 @@ const TINY_PNG = Buffer.from(
 describe('Feedback photos + admin (Epic 7b)', () => {
   let adminToken;
 
-
   beforeEach(async () => {
     await User.deleteMany({});
     await Feedback.deleteMany({});
