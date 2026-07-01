@@ -14,8 +14,6 @@ describe('Variant-aware inventory (Epic 14)', () => {
   let adminToken;
   let adminId;
 
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
-  afterAll(async () => { await mongoose.disconnect(); });
 
   beforeEach(async () => {
     await User.deleteMany({});

@@ -37,7 +37,6 @@ describe('Feedback Controller', () => {
   let adminToken;
   let customerToken;
 
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
 
   beforeEach(async () => {
     await User.deleteMany({});
@@ -48,7 +47,6 @@ describe('Feedback Controller', () => {
     customerToken = await loginAs(makeUser());
   });
 
-  afterAll(async () => { await mongoose.connection.close(); });
 
   const submit = (over = {}) =>
     request(app).post('/api/feedback').send({ name: 'Jane', rating: 5, message: 'Wonderful clinic and staff', ...over });

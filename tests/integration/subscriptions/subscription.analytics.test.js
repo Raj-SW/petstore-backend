@@ -16,8 +16,6 @@ const soon = () => new Date(Date.now() + 1 * 24 * 60 * 60 * 1000);
 describe('Subscription analytics (Epic 12)', () => {
   let userId;
 
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
-  afterAll(async () => { await mongoose.disconnect(); });
 
   beforeEach(async () => {
     await Subscription.deleteMany({});

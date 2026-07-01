@@ -36,13 +36,6 @@ describe('Admin User Management Routes', () => {
   const adminPassword = 'AdminPass123*';
   const userPassword = 'UserPass123*';
 
-  beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-  });
-
   beforeEach(async () => {
     agent = request.agent(app);
 
@@ -72,7 +65,6 @@ describe('Admin User Management Routes', () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.close();
   });
 
   // ─── GET /api/admin/users ───────────────────────────────────────────────────

@@ -9,7 +9,7 @@
         "debug": "nodemon --inspect src/server.js",
         "test": "cross-env NODE_ENV=test jest --runInBand --forceExit",
         "test:unit": "cross-env NODE_ENV=test jest --selectProjects unit --forceExit",
-        "test:integration": "cross-env NODE_ENV=test jest --selectProjects integration --runInBand --forceExit",
+        "test:integration": "cross-env NODE_ENV=test jest --selectProjects integration --forceExit",
         "test:all": "npm run test:unit && npm run test:integration",
         "test:coverage": "cross-env NODE_ENV=test jest --runInBand --forceExit --coverage",
         "lint": "eslint .",

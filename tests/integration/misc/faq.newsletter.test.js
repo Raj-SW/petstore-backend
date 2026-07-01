@@ -30,7 +30,6 @@ describe('FAQ + Newsletter', () => {
   let adminToken;
   let customerToken;
 
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
 
   beforeEach(async () => {
     await User.deleteMany({});
@@ -42,7 +41,6 @@ describe('FAQ + Newsletter', () => {
     customerToken = await loginAs(makeUser());
   });
 
-  afterAll(async () => { await mongoose.connection.close(); });
 
   describe('FAQ', () => {
     it('GET /api/faqs returns active FAQs ordered (public)', async () => {

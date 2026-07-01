@@ -26,8 +26,6 @@ const TINY_PNG = Buffer.from(
 describe('Feedback photos + admin (Epic 7b)', () => {
   let adminToken;
 
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
-  afterAll(async () => { await mongoose.disconnect(); });
 
   beforeEach(async () => {
     await User.deleteMany({});

@@ -28,8 +28,6 @@ describe('Product variant images + upload (Epic 6b)', () => {
   let adminToken;
   let adminId;
 
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
-  afterAll(async () => { await mongoose.disconnect(); });
 
   beforeEach(async () => {
     await User.deleteMany({});

@@ -15,8 +15,6 @@ describe('Granular invoice (Epic 11)', () => {
   let user;
   let product;
 
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
-  afterAll(async () => { await mongoose.connection.close(); });
 
   beforeEach(async () => {
     await User.deleteMany({}); await Product.deleteMany({}); await Order.deleteMany({}); await Invoice.deleteMany({}); await Counter.deleteMany({});

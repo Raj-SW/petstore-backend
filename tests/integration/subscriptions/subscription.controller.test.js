@@ -65,7 +65,6 @@ describe('Subscription Controller', () => {
   let customerToken;
   let customerId;
 
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
 
   beforeEach(async () => {
     await User.deleteMany({});
@@ -78,7 +77,6 @@ describe('Subscription Controller', () => {
     customerId = (await User.findOne({ email: cu.email }))._id;
   });
 
-  afterAll(async () => { await mongoose.connection.close(); });
 
   describe('POST /api/subscriptions', () => {
     it('creates a subscription and sets nextRunAt in the future (201)', async () => {

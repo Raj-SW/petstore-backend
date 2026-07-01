@@ -28,8 +28,6 @@ describe('Tips cover + section images (Epic 8)', () => {
   let adminToken;
   let adminId;
 
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
-  afterAll(async () => { await mongoose.disconnect(); });
 
   beforeEach(async () => {
     await User.deleteMany({}); await PetCareTip.deleteMany({});

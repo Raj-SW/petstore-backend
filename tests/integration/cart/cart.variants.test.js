@@ -14,7 +14,6 @@ async function loginNew() {
 
 describe('Cart variants', () => {
   let token; let admin; let product;
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
   beforeEach(async () => {
     await User.deleteMany({}); await Product.deleteMany({}); await Cart.deleteMany({});
     admin = await User.create({ name: 'A', email: 'a@t.com', phoneNumber: '12345678', address: 'x', password: 'Password123*', role: 'admin' });
@@ -25,7 +24,6 @@ describe('Cart variants', () => {
     });
     token = await loginNew();
   });
-  afterAll(async () => { await mongoose.connection.close(); });
 
   it('adds two variants of the same product as separate lines, priced per variant', async () => {
     const v1 = product.variants[0]._id.toString();
