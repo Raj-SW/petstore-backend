@@ -88,64 +88,50 @@ exports.createProduct = async (req, res, next) => {
   }
 };
 
+// Build the Mongo filter for the product list from query params.
+// 'all' skips the active filter (admin view); user input is regex-escaped.
+function buildProductFilter(q) {
+  const {
+    categories, minPrice, maxPrice, colors, genders, search,
+    isActive: isActiveRaw = 'true', isFeatured,
+  } = q;
+  const query = {};
+
+  if (isActiveRaw !== 'all') query.isActive = isActiveRaw !== 'false';
+  if (isFeatured !== undefined) query.isFeatured = isFeatured === 'true' || isFeatured === true;
+
+  if (categories) {
+    const categoryArray = Array.isArray(categories) ? categories : [categories];
+    // Case-insensitive exact match so a "Dogs" filter matches stored "dogs"
+    query.categories = { $in: categoryArray.map((c) => new RegExp(`^${escapeRegExp(c)}$`, 'i')) };
+  }
+
+  if (minPrice || maxPrice) {
+    query.price = {};
+    if (minPrice) query.price.$gte = Number(minPrice);
+    if (maxPrice && Number.isFinite(Number(maxPrice))) query.price.$lte = Number(maxPrice);
+  }
+
+  if (colors) query.colors = { $in: Array.isArray(colors) ? colors : [colors] };
+  if (genders) query.genders = { $in: Array.isArray(genders) ? genders : [genders] };
+
+  if (search) {
+    const safeSearch = escapeRegExp(search);
+    query.$or = [
+      { name: { $regex: safeSearch, $options: 'i' } },
+      { description: { $regex: safeSearch, $options: 'i' } },
+      { categories: { $regex: safeSearch, $options: 'i' } },
+    ];
+  }
+
+  return query;
+}
+
 // Get all products with filtering, sorting, and pagination
 exports.getProducts = async (req, res, next) => {
   try {
-    const {
-      page = 1,
-      limit = 10,
-      sort = '-createdAt',
-      categories,
-      minPrice,
-      maxPrice,
-      colors,
-      genders,
-      search,
-      isActive: isActiveRaw = 'true',
-      isFeatured,
-    } = req.query;
-
-    // Build query — 'all' skips the filter (admin view)
-    const query = {};
-    if (isActiveRaw !== 'all') {
-      query.isActive = isActiveRaw !== 'false';
-    }
-
-    // Filter by featured flag when explicitly requested
-    if (isFeatured !== undefined) {
-      query.isFeatured = isFeatured === 'true' || isFeatured === true;
-    }
-
-    if (categories) {
-      const categoryArray = Array.isArray(categories) ? categories : [categories];
-      // Case-insensitive exact match so a "Dogs" filter matches stored "dogs"
-      query.categories = { $in: categoryArray.map((c) => new RegExp(`^${escapeRegExp(c)}$`, 'i')) };
-    }
-
-    if (minPrice || maxPrice) {
-      query.price = {};
-      if (minPrice) query.price.$gte = Number(minPrice);
-      if (maxPrice && Number.isFinite(Number(maxPrice))) query.price.$lte = Number(maxPrice);
-    }
-
-    if (colors) {
-      const colorArray = Array.isArray(colors) ? colors : [colors];
-      query.colors = { $in: colorArray };
-    }
-
-    if (genders) {
-      const genderArray = Array.isArray(genders) ? genders : [genders];
-      query.genders = { $in: genderArray };
-    }
-
-    if (search) {
-      const safeSearch = escapeRegExp(search);
-      query.$or = [
-        { name: { $regex: safeSearch, $options: 'i' } },
-        { description: { $regex: safeSearch, $options: 'i' } },
-        { categories: { $regex: safeSearch, $options: 'i' } },
-      ];
-    }
+    const { page = 1, limit = 10, sort = '-createdAt' } = req.query;
+    const query = buildProductFilter(req.query);
 
     // Execute query
     const products = await Product.find(query)
@@ -203,6 +189,55 @@ exports.getProduct = async (req, res, next) => {
   }
 };
 
+// Delete Cloudinary assets present in the existing images but absent from the kept set.
+async function cleanupRemovedImages(existingImages, keptPublicIds) {
+  const keep = new Set(keptPublicIds.filter(Boolean));
+  const removed = existingImages.map((img) => img.publicId).filter((pid) => pid && !keep.has(pid));
+  if (removed.length > 0) await deleteMultipleFromCloudinary(removed);
+}
+
+// Resolve the final image set for a product update, cleaning up removed Cloudinary
+// assets. Returns { error } when the new ref-based set is empty.
+async function resolveUpdatedImages(existingProduct, imageRefs, keepImagesStr, files) {
+  if (Array.isArray(imageRefs)) {
+    // New contract: refs are the final image set. Diff for Cloudinary cleanup.
+    if (imageRefs.length === 0) return { error: 'At least one product image is required' };
+    await cleanupRemovedImages(existingProduct.images, imageRefs.map((img) => img.publicId));
+    return { images: imageRefs.map((img) => ({ url: img.url, publicId: img.publicId })) };
+  }
+  if (keepImagesStr !== undefined) {
+    // Legacy contract: keepImages + freshly-attached files.
+    const keepImages = JSON.parse(keepImagesStr); // [{url, publicId}]
+    await cleanupRemovedImages(existingProduct.images, keepImages.map((img) => img.publicId));
+    let newlyUploaded = [];
+    if (files?.length > 0) {
+      files.forEach((file) => validateImageFile(file));
+      newlyUploaded = await uploadMultipleToCloudinary(files, 'products');
+    }
+    return { images: [...keepImages, ...newlyUploaded] };
+  }
+  return { images: existingProduct.images };
+}
+
+// Fields a client may set via PATCH/PUT — everything else (createdBy, _id,
+// slug [auto-derived pre-save, skipped by findByIdAndUpdate], timestamps) is
+// dropped. Copying only these keys (rather than spreading req.body/updateData)
+// also blocks top-level Mongo update-operator injection (e.g. a client-supplied
+// `$unset`/`$rename`/`$inc` key reaching findByIdAndUpdate's update document).
+const UPDATABLE_PRODUCT_FIELDS = [
+  'name', 'description', 'price', 'colors', 'quantity', 'lowStockThreshold',
+  'genders', 'categories', 'isActive', 'isFeatured', 'onSale', 'discountType',
+  'discountValue', 'saleStartsAt', 'saleEndsAt', 'sections', 'variants',
+];
+
+function pickUpdatableProductFields(updateData) {
+  const sanitized = {};
+  for (const key of UPDATABLE_PRODUCT_FIELDS) {
+    if (updateData[key] !== undefined) sanitized[key] = updateData[key];
+  }
+  return sanitized;
+}
+
 // Update product (Admin only)
 exports.updateProduct = async (req, res, next) => {
   try {
@@ -240,44 +275,10 @@ exports.updateProduct = async (req, res, next) => {
       return next(new AppError('Product not found', 404));
     }
 
-    let updatedImages = existingProduct.images;
-
-    if (Array.isArray(imageRefs)) {
-      // New contract: refs are the final image set. Diff for Cloudinary cleanup.
-      if (imageRefs.length === 0) {
-        return next(new AppError('At least one product image is required', 400));
-      }
-      const keepPublicIds = new Set(imageRefs.map((img) => img.publicId).filter(Boolean));
-      const removedPublicIds = existingProduct.images
-        .map((img) => img.publicId)
-        .filter((pid) => pid && !keepPublicIds.has(pid));
-      if (removedPublicIds.length > 0) {
-        await deleteMultipleFromCloudinary(removedPublicIds);
-      }
-      updatedImages = imageRefs.map((img) => ({ url: img.url, publicId: img.publicId }));
-    } else if (keepImagesStr !== undefined) {
-      // Legacy contract: keepImages + freshly-attached files.
-      const keepImages = JSON.parse(keepImagesStr); // [{url, publicId}]
-
-      // Delete images that were removed by the admin
-      const keepPublicIds = new Set(keepImages.map((img) => img.publicId).filter(Boolean));
-      const removedPublicIds = existingProduct.images
-        .map((img) => img.publicId)
-        .filter((pid) => pid && !keepPublicIds.has(pid));
-
-      if (removedPublicIds.length > 0) {
-        await deleteMultipleFromCloudinary(removedPublicIds);
-      }
-
-      // Upload any new files and append to kept images
-      let newlyUploaded = [];
-      if (req.files && req.files.length > 0) {
-        req.files.forEach((file) => validateImageFile(file));
-        newlyUploaded = await uploadMultipleToCloudinary(req.files, 'products');
-      }
-
-      updatedImages = [...keepImages, ...newlyUploaded];
-    }
+    const { images: updatedImages, error: imageError } = await resolveUpdatedImages(
+      existingProduct, imageRefs, keepImagesStr, req.files,
+    );
+    if (imageError) return next(new AppError(imageError, 400));
 
     // Variant-image cleanup: delete Cloudinary assets dropped from any variant.
     if (Array.isArray(updateData.variants)) {
@@ -299,7 +300,7 @@ exports.updateProduct = async (req, res, next) => {
 
     const updatedProduct = await Product.findByIdAndUpdate(
       id,
-      { ...updateData, images: updatedImages },
+      { ...pickUpdatableProductFields(updateData), images: updatedImages },
       { new: true, runValidators: true }
     ).populate('createdBy', 'name email');
 
