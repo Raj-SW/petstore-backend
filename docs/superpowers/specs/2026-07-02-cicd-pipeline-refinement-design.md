@@ -111,32 +111,26 @@ jobs:
 
 **Known trade-off to flag explicitly:** `workflow_run` triggers run in the context of the **default branch**, not the PR branch, by default — the `ref: ${{ github.event.workflow_run.head_sha }}` checkout works around this for getting the right *code*, but SonarCloud's automatic PR decoration (inline PR comments, PR-scoped new-code analysis) typically relies on the `pull_request` event context. This may need explicit `sonar.pullrequest.key` / `sonar.pullrequest.branch` / `sonar.pullrequest.base` properties passed manually when the trigger isn't a native `pull_request` event. **This is a real implementation risk** the plan needs to validate against a real PR before considering this shipped — if PR decoration breaks, the fallback is accepting the duplicate test run rather than losing PR-level Sonar feedback.
 
-### 2.3 New: diff-scoped lint gate
+### 2.3 Diff-scoped lint gate
 
-Add a new `lint` job to `ci.yml`, running in parallel with `unit` (no `needs:` between them):
+**Revised during implementation** (original draft below is kept for context, but was not shipped as-is — see "Why the original approach failed" at the end of this section).
+
+Rather than adding a new custom job that shells out to `git diff --name-only` + `eslint <files>`, reuse the existing `reviewdog` job's proven diff-scoping (`filter_mode: diff_context`) and simply make it a real gate by changing `fail_level` from `none` to `error`:
 
 ```yaml
-lint:
-  name: Lint (changed lines only)
-  runs-on: ubuntu-latest
-  if: github.event_name == 'pull_request'
-  steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    - uses: actions/setup-node@v4
-      with:
-        node-version: 20
-        cache: npm
-    - run: npm ci
-    - name: Lint changed files only
-      run: |
-        git fetch origin ${{ github.base_ref }}
-        CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- '*.js' | grep -v '\.test\.js$' || true)
-        if [ -n "$CHANGED" ]; then
-          npx eslint $CHANGED
-        fi
+      - uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          eslint_flags: ". --ext .js"
+          filter_mode: diff_context
+          fail_level: error   # was: none
+          level: warning
 ```
+
+`fail_level: error` blocks the build only on ESLint *error*-severity findings that reviewdog's own diff-context filtering surfaces (i.e. only issues on/near lines actually changed in the PR) — warning-severity findings still get inline comments but don't fail the build. No second job, no duplicate ESLint run.
+
+**Why the original approach failed:** `git diff --name-only` returns whole **file paths** that changed, not line ranges. A naive `npx eslint $CHANGED_FILES` therefore re-lints each *entire* file, including all of its pre-existing debt — not just the lines the PR touched. Tested against this branch's actual diff (46 files changed vs. `main`, each touched by only a handful of lines): **400 problems (389 errors)** were reported, almost all from untouched code in files that happened to have one or two changed lines. This defeated the design's stated goal ("the 1268-error legacy backlog... never trips it"). `reviewdog`'s `filter_mode: diff_context` already does real line-range diff-matching internally (verified working earlier in this project — it was the source of the ~67 correctly diff-scoped PR comments triaged in the CodeQL/reviewdog fix pass), so reusing it instead of reimplementing the same logic in bash is both simpler and actually correct.
 
 This **fails the build** (unlike `reviewdog`, which stays purely advisory/inline) only when ESLint finds errors on files actually touched by the PR — the 1268-error legacy backlog in untouched files never trips it. `reviewdog`'s existing job is unchanged; the two are complementary (reviewdog = inline suggestions, this new job = a real pass/fail gate).
 

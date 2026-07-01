@@ -169,13 +169,17 @@ jobs:
           cache: npm
       - run: npm ci
 
-      # Inline suggestions on changed lines only, so the ~1268 pre-existing
-      # lint errors don't flood the PR. Never blocks the build (fail_level: none).
+      # Inline suggestions + a real gate, scoped to changed lines only via
+      # filter_mode: diff_context — so the ~1268 pre-existing lint errors
+      # elsewhere in touched files (or in untouched files) never trip this.
+      # fail_level: error blocks the build only on ESLint *error*-severity
+      # findings within the diff; warning-severity findings still get
+      # inline comments but don't fail the build.
       - uses: reviewdog/action-eslint@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           eslint_flags: ". --ext .js"
           filter_mode: diff_context
-          fail_level: none
+          fail_level: error
           level: warning
