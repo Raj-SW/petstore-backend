@@ -22,6 +22,19 @@ exports.getCart = async (req, res, next) => {
   }
 };
 
+// Resolve a cart line's price + label. Returns { error } when the chosen
+// variant is unavailable; price defaults to 0 when the product is absent
+// (strict validation is deferred to order creation).
+function resolveCartPricing(product, variantId) {
+  if (!product) return { itemPrice: 0, variantLabel: null };
+  if (variantId && product.hasVariants) {
+    const v = product.variants.id(variantId);
+    if (!v) return { error: 'Selected option is unavailable' };
+    return { itemPrice: product.priceForVariant(variantId), variantLabel: v.label };
+  }
+  return { itemPrice: product.effectivePrice, variantLabel: null };
+}
+
 // Add item to cart
 exports.addToCart = async (req, res, next) => {
   try {
@@ -36,18 +49,8 @@ exports.addToCart = async (req, res, next) => {
       return next(new AppError('Please select a size/option', 400));
     }
 
-    let itemPrice = 0;
-    let variantLabel = null;
-    if (product) {
-      if (variantId && product.hasVariants) {
-        const v = product.variants.id(variantId);
-        if (!v) return next(new AppError('Selected option is unavailable', 400));
-        itemPrice = product.priceForVariant(variantId);
-        variantLabel = v.label;
-      } else {
-        itemPrice = product.effectivePrice;
-      }
-    }
+    const { itemPrice = 0, variantLabel = null, error } = resolveCartPricing(product, variantId);
+    if (error) return next(new AppError(error, 400));
 
     // Get or create cart
     let cart = await Cart.findOne({ user: req.user.id });
