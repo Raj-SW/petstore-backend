@@ -5,7 +5,7 @@ const { toSafeString } = require('../utils/sanitize');
 // ── GET /admin/transactions ──────────────────────────────────────────
 exports.getTransactions = async (req, res, next) => {
   try {
-    const page  = Math.max(1, Number.parseInt(req.query.page,  10) || 1);
+    const page  = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
     const limit = Math.min(100, Math.max(1, Number.parseInt(req.query.limit, 10) || 20));
     const skip  = (page - 1) * limit;
 

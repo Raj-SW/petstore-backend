@@ -175,7 +175,7 @@ exports.unsubscribe = async (req, res) => {
     return res.status(status).send(
       '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>'
       + '<body style="font-family:Arial,sans-serif;text-align:center;padding:60px 20px;color:#333">'
-      + `<h2>${heading}</h2>${subHtml}</body></html>`
+      + `<h2>${heading}</h2>${subHtml}</body></html>`,
     );
   };
   try {
