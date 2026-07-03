@@ -1,9 +1,11 @@
 # CI/CD Pipeline Refinement — Design
 
 **Date:** 2026-07-02
-**Status:** Design approved, not yet implemented
+**Status:** Implemented on `fix/sonarqube-issues-2026-06-29`. §2.1 (integration parallelism) and §2.3 (lint gate) shipped and verified on a real CI run. §2.2 (SonarCloud workflow_run) was **reverted** — see note below; `sonarcloud.yml` is back to its original self-contained push/pull_request triggers.
 **Repo:** `backend/`
 **Branch:** `fix/sonarqube-issues-2026-06-29` (or a dedicated follow-up branch)
+
+**2026-07-02 outcome — §2.2 reverted:** `workflow_run` triggers only activate based on the workflow file version present on the repository's **default branch**, not the branch where the change lives. Since the `sonarcloud.yml` rewrite only existed on this feature branch, GitHub never fired it — not a bug, a hard platform constraint that can't be validated (or made to work) pre-merge. Reverted `sonarcloud.yml` to its original self-contained triggers (accepting the duplicate test run) so SonarCloud feedback keeps working on this and future PRs. The `workflow_run` approach could be revisited as its own follow-up *after* landing on `main`, since only then would the trigger config actually be live — but that means it can only be validated once already merged, which is a real chicken-and-egg constraint worth weighing before trying again.
 
 Builds on [2026-06-28-backend-testing-architecture-cicd-design.md](2026-06-28-backend-testing-architecture-cicd-design.md), which shipped the current `ci.yml` (unit → integration → report jobs) and the `db-lifecycle.js` cross-file test isolation fix. This spec refines that pipeline now that the integration suite is reliably green (was previously ~104/282 passing due to a test-isolation bug, now ~278/282).
 
