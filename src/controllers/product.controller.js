@@ -88,6 +88,28 @@ exports.createProduct = async (req, res, next) => {
   }
 };
 
+// Case-insensitive exact match so a "Dogs" filter matches stored "dogs".
+function buildCategoryFilter(categories) {
+  const categoryArray = Array.isArray(categories) ? categories : [categories];
+  return { $in: categoryArray.map((c) => new RegExp(`^${escapeRegExp(c)}$`, 'i')) };
+}
+
+function buildPriceFilter(minPrice, maxPrice) {
+  const price = {};
+  if (minPrice) price.$gte = Number(minPrice);
+  if (maxPrice && Number.isFinite(Number(maxPrice))) price.$lte = Number(maxPrice);
+  return price;
+}
+
+function buildSearchFilter(search) {
+  const safeSearch = escapeRegExp(search);
+  return [
+    { name: { $regex: safeSearch, $options: 'i' } },
+    { description: { $regex: safeSearch, $options: 'i' } },
+    { categories: { $regex: safeSearch, $options: 'i' } },
+  ];
+}
+
 // Build the Mongo filter for the product list from query params.
 // 'all' skips the active filter (admin view); user input is regex-escaped.
 function buildProductFilter(q) {
@@ -99,30 +121,11 @@ function buildProductFilter(q) {
 
   if (isActiveRaw !== 'all') query.isActive = isActiveRaw !== 'false';
   if (isFeatured !== undefined) query.isFeatured = isFeatured === 'true' || isFeatured === true;
-
-  if (categories) {
-    const categoryArray = Array.isArray(categories) ? categories : [categories];
-    // Case-insensitive exact match so a "Dogs" filter matches stored "dogs"
-    query.categories = { $in: categoryArray.map((c) => new RegExp(`^${escapeRegExp(c)}$`, 'i')) };
-  }
-
-  if (minPrice || maxPrice) {
-    query.price = {};
-    if (minPrice) query.price.$gte = Number(minPrice);
-    if (maxPrice && Number.isFinite(Number(maxPrice))) query.price.$lte = Number(maxPrice);
-  }
-
+  if (categories) query.categories = buildCategoryFilter(categories);
+  if (minPrice || maxPrice) query.price = buildPriceFilter(minPrice, maxPrice);
   if (colors) query.colors = { $in: Array.isArray(colors) ? colors : [colors] };
   if (genders) query.genders = { $in: Array.isArray(genders) ? genders : [genders] };
-
-  if (search) {
-    const safeSearch = escapeRegExp(search);
-    query.$or = [
-      { name: { $regex: safeSearch, $options: 'i' } },
-      { description: { $regex: safeSearch, $options: 'i' } },
-      { categories: { $regex: safeSearch, $options: 'i' } },
-    ];
-  }
+  if (search) query.$or = buildSearchFilter(search);
 
   return query;
 }

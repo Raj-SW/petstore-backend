@@ -7,19 +7,19 @@
 const logger = require('../utils/logger');
 
 // Linear slash-trimming (no regex) to avoid super-linear backtracking (S8786).
-const SLASH = '/'.charCodeAt(0);
+const SLASH = '/'.codePointAt(0);
 const stripTrailing = (s) => {
   const str = String(s || '');
   let end = str.length;
-  while (end > 0 && str.charCodeAt(end - 1) === SLASH) end -= 1;
+  while (end > 0 && str.codePointAt(end - 1) === SLASH) end -= 1;
   return str.slice(0, end);
 };
 const stripBoth = (s) => {
   const str = String(s || '');
   let start = 0;
   let end = str.length;
-  while (start < end && str.charCodeAt(start) === SLASH) start += 1;
-  while (end > start && str.charCodeAt(end - 1) === SLASH) end -= 1;
+  while (start < end && str.codePointAt(start) === SLASH) start += 1;
+  while (end > start && str.codePointAt(end - 1) === SLASH) end -= 1;
   return str.slice(start, end);
 };
 
@@ -27,7 +27,7 @@ const FRONTEND_BASE = stripTrailing(
   process.env.FRONTEND_URL
   || process.env.CLIENT_URL
   || process.env.VERCEL_FRONTEND_URL
-  || 'http://localhost:5173'
+  || 'http://localhost:5173',
 );
 
 const API_BASE = stripTrailing(process.env.API_PUBLIC_URL || 'http://localhost:5000/api');
