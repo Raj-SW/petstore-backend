@@ -85,9 +85,9 @@ async function reserveItemStock(item, session) {
   }
 
   let prevQty;
-  if (!prod) prevQty = 0;
-  else if (prod.quantity != null) prevQty = prod.quantity;
-  else prevQty = prod.stock ?? 0;
+  if (prod?.quantity != null) prevQty = prod.quantity;
+  else if (prod) prevQty = prod.stock ?? 0;
+  else prevQty = 0;
   const stockField = prod?.quantity != null ? 'quantity' : 'stock';
   await Product.findByIdAndUpdate(
     item.product,

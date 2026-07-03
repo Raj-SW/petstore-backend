@@ -310,12 +310,12 @@ exports.cancelOrder = async (req, res, next) => {
       const prod = await Product.findById(item.product).lean();
       // Resolve quantity: prefer `quantity` field; fall back to legacy `stock`
       let prevQty;
-      if (!prod) {
-        prevQty = 0;
-      } else if (prod.quantity != null) {
+      if (prod?.quantity != null) {
         prevQty = prod.quantity;
-      } else {
+      } else if (prod) {
         prevQty = prod.stock ?? 0;
+      } else {
+        prevQty = 0;
       }
       const newQty = prevQty + item.quantity;
       // Restore the correct field (match whichever field was decremented)

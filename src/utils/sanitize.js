@@ -33,7 +33,7 @@ function toSafeString(value) {
  */
 function escapeRegExp(value) {
   if (value === null || value === undefined) return '';
-  return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`);
 }
 
 /**
@@ -50,7 +50,7 @@ function sanitizeForLog(value) {
   let out = '';
   const str = String(value);
   for (let i = 0; i < str.length; i += 1) {
-    const code = str.charCodeAt(i);
+    const code = str.codePointAt(i);
     if (code > 0x1f && code !== 0x7f) out += str[i];
   }
   return out;
