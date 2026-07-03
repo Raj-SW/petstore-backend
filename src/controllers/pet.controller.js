@@ -148,7 +148,7 @@ exports.deletePet = async (req, res, next) => {
       return next(new AppError('You do not have permission to delete this pet', 403));
     }
 
-    if (pet.images && pet.images.length) {
+    if (pet.images?.length) {
       await deleteMultipleFromCloudinary(pet.images.map((img) => img.publicId));
     }
     await Pet.findByIdAndDelete(req.params.id);

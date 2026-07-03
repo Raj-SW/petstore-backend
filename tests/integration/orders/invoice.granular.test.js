@@ -15,9 +15,6 @@ describe('Granular invoice (Epic 11)', () => {
   let user;
   let product;
 
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
-  afterAll(async () => { await mongoose.connection.close(); });
-
   beforeEach(async () => {
     await User.deleteMany({}); await Product.deleteMany({}); await Order.deleteMany({}); await Invoice.deleteMany({}); await Counter.deleteMany({});
     user = await User.create({ name: 'Jane Buyer', email: `j-${Date.now()}-${Math.random()}@t.com`, phoneNumber: '57123456', address: 'x', password: 'Password123*' });

@@ -53,7 +53,6 @@ describe('Pet image endpoints', () => {
   let otherToken;
 
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URI);
   });
 
   beforeEach(async () => {
@@ -69,7 +68,6 @@ describe('Pet image endpoints', () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.close();
   });
 
   const makePet = (overrides = {}) => Pet.create({

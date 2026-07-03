@@ -8,7 +8,6 @@ const ADDR = { street: '1 A St', city: 'Town', state: 'X', country: 'MU', zipCod
 
 describe('buildOrder with variants', () => {
   let userId; let product;
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
   beforeEach(async () => {
     await Product.deleteMany({}); await User.deleteMany({}); await Order.deleteMany({});
     const u = await User.create({ name: 'U', email: `u-${Date.now()}@t.com`, phoneNumber: '12345678', address: 'x', password: 'Password123*' });
@@ -19,7 +18,6 @@ describe('buildOrder with variants', () => {
       variants: [{ label: '1kg', price: 300, quantity: 5 }, { label: '5kg', price: 1200, quantity: 8 }],
     });
   });
-  afterAll(async () => { await mongoose.connection.close(); });
 
   it('prices from the chosen variant and reserves only that variant stock', async () => {
     const v5 = product.variants[1]._id;

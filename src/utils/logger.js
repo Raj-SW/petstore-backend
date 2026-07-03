@@ -1,5 +1,5 @@
 const winston = require('winston');
-const path = require('path');
+const path = require('node:path');
 
 // Define log format
 const logFormat = winston.format.combine(
@@ -20,7 +20,7 @@ const transports = [
       winston.format.colorize(),
       winston.format.printf(({
         timestamp, level, message, ...meta
-      }) => `${timestamp} [${level}]: ${message} ${
+      }) => `${String(timestamp)} [${level}]: ${String(message)} ${
         Object.keys(meta).length ? JSON.stringify(meta, null, 2) : ''
       }`),
     ),
@@ -29,7 +29,9 @@ const transports = [
 
 if (isDevelopment) {
   try {
-    const fs = require('fs');
+    // Lazy: only load fs when file-logging is on
+    // eslint-disable-next-line global-require
+    const fs = require('node:fs');
     const logsDir = path.join(__dirname, '../../logs');
     if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir, { recursive: true });
     transports.push(

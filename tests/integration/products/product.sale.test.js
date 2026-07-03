@@ -45,9 +45,7 @@ async function customer() {
 }
 
 describe('Product sale virtuals', () => {
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
   beforeEach(async () => { await Product.deleteMany({}); });
-  afterAll(async () => { await mongoose.connection.close(); });
 
   it('salePrice: percent computes price*(1-pct/100), rounded to 2dp', async () => {
     const p = await Product.create(dbProduct({ onSale: true, discountType: 'percent', discountValue: 20 }));
@@ -111,9 +109,7 @@ describe('Product sale virtuals', () => {
 
 describe('Sale validation on create', () => {
   let token;
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
   beforeEach(async () => { await User.deleteMany({}); await Product.deleteMany({}); token = await adminToken(); });
-  afterAll(async () => { await mongoose.connection.close(); });
 
   // The create endpoint needs a multipart body with at least one image file.
   // Send fields via .field() and attach a dummy image (Cloudinary is mocked).
@@ -158,12 +154,10 @@ describe('Sale validation on create', () => {
 
 describe('Checkout charges effectivePrice', () => {
   let token; let user;
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
   beforeEach(async () => {
     await User.deleteMany({}); await Product.deleteMany({}); await Cart.deleteMany({}); await Order.deleteMany({});
     const c = await customer(); token = c.token; user = c.user;
   });
-  afterAll(async () => { await mongoose.connection.close(); });
 
   async function checkout(product) {
     await Cart.create({ user: user._id, items: [{ product: product._id, quantity: 2, price: product.price }] });

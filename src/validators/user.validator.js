@@ -6,7 +6,7 @@ const validateUpdateProfile = (req, res, next) => {
     name: Joi.string().min(2).max(50),
     email: Joi.string().email(),
     phoneNumber: Joi.string()
-      .pattern(/^[0-9]{8}$/)
+      .pattern(/^\d{8}$/)
       .message('Phone number must be 8 digits'),
     address: Joi.string().min(5).max(200),
     emailPreferences: Joi.object({
@@ -28,7 +28,7 @@ const validateChangePassword = (req, res, next) => {
     newPassword: Joi.string()
       .required()
       .min(8)
-      .pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])'))
+      .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])/)
       .message(
         'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character',
       ),

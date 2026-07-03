@@ -95,7 +95,7 @@ galleryPostSchema.pre('save', function (next) {
   }
   if (!this.excerpt && this.body) {
     this.excerpt = this.body
-      .replace(/<[^>]*>/g, ' ')
+      .replace(/<[^>]{0,2048}>/g, ' ')
       .replace(/\s+/g, ' ')
       .trim()
       .slice(0, 160);

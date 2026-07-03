@@ -64,13 +64,6 @@ describe('PATCH /api/users/upload-avatar', () => {
   let cookie;
   let userData;
 
-  beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-  });
-
   beforeEach(async () => {
     // Reset mocks
     cloudinaryUtils.validateImageFile.mockClear();
@@ -87,7 +80,6 @@ describe('PATCH /api/users/upload-avatar', () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.close();
   });
 
   // ── 401 when not authenticated ───────────────────────────────────────────

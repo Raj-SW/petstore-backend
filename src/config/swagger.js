@@ -218,7 +218,7 @@ const options = {
             price: {
               type: 'number',
               description: 'Service price',
-              example: 75.0,
+              example: 75,
             },
           },
         },

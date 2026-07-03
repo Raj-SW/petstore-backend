@@ -50,7 +50,6 @@ describe('Advert Controller', () => {
   let customerToken;
 
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URI);
   });
 
   beforeEach(async () => {
@@ -66,7 +65,6 @@ describe('Advert Controller', () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.close();
   });
 
   describe('GET /api/adverts', () => {

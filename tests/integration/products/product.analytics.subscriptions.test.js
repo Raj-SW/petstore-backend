@@ -11,8 +11,6 @@ const ADDRESS = { street: '1 A St', city: 'Town', state: 'X', country: 'MU', zip
 const uniqEmail = (p) => `${p}-${Date.now()}-${Math.random()}@x.com`;
 
 describe('Product analytics — subscriptions block (Epic 12)', () => {
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
-  afterAll(async () => { await mongoose.disconnect(); });
   beforeEach(async () => {
     await User.deleteMany({}); await Product.deleteMany({}); await Subscription.deleteMany({});
   });

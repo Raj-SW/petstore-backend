@@ -6,8 +6,22 @@
 
 const logger = require('../utils/logger');
 
-const stripTrailing = (s) => String(s || '').replace(/\/+$/, '');
-const stripBoth = (s) => String(s || '').replace(/^\/+|\/+$/g, '');
+// Linear slash-trimming (no regex) to avoid super-linear backtracking (S8786).
+const SLASH = '/'.charCodeAt(0);
+const stripTrailing = (s) => {
+  const str = String(s || '');
+  let end = str.length;
+  while (end > 0 && str.charCodeAt(end - 1) === SLASH) end -= 1;
+  return str.slice(0, end);
+};
+const stripBoth = (s) => {
+  const str = String(s || '');
+  let start = 0;
+  let end = str.length;
+  while (start < end && str.charCodeAt(start) === SLASH) start += 1;
+  while (end > start && str.charCodeAt(end - 1) === SLASH) end -= 1;
+  return str.slice(start, end);
+};
 
 const FRONTEND_BASE = stripTrailing(
   process.env.FRONTEND_URL

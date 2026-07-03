@@ -1,6 +1,7 @@
 const cloudinary = require('cloudinary').v2;
 const { AppError } = require('../middlewares/errorHandler');
 const logger = require('./logger');
+const { sanitizeForLog } = require('./sanitize');
 
 // Configure Cloudinary
 cloudinary.config({
@@ -76,7 +77,7 @@ exports.deleteFromCloudinary = async (publicId) => {
   try {
     const result = await cloudinary.uploader.destroy(publicId);
     if (result.result !== 'ok') {
-      logger.warn(`Failed to delete image with publicId: ${publicId}`);
+      logger.warn(`Failed to delete image with publicId: ${sanitizeForLog(publicId)}`);
     }
     return result;
   } catch (error) {

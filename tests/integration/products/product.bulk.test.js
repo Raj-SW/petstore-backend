@@ -20,9 +20,6 @@ describe('POST /api/products/bulk (Epic 6)', () => {
   let adminId;
   let customerToken;
 
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
-  afterAll(async () => { await mongoose.disconnect(); });
-
   beforeEach(async () => {
     await User.deleteMany({});
     await Product.deleteMany({});

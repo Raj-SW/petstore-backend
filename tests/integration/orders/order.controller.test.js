@@ -44,13 +44,6 @@ describe('Order Controller - Checkout Scenarios', () => {
   let product;
   let cookie;
 
-  beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-  });
-
   beforeEach(async () => {
     agent = request.agent(app);
     await User.deleteMany({});
@@ -71,7 +64,6 @@ describe('Order Controller - Checkout Scenarios', () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.close();
   });
 
   // 1. Successful order

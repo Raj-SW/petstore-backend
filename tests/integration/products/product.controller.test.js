@@ -72,7 +72,6 @@ describe('Product Controller', () => {
   let product;
 
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URI);
   });
 
   beforeEach(async () => {
@@ -96,7 +95,6 @@ describe('Product Controller', () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.close();
   });
 
   // ─── GET /api/products ───────────────────────────────────────────────────────

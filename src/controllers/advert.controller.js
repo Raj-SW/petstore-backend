@@ -3,12 +3,14 @@ const Advert = require('../models/advert.model');
 const { AppError } = require('../middlewares/errorHandler');
 const { uploadBannerToCloudinary } = require('../utils/cloudinary');
 const logger = require('../utils/logger');
+const { toSafeString } = require('../utils/sanitize');
 
 // GET /api/adverts — public, active only
 exports.getAdverts = async (req, res, next) => {
   try {
     const query = { active: true };
-    if (req.query.placement) query.placement = req.query.placement;
+    const placement = toSafeString(req.query.placement);
+    if (placement) query.placement = placement;
     const adverts = await Advert.find(query).sort('order -createdAt');
     return res.status(200).json({ success: true, count: adverts.length, data: adverts });
   } catch (error) {

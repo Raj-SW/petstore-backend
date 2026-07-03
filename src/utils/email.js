@@ -1,14 +1,15 @@
 const nodemailer = require('nodemailer');
 const logger = require('./logger');
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 const handlebars = require('handlebars');
 const { formatMUR } = require('./currency');
+const { sanitizeForLog } = require('./sanitize');
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || 'smtp.resend.com',
-  port: parseInt(process.env.SMTP_PORT || '465', 10),
-  secure: parseInt(process.env.SMTP_PORT || '587', 10) === 465,
+  port: Number.parseInt(process.env.SMTP_PORT || '465', 10),
+  secure: Number.parseInt(process.env.SMTP_PORT || '587', 10) === 465,
   auth: {
     user: process.env.SMTP_USER || 'resend',
     pass: process.env.SMTP_PASS,
@@ -73,7 +74,7 @@ exports.sendEmail = async ({ to, email, subject, template, data = {} }) => {
     html,
   });
 
-  logger.info(`Email sent — subject: "${subject}" to: ${recipient}`);
+  logger.info(`Email sent — subject: "${sanitizeForLog(subject)}" to: ${sanitizeForLog(recipient)}`);
 };
 
 exports.renderTemplate = renderTemplate;

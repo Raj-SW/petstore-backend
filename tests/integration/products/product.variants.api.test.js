@@ -20,9 +20,7 @@ async function adminToken() {
 
 describe('Product variants API', () => {
   let token;
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
   beforeEach(async () => { await Product.deleteMany({}); await User.deleteMany({}); token = await adminToken(); });
-  afterAll(async () => { await mongoose.connection.close(); });
 
   it('creates a product with variants and derives price/quantity', async () => {
     const res = await request(app)

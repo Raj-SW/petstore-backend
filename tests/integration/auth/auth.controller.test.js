@@ -38,7 +38,6 @@ async function signupAndLogin(userData) {
 
 describe('Auth Controller', () => {
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URI);
   });
 
   beforeEach(async () => {
@@ -46,7 +45,6 @@ describe('Auth Controller', () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.close();
   });
 
   // ─── POST /signup ───────────────────────────────────────────────────────────

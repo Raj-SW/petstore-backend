@@ -7,7 +7,7 @@ const User = require('../models/user.model');
 exports.isAuthenticated = async (req, res, next) => {
   try {
     let token;
-    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    if (req.headers.authorization?.startsWith('Bearer')) {
       token = req.headers.authorization.split(' ')[1];
     }
 
@@ -38,7 +38,7 @@ exports.isAuthenticated = async (req, res, next) => {
 
 // Must come after isAuthenticated in the middleware chain
 exports.isAdmin = (req, res, next) => {
-  if (req.user && req.user.role === 'admin') {
+  if (req.user?.role === 'admin') {
     return next();
   }
   return next(new AppError('Access denied. Admin role required.', 403));

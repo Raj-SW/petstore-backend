@@ -51,7 +51,6 @@ describe('Tip Controller', () => {
   let customerToken;
 
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URI);
   });
 
   beforeEach(async () => {
@@ -68,7 +67,6 @@ describe('Tip Controller', () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.close();
   });
 
   describe('GET /api/tips', () => {

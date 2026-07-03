@@ -95,7 +95,7 @@ petCareTipSchema.pre('save', function (next) {
   if (this.isModified('body')) {
     // readTime = stripped word count at 200 wpm, minimum 1 minute
     const words = this.body
-      .replace(/<[^>]*>/g, ' ')
+      .replace(/<[^>]{0,2048}>/g, ' ')
       .trim()
       .split(/\s+/)
       .filter(Boolean).length;

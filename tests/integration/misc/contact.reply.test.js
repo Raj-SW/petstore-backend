@@ -30,8 +30,6 @@ describe('Contact reply', () => {
   let adminToken;
   let customerToken;
 
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
-
   beforeEach(async () => {
     await User.deleteMany({});
     await Contact.deleteMany({});
@@ -41,8 +39,6 @@ describe('Contact reply', () => {
     customerToken = await loginAs(makeUser());
     sendEmail.mockClear();
   });
-
-  afterAll(async () => { await mongoose.connection.close(); });
 
   it('sends a reply email and marks the message replied (200)', async () => {
     const c = await Contact.create({ name: 'Jane', email: 'jane@example.com', message: 'Do you board cats?' });

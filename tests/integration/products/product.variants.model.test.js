@@ -4,7 +4,6 @@ const User = require('../../../src/models/user.model');
 
 describe('Product variants', () => {
   let adminId;
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
   beforeEach(async () => {
     await Product.deleteMany({});
     await User.deleteMany({});
@@ -14,7 +13,6 @@ describe('Product variants', () => {
     });
     adminId = admin._id;
   });
-  afterAll(async () => { await mongoose.connection.close(); });
 
   const base = (over = {}) => ({
     name: 'Dog Food', description: 'Premium kibble for dogs',

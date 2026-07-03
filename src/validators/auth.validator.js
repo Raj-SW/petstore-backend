@@ -5,7 +5,7 @@ const signupSchema = Joi.object({
   name: Joi.string().required().trim(),
   email: Joi.string().email().required().trim(),
   phoneNumber: Joi.string()
-    .pattern(/^[0-9]{8}$/)
+    .pattern(/^\d{8}$/)
     .required()
     .trim(),
   address: Joi.string().required().trim(),

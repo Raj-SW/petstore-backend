@@ -5,7 +5,7 @@ const {
   PaymentsController,
   CheckoutPaymentIntent,
 } = require('@paypal/paypal-server-sdk');
-const https = require('https');
+const https = require('node:https');
 const { AppError } = require('../middlewares/errorHandler');
 const logger = require('../utils/logger');
 const { frontendUrl } = require('../config/urls');

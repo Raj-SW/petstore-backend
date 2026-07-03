@@ -33,9 +33,6 @@ describe('Product image-refs contract (Epic 6b ImageManager)', () => {
   let adminId;
   let adminToken;
 
-  beforeAll(async () => { await mongoose.connect(process.env.MONGODB_URI); });
-  afterAll(async () => { await mongoose.disconnect(); });
-
   beforeEach(async () => {
     await User.deleteMany({});
     await Product.deleteMany({});
