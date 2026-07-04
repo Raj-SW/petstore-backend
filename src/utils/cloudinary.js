@@ -104,14 +104,14 @@ exports.deleteMultipleFromCloudinary = async (publicIds) => {
 // Validate image file
 exports.validateImageFile = (file) => {
   const allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
-  const maxSize = 5 * 1024 * 1024; // 5MB
+  const maxSize = 15 * 1024 * 1024; // 15MB — matches the multer limit in upload.js
 
   if (!allowedMimeTypes.includes(file.mimetype)) {
     throw new AppError('Invalid file type. Only JPEG, PNG, and WebP images are allowed.', 400);
   }
 
   if (file.size > maxSize) {
-    throw new AppError('File size too large. Maximum size is 5MB.', 400);
+    throw new AppError('File size too large. Maximum size is 15MB.', 400);
   }
 
   return true;

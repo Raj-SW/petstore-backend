@@ -27,7 +27,7 @@ describe('upload middleware', () => {
     app = buildTestApp();
   });
 
-  it('accepts a file under 5 MB', async () => {
+  it('accepts a file under 15 MB', async () => {
     const small = Buffer.alloc(1024, 0);
     const res = await request(app)
       .post('/upload')
@@ -36,8 +36,8 @@ describe('upload middleware', () => {
     expect(res.status).toBe(200);
   });
 
-  it('rejects a file over 5 MB with a 4xx error', async () => {
-    const oversized = Buffer.alloc(5 * 1024 * 1024 + 1, 0);
+  it('rejects a file over 15 MB with a 4xx error', async () => {
+    const oversized = Buffer.alloc(15 * 1024 * 1024 + 1, 0);
     const res = await request(app)
       .post('/upload')
       .attach('file', oversized, { filename: 'big.png', contentType: 'image/png' });
