@@ -10,7 +10,7 @@ const {
 } = require('../utils/cloudinary');
 const { deriveProductFromVariants } = require('../utils/productVariants');
 const { predictDemand, productCoverage } = require('../services/subscription.analytics.service');
-const { escapeRegExp } = require('../utils/sanitize');
+const { escapeRegExp, toSafeString } = require('../utils/sanitize');
 
 // Parse a JSON field that may arrive as a string (FormData) or be absent.
 function parseJsonField(value, fallback) {
@@ -110,6 +110,16 @@ function buildSearchFilter(search) {
   ];
 }
 
+const ALLOWED_PRODUCT_SORT_FIELDS = new Set([
+  'name', '-name', 'price', '-price',
+  'createdAt', '-createdAt', 'updatedAt', '-updatedAt',
+  'rating', '-rating', 'quantity', '-quantity',
+]);
+
+function sanitizeProductSort(sort) {
+  return ALLOWED_PRODUCT_SORT_FIELDS.has(sort) ? sort : '-createdAt';
+}
+
 // Build the Mongo filter for the product list from query params.
 // 'all' skips the active filter (admin view); user input is regex-escaped.
 function buildProductFilter(q) {
@@ -123,8 +133,8 @@ function buildProductFilter(q) {
   if (isFeatured !== undefined) query.isFeatured = isFeatured === 'true' || isFeatured === true;
   if (categories) query.categories = buildCategoryFilter(categories);
   if (minPrice || maxPrice) query.price = buildPriceFilter(minPrice, maxPrice);
-  if (colors) query.colors = { $in: Array.isArray(colors) ? colors : [colors] };
-  if (genders) query.genders = { $in: Array.isArray(genders) ? genders : [genders] };
+  if (colors) query.colors = { $in: (Array.isArray(colors) ? colors : [colors]).map(toSafeString).filter(Boolean) };
+  if (genders) query.genders = { $in: (Array.isArray(genders) ? genders : [genders]).map(toSafeString).filter(Boolean) };
   if (search) query.$or = buildSearchFilter(search);
 
   return query;
@@ -139,7 +149,7 @@ exports.getProducts = async (req, res, next) => {
     // Execute query
     const products = await Product.find(query)
       .populate('createdBy', 'name email')
-      .sort(sort)
+      .sort(sanitizeProductSort(sort))
       .skip((page - 1) * limit)
       .limit(Number(limit));
 

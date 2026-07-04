@@ -14,6 +14,12 @@ const validateObjectId = (id, fieldName = 'ID') => {
   }
 };
 
+const PROFESSIONAL_ROLES = ['veterinarian', 'groomer', 'trainer'];
+
+const ALLOWED_PROFESSIONAL_SORT_FIELDS = [
+  'professionalInfo.rating', 'name', 'createdAt', 'professionalInfo.experience',
+];
+
 class ProfessionalService {
   /**
    * Get all professionals with filtering and pagination
@@ -28,6 +34,9 @@ class ProfessionalService {
     const { page = 1, limit = 10 } = pagination;
 
     const { sortBy = 'professionalInfo.rating', sortOrder = 'desc' } = sorting;
+    const safeSortBy = ALLOWED_PROFESSIONAL_SORT_FIELDS.includes(sortBy)
+      ? sortBy
+      : 'professionalInfo.rating';
 
     // Build query for professionals only — always exclude deactivated users
     const query = {
@@ -60,7 +69,7 @@ class ProfessionalService {
 
     // Execute query with pagination and sorting
     const professionals = await User.find(query)
-      .sort({ [sortBy]: sortOrder === 'desc' ? -1 : 1 })
+      .sort({ [safeSortBy]: sortOrder === 'desc' ? -1 : 1 })
       .skip(skip)
       .limit(Number.parseInt(limit, 10))
       .select(
@@ -176,8 +185,9 @@ class ProfessionalService {
   async getAvailableProfessionals(timeSlot) {
     const { day, time, role, specialization } = timeSlot;
 
+    const safeRole = PROFESSIONAL_ROLES.includes(role) ? role : null;
     const query = {
-      role: role || { $in: ['veterinarian', 'groomer', 'trainer'] },
+      role: safeRole || { $in: PROFESSIONAL_ROLES },
       isActive: true,
       'professionalInfo.isActive': true,
     };
