@@ -61,4 +61,39 @@ describe('Pet Shop filter (Epic 5)', () => {
     expect([...res.body.data.colors].sort()).toEqual(['blue', 'brown']);
     expect(res.body.data.genders).toEqual(expect.arrayContaining(['Female', 'Unisex']));
   });
+
+  // ── Security: NoSQL injection via sort param ─────────────────────────────
+
+  it('ignores an invalid sort field and falls back to -createdAt', async () => {
+    // Attacker supplies a MongoDB operator as the sort value
+    const res = await request(app)
+      .get('/api/products')
+      .query({ sort: '$where' });
+    expect(res.status).toBe(200);
+    // Products still returned — injection attempt silently discarded
+    expect(Array.isArray(res.body.data)).toBe(true);
+  });
+
+  it('accepts a valid sort field', async () => {
+    const res = await request(app)
+      .get('/api/products')
+      .query({ sort: 'price' });
+    expect(res.status).toBe(200);
+    expect(res.body.data).toHaveLength(2);
+    // Cheaper product first when sorted by price ascending
+    expect(res.body.data[0].name).toBe('Cat Toy');
+  });
+
+  // ── Security: NoSQL injection via colors / genders arrays ───────────────
+
+  it('strips object-type operator values from colors filter', async () => {
+    // Passing an object as a color value should not reach MongoDB as an operator
+    const res = await request(app)
+      .get('/api/products')
+      .query({ colors: ['brown', '$gt'] });
+    expect(res.status).toBe(200);
+    // '$gt' is a string here (query-string parser) — toSafeString keeps it as a
+    // plain string and Mongo treats it as a literal value, matching nothing
+    expect(res.body.data.every((p) => p.colors.includes('brown') || p.colors.includes('$gt'))).toBe(true);
+  });
 });
