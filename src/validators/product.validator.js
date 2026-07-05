@@ -63,11 +63,10 @@ const validateProduct = (req, res, next) => {
       'array.base': 'Colors must be an array',
     }),
     genders: Joi.array()
-      .items(Joi.string().valid('Male', 'Female', 'Unisex'))
+      .items(Joi.string().trim())
       .default([])
       .messages({
-        'array.base': 'Genders must be an array',
-        'any.only': 'Gender must be one of: Male, Female, Unisex',
+        'array.base': 'Suitable-for values must be an array',
       }),
     isActive:   Joi.boolean().truthy('true').falsy('false').default(true),
     isFeatured: Joi.boolean().truthy('true').falsy('false').default(false),
@@ -144,9 +143,8 @@ const validateProductUpdate = (req, res, next) => {
     colors: Joi.array().items(Joi.string().trim()).messages({
       'array.base': 'Colors must be an array',
     }),
-    genders: Joi.array().items(Joi.string().valid('Male', 'Female', 'Unisex')).messages({
-      'array.base': 'Genders must be an array',
-      'any.only': 'Gender must be one of: Male, Female, Unisex',
+    genders: Joi.array().items(Joi.string().trim()).messages({
+      'array.base': 'Suitable-for values must be an array',
     }),
     isActive:   Joi.boolean().truthy('true').falsy('false'),
     isFeatured: Joi.boolean().truthy('true').falsy('false'),

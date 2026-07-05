@@ -50,4 +50,36 @@ describe('Product variants API', () => {
       .attach('images', Buffer.from('img'), 'x.jpg');
     expect(res.status).toBe(400);
   });
+
+  it('clears all variants on update when an empty variants array is sent', async () => {
+    // Reproduces the "deleting every variant doesn't persist" bug: the client
+    // must send variants:[] (plus top-level price/qty) to demote a variant
+    // product back to a simple one.
+    const created = await request(app)
+      .post('/api/products')
+      .set('Authorization', `Bearer ${token}`)
+      .field('name', 'Cat Food')
+      .field('description', 'Tasty kibble for cats')
+      .field('categories', 'food')
+      .field('variants', JSON.stringify([
+        { label: '1kg', price: 300, quantity: 5 },
+        { label: '5kg', price: 1200, quantity: 8 },
+      ]))
+      .attach('images', Buffer.from('img'), 'x.jpg');
+    const id = created.body.data._id;
+
+    const res = await request(app)
+      .patch(`/api/products/${id}`)
+      .set('Authorization', `Bearer ${token}`)
+      .field('variants', '[]')
+      .field('price', '250')
+      .field('quantity', '9')
+      .field('imageRefs', JSON.stringify([{ url: 'http://img/1.jpg', publicId: 'products/1' }]));
+
+    expect(res.status).toBe(200);
+    const db = await Product.findById(id).lean();
+    expect(db.variants).toHaveLength(0);
+    expect(db.price).toBe(250);
+    expect(db.quantity).toBe(9);
+  });
 });
