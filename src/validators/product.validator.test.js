@@ -121,7 +121,11 @@ describe('validateProductUpdate', () => {
     expect(err).toBeInstanceOf(AppError);
   });
 
-  it('rejects an invalid gender enum', () => {
-    expect(run(validateProductUpdate, { genders: ['Alien'] }).err).toBeInstanceOf(AppError);
+  it('accepts free-form gender tags (no enum restriction by design)', () => {
+    expect(run(validateProductUpdate, { genders: ['Alien'] }).err).toBeNull();
+  });
+
+  it('rejects a non-string gender value', () => {
+    expect(run(validateProductUpdate, { genders: [123] }).err).toBeInstanceOf(AppError);
   });
 });

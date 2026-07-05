@@ -39,8 +39,9 @@ const productSchema = new mongoose.Schema(
     },
     genders: [
       {
+        // Free-form "Suitable For" tags (e.g. Male, Female, Unisex, Puppies,
+        // Seniors…). No enum — admins can create new values from the product form.
         type: String,
-        enum: ['Male', 'Female', 'Unisex'],
         trim: true,
       },
     ],

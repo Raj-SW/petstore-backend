@@ -293,6 +293,20 @@ describe('Product Controller', () => {
       expect(res.body.data.price).toBe(35);
     });
 
+    it('accepts custom (non-preset) category and suitable-for values', async () => {
+      // Categories were always free-form; genders/suitable-for used to be
+      // enum-restricted to Male/Female/Unisex. Both must now persist any string.
+      const res = await request(app)
+        .patch(`/api/products/${product._id}`)
+        .set('Authorization', `Bearer ${adminToken}`)
+        .field('categories', 'reptiles')
+        .field('genders', 'Puppies');
+
+      expect(res.status).toBe(200);
+      expect(res.body.data.categories).toContain('reptiles');
+      expect(res.body.data.genders).toContain('Puppies');
+    });
+
     it('returns 403 when a customer tries to update', async () => {
       const res = await request(app)
         .patch(`/api/products/${product._id}`)
