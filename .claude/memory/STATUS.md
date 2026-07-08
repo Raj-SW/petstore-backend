@@ -10,7 +10,7 @@
 | Epic | Description | Scope |
 |------|-------------|-------|
 | 1 | Nav/layout — About in navbar, mobile header, gallery breadcrumbs | FE |
-| 2 | Design system foundation — shadcn/ui token binding, SearchBar generalized, RTE img overflow fix | FE (partial — see Remaining) |
+| 2 | Design system foundation — shadcn/ui token binding, SearchBar generalized, RTE img overflow fix; 17 native `<select>` → shadcn `Select` migrations; `/admin/ui-gallery` verification page | FE ✅ |
 | 3 | Service page — Coming Soon badges, live card links | FE |
 | 5 | Petshop filter — case-insensitive category match, DB-driven filter options, remove dead rating filter | BE + FE |
 | 6 | Product bulk actions — `POST /products/bulk` (activate/feature/sale/delete) + admin toolbar UI | BE + FE |
@@ -26,6 +26,7 @@
 | 12 | Subscription analytics BE — `predictDemand`, `productCoverage`, `runsInHorizon`; admin `/analytics` + `/product-coverage` endpoints | BE |
 | 12 FE | Subscription enrichment + detail views — `enrichSubscription` service (per-cycle total, savings, cadence, next-run-in-days, order history), enriched `/mine` + `/admin` lists, `/mine/:id` + `/admin/:id` detail endpoints, product-analytics subscriptions block, admin detail drawer + status/due-soon filters, My Subscriptions financials/image/history | BE + FE |
 | 14 | Variant-aware inventory — per-variant rows in inventory table; restock/adjust/history all variant-scoped | BE + FE |
+| 16 | Admin professionals management — `/admin/professionals` API (list/search/filter, create+invite, promote-existing, edit, toggle-active, offboard, photo upload) + `AdminProfessionals` list page + `AdminProfessionalForm` (create/edit/promote, weekly availability, services, photo). Rating read-only. petTaxi included in admin lists. Public browse now hides `professionalInfo.isActive:false`. Dead `createProfessional`/`deleteProfessional`/manual-rating code removed. | BE + FE ✅ |
 
 ---
 
@@ -33,9 +34,7 @@
 
 | Epic | What's left | Notes |
 |------|-------------|-------|
-| 2 | 17 native `<select>` → shadcn `Select` migrations + `/admin/ui-gallery` verification page | FE; unblocks Epic 4 |
-| 4 | ProfessionalCard visual rebuild on design system; appointment list SearchBar | FE; depends Epic 2 |
-| 9b FE | Typed announcements admin UI — type picker, event fields, CTA fields, content ref picker | FE |
+| 4 | ProfessionalCard visual rebuild on design system (done on branch); appointment list SearchBar | FE |
 | 11 FE | `AdminSettings` StoreSettings page (shippingFee, freeShippingThreshold, taxRate toggles); checkout displays shipping/tax | FE; depends Epic 11 BE ✅ |
 | ~~12 FE~~ | ~~Subscriptions analytics dashboard; enriched admin list/detail; user My Subscriptions view~~ | **DONE 2026-06-24** |
 | 13 | Import/Export full-stack rebuild — `ImportExportApplication` model + routes + admin/applicant emails + FE multi-step form + admin page | BE + FE; depends Epics 2 + 10 |
