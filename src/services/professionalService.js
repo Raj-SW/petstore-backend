@@ -385,9 +385,12 @@ class ProfessionalService {
    * (professionalInfo stays nested) so it matches adminListProfessionals —
    * unlike the shared updateProfessional, which flattens via getProfessionalData.
    */
-  async adminUpdateProfessional(id, { professionalInfo } = {}) {
+  async adminUpdateProfessional(id, { professionalInfo, role } = {}) {
     validateObjectId(id, 'Professional ID');
     const updateQuery = {};
+    if (role && PROFESSIONAL_ROLES.includes(role)) {
+      updateQuery.role = role;
+    }
     if (professionalInfo) {
       Object.keys(professionalInfo).forEach((key) => {
         updateQuery[`professionalInfo.${key}`] = professionalInfo[key];

@@ -183,7 +183,7 @@ const forgotPassword = async (req, res, next) => {
     await user.save();
 
     // Send reset email
-    const resetUrl = frontendUrl(`reset-password/${resetToken}`);
+    const resetUrl = frontendUrl(`reset-password?token=${resetToken}`);
 
     // Password reset email — critical: re-throw if it fails so user knows to retry
     try {

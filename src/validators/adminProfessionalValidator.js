@@ -75,6 +75,7 @@ const promoteSchema = Joi.object({
 });
 
 const updateProfessionalInfoSchema = Joi.object({
+  role: Joi.string().valid(...PROFESSIONAL_ROLES_ENUM).optional(),
   professionalInfo: professionalInfoUpdate.required(),
 });
 

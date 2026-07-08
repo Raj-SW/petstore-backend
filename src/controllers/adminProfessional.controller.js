@@ -23,7 +23,7 @@ exports.createProfessional = async (req, res, next) => {
   try {
     const { user, rawToken } = await professionalService.createProfessionalAccount(req.body);
 
-    const inviteUrl = frontendUrl(`reset-password/${rawToken}`);
+    const inviteUrl = frontendUrl(`reset-password?token=${rawToken}`);
     let warning;
     try {
       await sendEmail({
