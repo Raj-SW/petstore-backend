@@ -105,9 +105,12 @@ const userSchema = new mongoose.Schema(
         default: true,
       },
       bio: {
+        // Rich-text HTML from the admin RichTextEditor, sanitized on render
+        // via RichTextRenderer. Ceiling raised from 500 (plain text) since
+        // HTML markup adds overhead for the same visible text.
         type: String,
         trim: true,
-        maxlength: 500,
+        maxlength: 5000,
       },
       services: [
         {

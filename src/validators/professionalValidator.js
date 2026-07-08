@@ -57,7 +57,7 @@ const professionalInfoSchema = Joi.object({
   profileImage: Joi.string().uri().optional().allow(''),
   availability: Joi.object().optional(),
   isActive: Joi.boolean().optional(),
-  bio: Joi.string().optional().trim().max(500),
+  bio: Joi.string().optional().trim().max(5000),
   services: Joi.array().items(serviceSchema).optional(),
   location: locationSchema.optional(),
 });
