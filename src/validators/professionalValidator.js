@@ -96,17 +96,8 @@ const querySchema = Joi.object({
   sortOrder: Joi.string().valid('asc', 'desc').default('desc'),
 });
 
-const ratingSchema = Joi.object({
-  rating: Joi.number().required().min(1).max(5).messages({
-    'number.min': 'Rating must be at least 1',
-    'number.max': 'Rating must be at most 5',
-    'any.required': 'Rating is required',
-  }),
-});
-
 module.exports = {
   updateProfessionalSchema,
   querySchema,
   availabilitySchema,
-  ratingSchema,
 };

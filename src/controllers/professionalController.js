@@ -61,23 +61,6 @@ exports.getProfessional = async (req, res, next) => {
   }
 };
 
-// Create a new professional
-exports.createProfessional = async (req, res, next) => {
-  try {
-    const professional = await Professional.create(req.body);
-
-    res.status(201).json({
-      success: true,
-      data: professional,
-    });
-  } catch (error) {
-    if (error.code === 11000) {
-      return next(createError(400, 'Email already exists'));
-    }
-    next(error);
-  }
-};
-
 // Update a professional (for admin use or professional self-update)
 exports.updateProfessional = async (req, res, next) => {
   try {
@@ -94,24 +77,6 @@ exports.updateProfessional = async (req, res, next) => {
       success: true,
       data: professional,
       message: 'Professional updated successfully',
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-// Delete a professional
-exports.deleteProfessional = async (req, res, next) => {
-  try {
-    const professional = await Professional.findByIdAndDelete(req.params.id);
-
-    if (!professional) {
-      return next(createError(404, 'Professional not found'));
-    }
-
-    res.status(200).json({
-      success: true,
-      data: {},
     });
   } catch (error) {
     next(error);
@@ -148,29 +113,6 @@ exports.getAvailableProfessionals = async (req, res, next) => {
     res.status(200).json({
       success: true,
       data: professionals,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-// Update professional rating (called when a review is submitted)
-exports.updateProfessionalRating = async (req, res, next) => {
-  try {
-    validateObjectId(req.params.id, 'Professional ID');
-
-    const { rating } = req.body;
-
-    if (!rating || rating < 1 || rating > 5) {
-      return next(new AppError('Rating must be between 1 and 5', 400));
-    }
-
-    const professional = await professionalService.updateProfessionalRating(req.params.id, rating);
-
-    res.status(200).json({
-      success: true,
-      data: professional,
-      message: 'Professional rating updated successfully',
     });
   } catch (error) {
     next(error);

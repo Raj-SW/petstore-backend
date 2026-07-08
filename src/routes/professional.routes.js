@@ -7,7 +7,6 @@ const {
   updateProfessionalSchema,
   querySchema,
   availabilitySchema,
-  ratingSchema,
 } = require('../validators/professionalValidator');
 const { isAuthenticated, isServiceProvider, isAdmin } = require('../middlewares/auth.middleware');
 
@@ -36,14 +35,6 @@ router.patch(
 );
 
 router.patch('/:id/status', isServiceProvider, professionalController.toggleProfessionalStatus);
-
-// Admin and system routes
-router.patch(
-  '/:id/rating',
-  isAdmin, // Only admin or system can update ratings directly
-  validateRequest(ratingSchema),
-  professionalController.updateProfessionalRating
-);
 
 // General update route (for admin)
 router.patch(
