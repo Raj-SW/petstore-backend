@@ -15,11 +15,10 @@ const validateObjectId = (id, fieldName = 'ID') => {
   }
 };
 
-const PROFESSIONAL_ROLES = ['veterinarian', 'groomer', 'trainer'];
-
-// Admin management covers all professional roles, including petTaxi (which is
-// excluded from public browse because Pet Taxi is "coming soon").
-const ADMIN_PROFESSIONAL_ROLES = ['veterinarian', 'groomer', 'trainer', 'petTaxi'];
+// petTaxi is a fully live professional role — AppointmentPage has a real
+// "Pet Taxi" browse tab and detail pages for it. ("Coming soon" only applies
+// to the marketing tile on the Services page, a separate area of the site.)
+const PROFESSIONAL_ROLES = ['veterinarian', 'groomer', 'trainer', 'petTaxi'];
 
 const SENSITIVE_FIELDS =
   '-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v';
@@ -48,7 +47,7 @@ class ProfessionalService {
 
     // Build query for professionals only — always exclude deactivated users
     const query = {
-      role: { $in: ['veterinarian', 'groomer', 'trainer'] },
+      role: { $in: PROFESSIONAL_ROLES },
       isActive: true,
       'professionalInfo.isActive': { $ne: false },
     };
@@ -57,7 +56,7 @@ class ProfessionalService {
     if (specialization) {
       query['professionalInfo.specialization'] = new RegExp(escapeRegExp(specialization), 'i');
     }
-    if (role && ['veterinarian', 'groomer', 'trainer'].includes(role)) {
+    if (role && PROFESSIONAL_ROLES.includes(role)) {
       query.role = role;
     }
     if (rating) {
@@ -110,7 +109,7 @@ class ProfessionalService {
 
     const professional = await User.findOne({
       _id: professionalId,
-      role: { $in: ['veterinarian', 'groomer', 'trainer'] },
+      role: { $in: PROFESSIONAL_ROLES },
       isActive: true,
       'professionalInfo.isActive': { $ne: false },
     }).select(
@@ -148,7 +147,7 @@ class ProfessionalService {
     const professional = await User.findOneAndUpdate(
       {
         _id: professionalId,
-        role: { $in: ADMIN_PROFESSIONAL_ROLES },
+        role: { $in: PROFESSIONAL_ROLES },
       },
       updateQuery,
       {
@@ -239,7 +238,7 @@ class ProfessionalService {
 
     const professional = await User.findOne({
       _id: professionalId,
-      role: { $in: ['veterinarian', 'groomer', 'trainer'] },
+      role: { $in: PROFESSIONAL_ROLES },
     });
 
     if (!professional) {
@@ -290,7 +289,7 @@ class ProfessionalService {
     const professional = await User.findOneAndUpdate(
       {
         _id: professionalId,
-        role: { $in: ['veterinarian', 'groomer', 'trainer'] },
+        role: { $in: PROFESSIONAL_ROLES },
       },
       { 'professionalInfo.isActive': isActive },
       { new: true }
@@ -316,8 +315,8 @@ class ProfessionalService {
     const { page = 1, limit = 20 } = pagination;
     const { sortBy = 'createdAt', sortOrder = 'desc' } = sorting;
 
-    const query = { role: { $in: ADMIN_PROFESSIONAL_ROLES } };
-    if (role && ADMIN_PROFESSIONAL_ROLES.includes(role)) {
+    const query = { role: { $in: PROFESSIONAL_ROLES } };
+    if (role && PROFESSIONAL_ROLES.includes(role)) {
       query.role = role;
     }
     if (status === 'active') query['professionalInfo.isActive'] = true;
@@ -354,7 +353,7 @@ class ProfessionalService {
    * @returns {Promise<{ user: Object, rawToken: string }>}
    */
   async createProfessionalAccount({ name, email, phoneNumber, address, role, professionalInfo }) {
-    if (!ADMIN_PROFESSIONAL_ROLES.includes(role)) {
+    if (!PROFESSIONAL_ROLES.includes(role)) {
       throw new AppError('Invalid professional role', 400);
     }
     const rawToken = crypto.randomBytes(32).toString('hex');
@@ -395,7 +394,7 @@ class ProfessionalService {
       });
     }
     const user = await User.findOneAndUpdate(
-      { _id: id, role: { $in: ADMIN_PROFESSIONAL_ROLES } },
+      { _id: id, role: { $in: PROFESSIONAL_ROLES } },
       updateQuery,
       { new: true, runValidators: true }
     ).select(SENSITIVE_FIELDS).lean();
@@ -408,7 +407,7 @@ class ProfessionalService {
    */
   async promoteUserToProfessional(userId, { role, professionalInfo }) {
     validateObjectId(userId, 'User ID');
-    if (!ADMIN_PROFESSIONAL_ROLES.includes(role)) {
+    if (!PROFESSIONAL_ROLES.includes(role)) {
       throw new AppError('Invalid professional role', 400);
     }
     const user = await User.findById(userId);
@@ -429,7 +428,7 @@ class ProfessionalService {
   async offboardProfessional(id) {
     validateObjectId(id, 'Professional ID');
     const user = await User.findOneAndUpdate(
-      { _id: id, role: { $in: ADMIN_PROFESSIONAL_ROLES } },
+      { _id: id, role: { $in: PROFESSIONAL_ROLES } },
       { role: 'customer', 'professionalInfo.isActive': false },
       { new: true }
     ).select(SENSITIVE_FIELDS).lean();
@@ -439,5 +438,5 @@ class ProfessionalService {
 }
 
 const professionalServiceInstance = new ProfessionalService();
-professionalServiceInstance.ADMIN_PROFESSIONAL_ROLES = ADMIN_PROFESSIONAL_ROLES;
+professionalServiceInstance.PROFESSIONAL_ROLES = PROFESSIONAL_ROLES;
 module.exports = professionalServiceInstance;
