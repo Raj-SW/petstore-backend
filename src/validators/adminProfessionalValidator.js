@@ -83,7 +83,7 @@ const listQuerySchema = Joi.object({
   role: Joi.string().valid(...PROFESSIONAL_ROLES_ENUM).optional(),
   status: Joi.string().valid('all', 'active', 'inactive').default('all'),
   page: Joi.number().integer().min(1).default(1),
-  limit: Joi.number().integer().min(1).max(100).default(20),
+  limit: Joi.number().integer().min(1).max(1000).default(20),
   sortBy: Joi.string()
     .valid('createdAt', 'name', 'professionalInfo.rating', 'professionalInfo.experience')
     .default('createdAt'),
