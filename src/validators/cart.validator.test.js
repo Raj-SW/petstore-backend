@@ -22,6 +22,10 @@ describe('validateAddToCart', () => {
     })).toBeNull();
   });
 
+  it('accepts variantId: null (non-variant products)', () => {
+    expect(run(validateAddToCart, { productId: 'p1', quantity: 1, variantId: null })).toBeNull();
+  });
+
   it('rejects a malformed variantId', () => {
     expect(run(validateAddToCart, { productId: 'p1', quantity: 1, variantId: 'xyz' }))
       .toBeInstanceOf(AppError);
@@ -39,6 +43,9 @@ describe('validateAddToCart', () => {
 describe('validateUpdateCartItem', () => {
   it('passes with a valid quantity', () => {
     expect(run(validateUpdateCartItem, { quantity: 3 })).toBeNull();
+  });
+  it('accepts optional variantId: null', () => {
+    expect(run(validateUpdateCartItem, { quantity: 2, variantId: null })).toBeNull();
   });
   it('rejects quantity < 1', () => {
     expect(run(validateUpdateCartItem, { quantity: 0 })).toBeInstanceOf(AppError);
