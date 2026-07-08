@@ -120,6 +120,14 @@ const userSchema = new mongoose.Schema(
           description: String,
         },
       ],
+      // Professional-specific profile photo, distinct from the generic
+      // top-level User.profileImage. Was previously written by the admin
+      // form/validators but never declared here, so Mongoose silently
+      // dropped it on save.
+      profileImage: {
+        url: { type: String, trim: true },
+        publicId: { type: String, trim: true },
+      },
     },
   },
   {
