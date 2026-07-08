@@ -1,3 +1,4 @@
+const crypto = require('node:crypto');
 const mongoose = require('mongoose');
 
 const User = require('../models/user.model');
@@ -15,6 +16,13 @@ const validateObjectId = (id, fieldName = 'ID') => {
 };
 
 const PROFESSIONAL_ROLES = ['veterinarian', 'groomer', 'trainer'];
+
+// Admin management covers all professional roles, including petTaxi (which is
+// excluded from public browse because Pet Taxi is "coming soon").
+const ADMIN_PROFESSIONAL_ROLES = ['veterinarian', 'groomer', 'trainer', 'petTaxi'];
+
+const SENSITIVE_FIELDS =
+  '-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v';
 
 const ALLOWED_PROFESSIONAL_SORT_FIELDS = [
   'professionalInfo.rating', 'name', 'createdAt', 'professionalInfo.experience',
@@ -42,6 +50,7 @@ class ProfessionalService {
     const query = {
       role: { $in: ['veterinarian', 'groomer', 'trainer'] },
       isActive: true,
+      'professionalInfo.isActive': { $ne: false },
     };
 
     // Add filters
@@ -103,6 +112,7 @@ class ProfessionalService {
       _id: professionalId,
       role: { $in: ['veterinarian', 'groomer', 'trainer'] },
       isActive: true,
+      'professionalInfo.isActive': { $ne: false },
     }).select(
       '-password -passwordResetToken -passwordResetExpires -emailVerificationToken -emailVerificationExpires -__v'
     );
@@ -138,7 +148,7 @@ class ProfessionalService {
     const professional = await User.findOneAndUpdate(
       {
         _id: professionalId,
-        role: { $in: ['veterinarian', 'groomer', 'trainer'] },
+        role: { $in: ADMIN_PROFESSIONAL_ROLES },
       },
       updateQuery,
       {
@@ -219,40 +229,6 @@ class ProfessionalService {
   }
 
   /**
-   * Update professional rating
-   * @param {string} professionalId - Professional's user ID
-   * @param {number} newRating - New rating to add
-   * @returns {Promise<Object>} - Updated professional data
-   */
-  async updateProfessionalRating(professionalId, newRating) {
-    validateObjectId(professionalId, 'Professional ID');
-
-    const professional = await User.findOne({
-      _id: professionalId,
-      role: { $in: ['veterinarian', 'groomer', 'trainer'] },
-    });
-
-    if (!professional) {
-      throw new AppError('Professional not found', 404);
-    }
-
-    const currentRating = professional.professionalInfo.rating || 0;
-    const currentReviewCount = professional.professionalInfo.reviewCount || 0;
-
-    // Calculate new average rating
-    const totalRating = currentRating * currentReviewCount + newRating;
-    const newReviewCount = currentReviewCount + 1;
-    const newAverageRating = totalRating / newReviewCount;
-
-    professional.professionalInfo.rating = Math.round(newAverageRating * 10) / 10; // Round to 1 decimal
-    professional.professionalInfo.reviewCount = newReviewCount;
-
-    await professional.save();
-
-    return professional.getProfessionalData();
-  }
-
-  /**
    * Set professional availability
    * @param {string} professionalId - Professional's user ID
    * @param {Object} availability - Availability schedule
@@ -328,6 +304,140 @@ class ProfessionalService {
 
     return professional.getProfessionalData();
   }
+
+  // ── Admin management ──────────────────────────────────────────────────────
+
+  /**
+   * Admin list: all professional roles (incl. petTaxi), with search / role /
+   * status filters, pagination and sorting. Sensitive fields stripped.
+   */
+  async adminListProfessionals(filters = {}, pagination = {}, sorting = {}) {
+    const { search, role, status = 'all' } = filters;
+    const { page = 1, limit = 20 } = pagination;
+    const { sortBy = 'createdAt', sortOrder = 'desc' } = sorting;
+
+    const query = { role: { $in: ADMIN_PROFESSIONAL_ROLES } };
+    if (role && ADMIN_PROFESSIONAL_ROLES.includes(role)) {
+      query.role = role;
+    }
+    if (status === 'active') query['professionalInfo.isActive'] = true;
+    if (status === 'inactive') query['professionalInfo.isActive'] = false;
+    if (search) {
+      const rx = new RegExp(escapeRegExp(search), 'i');
+      query.$or = [{ name: rx }, { email: rx }, { 'professionalInfo.specialization': rx }];
+    }
+
+    const safeSortBy = ALLOWED_PROFESSIONAL_SORT_FIELDS.includes(sortBy) ? sortBy : 'createdAt';
+    const skip = (page - 1) * limit;
+
+    const [professionals, total] = await Promise.all([
+      User.find(query)
+        .sort({ [safeSortBy]: sortOrder === 'asc' ? 1 : -1 })
+        .skip(skip)
+        .limit(Number.parseInt(limit, 10))
+        .select(SENSITIVE_FIELDS)
+        .lean(),
+      User.countDocuments(query),
+    ]);
+
+    const pages = Math.ceil(total / limit) || 1;
+    return {
+      professionals,
+      pagination: { total, page: Number.parseInt(page, 10), pages, hasNext: page < pages, hasPrev: page > 1 },
+    };
+  }
+
+  /**
+   * Create a brand-new professional account. Password is a throwaway random
+   * value (hashed by the model pre-save hook); a reset token is generated so
+   * the invite email can carry a "set your password" link.
+   * @returns {Promise<{ user: Object, rawToken: string }>}
+   */
+  async createProfessionalAccount({ name, email, phoneNumber, address, role, professionalInfo }) {
+    if (!ADMIN_PROFESSIONAL_ROLES.includes(role)) {
+      throw new AppError('Invalid professional role', 400);
+    }
+    const rawToken = crypto.randomBytes(32).toString('hex');
+    const randomPassword = `${crypto.randomBytes(24).toString('hex')}Aa1*`;
+    try {
+      const user = await User.create({
+        name,
+        email,
+        phoneNumber,
+        address,
+        password: randomPassword, // hashed by the model pre('save') hook
+        role,
+        professionalInfo: { ...professionalInfo, isActive: true },
+        passwordResetToken: rawToken,
+        passwordResetExpires: Date.now() + 24 * 60 * 60 * 1000, // 24h invite window
+      });
+      user.password = undefined;
+      return { user, rawToken };
+    } catch (error) {
+      if (error.code === 11000) {
+        throw new AppError('Email already exists', 400);
+      }
+      throw error;
+    }
+  }
+
+  /**
+   * Admin edit of professionalInfo. Returns the lean, nested-shape user
+   * (professionalInfo stays nested) so it matches adminListProfessionals —
+   * unlike the shared updateProfessional, which flattens via getProfessionalData.
+   */
+  async adminUpdateProfessional(id, { professionalInfo } = {}) {
+    validateObjectId(id, 'Professional ID');
+    const updateQuery = {};
+    if (professionalInfo) {
+      Object.keys(professionalInfo).forEach((key) => {
+        updateQuery[`professionalInfo.${key}`] = professionalInfo[key];
+      });
+    }
+    const user = await User.findOneAndUpdate(
+      { _id: id, role: { $in: ADMIN_PROFESSIONAL_ROLES } },
+      updateQuery,
+      { new: true, runValidators: true }
+    ).select(SENSITIVE_FIELDS).lean();
+    if (!user) throw new AppError('Professional not found', 404);
+    return user;
+  }
+
+  /**
+   * Promote an existing customer to a professional role.
+   */
+  async promoteUserToProfessional(userId, { role, professionalInfo }) {
+    validateObjectId(userId, 'User ID');
+    if (!ADMIN_PROFESSIONAL_ROLES.includes(role)) {
+      throw new AppError('Invalid professional role', 400);
+    }
+    const user = await User.findById(userId);
+    if (!user) throw new AppError('User not found', 404);
+    if (user.role !== 'customer') {
+      throw new AppError('User is already a professional or admin', 400);
+    }
+    user.role = role;
+    user.professionalInfo = { ...professionalInfo, isActive: true };
+    await user.save();
+    return User.findById(userId).select(SENSITIVE_FIELDS).lean();
+  }
+
+  /**
+   * Offboard a professional: demote to customer + deactivate. professionalInfo
+   * is preserved so a re-promote is lossless.
+   */
+  async offboardProfessional(id) {
+    validateObjectId(id, 'Professional ID');
+    const user = await User.findOneAndUpdate(
+      { _id: id, role: { $in: ADMIN_PROFESSIONAL_ROLES } },
+      { role: 'customer', 'professionalInfo.isActive': false },
+      { new: true }
+    ).select(SENSITIVE_FIELDS).lean();
+    if (!user) throw new AppError('Professional not found', 404);
+    return user;
+  }
 }
 
-module.exports = new ProfessionalService();
+const professionalServiceInstance = new ProfessionalService();
+professionalServiceInstance.ADMIN_PROFESSIONAL_ROLES = ADMIN_PROFESSIONAL_ROLES;
+module.exports = professionalServiceInstance;
