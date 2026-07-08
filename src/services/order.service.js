@@ -64,7 +64,7 @@ function resolveOrderItemPrice(product, item) {
     };
   }
 
-  if (product.quantity != null && product.quantity > 0 && product.quantity < item.quantity) {
+  if (product.quantity != null && product.quantity < item.quantity) {
     throw new AppError(`Insufficient stock for ${product.name}`, 400);
   }
   return { price: product.effectivePrice, originalPrice: product.price, variantLabel: null };

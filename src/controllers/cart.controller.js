@@ -92,16 +92,17 @@ exports.addToCart = async (req, res, next) => {
 exports.updateCartItem = async (req, res, next) => {
   try {
     const { id: productId } = req.params;
-    const { quantity } = req.body;
+    const { quantity, variantId = null } = req.body;
 
     const cart = await Cart.findOne({ user: req.user.id });
     if (!cart) {
       return next(new AppError('Cart not found', 404));
     }
 
-    // Check if product exists in cart
+    // Match by product + variant so two variants of the same product don't collide
     const cartItem = cart.items.find(
-      (item) => item.product.toString() === productId,
+      (item) => item.product.toString() === productId
+        && String(item.variantId || '') === String(variantId || ''),
     );
     if (!cartItem) {
       return next(new AppError('Item not found in cart', 404));
@@ -118,7 +119,8 @@ exports.updateCartItem = async (req, res, next) => {
 
     // Update quantity
     cartItem.quantity = quantity;
-    cartItem.price = product.effectivePrice;
+    const { itemPrice } = resolveCartPricing(product, variantId);
+    cartItem.price = itemPrice || product.effectivePrice;
 
     await cart.save();
 
@@ -135,15 +137,18 @@ exports.updateCartItem = async (req, res, next) => {
 exports.removeCartItem = async (req, res, next) => {
   try {
     const { id: productId } = req.params;
+    const { variantId = null } = req.query;
 
     const cart = await Cart.findOne({ user: req.user.id });
     if (!cart) {
       return next(new AppError('Cart not found', 404));
     }
 
-    // Remove item from cart
     cart.items = cart.items.filter(
-      (item) => item.product.toString() !== productId,
+      (item) => !(
+        item.product.toString() === productId
+        && String(item.variantId || '') === String(variantId || '')
+      ),
     );
 
     await cart.save();
