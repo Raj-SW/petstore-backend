@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { validateOptionMatrix, applyDerivedVariantLabels } = require('../utils/productVariants');
+const { AppError } = require('../middlewares/errorHandler');
 
 const productSchema = new mongoose.Schema(
   {
@@ -163,7 +164,7 @@ productSchema.pre('save', function (next) {
 // Must be pre('validate') because required-field validation runs before save hooks.
 productSchema.pre('validate', function (next) {
   const matrixError = validateOptionMatrix(this.options, this.variants);
-  if (matrixError) return next(new Error(matrixError));
+  if (matrixError) return next(new AppError(matrixError, 400));
   applyDerivedVariantLabels(this.options, this.variants);
   if (Array.isArray(this.variants) && this.variants.length > 0) {
     this.price = Math.min(...this.variants.map((v) => Number(v.price)));

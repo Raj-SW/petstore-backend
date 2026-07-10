@@ -8,7 +8,11 @@ const {
   deleteMultipleFromCloudinary,
   validateImageFile,
 } = require('../utils/cloudinary');
-const { deriveProductFromVariants } = require('../utils/productVariants');
+const {
+  deriveProductFromVariants,
+  validateOptionMatrix,
+  applyDerivedVariantLabels,
+} = require('../utils/productVariants');
 const { predictDemand, productCoverage } = require('../services/subscription.analytics.service');
 const { escapeRegExp, toSafeString } = require('../utils/sanitize');
 
@@ -50,6 +54,9 @@ exports.createProduct = async (req, res, next) => {
 
     // Parse variants JSON string from FormData
     req.body.variants = parseJsonField(req.body.variants, []);
+
+    // Parse options (axes) JSON string from FormData
+    req.body.options = parseJsonField(req.body.options, []);
 
     // `imageRefs` is a transport field, not a model field
     delete req.body.imageRefs;
@@ -240,7 +247,7 @@ async function resolveUpdatedImages(existingProduct, imageRefs, keepImagesStr, f
 const UPDATABLE_PRODUCT_FIELDS = [
   'name', 'description', 'price', 'colors', 'quantity', 'lowStockThreshold',
   'genders', 'categories', 'isActive', 'isFeatured', 'onSale', 'discountType',
-  'discountValue', 'saleStartsAt', 'saleEndsAt', 'sections', 'variants',
+  'discountValue', 'saleStartsAt', 'saleEndsAt', 'sections', 'variants', 'options',
 ];
 
 function pickUpdatableProductFields(updateData) {
@@ -267,6 +274,12 @@ exports.updateProduct = async (req, res, next) => {
       : undefined;
     if (req.body.variants === undefined) delete req.body.variants;
 
+    // Parse options (axes) JSON string from FormData
+    req.body.options = req.body.options !== undefined
+      ? parseJsonField(req.body.options, [])
+      : undefined;
+    if (req.body.options === undefined) delete req.body.options;
+
     // ImageManager flow: final ordered refs arrive as `imageRefs` JSON.
     const imageRefs = parseJsonField(req.body.imageRefs, undefined);
     const { keepImages: keepImagesStr, ...updateData } = req.body;
@@ -286,6 +299,19 @@ exports.updateProduct = async (req, res, next) => {
     const existingProduct = await Product.findById(id);
     if (!existingProduct) {
       return next(new AppError('Product not found', 404));
+    }
+
+    // findByIdAndUpdate skips pre('validate') — run matrix validation/derivation here.
+    const effectiveOptions = updateData.options !== undefined
+      ? updateData.options
+      : existingProduct.options;
+    const effectiveVariants = updateData.variants !== undefined
+      ? updateData.variants
+      : existingProduct.variants;
+    const matrixError = validateOptionMatrix(effectiveOptions, effectiveVariants);
+    if (matrixError) return next(new AppError(matrixError, 400));
+    if (updateData.variants !== undefined) {
+      applyDerivedVariantLabels(effectiveOptions, updateData.variants);
     }
 
     const imageResolution = await resolveUpdatedImages(
@@ -489,10 +515,11 @@ exports.getProductsByCategory = async (req, res, next) => {
 // Drives the Pet Shop side-panel so its options match the stored values.
 exports.getFilterOptions = async (req, res, next) => {
   try {
-    const [categories, colors, genders] = await Promise.all([
+    const [categories, colors, genders, optionNames] = await Promise.all([
       Product.distinct('categories', { isActive: true }),
       Product.distinct('colors', { isActive: true }),
       Product.distinct('genders', { isActive: true }),
+      Product.distinct('options.name', { isActive: true }),
     ]);
     return res.status(200).json({
       success: true,
@@ -500,6 +527,7 @@ exports.getFilterOptions = async (req, res, next) => {
         categories: categories.filter(Boolean).sort((a, b) => a.localeCompare(b)),
         colors: colors.filter(Boolean).sort((a, b) => a.localeCompare(b)),
         genders: genders.filter(Boolean).sort((a, b) => a.localeCompare(b)),
+        optionNames: optionNames.filter(Boolean).sort((a, b) => a.localeCompare(b)),
       },
     });
   } catch (error) {

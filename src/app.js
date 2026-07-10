@@ -104,9 +104,10 @@ const limiter = rateLimit({
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
-// Apply rate limiting to all routes
+// Apply rate limiting to all routes (skipped under jest — supertest shares one
+// IP across hundreds of requests, so the limiter 429s logins and poisons tests)
 app.use((req, res, next) => {
-  if (req.method === 'OPTIONS') {
+  if (req.method === 'OPTIONS' || process.env.NODE_ENV === 'test') {
     return next();
   }
   limiter(req, res, next);
