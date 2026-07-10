@@ -73,17 +73,11 @@ Violations → 400 with a clear message.
 
 ### API
 
-`GET /products/attribute-values` — admin-only route (before `/:id` in route order):
-
-```json
-{ "categories": [...], "colors": [...], "suitableFor": [...], "optionNames": [...] }
-```
-
-Implementation: `Product.distinct('categories')`, `distinct('colors')`, `distinct('genders')`, `distinct('options.name')`; each sorted case-insensitively, empty strings removed. No caching (admin-only, cheap).
+**Reuse the existing public `GET /products/filter-options` endpoint** (it already returns distinct `categories`, `colors`, `genders` of active products). Extend it with `optionNames` (`Product.distinct('options.name', { isActive: true })`). No new endpoint, no new route.
 
 ### Admin form
 
-- Fetch once on mount via new `productsApi.getAttributeValues()`.
+- Fetch once on mount via new `productsApi.getFilterOptions()`.
 - Categories / colors / suitable-for tag inputs: quick-pick suggestion rows become `union(hardcoded defaults, fetched values) − already selected` (categories already have this UI — colors and suitable-for gain the same row).
 - Option-name inputs suggest `optionNames`.
 - Endpoint failure → silent fallback to today's hardcoded suggestions.
