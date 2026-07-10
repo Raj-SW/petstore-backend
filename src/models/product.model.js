@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { validateOptionMatrix, applyDerivedVariantLabels } = require('../utils/productVariants');
 
 const productSchema = new mongoose.Schema(
   {
@@ -106,9 +107,20 @@ const productSchema = new mongoose.Schema(
         order: { type: Number, default: 0 },
       },
     ],
+    // Option axes (e.g. Weight, Flavour) — each variant below is one combination
+    // of these values. Empty = legacy free-label variants. Max 4 axes.
+    options: {
+      type: [{
+        name:   { type: String, required: true, trim: true, maxlength: 30 },
+        values: { type: [String], required: true },
+      }],
+      default: [],
+    },
     variants: [
       {
-        label:    { type: String, required: true, trim: true, maxlength: 40 },
+        label:    { type: String, required: true, trim: true, maxlength: 120 },
+        // { Weight: "5kg", Flavour: "Chicken" } — present only on matrix products
+        optionValues: { type: Map, of: String, default: undefined },
         price:    { type: Number, required: true, min: 0 },
         quantity: { type: Number, required: true, min: 0, default: 0 },
         images: {
@@ -150,11 +162,14 @@ productSchema.pre('save', function (next) {
 // (total stock) so price sort/filter and the card "From" price keep working.
 // Must be pre('validate') because required-field validation runs before save hooks.
 productSchema.pre('validate', function (next) {
+  const matrixError = validateOptionMatrix(this.options, this.variants);
+  if (matrixError) return next(new Error(matrixError));
+  applyDerivedVariantLabels(this.options, this.variants);
   if (Array.isArray(this.variants) && this.variants.length > 0) {
     this.price = Math.min(...this.variants.map((v) => Number(v.price)));
     this.quantity = this.variants.reduce((sum, v) => sum + (Number(v.quantity) || 0), 0);
   }
-  next();
+  return next();
 });
 
 // Indexes for efficient querying
@@ -207,6 +222,7 @@ productSchema.virtual('variantsView').get(function () {
     const s = computeSale(v.price, this);
     return {
       _id: v._id, label: v.label, quantity: v.quantity, price: v.price,
+      optionValues: v.optionValues ? Object.fromEntries(v.optionValues) : undefined,
       images: Array.isArray(v.images) ? v.images : [],
       salePrice: s.salePrice, isOnSaleNow: s.isOnSaleNow,
       effectivePrice: s.effectivePrice, discountPercentLabel: s.discountPercentLabel,
