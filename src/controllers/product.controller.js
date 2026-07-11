@@ -132,12 +132,13 @@ function sanitizeProductSort(sort) {
 function buildProductFilter(q) {
   const {
     categories, minPrice, maxPrice, colors, genders, search,
-    isActive: isActiveRaw = 'true', isFeatured,
+    isActive: isActiveRaw = 'true', isFeatured, vetRecommended,
   } = q;
   const query = {};
 
   if (isActiveRaw !== 'all') query.isActive = isActiveRaw !== 'false';
   if (isFeatured !== undefined) query.isFeatured = isFeatured === 'true' || isFeatured === true;
+  if (vetRecommended !== undefined) query.vetRecommended = vetRecommended === 'true' || vetRecommended === true;
   if (categories) query.categories = buildCategoryFilter(categories);
   if (minPrice || maxPrice) query.price = buildPriceFilter(minPrice, maxPrice);
   if (colors) query.colors = { $in: (Array.isArray(colors) ? colors : [colors]).map(toSafeString).filter(Boolean) };
@@ -246,7 +247,7 @@ async function resolveUpdatedImages(existingProduct, imageRefs, keepImagesStr, f
 // `$unset`/`$rename`/`$inc` key reaching findByIdAndUpdate's update document).
 const UPDATABLE_PRODUCT_FIELDS = [
   'name', 'description', 'price', 'colors', 'quantity', 'lowStockThreshold',
-  'genders', 'categories', 'isActive', 'isFeatured', 'onSale', 'discountType',
+  'genders', 'categories', 'isActive', 'isFeatured', 'vetRecommended', 'onSale', 'discountType',
   'discountValue', 'saleStartsAt', 'saleEndsAt', 'sections', 'variants', 'options',
 ];
 

@@ -79,6 +79,10 @@ const productSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    vetRecommended: {
+      type: Boolean,
+      default: false,
+    },
     onSale: {
       type: Boolean,
       default: false,
@@ -180,6 +184,7 @@ productSchema.index({ categories: 1 });
 productSchema.index({ price: 1 });
 productSchema.index({ quantity: 1 });
 productSchema.index({ isFeatured: 1 });
+productSchema.index({ vetRecommended: 1 });
 
 // ── Sale pricing (one helper drives product-level + per-variant pricing) ──
 const round2 = (n) => Math.round(n * 100) / 100;
