@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\controllers\\product.controller.js": {
-    "mtime": 1783669303.1360295,
-    "ast_hash": "0ca7597adee7d43e2e5a52dc66b27c57",
+    "mtime": 1783771979.0305035,
+    "ast_hash": "abfd511153a06ac8cb31ad64a19333ea",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\controllers\\professionalController.js": {
@@ -175,8 +175,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\models\\product.model.js": {
-    "mtime": 1783669303.1380353,
-    "ast_hash": "ac9ee494a717a5e0cadd18b7146a44b6",
+    "mtime": 1783771935.5177479,
+    "ast_hash": "6b7d14fe610419ac4cf1801241ec8178",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\models\\review.model.js": {
@@ -340,8 +340,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\product.validator.js": {
-    "mtime": 1783669303.140058,
-    "ast_hash": "73f6521407c8317e20db0a0739e9ee07",
+    "mtime": 1783771959.5177493,
+    "ast_hash": "b66fc3ee5ca7b0723e9bde208ddad7ed",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\validators\\professionalValidator.js": {
@@ -1480,8 +1480,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\.claude\\memory\\STATUS.md": {
-    "mtime": 1783670187.498687,
-    "ast_hash": "b6a46f8651dbf665dc15eaec929a2482",
+    "mtime": 1783774760.1384175,
+    "ast_hash": "57257f27c45c38219164b5eb31fb509b",
     "semantic_hash": ""
   },
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\.github\\workflows\\ci.yml": {
@@ -1882,6 +1882,16 @@
   "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\src\\templates\\professional-invite.html": {
     "mtime": 1783458217.5800717,
     "ast_hash": "420b03ec1f0e5bb6dca7064ff9105aa0",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\tests\\integration\\products\\product.filterOptions.test.js": {
+    "mtime": 1783762670.6640286,
+    "ast_hash": "15157de18062aacb895f93c3f967d106",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\Raj\\OneDrive\\Documents\\Pet Project\\backend\\tests\\integration\\products\\product.vetRecommended.test.js": {
+    "mtime": 1783772057.6445706,
+    "ast_hash": "f7b4c704481788c58b5e7b62f52a2ac2",
     "semantic_hash": ""
   }
 }

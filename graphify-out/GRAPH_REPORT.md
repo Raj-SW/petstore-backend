@@ -1,16 +1,16 @@
-# Graph Report - backend  (2026-07-10)
+# Graph Report - backend  (2026-07-11)
 
 ## Corpus Check
-- 289 files · ~219,308 words
+- 291 files · ~220,276 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 4059 nodes · 4665 edges · 335 communities (322 shown, 13 thin omitted)
+- 4073 nodes · 4683 edges · 340 communities (327 shown, 13 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 34 edges (avg confidence: 0.92)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9a426b67`
+- Built from commit: `db3841f2`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -348,6 +348,11 @@
 - [[_COMMUNITY_Community 332|Community 332]]
 - [[_COMMUNITY_Community 333|Community 333]]
 - [[_COMMUNITY_Community 334|Community 334]]
+- [[_COMMUNITY_Community 335|Community 335]]
+- [[_COMMUNITY_Community 336|Community 336]]
+- [[_COMMUNITY_Community 337|Community 337]]
+- [[_COMMUNITY_Community 338|Community 338]]
+- [[_COMMUNITY_Community 339|Community 339]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `AppError` - 77 edges
@@ -373,7 +378,7 @@
 - `Appointment Status Update Customer Email Template` --semantically_similar_to--> `Appointment Status Update Professional Email Template`  [INFERRED] [semantically similar]
   backend/src/templates/appointmentStatusUpdateCustomer.html → backend/src/templates/appointmentStatusUpdateProfessional.html
 
-## Communities (335 total, 13 thin omitted)
+## Communities (340 total, 13 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.07
@@ -421,19 +426,28 @@ Nodes (28): dependencies, bcryptjs, cloudinary, compression, cors, cross-env, do
 
 ### Community 11 - "Community 11"
 Cohesion: 0.05
-Nodes (37): adminRoutes, advertRoutes, announcementRoutes, app, appointmentRoutes, authRoutes, cartRoutes, compression (+29 more)
+Nodes (43): app, connectDB, options, specs, swaggerJsdoc, swaggerUi, adminRoutes, advertRoutes (+35 more)
 
 ### Community 12 - "Community 12"
-Cohesion: 0.08
-Nodes (27): { AppError }, filters, mongoose, pagination, professionalService, sorting, timeSlot, express (+19 more)
+Cohesion: 0.12
+Nodes (20): express, { isAuthenticated, isServiceProvider, isAdmin }, professionalController, router, {
+  updateProfessionalSchema,
+  querySchema,
+  availabilitySchema,
+}, {
+  updateProfessionalSchema,
+  querySchema,
+  availabilitySchema,
+  ratingSchema,
+}, { validateRequest }, availabilityDaySchema (+12 more)
 
 ### Community 13 - "Community 13"
 Cohesion: 0.07
 Nodes (26): BACKEND, code:js (const mongoose = require('mongoose');), code:js (const mongoose = require('mongoose');), code:js (const mongoose = require('mongoose');), code:js (const Joi = require('joi');), code:js (const express = require('express');), code:js (uploadImage: async (file) => {), code:jsx (import { describe, it, expect } from 'vitest';) (+18 more)
 
 ### Community 14 - "Community 14"
-Cohesion: 0.06
-Nodes (33): affectedProductIds, { AppError }, Appointment, Cart, dateFormat, filter, { getStartDate, getDateFormat }, limit (+25 more)
+Cohesion: 0.07
+Nodes (30): affectedProductIds, { AppError }, Appointment, Cart, dateFormat, filter, { getStartDate, getDateFormat }, limit (+22 more)
 
 ### Community 15 - "Community 15"
 Cohesion: 0.15
@@ -456,8 +470,8 @@ Cohesion: 0.08
 Nodes (23): admin.controller.js — fix dashboard bug, admin.routes.js — add inventory routes, Backend, Backend Changes, Bug Fixes (prerequisite), code:js ({), code:block2 (getInventory(req, res)           GET /admin/inventory), code:block3 (GET    /admin/inventory              → getInventory) (+15 more)
 
 ### Community 20 - "Community 20"
-Cohesion: 0.04
-Nodes (39): app, Appointment, Cart, fakeId, mongoose, Order, Pet, Product (+31 more)
+Cohesion: 0.09
+Nodes (20): { AppError }, Appointment, { error }, logger, mongoose, Pet, query, { sendEmail } (+12 more)
 
 ### Community 21 - "Community 21"
 Cohesion: 0.09
@@ -480,8 +494,8 @@ Cohesion: 0.09
 Nodes (22): `controllers/admin.test.js`, `controllers/appointment.test.js`, `controllers/auth.test.js`, `controllers/cart.test.js`, `controllers/inventory.test.js`, `controllers/invoice.test.js`, `controllers/order.test.js`, `controllers/payment.test.js` (+14 more)
 
 ### Community 26 - "Community 26"
-Cohesion: 0.10
-Nodes (19): { AppError }, { buildOrder }, cancelMovements, Cart, Invoice, InvoiceService, limit, logger (+11 more)
+Cohesion: 0.11
+Nodes (17): { AppError }, { buildOrder }, cancelMovements, Cart, Invoice, InvoiceService, limit, logger (+9 more)
 
 ### Community 27 - "Community 27"
 Cohesion: 0.10
@@ -492,16 +506,16 @@ Cohesion: 0.08
 Nodes (27): { AppError }, applyStockChange(), { deriveProductFromVariants }, effectiveThreshold(), enriched, expanded, expandProduct(), filter (+19 more)
 
 ### Community 29 - "Community 29"
-Cohesion: 0.12
-Nodes (14): { AppError }, { frontendUrl }, inviteUrl, logger, professionalService, { sendEmail }, { uploadToCloudinary, validateImageFile }, fs (+6 more)
+Cohesion: 0.11
+Nodes (15): logger, mongoose, validateUrlConfig(), app, connectDB, logger, server, { validateUrlConfig } (+7 more)
 
 ### Community 30 - "Community 30"
 Cohesion: 0.10
 Nodes (20): Admin, Advert `promo` placement, Approved decisions, Backend (`backend/`), Contact Page + Map + Socials — Design Spec, Data flow, Error handling, Frontend (`frontend/`) (+12 more)
 
 ### Community 31 - "Community 31"
-Cohesion: 0.08
-Nodes (25): {
+Cohesion: 0.12
+Nodes (17): {
   createProduct,
   getProducts,
   getProduct,
@@ -520,7 +534,7 @@ Nodes (25): {
   getFilterOptions,
   bulkAction,
   uploadProductImage,
-}, express, { isAuthenticated, isAdmin }, router, { upload }, { validateBulkAction }, { validateProduct, validateProductUpdate } (+17 more)
+}, express, { isAuthenticated, isAdmin }, router, { upload }, { validateBulkAction }, { validateProduct, validateProductUpdate } (+9 more)
 
 ### Community 32 - "Community 32"
 Cohesion: 0.10
@@ -543,8 +557,8 @@ Cohesion: 0.11
 Nodes (18): BACKEND, code:js (const mongoose = require('mongoose');), code:js (const mongoose = require('mongoose');), code:js (const express = require('express');), FRONTEND, Homepage Engagement: Feedback + Tabs — Implementation Plan, Self-Review, Task 10: AdminFeedback (+10 more)
 
 ### Community 37 - "Community 37"
-Cohesion: 0.12
-Nodes (14): { AppError }, Invoice, InvoiceService, logger, Order, PaymentService, PayPalService, { sendEmail } (+6 more)
+Cohesion: 0.14
+Nodes (12): { AppError }, Invoice, InvoiceService, logger, Order, PaymentService, PayPalService, { sendEmail } (+4 more)
 
 ### Community 38 - "Community 38"
 Cohesion: 0.15
@@ -585,22 +599,18 @@ Cohesion: 0.15
 Nodes (12): { AppError }, Contact, filter, limit, logger, message, mongoose, page (+4 more)
 
 ### Community 43 - "Community 43"
-Cohesion: 0.09
-Nodes (27): adminToken(), app, baseProduct(), Cart, checkout(), customer(), dbProduct(), json (+19 more)
+Cohesion: 0.21
+Nodes (15): adminToken(), app, baseProduct(), Cart, checkout(), customer(), dbProduct(), json (+7 more)
 
 ### Community 44 - "Community 44"
-Cohesion: 0.10
-Nodes (18): { AppError }, bcrypt, update, {
-  uploadMultipleToCloudinary,
-  deleteMultipleFromCloudinary,
-  validateImageFile,
-}, User, express, {
+Cohesion: 0.15
+Nodes (13): express, {
   getProfile,
   updateProfile,
   changePassword,
   deleteAccount,
   uploadAvatar,
-}, { isAuthenticated } (+10 more)
+}, { isAuthenticated }, router, { upload }, { validateUpdateProfile, validateChangePassword }, { AppError }, Joi (+5 more)
 
 ### Community 45 - "Community 45"
 Cohesion: 0.10
@@ -634,16 +644,16 @@ Nodes (19): { AppError }, verifyCronSecret(), {
 } (+11 more)
 
 ### Community 47 - "Community 47"
-Cohesion: 0.16
-Nodes (12): express, { getSettings, updateSettings }, { isAuthenticated, isAdmin }, router, { validateSettingsUpdate }, { AppError }, Joi, { AppError } (+4 more)
+Cohesion: 0.08
+Nodes (23): ALLOWED, logger, StoreSettings, updates, app, mongoose, request, StoreSettings (+15 more)
 
 ### Community 48 - "Community 48"
 Cohesion: 0.12
 Nodes (15): Architecture, Backend endpoints, code:js (emailPreferences: {), Data flow, Data model, Email template — `src/templates/sale-announcement.html`, Error handling, Frontend (+7 more)
 
 ### Community 49 - "Community 49"
-Cohesion: 0.08
-Nodes (21): app, Feedback, loginAs(), mongoose, request, submit(), User, app (+13 more)
+Cohesion: 0.05
+Nodes (33): ALLOWED, { AppError }, Feedback, keepPublicIds, limit, logger, mongoose, photos (+25 more)
 
 ### Community 50 - "Community 50"
 Cohesion: 0.12
@@ -654,76 +664,45 @@ Cohesion: 0.11
 Nodes (17): counterSchema, mongoose, Counter, { generateInvoice, generatePDF }, Invoice, mongoose, Order, Product (+9 more)
 
 ### Community 52 - "Community 52"
-Cohesion: 0.12
-Nodes (16): { AppError }, { buildOrder }, DEFAULT_DISCOUNT, { formatMUR }, { frontendUrl }, horizonDays, logger, mongoose (+8 more)
+Cohesion: 0.11
+Nodes (18): { AppError }, { buildOrder }, DEFAULT_DISCOUNT, { formatMUR }, { frontendUrl }, horizonDays, logger, mongoose (+10 more)
 
 ### Community 53 - "Community 53"
 Cohesion: 0.13
 Nodes (13): code:bash (cd "C:\Users\Raj\OneDrive\Documents\Pet Project\backend"), code:js (const { getMyInvoice } = require('../controllers/invoice.con), code:bash (cd "C:\Users\Raj\OneDrive\Documents\Pet Project\frontend"), code:markdown (## Subsystem B — Invoicing & Transactions), code:js (// backend/src/models/invoice.model.js), code:js (// backend/src/models/transaction.model.js), Invoicing & Transactions Implementation Plan, Task 11: Customer Invoice Route (+5 more)
 
 ### Community 54 - "Community 54"
-Cohesion: 0.08
-Nodes (21): { AppError }, email, { error, value }, Joi, logger, NewsletterSubscriber, app, Faq (+13 more)
+Cohesion: 0.14
+Nodes (11): app, Faq, loginAs(), mongoose, NewsletterSubscriber, request, User, faqSchema (+3 more)
 
 ### Community 55 - "Community 55"
-Cohesion: 0.06
-Nodes (38): {
-  createProfessionalSchema,
-  promoteSchema,
-  updateProfessionalInfoSchema,
-  listQuerySchema,
-}, express, {
-  getContacts,
-  updateContactStatus,
-}, {
-  getDashboardStats,
-  getSalesAnalytics,
-  getProductAnalytics,
-  getUserAnalytics,
-  getAppointmentAnalytics,
-  listUsers,
-  updateUserRole,
-  toggleUserStatus,
-  deleteUser,
-  getAllAppointments,
-}, {
-  getInventory,
-  getLowStock,
-  getMovements,
-  restockProduct,
-  adjustStock,
-}, {
-  getInvoices,
-  getInvoice,
-  downloadInvoicePDF,
-  generateInvoiceForOrder,
-}, {
-  getTransactions,
-  getTransaction,
-}, { isAuthenticated, isAdmin } (+30 more)
+Cohesion: 0.11
+Nodes (19): availabilityDaySchema, availabilitySchema, createProfessionalSchema, Joi, listQuerySchema, PROFESSIONAL_ROLES_ENUM, professionalInfoCreate, professionalInfoUpdate (+11 more)
 
 ### Community 56 - "Community 56"
-Cohesion: 0.40
-Nodes (4): express, { isAuthenticated, isAdmin }, router, {
-  submitContact,
-  getContacts,
-  updateContactStatus,
-  deleteContact,
-  replyToContact,
-}
+Cohesion: 0.10
+Nodes (16): { AppError }, decoded, jwt, User, {
+  createAppointment,
+  getUserAppointments,
+  getProfessionalAppointments,
+  getAppointmentById,
+  updateAppointmentStatus,
+  deleteAppointment,
+  getPublicProfessionalAppointments,
+}, express, { isAuthenticated, isServiceProvider }, router (+8 more)
 
 ### Community 57 - "Community 57"
-Cohesion: 0.08
-Nodes (22): { AppError }, Order, Review, AppError, {
+Cohesion: 0.13
+Nodes (14): { AppError }, Order, Review, {
   createReview,
   getProductReviews,
   updateReview,
   deleteReview,
-}, express, { isAuthenticated }, router (+14 more)
+}, express, { isAuthenticated }, router, { validateReview } (+6 more)
 
 ### Community 58 - "Community 58"
-Cohesion: 0.22
-Nodes (9): fs, main(), OUT_DIR, path, { renderTemplate }, SAMPLES, TEMPLATES_DIR, compileTemplate() (+1 more)
+Cohesion: 0.09
+Nodes (18): app, Appointment, Cart, fakeId, mongoose, Order, Pet, Product (+10 more)
 
 ### Community 59 - "Community 59"
 Cohesion: 0.12
@@ -744,12 +723,12 @@ Nodes (21): Admin Product Bulk Actions + Image Ordering — Design Spec, code:js
 
 ### Community 61 - "Community 61"
 Cohesion: 0.12
-Nodes (16): createError(), errorHandler(), logger, notFoundHandler(), {
+Nodes (15): createError(), errorHandler(), logger, notFoundHandler(), {
   AppError,
   createError,
   errorHandler,
   notFoundHandler,
-}, err, next, res (+8 more)
+}, err, next, res (+7 more)
 
 ### Community 62 - "Community 62"
 Cohesion: 0.11
@@ -832,8 +811,8 @@ Cohesion: 0.17
 Nodes (11): code:block1 (tests/), code:js (// fixtures/user.fixture.js), code:js (// helpers/auth.helper.js), Fixtures, Folder Structure, Full Test Suite Design, Helpers, Integration Test Approach (+3 more)
 
 ### Community 76 - "Community 76"
-Cohesion: 0.15
-Nodes (12): formatMUR(), { formatMUR }, d, { formatMUR }, fs, handlebars, html, logger (+4 more)
+Cohesion: 0.11
+Nodes (19): fs, main(), OUT_DIR, path, { renderTemplate }, SAMPLES, TEMPLATES_DIR, compileTemplate() (+11 more)
 
 ### Community 77 - "Community 77"
 Cohesion: 0.11
@@ -862,8 +841,21 @@ Nodes (17): {
 }, express, { isAuthenticated, isAdmin }, router, { validateAnnouncement }, ALL_TYPES, { AppError }, CONTENT_TYPES (+9 more)
 
 ### Community 81 - "Community 81"
-Cohesion: 0.24
-Nodes (8): { AppError }, Joi, { AppError }, { err, body }, run(), valid, { validateFeedback }, validateFeedback()
+Cohesion: 0.13
+Nodes (15): express, { isAuthenticated, isAdmin }, router, {
+  submitFeedback,
+  getFeedback,
+  getFeedbackAdmin,
+  updateFeedback,
+  deleteFeedback,
+}, {
+  submitFeedback,
+  getFeedback,
+  getFeedbackAdmin,
+  updateFeedback,
+  deleteFeedback,
+  uploadFeedbackImage,
+}, { upload }, { validateFeedback }, { AppError } (+7 more)
 
 ### Community 82 - "Community 82"
 Cohesion: 0.25
@@ -890,12 +882,12 @@ Cohesion: 0.20
 Nodes (10): jest, collectCoverageFrom, coverageDirectory, coverageReporters, globalSetup, globalTeardown, setupFiles, testEnvironment (+2 more)
 
 ### Community 88 - "Community 88"
-Cohesion: 0.18
-Nodes (10): Conclusion, Data Validation, Future Enhancements, MongoDB Guidelines Compliance, Overview, Pet Store Backend Refactoring Guide, Planned Features, Role-Based Access Control (+2 more)
+Cohesion: 0.20
+Nodes (9): Conclusion, Error Handling, Future Enhancements, Monitoring and Logging, Overview, Pet Store Backend Refactoring Guide, Planned Features, Scalability Considerations (+1 more)
 
 ### Community 89 - "Community 89"
-Cohesion: 0.08
-Nodes (25): { AppError }, { coerceCoverImage, collectImagePublicIds }, cover, GalleryPost, limitNum, logger, mongoose, newIds (+17 more)
+Cohesion: 0.10
+Nodes (20): { AppError }, { coerceCoverImage, collectImagePublicIds }, cover, GalleryPost, limitNum, logger, mongoose, newIds (+12 more)
 
 ### Community 90 - "Community 90"
 Cohesion: 0.20
@@ -922,8 +914,8 @@ Cohesion: 0.22
 Nodes (8): author, description, engines, node, license, main, name, version
 
 ### Community 96 - "Community 96"
-Cohesion: 0.12
-Nodes (14): { AppError }, computeSale(), matrixError, mongoose, now, pct, productSchema, round2() (+6 more)
+Cohesion: 0.09
+Nodes (19): { AppError }, computeSale(), matrixError, mongoose, now, pct, productSchema, round2() (+11 more)
 
 ### Community 97 - "Community 97"
 Cohesion: 0.17
@@ -998,8 +990,8 @@ Cohesion: 0.25
 Nodes (8): code:js (import { api } from "../../core/api/apiClient";), code:bash (cd frontend), code:bash (npx vitest run), code:bash (npx jest tests/announcement.controller.test.js tests/product), code:bash (# from backend/ with the dev server running on :5000), Phase 2 — Frontend, Task 13: Final verification, Task 9: announcementsApi service
 
 ### Community 116 - "Community 116"
-Cohesion: 0.14
-Nodes (16): ADDR, { buildOrder }, mongoose, Order, Product, User, { AppError }, buildOrder() (+8 more)
+Cohesion: 0.19
+Nodes (12): mongoose, stockMovementSchema, { AppError }, buildOrder(), computeChargesFromSettings(), Order, Product, reserveItemStock() (+4 more)
 
 ### Community 117 - "Community 117"
 Cohesion: 0.25
@@ -1074,8 +1066,8 @@ Cohesion: 0.33
 Nodes (5): ANIMAL_TYPES, CATEGORIES, DIFFICULTIES, mongoose, petCareTipSchema
 
 ### Community 135 - "Community 135"
-Cohesion: 0.18
-Nodes (8): bcrypt, jwt, mongoose, User, userSchema, mongoose, Product, User
+Cohesion: 0.11
+Nodes (13): bcrypt, jwt, mongoose, User, userSchema, app, mongoose, Product (+5 more)
 
 ### Community 136 - "Community 136"
 Cohesion: 0.33
@@ -1330,8 +1322,8 @@ Cohesion: 0.67
 Nodes (3): extractPublicId(), migrate(), mongoose
 
 ### Community 199 - "Community 199"
-Cohesion: 0.14
-Nodes (13): API_BASE, apiUrl(), FRONTEND_BASE, logger, productUrl(), SLASH, stripBoth(), validateUrlConfig() (+5 more)
+Cohesion: 0.25
+Nodes (7): API_BASE, apiUrl(), FRONTEND_BASE, logger, productUrl(), SLASH, stripBoth()
 
 ### Community 201 - "Community 201"
 Cohesion: 0.67
@@ -1386,8 +1378,8 @@ Cohesion: 0.13
 Nodes (12): { AppError }, Cart, cartItem, existingItem, { itemPrice }, { itemPrice = 0, variantLabel = null, error }, logger, Product (+4 more)
 
 ### Community 221 - "Community 221"
-Cohesion: 0.10
-Nodes (15): app, professionalService, request, User, professionalService, proInfo, User, ALLOWED_PROFESSIONAL_SORT_FIELDS (+7 more)
+Cohesion: 0.13
+Nodes (11): professionalService, proInfo, User, ALLOWED_PROFESSIONAL_SORT_FIELDS, { AppError }, crypto, { escapeRegExp }, mongoose (+3 more)
 
 ### Community 222 - "Community 222"
 Cohesion: 0.13
@@ -1422,18 +1414,16 @@ Cohesion: 0.17
 Nodes (15): BRANCH, buildCodeQLReport(), buildReviewdogReport(), { execSync }, fetchAllPages(), fetchCodeQLAlerts(), fetchReviewComments(), findOpenPR() (+7 more)
 
 ### Community 231 - "Community 231"
-Cohesion: 0.20
-Nodes (10): productCoverage(), addr, mongoose, now, Product, row, {
-  runsInHorizon, predictDemand, productCoverage,
-}, soon() (+2 more)
+Cohesion: 0.17
+Nodes (14): predictDemand(), Product, productCoverage(), runsInHorizon(), Subscription, addr, mongoose, now (+6 more)
 
 ### Community 232 - "Community 232"
 Cohesion: 0.12
 Nodes (16): 1. Problem & Goals, 2.1 Integration suite: in-job worker parallelism, 2.2 SonarCloud: stop duplicating the test run, stay a separate workflow, 2.3 Diff-scoped lint gate, 2.4 Coverage gate — verify only, no change, 2. Design, 3. Testing / Rollout, 4. Risks & Trade-offs (+8 more)
 
 ### Community 233 - "Community 233"
-Cohesion: 0.15
-Nodes (11): app, body, loginAs(), { makeUnsubscribeToken }, mongoose, Product, request, SaleAnnouncement (+3 more)
+Cohesion: 0.11
+Nodes (16): app, body, loginAs(), { makeUnsubscribeToken }, mongoose, Product, request, SaleAnnouncement (+8 more)
 
 ### Community 234 - "Community 234"
 Cohesion: 0.14
@@ -1472,8 +1462,19 @@ Cohesion: 0.15
 Nodes (12): Acceptance criteria, Current state (from code), Decisions (locked in brainstorm), Design, Endpoints (subscription.routes.js, admin-guarded unless noted), Frontend, Goal, Out of scope (+4 more)
 
 ### Community 243 - "Community 243"
-Cohesion: 0.15
-Nodes (12): ALLOWED, { AppError }, Feedback, keepPublicIds, limit, logger, mongoose, photos (+4 more)
+Cohesion: 0.17
+Nodes (12): express, {
+  getCart,
+  addToCart,
+  updateCartItem,
+  removeCartItem,
+  applyDiscount,
+  clearCart,
+}, { isAuthenticated }, router, {
+  validateAddToCart,
+  validateUpdateCartItem,
+  validateApplyDiscount,
+}, { AppError }, Joi, { AppError } (+4 more)
 
 ### Community 244 - "Community 244"
 Cohesion: 0.15
@@ -1548,8 +1549,8 @@ Cohesion: 0.18
 Nodes (10): Acceptance criteria, Backend contract, Frontend `<ImageManager>` (one shared component), Out of scope, Part 1 — Shared image management (the canonical image system), Part 2 — Variant-specific images (6b), Part 3 — MUR-only pricing (6c), Revision impact on Epics 6 & 7 (+2 more)
 
 ### Community 262 - "Community 262"
-Cohesion: 0.12
-Nodes (15): Announcement, app, { makeUnsubscribeToken }, mongoose, post(), Product, request, { sendEmail } (+7 more)
+Cohesion: 0.20
+Nodes (10): Announcement, app, { makeUnsubscribeToken }, mongoose, post(), Product, request, { sendEmail } (+2 more)
 
 ### Community 263 - "Community 263"
 Cohesion: 0.20
@@ -1584,8 +1585,17 @@ Cohesion: 0.18
 Nodes (10): Acceptance criteria, Backend contract, Frontend `<ImageManager>` (one shared component), Out of scope, Part 1 — Shared image management (the canonical image system), Part 2 — Variant-specific images (6b), Part 3 — MUR-only pricing (6c), Revision impact on Epics 6 & 7 (+2 more)
 
 ### Community 271 - "Community 271"
-Cohesion: 0.09
-Nodes (19): { AppError }, decoded, jwt, User, { AppError }, multer, upload, express (+11 more)
+Cohesion: 0.20
+Nodes (8): { AppError }, multer, upload, {
+  createPet,
+  getMyPets,
+  getPet,
+  updatePet,
+  deletePet,
+  addPetImages,
+  deletePetImage,
+  setPrimaryPetImage,
+}, express, { isAuthenticated }, router, { upload }
 
 ### Community 272 - "Community 272"
 Cohesion: 0.18
@@ -1608,12 +1618,12 @@ Cohesion: 0.22
 Nodes (7): app, loginAs(), mongoose, PetCareTip, request, User, words
 
 ### Community 277 - "Community 277"
-Cohesion: 0.13
-Nodes (13): { AppError }, filter, { generateInvoice, generatePDF }, Invoice, limit, Order, ownerId, page (+5 more)
+Cohesion: 0.17
+Nodes (11): { AppError }, filter, { generateInvoice, generatePDF }, Invoice, limit, Order, ownerId, page (+3 more)
 
 ### Community 278 - "Community 278"
-Cohesion: 0.14
-Nodes (10): mongoose, orderItemSchema, orderSchema, ADDR, { buildOrder }, mongoose, Order, Product (+2 more)
+Cohesion: 0.20
+Nodes (7): ADDR, { buildOrder }, mongoose, Order, Product, StoreSettings, User
 
 ### Community 279 - "Community 279"
 Cohesion: 0.22
@@ -1628,20 +1638,53 @@ Cohesion: 0.25
 Nodes (6): Advert, app, loginAs(), mongoose, request, User
 
 ### Community 282 - "Community 282"
-Cohesion: 0.18
-Nodes (9): app, Contact, loginAs(), mongoose, request, { sendEmail }, User, contactSchema (+1 more)
+Cohesion: 0.11
+Nodes (16): app, Contact, loginAs(), mongoose, request, submit(), User, app (+8 more)
 
 ### Community 283 - "Community 283"
-Cohesion: 0.16
-Nodes (12): { AppError }, filter, limit, page, paymentMethod, status, { toSafeString }, Transaction (+4 more)
+Cohesion: 0.20
+Nodes (9): { AppError }, filter, limit, page, paymentMethod, status, { toSafeString }, Transaction (+1 more)
 
 ### Community 284 - "Community 284"
 Cohesion: 0.22
 Nodes (9): code:js (router.get('/admin/:id', isAuthenticated, isAdmin, getSubscr), code:js (router.get('/mine/:id', isAuthenticated, getMySubscriptionDe), code:bash (cd backend), code:js (// backend/tests/subscription.detail.test.js), code:js (const { predictDemand, productCoverage, enrichSubscription }), code:js (// GET /api/subscriptions/mine — caller's subscriptions (enr), code:js (// GET /api/subscriptions/admin — admin list (all users, enr), code:js (// GET /api/subscriptions/mine/:id — owner enriched detail) (+1 more)
 
 ### Community 285 - "Community 285"
-Cohesion: 0.22
-Nodes (7): ADDRESS, app, mongoose, Product, request, Subscription, User
+Cohesion: 0.14
+Nodes (13): {
+  createProfessionalSchema,
+  promoteSchema,
+  updateProfessionalInfoSchema,
+  listQuerySchema,
+}, express, {
+  getContacts,
+  updateContactStatus,
+}, {
+  getDashboardStats,
+  getSalesAnalytics,
+  getProductAnalytics,
+  getUserAnalytics,
+  getAppointmentAnalytics,
+  listUsers,
+  updateUserRole,
+  toggleUserStatus,
+  deleteUser,
+  getAllAppointments,
+}, {
+  getInventory,
+  getLowStock,
+  getMovements,
+  restockProduct,
+  adjustStock,
+}, {
+  getInvoices,
+  getInvoice,
+  downloadInvoicePDF,
+  generateInvoiceForOrder,
+}, {
+  getTransactions,
+  getTransaction,
+}, { isAuthenticated, isAdmin } (+5 more)
 
 ### Community 286 - "Community 286"
 Cohesion: 0.25
@@ -1656,8 +1699,8 @@ Cohesion: 0.22
 Nodes (4): { AppError }, logger, PaymentService, stripe
 
 ### Community 289 - "Community 289"
-Cohesion: 0.15
-Nodes (10): mongoose, subscriptionItemSchema, subscriptionSchema, ADDRESS, app, mongoose, Product, request (+2 more)
+Cohesion: 0.09
+Nodes (17): mongoose, subscriptionItemSchema, subscriptionSchema, ADDRESS, app, mongoose, Product, request (+9 more)
 
 ### Community 290 - "Community 290"
 Cohesion: 0.29
@@ -1672,8 +1715,8 @@ Cohesion: 0.25
 Nodes (8): code:jsx (getMine: vi.fn().mockResolvedValue({), code:jsx (it("shows per-cycle total and savings", async () => {), code:jsx (import { useCurrency } from "../../context/CurrencyContext";), code:jsx (const { formatPrice } = useCurrency();), code:jsx (<div key={s._id} className={`ms-card ms-${s.status}`}>), code:css (.ms-item { display: flex; align-items: center; gap: 8px; }), code:bash (cd frontend), Task 5: My Subscriptions — financials, image, order history
 
 ### Community 293 - "Community 293"
-Cohesion: 0.29
-Nodes (4): app, connectDB, logger, mongoose
+Cohesion: 0.20
+Nodes (8): { createError }, { AppError }, Joi, next, req, schema, { validateRequest }, validateRequest()
 
 ### Community 294 - "Community 294"
 Cohesion: 0.29
@@ -1708,8 +1751,8 @@ Cohesion: 0.33
 Nodes (6): adminToken(), app, mongoose, Product, request, User
 
 ### Community 301 - "Community 301"
-Cohesion: 0.20
-Nodes (9): enrichSubscription(), predictDemand(), Product, runsInHorizon(), Subscription, { enrichSubscription }, out, sub (+1 more)
+Cohesion: 0.29
+Nodes (5): enrichSubscription(), { enrichSubscription }, out, sub, when
 
 ### Community 302 - "Community 302"
 Cohesion: 0.33
@@ -1756,12 +1799,12 @@ Cohesion: 0.40
 Nodes (5): code:markdown (| 12 FE | Subscription enrichment + detail views — `enrichSu), code:markdown (- **Epic 12 completed (2026-06-24)** — the FE label was a mi), code:markdown (| Epic 12 — subscription enrichment & detail views | `docs/s), code:bash (cd backend), Task 7: Update memory
 
 ### Community 313 - "Community 313"
-Cohesion: 0.14
-Nodes (11): ALLOWED, logger, StoreSettings, updates, app, mongoose, request, StoreSettings (+3 more)
+Cohesion: 0.18
+Nodes (9): mongoose, orderItemSchema, orderSchema, ADDR, { buildOrder }, mongoose, Order, Product (+1 more)
 
 ### Community 314 - "Community 314"
-Cohesion: 0.33
-Nodes (5): { AppError }, Product, searchQuery, sortFields, sortQuery
+Cohesion: 0.14
+Nodes (12): { AppError }, Product, searchQuery, sortFields, sortQuery, AppError, { AppError }, Joi (+4 more)
 
 ### Community 315 - "Community 315"
 Cohesion: 0.21
@@ -1803,57 +1846,86 @@ Cohesion: 0.20
 Nodes (5): EXISTING_PHOTOS, mongoose, NEW_PROFESSIONALS, User, WEEKDAYS
 
 ### Community 325 - "Community 325"
-Cohesion: 0.22
-Nodes (8): Advert, { AppError }, logger, mongoose, placement, query, { toSafeString }, { uploadBannerToCloudinary }
+Cohesion: 0.11
+Nodes (18): Advert, { AppError }, logger, mongoose, placement, query, { toSafeString }, { uploadBannerToCloudinary } (+10 more)
 
 ### Community 326 - "Community 326"
-Cohesion: 0.28
-Nodes (7): app, Contact, loginAs(), mongoose, request, submit(), User
+Cohesion: 0.24
+Nodes (8): ACTIONS, { AppError }, Joi, mongoose, { AppError }, run(), { validateBulkAction }, validateBulkAction()
 
 ### Community 327 - "Community 327"
-Cohesion: 0.25
-Nodes (7): allowedMimeTypes, { AppError }, b64, deletePromises, logger, { sanitizeForLog }, uploadPromises
+Cohesion: 0.22
+Nodes (7): { AppError }, filters, mongoose, pagination, professionalService, sorting, timeSlot
 
 ### Community 328 - "Community 328"
 Cohesion: 0.33
 Nodes (6): buf, buildTestApp(), express, oversized, request, small
 
 ### Community 329 - "Community 329"
-Cohesion: 0.29
-Nodes (5): app, mongoose, Product, request, User
+Cohesion: 0.25
+Nodes (7): { AppError }, { frontendUrl }, inviteUrl, logger, professionalService, { sendEmail }, { uploadToCloudinary, validateImageFile }
 
 ### Community 330 - "Community 330"
 Cohesion: 0.29
-Nodes (5): fs, mongoose, outArg, path, Product
+Nodes (6): { AppError }, email, { error, value }, Joi, logger, NewsletterSubscriber
 
 ### Community 331 - "Community 331"
-Cohesion: 0.40
-Nodes (4): options, specs, swaggerJsdoc, swaggerUi
+Cohesion: 0.29
+Nodes (4): app, Product, request, User
 
 ### Community 332 - "Community 332"
 Cohesion: 0.50
 Nodes (4): buildCategoryFilter(), buildPriceFilter(), buildProductFilter(), buildSearchFilter()
 
 ### Community 333 - "Community 333"
-Cohesion: 0.67
-Nodes (3): Error Handling, Monitoring and Logging, Service Layer Logging
+Cohesion: 0.29
+Nodes (4): app, Product, request, User
+
+### Community 335 - "Community 335"
+Cohesion: 0.43
+Nodes (5): coerceCoverImage(), collectImagePublicIds(), collectSectionPublicIds(), { coerceCoverImage, collectImagePublicIds }, source
+
+### Community 336 - "Community 336"
+Cohesion: 0.33
+Nodes (5): { AppError }, bcrypt, update, {
+  uploadMultipleToCloudinary,
+  deleteMultipleFromCloudinary,
+  validateImageFile,
+}, User
+
+### Community 337 - "Community 337"
+Cohesion: 0.33
+Nodes (4): app, professionalService, request, User
+
+### Community 338 - "Community 338"
+Cohesion: 0.40
+Nodes (4): express, {
+  initializePayment,
+  confirmPayment,
+  processRefund,
+  handleWebhook,
+}, { isAuthenticated, isAdmin }, router
+
+### Community 339 - "Community 339"
+Cohesion: 0.50
+Nodes (4): Data Validation, MongoDB Guidelines Compliance, Role-Based Access Control, Security Enhancements
 
 ## Knowledge Gaps
-- **2830 isolated node(s):** `node`, `es2021`, `jest`, `extends`, `ecmaVersion` (+2825 more)
+- **2838 isolated node(s):** `node`, `es2021`, `jest`, `extends`, `ecmaVersion` (+2833 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **13 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `AppError` connect `Community 57` to `Community 0`, `Community 6`, `Community 11`, `Community 12`, `Community 14`, `Community 271`, `Community 273`, `Community 20`, `Community 277`, `Community 26`, `Community 283`, `Community 28`, `Community 29`, `Community 31`, `Community 288`, `Community 34`, `Community 37`, `Community 38`, `Community 296`, `Community 40`, `Community 42`, `Community 43`, `Community 44`, `Community 46`, `Community 47`, `Community 52`, `Community 54`, `Community 55`, `Community 314`, `Community 59`, `Community 61`, `Community 62`, `Community 325`, `Community 70`, `Community 327`, `Community 78`, `Community 80`, `Community 81`, `Community 89`, `Community 220`, `Community 221`, `Community 96`, `Community 98`, `Community 243`, `Community 116`?**
+- **Why does `AppError` connect `Community 314` to `Community 0`, `Community 6`, `Community 11`, `Community 14`, `Community 271`, `Community 273`, `Community 20`, `Community 277`, `Community 26`, `Community 283`, `Community 28`, `Community 31`, `Community 288`, `Community 34`, `Community 37`, `Community 293`, `Community 38`, `Community 296`, `Community 40`, `Community 42`, `Community 44`, `Community 46`, `Community 47`, `Community 49`, `Community 52`, `Community 56`, `Community 57`, `Community 59`, `Community 61`, `Community 62`, `Community 325`, `Community 70`, `Community 327`, `Community 326`, `Community 329`, `Community 330`, `Community 78`, `Community 336`, `Community 80`, `Community 81`, `Community 89`, `Community 220`, `Community 221`, `Community 96`, `Community 98`, `Community 243`, `Community 116`?**
   _High betweenness centrality (0.035) - this node is a cross-community bridge._
-- **Why does `ValidationUtils` connect `Community 36` to `Community 57`?**
+- **Why does `ValidationUtils` connect `Community 36` to `Community 61`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
-- **Why does `escapeRegExp()` connect `Community 239` to `Community 34`, `Community 98`, `Community 332`, `Community 277`, `Community 89`, `Community 283`, `Community 221`?**
+- **Why does `escapeRegExp()` connect `Community 239` to `Community 34`, `Community 98`, `Community 325`, `Community 332`, `Community 277`, `Community 89`, `Community 221`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
 - **What connects `node`, `es2021`, `jest` to the rest of the system?**
-  _2830 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _2838 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.0735632183908046 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**

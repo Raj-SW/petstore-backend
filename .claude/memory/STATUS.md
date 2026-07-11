@@ -1,7 +1,7 @@
 # Project Status
 
-**Active branch:** `feat/backlog-impl-2026-06-22` (both `backend/` and `frontend/` repos)
-**Last updated:** 2026-06-28 (testing architecture + CI)
+**Active branch:** `feat/admin-professionals-management` (both `backend/` and `frontend/` repos)
+**Last updated:** 2026-07-11 (homepage redesign)
 
 ---
 
@@ -28,6 +28,7 @@
 | 14 | Variant-aware inventory — per-variant rows in inventory table; restock/adjust/history all variant-scoped | BE + FE |
 | 17 | Variant option matrix — products support up to 4 option axes (`options: [{name, values}]`), variants stay flat with `optionValues` per combination (one variantId each → cart/orders/inventory/subscriptions untouched). Server derives labels ("5kg · Chicken") + validates the matrix on both save and findByIdAndUpdate paths. Admin form: axes editor + auto-generated combination table (`utils/variantMatrix.js`); product page: per-axis pill selectors. `GET /products/filter-options` gains `optionNames`; admin form category/color/suitable-for quick-picks now merge distinct values from existing products. Rate limiter skipped under NODE_ENV=test (supertest 429s poisoned integration logins). Spec: `docs/superpowers/specs/2026-07-10-variant-option-matrix-design.md`. | BE + FE ✅ |
 | 16 | Admin professionals management — `/admin/professionals` API (list/search/filter, create+invite, promote-existing, edit, toggle-active, offboard, photo upload) + `AdminProfessionals` list page + `AdminProfessionalForm` (create/edit/promote, weekly availability, services, photo). Rating read-only. petTaxi included in admin lists. Public browse now hides `professionalInfo.isActive:false`. Dead `createProfessional`/`deleteProfessional`/manual-rating code removed. | BE + FE ✅ |
+| 18 | Homepage redesign — mobile nav drawer fixed (100svh clipping + body scroll lock); Hero rebuilt with 4 CTAs (Book Appointment/Mobile Vet/Pet Travel/Shop) + new shared `AppointmentModal` (WhatsApp deep-link, clinic hours) reused by a new bottom `FinalCtaStrip`; Services rebuilt to the 4 live cards (dropped permanent "coming soon" placeholders); new static `PetTravelBand`; `FeaturedProductSection` replaced by `VetRecommendedSection` (new `vetRecommended` product flag, separate from `isFeatured`); new `VetNetworkSection` (reuses existing public `GET /professionals` + `ProfessionalCard`) and `PetCareTipsSection` (reuses existing public `GET /tips` + `TipCard`, `readTime` was already auto-computed on the model — no BE change needed there). CreatableTagSelect combobox added for product Categories/Suitable For/Colors (filterable, "Create: X" option, backed by `filter-options` distinct-value API). | BE + FE ✅ |
 
 ---
 
