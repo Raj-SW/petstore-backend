@@ -2,7 +2,6 @@ const {
   updateProfessionalSchema,
   querySchema,
   availabilitySchema,
-  ratingSchema,
 } = require('./professionalValidator');
 
 // These are raw Joi schemas consumed by the validateRequest middleware.
@@ -68,15 +67,5 @@ describe('availabilitySchema', () => {
 
   it('requires the availability object', () => {
     expect(availabilitySchema.validate({}).error).toBeDefined();
-  });
-});
-
-describe('ratingSchema', () => {
-  it('accepts 1–5', () => {
-    expect(ratingSchema.validate({ rating: 4 }).error).toBeUndefined();
-  });
-  it('rejects out-of-range and missing ratings', () => {
-    expect(ratingSchema.validate({ rating: 6 }).error).toBeDefined();
-    expect(ratingSchema.validate({}).error).toBeDefined();
   });
 });

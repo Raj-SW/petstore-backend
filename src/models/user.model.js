@@ -105,9 +105,12 @@ const userSchema = new mongoose.Schema(
         default: true,
       },
       bio: {
+        // Rich-text HTML from the admin RichTextEditor, sanitized on render
+        // via RichTextRenderer. Ceiling raised from 500 (plain text) since
+        // HTML markup adds overhead for the same visible text.
         type: String,
         trim: true,
-        maxlength: 500,
+        maxlength: 5000,
       },
       services: [
         {
@@ -117,6 +120,14 @@ const userSchema = new mongoose.Schema(
           description: String,
         },
       ],
+      // Professional-specific profile photo, distinct from the generic
+      // top-level User.profileImage. Was previously written by the admin
+      // form/validators but never declared here, so Mongoose silently
+      // dropped it on save.
+      profileImage: {
+        url: { type: String, trim: true },
+        publicId: { type: String, trim: true },
+      },
     },
   },
   {

@@ -70,6 +70,7 @@ const validateProduct = (req, res, next) => {
       }),
     isActive:   Joi.boolean().truthy('true').falsy('false').default(true),
     isFeatured: Joi.boolean().truthy('true').falsy('false').default(false),
+    vetRecommended: Joi.boolean().truthy('true').falsy('false').default(false),
     onSale:        Joi.boolean().truthy('true').falsy('false').default(false),
     discountType:  Joi.string().valid('percent', 'amount').default('percent'),
     discountValue: Joi.number().min(0).default(0),
@@ -78,6 +79,7 @@ const validateProduct = (req, res, next) => {
     imageRefs:  Joi.string().optional(), // JSON array of pre-uploaded { url, publicId }
     sections:   Joi.string().optional(), // JSON array of { title, body, order }
     variants:   Joi.string().optional(), // JSON array of { label, price, quantity, images }
+    options:    Joi.string().optional(), // JSON array of { name, values } option axes
   });
 
   const { error, value } = schema.validate(req.body);
@@ -148,6 +150,7 @@ const validateProductUpdate = (req, res, next) => {
     }),
     isActive:   Joi.boolean().truthy('true').falsy('false'),
     isFeatured: Joi.boolean().truthy('true').falsy('false'),
+    vetRecommended: Joi.boolean().truthy('true').falsy('false'),
     onSale:        Joi.boolean().truthy('true').falsy('false'),
     discountType:  Joi.string().valid('percent', 'amount'),
     discountValue: Joi.number().min(0),
@@ -157,6 +160,7 @@ const validateProductUpdate = (req, res, next) => {
     imageRefs:  Joi.string().optional(), // JSON array of final ordered { url, publicId } (ImageManager)
     sections:   Joi.string().optional(), // JSON array of { title, body, order }
     variants:   Joi.string().optional(), // JSON array of { label, price, quantity, images }
+    options:    Joi.string().optional(), // JSON array of { name, values } option axes
   });
 
   const { error, value } = schema.validate(req.body);

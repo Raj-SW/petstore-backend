@@ -110,9 +110,11 @@ const orderSchema = new mongoose.Schema(
   },
 );
 
-// Virtual for final amount after discount
+// Virtual for final amount — the actual payable amount sent to Stripe.
+// grandTotal (set by buildOrder) is authoritative; the old formula is a
+// fallback for legacy orders created before shipping/tax were tracked.
 orderSchema.virtual('finalAmount').get(function () {
-  return this.totalAmount - this.discount;
+  return this.grandTotal || (this.totalAmount - this.discount);
 });
 
 // Indexes for efficient querying

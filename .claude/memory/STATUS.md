@@ -1,7 +1,7 @@
 # Project Status
 
-**Active branch:** `feat/backlog-impl-2026-06-22` (both `backend/` and `frontend/` repos)
-**Last updated:** 2026-06-28 (testing architecture + CI)
+**Active branch:** `feat/admin-professionals-management` (both `backend/` and `frontend/` repos)
+**Last updated:** 2026-07-11 (homepage redesign + mobile pass + Pet Travel page)
 
 ---
 
@@ -10,7 +10,7 @@
 | Epic | Description | Scope |
 |------|-------------|-------|
 | 1 | Nav/layout — About in navbar, mobile header, gallery breadcrumbs | FE |
-| 2 | Design system foundation — shadcn/ui token binding, SearchBar generalized, RTE img overflow fix | FE (partial — see Remaining) |
+| 2 | Design system foundation — shadcn/ui token binding, SearchBar generalized, RTE img overflow fix; 17 native `<select>` → shadcn `Select` migrations; `/admin/ui-gallery` verification page | FE ✅ |
 | 3 | Service page — Coming Soon badges, live card links | FE |
 | 5 | Petshop filter — case-insensitive category match, DB-driven filter options, remove dead rating filter | BE + FE |
 | 6 | Product bulk actions — `POST /products/bulk` (activate/feature/sale/delete) + admin toolbar UI | BE + FE |
@@ -26,6 +26,10 @@
 | 12 | Subscription analytics BE — `predictDemand`, `productCoverage`, `runsInHorizon`; admin `/analytics` + `/product-coverage` endpoints | BE |
 | 12 FE | Subscription enrichment + detail views — `enrichSubscription` service (per-cycle total, savings, cadence, next-run-in-days, order history), enriched `/mine` + `/admin` lists, `/mine/:id` + `/admin/:id` detail endpoints, product-analytics subscriptions block, admin detail drawer + status/due-soon filters, My Subscriptions financials/image/history | BE + FE |
 | 14 | Variant-aware inventory — per-variant rows in inventory table; restock/adjust/history all variant-scoped | BE + FE |
+| 17 | Variant option matrix — products support up to 4 option axes (`options: [{name, values}]`), variants stay flat with `optionValues` per combination (one variantId each → cart/orders/inventory/subscriptions untouched). Server derives labels ("5kg · Chicken") + validates the matrix on both save and findByIdAndUpdate paths. Admin form: axes editor + auto-generated combination table (`utils/variantMatrix.js`); product page: per-axis pill selectors. `GET /products/filter-options` gains `optionNames`; admin form category/color/suitable-for quick-picks now merge distinct values from existing products. Rate limiter skipped under NODE_ENV=test (supertest 429s poisoned integration logins). Spec: `docs/superpowers/specs/2026-07-10-variant-option-matrix-design.md`. | BE + FE ✅ |
+| 16 | Admin professionals management — `/admin/professionals` API (list/search/filter, create+invite, promote-existing, edit, toggle-active, offboard, photo upload) + `AdminProfessionals` list page + `AdminProfessionalForm` (create/edit/promote, weekly availability, services, photo). Rating read-only. petTaxi included in admin lists. Public browse now hides `professionalInfo.isActive:false`. Dead `createProfessional`/`deleteProfessional`/manual-rating code removed. | BE + FE ✅ |
+| 18 | Homepage redesign — mobile nav drawer fixed (100svh clipping + body scroll lock); Hero rebuilt with 4 CTAs (Book Appointment/Mobile Vet/Pet Travel/Shop) + new shared `AppointmentModal` (WhatsApp deep-link, clinic hours) reused by a new bottom `FinalCtaStrip`; Services rebuilt to the 4 live cards (dropped permanent "coming soon" placeholders); new static `PetTravelBand`; new `VetRecommendedSection` (new `vetRecommended` product flag, separate from `isFeatured`) — the original `FeaturedProductSection` (category-tabbed carousel) is kept alongside it; new `VetNetworkSection` (reuses existing public `GET /professionals` + `ProfessionalCard`) and `PetCareTipsSection` (reuses existing public `GET /tips` + `TipCard`, `readTime` was already auto-computed on the model — no BE change needed there). CreatableTagSelect combobox added for product Categories/Suitable For/Colors (filterable, "Create: X" option, backed by `filter-options` distinct-value API). | BE + FE ✅ |
+| 19 | Mobile responsiveness pass + Pet Travel page (FE only) — fixed site-wide horizontal scroll caused by the off-canvas nav drawer (`html { overflow-x: clip }`, keeps sticky working); drawer now opens from the right to match the hamburger. Product/tip/professional cards fit ≥2 per row on phones and shrink fluidly; `ProductCardV2` is a full-height flex column (uniform card heights regardless of image size). `ProfessionalList` refactored to role-independent `pro-list-*` classes (every appointment tab now responsive). Vet Recommended is a native scroll-snap carousel on phones. New premium **Pet Relocation landing page** at `/import-export-service` (`src/Pages/PetTravel/`): reusable section components (PtHero/PtProcess/PtDestinations/PtTrustBar/PtFinalCta), content in one `petTravelContent.js`, 8-step responsive timeline, WhatsApp/consultation CTAs via `AppointmentModal`; old `ImportExportServicePage` removed (application form still at `/import-page`). | FE ✅ |
 
 ---
 
@@ -33,9 +37,7 @@
 
 | Epic | What's left | Notes |
 |------|-------------|-------|
-| 2 | 17 native `<select>` → shadcn `Select` migrations + `/admin/ui-gallery` verification page | FE; unblocks Epic 4 |
-| 4 | ProfessionalCard visual rebuild on design system; appointment list SearchBar | FE; depends Epic 2 |
-| 9b FE | Typed announcements admin UI — type picker, event fields, CTA fields, content ref picker | FE |
+| 4 | ProfessionalCard visual rebuild on design system (done on branch); appointment list SearchBar | FE |
 | 11 FE | `AdminSettings` StoreSettings page (shippingFee, freeShippingThreshold, taxRate toggles); checkout displays shipping/tax | FE; depends Epic 11 BE ✅ |
 | ~~12 FE~~ | ~~Subscriptions analytics dashboard; enriched admin list/detail; user My Subscriptions view~~ | **DONE 2026-06-24** |
 | 13 | Import/Export full-stack rebuild — `ImportExportApplication` model + routes + admin/applicant emails + FE multi-step form + admin page | BE + FE; depends Epics 2 + 10 |

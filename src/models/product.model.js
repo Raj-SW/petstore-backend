@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const { validateOptionMatrix, applyDerivedVariantLabels } = require('../utils/productVariants');
+const { AppError } = require('../middlewares/errorHandler');
 
 const productSchema = new mongoose.Schema(
   {
@@ -77,6 +79,10 @@ const productSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    vetRecommended: {
+      type: Boolean,
+      default: false,
+    },
     onSale: {
       type: Boolean,
       default: false,
@@ -106,9 +112,20 @@ const productSchema = new mongoose.Schema(
         order: { type: Number, default: 0 },
       },
     ],
+    // Option axes (e.g. Weight, Flavour) — each variant below is one combination
+    // of these values. Empty = legacy free-label variants. Max 4 axes.
+    options: {
+      type: [{
+        name:   { type: String, required: true, trim: true, maxlength: 30 },
+        values: { type: [String], required: true },
+      }],
+      default: [],
+    },
     variants: [
       {
-        label:    { type: String, required: true, trim: true, maxlength: 40 },
+        label:    { type: String, required: true, trim: true, maxlength: 120 },
+        // { Weight: "5kg", Flavour: "Chicken" } — present only on matrix products
+        optionValues: { type: Map, of: String, default: undefined },
         price:    { type: Number, required: true, min: 0 },
         quantity: { type: Number, required: true, min: 0, default: 0 },
         images: {
@@ -150,11 +167,14 @@ productSchema.pre('save', function (next) {
 // (total stock) so price sort/filter and the card "From" price keep working.
 // Must be pre('validate') because required-field validation runs before save hooks.
 productSchema.pre('validate', function (next) {
+  const matrixError = validateOptionMatrix(this.options, this.variants);
+  if (matrixError) return next(new AppError(matrixError, 400));
+  applyDerivedVariantLabels(this.options, this.variants);
   if (Array.isArray(this.variants) && this.variants.length > 0) {
     this.price = Math.min(...this.variants.map((v) => Number(v.price)));
     this.quantity = this.variants.reduce((sum, v) => sum + (Number(v.quantity) || 0), 0);
   }
-  next();
+  return next();
 });
 
 // Indexes for efficient querying
@@ -164,6 +184,7 @@ productSchema.index({ categories: 1 });
 productSchema.index({ price: 1 });
 productSchema.index({ quantity: 1 });
 productSchema.index({ isFeatured: 1 });
+productSchema.index({ vetRecommended: 1 });
 
 // ── Sale pricing (one helper drives product-level + per-variant pricing) ──
 const round2 = (n) => Math.round(n * 100) / 100;
@@ -207,6 +228,7 @@ productSchema.virtual('variantsView').get(function () {
     const s = computeSale(v.price, this);
     return {
       _id: v._id, label: v.label, quantity: v.quantity, price: v.price,
+      optionValues: v.optionValues ? Object.fromEntries(v.optionValues) : undefined,
       images: Array.isArray(v.images) ? v.images : [],
       salePrice: s.salePrice, isOnSaleNow: s.isOnSaleNow,
       effectivePrice: s.effectivePrice, discountPercentLabel: s.discountPercentLabel,

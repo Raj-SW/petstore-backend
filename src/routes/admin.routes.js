@@ -39,6 +39,24 @@ const {
   updateContactStatus,
 } = require('../controllers/contact.controller');
 
+const {
+  listProfessionals,
+  createProfessional,
+  promoteProfessional,
+  updateProfessional: updateProfessionalAdmin,
+  toggleStatus: toggleProfessionalStatus,
+  offboardProfessional,
+  uploadImage: uploadProfessionalImage,
+} = require('../controllers/adminProfessional.controller');
+const { validateRequest } = require('../middlewares/validateRequest');
+const {
+  createProfessionalSchema,
+  promoteSchema,
+  updateProfessionalInfoSchema,
+  listQuerySchema,
+} = require('../validators/adminProfessionalValidator');
+const { upload } = require('../middlewares/upload');
+
 const router = express.Router();
 
 // All admin routes require authentication and admin role
@@ -60,6 +78,15 @@ router.delete('/users/:id', deleteUser);
 
 // Appointment management routes (admin gets all appointments)
 router.get('/appointments', getAllAppointments);
+
+// Professional management routes — static paths before :id to avoid shadowing
+router.get('/professionals', validateRequest(listQuerySchema, 'query'), listProfessionals);
+router.post('/professionals', validateRequest(createProfessionalSchema), createProfessional);
+router.post('/professionals/promote', validateRequest(promoteSchema), promoteProfessional);
+router.post('/professionals/upload-image', upload.single('image'), uploadProfessionalImage);
+router.patch('/professionals/:id', validateRequest(updateProfessionalInfoSchema), updateProfessionalAdmin);
+router.patch('/professionals/:id/status', toggleProfessionalStatus);
+router.delete('/professionals/:id', offboardProfessional);
 
 // Inventory management routes
 // NOTE: /inventory/low-stock must be registered before /inventory/:id to avoid route shadowing

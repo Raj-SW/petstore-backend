@@ -1,3 +1,4 @@
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const PaymentService = require('../services/payment.service');
 const PayPalService = require('../services/paypal.service');
 const Order = require('../models/order.model');

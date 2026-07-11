@@ -4,7 +4,7 @@ const { AppError } = require('../middlewares/errorHandler');
 const validateAddToCart = (req, res, next) => {
   const schema = Joi.object({
     productId: Joi.string().required(),
-    variantId: Joi.string().hex().length(24).optional(),
+    variantId: Joi.string().hex().length(24).allow(null).optional(),
     quantity: Joi.number().required().min(1),
   });
 
@@ -18,6 +18,7 @@ const validateAddToCart = (req, res, next) => {
 const validateUpdateCartItem = (req, res, next) => {
   const schema = Joi.object({
     quantity: Joi.number().required().min(1),
+    variantId: Joi.string().hex().length(24).allow(null).optional(),
   });
 
   const { error } = schema.validate(req.body);
