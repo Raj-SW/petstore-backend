@@ -36,7 +36,7 @@ class ProfessionalService {
    * @returns {Promise<Object>} - Professionals data with pagination info
    */
   async getAllProfessionals(filters = {}, pagination = {}, sorting = {}) {
-    const { specialization, role, rating, isActive, city, state } = filters;
+    const { specialization, role, rating, city, state } = filters;
 
     const { page = 1, limit = 10 } = pagination;
 
@@ -62,9 +62,10 @@ class ProfessionalService {
     if (rating) {
       query['professionalInfo.rating'] = { $gte: Number.parseFloat(rating) };
     }
-    if (isActive !== undefined) {
-      query['professionalInfo.isActive'] = isActive === 'true';
-    }
+    // NOTE: no client-supplied isActive filter here. This method serves the
+    // PUBLIC browse endpoint — honoring ?isActive=false let anonymous callers
+    // override the base guard and list deactivated/offboarded professionals.
+    // Admin listing (adminListProfessionals) has its own status filter.
     if (city) {
       query['professionalInfo.location.city'] = new RegExp(escapeRegExp(city), 'i');
     }

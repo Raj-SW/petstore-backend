@@ -113,4 +113,46 @@ describe('Professional API — security (NoSQL injection guards)', () => {
       expect(Array.isArray(result)).toBe(true);
     });
   });
+
+  // ── 3. deactivated professionals must never appear on the public browse ───
+
+  describe('GET /api/professionals (?isActive=false override guard)', () => {
+    it('does NOT expose deactivated professionals via ?isActive=false', async () => {
+      await seedProfessional({
+        name: 'Offboarded Vet',
+        professionalInfo: {
+          specialization: 'Surgery',
+          experience: 8,
+          rating: 4.9,
+          isActive: false, // deactivated by admin
+        },
+      });
+
+      const res = await request(app)
+        .get('/api/professionals')
+        .query({ isActive: 'false' });
+
+      expect(res.status).toBe(200);
+      const names = res.body.data.map((p) => p.name);
+      expect(names).not.toContain('Offboarded Vet');
+      // The base guard still returns active professionals only
+      expect(names).toContain('Test Vet');
+    });
+
+    it('never includes deactivated professionals in the default listing', async () => {
+      await seedProfessional({
+        name: 'Hidden Vet',
+        professionalInfo: {
+          specialization: 'Dentistry',
+          experience: 3,
+          rating: 4.0,
+          isActive: false,
+        },
+      });
+
+      const res = await request(app).get('/api/professionals');
+      expect(res.status).toBe(200);
+      expect(res.body.data.map((p) => p.name)).not.toContain('Hidden Vet');
+    });
+  });
 });
