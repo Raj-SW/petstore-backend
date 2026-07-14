@@ -1,7 +1,7 @@
 # Project Status
 
-**Active branch:** `feat/admin-professionals-management` (both `backend/` and `frontend/` repos)
-**Last updated:** 2026-07-11 (homepage redesign + mobile pass + Pet Travel page)
+**Active branch:** `main` — `feat/admin-professionals-management` merged in both repos 2026-07-14 (backend PR #14, frontend PR #24)
+**Last updated:** 2026-07-14
 
 ---
 
