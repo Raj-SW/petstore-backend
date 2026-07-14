@@ -25,9 +25,25 @@ const paypalClient = new Client({
 const ordersController = new OrdersController(paypalClient);
 const paymentsController = new PaymentsController(paypalClient);
 
+// Order amounts are stored in MUR, which PayPal does not support as a
+// transaction currency. Amounts must be converted to USD at an explicitly
+// configured rate — charging the raw MUR number as USD was a ~40x overcharge.
+function murToUsd(amountMur) {
+  const rate = Number(process.env.PAYPAL_MUR_TO_USD_RATE); // MUR per 1 USD
+  if (!rate || rate <= 0) {
+    throw new AppError(
+      'PayPal payments are unavailable: PAYPAL_MUR_TO_USD_RATE is not configured',
+      503
+    );
+  }
+  return (amountMur / rate).toFixed(2);
+}
+
 class PayPalService {
   // Create PayPal order
   static async createOrder(order) {
+    // Configuration errors must surface as-is, not be masked as a 500
+    const usdValue = murToUsd(order.finalAmount);
     try {
       const response = await ordersController.createOrder({
         body: {
@@ -35,28 +51,13 @@ class PayPalService {
           purchaseUnits: [
             {
               referenceId: order._id.toString(),
+              // Total only — no per-item breakdown. Converting each MUR line
+              // item separately accumulates rounding drift that PayPal's
+              // strict breakdown validation (sum must equal total) rejects.
               amount: {
                 currencyCode: 'USD',
-                value: order.finalAmount.toString(),
-                breakdown: {
-                  itemTotal: {
-                    currencyCode: 'USD',
-                    value: order.totalAmount.toString(),
-                  },
-                  discount: {
-                    currencyCode: 'USD',
-                    value: order.discount.toString(),
-                  },
-                },
+                value: usdValue,
               },
-              items: order.items.map((item) => ({
-                name: item.product.name,
-                unitAmount: {
-                  currencyCode: 'USD',
-                  value: item.price.toString(),
-                },
-                quantity: item.quantity.toString(),
-              })),
             },
           ],
           applicationContext: {
@@ -112,14 +113,12 @@ class PayPalService {
         throw new AppError('No payment transaction found for refund', 400);
       }
 
+      // Full refund of the original capture: omitting the amount refunds
+      // exactly what was captured, in the captured currency — immune to the
+      // MUR→USD rate having moved between order time and refund time.
       const response = await paymentsController.refundCapturedPayment({
         captureId: order.paymentDetails.transactionId,
-        body: {
-          amount: {
-            currencyCode: 'USD',
-            value: order.finalAmount.toString(),
-          },
-        },
+        body: {},
       });
 
       const result = response.result;
