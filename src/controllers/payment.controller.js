@@ -1,4 +1,4 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const { getStripe } = require('../config/stripe');
 const PaymentService = require('../services/payment.service');
 const PayPalService = require('../services/paypal.service');
 const Order = require('../models/order.model');
@@ -230,7 +230,7 @@ exports.handleWebhook = async (req, res, next) => {
     if (paymentMethod === 'stripe') {
       const sig = req.headers['stripe-signature'];
       try {
-        event = stripe.webhooks.constructEvent(
+        event = getStripe().webhooks.constructEvent(
           req.body,
           sig,
           process.env.STRIPE_WEBHOOK_SECRET,
