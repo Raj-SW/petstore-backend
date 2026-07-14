@@ -478,7 +478,12 @@ exports.getPublicProfessionalAppointments = async (req, res, next) => {
       status: { $in: ['CONFIRMED'] }, // Only show confirmed appointments
     };
 
-    const appointments = await Appointment.find(query);
+    // Public endpoint: expose only what's needed to display busy slots.
+    // Full documents leak customer PII (home address, visit description,
+    // pet details) to any anonymous caller.
+    const appointments = await Appointment.find(query)
+      .select('dateTime status')
+      .lean();
 
     const total = await Appointment.countDocuments(query);
     let message = '';
