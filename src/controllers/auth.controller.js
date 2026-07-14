@@ -246,7 +246,15 @@ const resetPassword = async (req, res, next) => {
 // Verify email
 const verifyEmail = async (req, res, next) => {
   try {
-    const { token } = req.params;
+    // The emailed link points at the frontend /verify-email/<token> page,
+    // which calls PATCH /verify-email/<token>; body form kept for API use.
+    // (Previously only req.params was read while the route had no :token
+    // segment — token was always undefined and verification never worked.)
+    const token = req.params.token || req.body?.token;
+
+    if (!token) {
+      return next(new AppError('Verification token is required', 400));
+    }
 
     const user = await User.findOne({
       emailVerificationToken: token,
