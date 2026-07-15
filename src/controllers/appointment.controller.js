@@ -237,7 +237,9 @@ exports.getProfessionalAppointments = async (req, res, next) => {
 // Update appointment status
 exports.updateAppointmentStatus = async (req, res, next) => {
   try {
-    const { status } = req.body;
+    // Normalize case — the admin UI historically sent lowercase statuses,
+    // which made every status change 400 against this uppercase enum.
+    const status = String(req.body.status || '').toUpperCase();
     const { appointmentId } = req.params;
 
     // Validate ObjectId
@@ -478,7 +480,12 @@ exports.getPublicProfessionalAppointments = async (req, res, next) => {
       status: { $in: ['CONFIRMED'] }, // Only show confirmed appointments
     };
 
-    const appointments = await Appointment.find(query);
+    // Public endpoint: expose only what's needed to display busy slots.
+    // Full documents leak customer PII (home address, visit description,
+    // pet details) to any anonymous caller.
+    const appointments = await Appointment.find(query)
+      .select('dateTime status')
+      .lean();
 
     const total = await Appointment.countDocuments(query);
     let message = '';

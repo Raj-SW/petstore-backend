@@ -1,9 +1,10 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const { getStripe } = require('../config/stripe');
 const { AppError } = require('../middlewares/errorHandler');
 const logger = require('../utils/logger');
 
 class PaymentService {
   static async createPaymentIntent(order) {
+    const stripe = getStripe(); // throws a clear 503 if unconfigured
     try {
       const paymentIntent = await stripe.paymentIntents.create({
         amount: Math.round(order.finalAmount * 100), // MUR in smallest unit (cents equivalent)
@@ -25,6 +26,7 @@ class PaymentService {
   }
 
   static async confirmPayment(paymentIntentId) {
+    const stripe = getStripe();
     try {
       const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
 
@@ -44,6 +46,7 @@ class PaymentService {
   }
 
   static async processRefund(order) {
+    const stripe = getStripe();
     try {
       const refund = await stripe.refunds.create({
         payment_intent: order.paymentDetails.transactionId,

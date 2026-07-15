@@ -83,6 +83,10 @@ const productSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    bestSeller: {
+      type: Boolean,
+      default: false,
+    },
     onSale: {
       type: Boolean,
       default: false,

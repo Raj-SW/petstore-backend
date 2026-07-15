@@ -21,7 +21,8 @@ router.post('/login', validateLogin, login);
 router.post('/logout', logout);                     // no isAuthenticated — JWT is stateless
 router.post('/forgot-password', forgotPassword);
 router.patch('/reset-password', resetPassword);
-router.patch('/verify-email', verifyEmail);
+router.patch('/verify-email', verifyEmail);        // token in body
+router.patch('/verify-email/:token', verifyEmail); // token from emailed link
 router.post('/resend-verification', resendVerificationEmail);
 
 module.exports = router;
