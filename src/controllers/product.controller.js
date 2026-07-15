@@ -247,7 +247,7 @@ async function resolveUpdatedImages(existingProduct, imageRefs, keepImagesStr, f
 // `$unset`/`$rename`/`$inc` key reaching findByIdAndUpdate's update document).
 const UPDATABLE_PRODUCT_FIELDS = [
   'name', 'description', 'price', 'colors', 'quantity', 'lowStockThreshold',
-  'genders', 'categories', 'isActive', 'isFeatured', 'vetRecommended', 'onSale', 'discountType',
+  'genders', 'categories', 'isActive', 'isFeatured', 'vetRecommended', 'bestSeller', 'onSale', 'discountType',
   'discountValue', 'saleStartsAt', 'saleEndsAt', 'sections', 'variants', 'options',
 ];
 
