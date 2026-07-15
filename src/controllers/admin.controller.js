@@ -10,6 +10,18 @@ const { AppError } = require('../middlewares/errorHandler');
 const logger = require('../utils/logger');
 const { getStartDate, getDateFormat } = require('../utils/dateUtils');
 
+// Aggregation-safe order revenue. `finalAmount` is a Mongoose VIRTUAL
+// (grandTotal || totalAmount - discount) — virtuals don't exist inside
+// aggregation pipelines, so `$sum: '$finalAmount'` silently summed 0 for
+// every order and the dashboard/analytics reported Rs 0 revenue forever.
+const ORDER_REVENUE_EXPR = {
+  $cond: [
+    { $gt: [{ $ifNull: ['$grandTotal', 0] }, 0] },
+    '$grandTotal',
+    { $subtract: [{ $ifNull: ['$totalAmount', 0] }, { $ifNull: ['$discount', 0] }] },
+  ],
+};
+
 // Get dashboard statistics
 exports.getDashboardStats = async (req, res, next) => {
   try {
@@ -20,7 +32,7 @@ exports.getDashboardStats = async (req, res, next) => {
     // Get total sales
     const totalSales = await Order.aggregate([
       { $match: { paymentStatus: 'completed' } },
-      { $group: { _id: null, total: { $sum: '$finalAmount' } } },
+      { $group: { _id: null, total: { $sum: ORDER_REVENUE_EXPR } } },
     ]);
 
     // Get today's sales
@@ -31,7 +43,7 @@ exports.getDashboardStats = async (req, res, next) => {
           createdAt: { $gte: startOfDay },
         },
       },
-      { $group: { _id: null, total: { $sum: '$finalAmount' } } },
+      { $group: { _id: null, total: { $sum: ORDER_REVENUE_EXPR } } },
     ]);
 
     // Get monthly sales
@@ -42,7 +54,7 @@ exports.getDashboardStats = async (req, res, next) => {
           createdAt: { $gte: startOfMonth },
         },
       },
-      { $group: { _id: null, total: { $sum: '$finalAmount' } } },
+      { $group: { _id: null, total: { $sum: ORDER_REVENUE_EXPR } } },
     ]);
 
     // Get order statistics
@@ -124,7 +136,7 @@ exports.getSalesAnalytics = async (req, res, next) => {
               date: '$createdAt',
             },
           },
-          total: { $sum: '$finalAmount' },
+          total: { $sum: ORDER_REVENUE_EXPR },
           count: { $sum: 1 },
         },
       },
@@ -204,7 +216,7 @@ exports.getUserAnalytics = async (req, res, next) => {
         $group: {
           _id: '$user',
           totalOrders: { $sum: 1 },
-          totalSpent: { $sum: '$finalAmount' },
+          totalSpent: { $sum: ORDER_REVENUE_EXPR },
         },
       },
       { $sort: { totalSpent: -1 } },
