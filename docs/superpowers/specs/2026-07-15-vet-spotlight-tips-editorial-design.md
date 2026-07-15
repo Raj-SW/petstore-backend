@@ -79,10 +79,17 @@ between the ivory Pet Travel band and the cream Tips section, adding rhythm).
 - Section entrance: header fades down (as today); spotlight row
   `whileInView` opacity 0→1 y 24→0 once.
 
-### Mobile (<1024px)
-Single column: portrait (max-width 260px, centered) → bio (centered text) →
-avatar rail (horizontal, wraps). CTA buttons full-width stacked at <640px.
+### Responsive matrix (Part A)
+| Range | Layout |
+|---|---|
+| ≥1024px | Two-column grid as above (320px portrait + bio), rail below |
+| 641–1023px (tablet) | Two-column KEPT but tightened: portrait column 240px (frame 220×250, arch radius 110px), gap 2rem, name clamp caps at 2.4rem. Rail below, unchanged |
+| ≤640px (phone) | Single column, centered: portrait max-width 220px → bio (centered text) → rail (horizontal, wraps, still 56px — comfortably ≥44px touch targets). CTA buttons full-width stacked |
+| ≤380px (small phone) | Same as phone; portrait 180px, name clamp floor 1.7rem, rail avatars 48px |
+
 Tap avatar = switch (same handler); auto-advance still runs until first tap.
+All type uses `clamp()` so intermediate widths scale fluidly — breakpoints only
+change structure, never cause text jumps.
 
 ---
 
@@ -132,11 +139,15 @@ Cream (`--color-bg-cream`) band.
   (keep `.pcts-cta-btn` styles) → `/pet-care-tips` (use `<Link>`, not `<a>`).
 - Row entrance: staggered `whileInView` (y 18→0, opacity, 0.08s stagger, once).
 
-### Mobile (<1024px)
-Image frame is hidden (`display:none`). Rows gain a 64×64 rounded thumbnail
-(cover image or paw fallback) on the left of the number-less layout:
-thumb · (title + meta) · arrow. Rows keep dividers; tap navigates. No
-active-state logic needed on mobile (it only drove the image frame).
+### Responsive matrix (Part B)
+| Range | Layout |
+|---|---|
+| ≥1024px | Index + 340px image frame as above |
+| 768–1023px (tablet) | Index + image frame KEPT; frame narrows to 280px, gap 2rem, row title 1.05rem |
+| ≤767px (phone) | Image frame hidden (`display:none`). Rows become: 64×64 rounded thumbnail (cover or paw fallback) · (title + meta) · arrow — numbers dropped. Rows keep dividers; whole row ≥64px tall (touch target). Tap navigates; no active-state logic (it only drove the frame) |
+| ≤380px (small phone) | Same as phone; thumbnail 52px, title 0.95rem, meta may wrap to 2 lines |
+
+Row padding and titles use `clamp()`/rem so in-between widths degrade fluidly.
 
 ---
 
@@ -151,6 +162,12 @@ active-state logic needed on mobile (it only drove the image frame).
   `alt=""`/`aria-hidden`; portraits `alt={name}`.
 - **Performance:** portraits/covers `loading="lazy"` except the initially
   active one; both sections are below the fold so no fetchpriority games.
+- **Large screens (≥1440px):** both sections stay capped at max-width 1100px,
+  centered — content never stretches on ultrawide monitors.
+- **Responsive verification step (part of implementation, not optional):**
+  check both sections live in the Browser pane at 1440, 1024, 768, 640, 375
+  and 320px widths — no horizontal overflow, touch targets ≥44px, no text
+  clipping in the arch frame or index rows.
 
 ## Testing (vitest + RTL, framer + APIs mocked per house pattern)
 
