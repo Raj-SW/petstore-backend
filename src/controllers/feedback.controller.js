@@ -71,6 +71,11 @@ exports.updateFeedback = async (req, res, next) => {
 
     // When photos are being replaced, clean up Cloudinary assets no longer referenced.
     if (Array.isArray(updates.photos)) {
+      // Normalize: a bare URL string cast into the subdoc schema gets spread
+      // into char-indexed keys ({0:'h',1:'t',…}) and becomes unreadable.
+      updates.photos = updates.photos.map((p) =>
+        typeof p === 'string' ? { url: p } : p
+      );
       const existing = await Feedback.findById(req.params.id).select('photos');
       if (!existing) return next(new AppError('Feedback not found', 404));
       const keepPublicIds = new Set(updates.photos.map((p) => p.publicId).filter(Boolean));
