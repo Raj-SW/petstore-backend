@@ -237,7 +237,9 @@ exports.getProfessionalAppointments = async (req, res, next) => {
 // Update appointment status
 exports.updateAppointmentStatus = async (req, res, next) => {
   try {
-    const { status } = req.body;
+    // Normalize case — the admin UI historically sent lowercase statuses,
+    // which made every status change 400 against this uppercase enum.
+    const status = String(req.body.status || '').toUpperCase();
     const { appointmentId } = req.params;
 
     // Validate ObjectId
