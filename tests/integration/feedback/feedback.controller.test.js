@@ -104,4 +104,32 @@ describe('Feedback Controller', () => {
       expect(await Feedback.countDocuments()).toBe(0);
     });
   });
+
+  describe("POST /api/feedback/admin", () => {
+    it("admin creates an approved google review by default", async () => {
+      const res = await request(app)
+        .post("/api/feedback/admin")
+        .set("Authorization", `Bearer ${adminToken}`)
+        .send({ name: "Nal Raj", rating: 5, message: "Great place, very helpful staff" });
+      expect(res.status).toBe(201);
+      expect(res.body.data.approved).toBe(true);
+      expect(res.body.data.source).toBe("google");
+    });
+
+    it("rejects a non-admin (403)", async () => {
+      const res = await request(app)
+        .post("/api/feedback/admin")
+        .set("Authorization", `Bearer ${customerToken}`)
+        .send({ name: "Nal Raj", rating: 5, message: "Great place, very helpful staff" });
+      expect(res.status).toBe(403);
+    });
+
+    it("rejects invalid payload (400)", async () => {
+      const res = await request(app)
+        .post("/api/feedback/admin")
+        .set("Authorization", `Bearer ${adminToken}`)
+        .send({ name: "N", rating: 9, message: "x" });
+      expect(res.status).toBe(400);
+    });
+  });
 });

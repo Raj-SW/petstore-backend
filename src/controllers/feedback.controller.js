@@ -24,6 +24,17 @@ exports.submitFeedback = async (req, res, next) => {
   }
 };
 
+// POST /api/feedback/admin — admin creates an approved review (e.g. a Google review)
+exports.createFeedbackAdmin = async (req, res, next) => {
+  try {
+    const feedback = await Feedback.create({ ...req.body, approved: true });
+    logger.info('Admin feedback created', { feedbackId: feedback._id, source: feedback.source });
+    return res.status(201).json({ success: true, data: feedback });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 // POST /api/feedback/upload-image — admin, single image -> { url, publicId }
 exports.uploadFeedbackImage = async (req, res, next) => {
   try {
