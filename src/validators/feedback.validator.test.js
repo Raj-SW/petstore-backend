@@ -1,4 +1,4 @@
-const { validateFeedback } = require('./feedback.validator');
+const { validateFeedback, validateFeedbackAdmin } = require('./feedback.validator');
 const { AppError } = require('../middlewares/errorHandler');
 
 const run = (body) => {
@@ -36,5 +36,31 @@ describe('validateFeedback', () => {
 
   it('requires name, rating and message', () => {
     expect(run({}).err).toBeInstanceOf(AppError);
+  });
+});
+
+describe("validateFeedbackAdmin", () => {
+  const run = (body) => {
+    const req = { body };
+    let err; const next = (e) => { err = e; };
+    validateFeedbackAdmin(req, {}, next);
+    return { req, err };
+  };
+
+  it("defaults source to google and keeps it on the body", () => {
+    const { req, err } = run({ name: "Nal", rating: 5, message: "Great place, helpful staff" });
+    expect(err).toBeUndefined();
+    expect(req.body.source).toBe("google");
+  });
+
+  it("accepts an explicit organic source", () => {
+    const { req, err } = run({ name: "Nal", rating: 5, message: "Great place, helpful staff", source: "organic" });
+    expect(err).toBeUndefined();
+    expect(req.body.source).toBe("organic");
+  });
+
+  it("rejects an invalid source", () => {
+    const { err } = run({ name: "Nal", rating: 5, message: "Great place, helpful staff", source: "yelp" });
+    expect(err).toBeDefined();
   });
 });
