@@ -57,6 +57,25 @@ exports.getFeedback = async (req, res, next) => {
   }
 };
 
+// GET /api/feedback/stats — public counts for the homepage strip
+exports.getFeedbackStats = async (req, res, next) => {
+  try {
+    const [googleApproved, ratingAgg] = await Promise.all([
+      Feedback.countDocuments({ source: 'google', approved: true }),
+      Feedback.aggregate([
+        { $match: { approved: true } },
+        { $group: { _id: null, avg: { $avg: '$rating' } } },
+      ]),
+    ]);
+    const avgRating = ratingAgg.length
+      ? Math.round(ratingAgg[0].avg * 10) / 10
+      : null;
+    return res.status(200).json({ success: true, data: { googleApproved, avgRating } });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 // GET /api/feedback/admin/all — admin, all
 exports.getFeedbackAdmin = async (req, res, next) => {
   try {

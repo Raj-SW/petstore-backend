@@ -10,12 +10,14 @@ const {
   deleteFeedback,
   uploadFeedbackImage,
   createFeedbackAdmin,
+  getFeedbackStats,
 } = require('../controllers/feedback.controller');
 
 const router = express.Router();
 
 // Public
 router.post('/', upload.array('photos', 3), validateFeedback, submitFeedback);
+router.get('/stats', getFeedbackStats);
 router.get('/', getFeedback);
 
 // Admin
