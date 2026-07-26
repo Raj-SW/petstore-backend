@@ -24,4 +24,17 @@ describe('Feedback model', () => {
     expect(fb.approved).toBe(false);
     expect(fb.validateSync()).toBeUndefined();
   });
+
+  it("defaults source to organic and accepts google", () => {
+    const fb = new Feedback({ name: "Amy", rating: 5, message: "Lovely place" });
+    expect(fb.source).toBe("organic");
+    const g = new Feedback({ name: "Amy", rating: 5, message: "Lovely place", source: "google" });
+    expect(g.validateSync()).toBeUndefined();
+    expect(g.source).toBe("google");
+  });
+
+  it("rejects an unknown source", () => {
+    const e = new Feedback({ name: "Amy", rating: 5, message: "Lovely place", source: "yelp" }).validateSync();
+    expect(e.errors.source).toBeDefined();
+  });
 });

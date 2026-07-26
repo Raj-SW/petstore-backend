@@ -36,6 +36,12 @@ const feedbackSchema = new mongoose.Schema(
         message: 'A feedback can have at most 3 photos',
       },
     },
+    source: {
+      type: String,
+      enum: ['organic', 'google'],
+      default: 'organic',
+      index: true,
+    },
     approved: {
       type: Boolean,
       default: false,
