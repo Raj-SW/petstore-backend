@@ -33,6 +33,7 @@ const newsletterRoutes = require('./routes/newsletter.routes');
 const faqRoutes = require('./routes/faq.routes');
 const subscriptionRoutes = require('./routes/subscription.routes');
 const settingsRoutes = require('./routes/settings.routes');
+const serviceRequestRoutes = require('./routes/serviceRequest.routes');
 
 const app = express();
 
@@ -159,6 +160,7 @@ app.use('/api/newsletter', newsletterRoutes);
 app.use('/api/faqs', faqRoutes);
 app.use('/api/subscriptions', subscriptionRoutes);
 app.use('/api/settings', settingsRoutes);
+app.use('/api/requests', serviceRequestRoutes);
 
 // Handle unhandled routes
 app.all('*', (req, res, next) => {
