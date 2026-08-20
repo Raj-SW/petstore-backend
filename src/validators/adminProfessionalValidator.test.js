@@ -83,3 +83,61 @@ describe('listQuerySchema', () => {
     expect(error).toBeDefined();
   });
 });
+
+describe('clinicName + speciesTreated', () => {
+  const base = {
+    name: 'Dr Lee',
+    email: 'lee@example.com',
+    phoneNumber: '12345678',
+    address: '1 Vet Lane',
+    role: 'veterinarian',
+  };
+
+  it('accepts both on create', () => {
+    const { error, value } = createProfessionalSchema.validate({
+      ...base,
+      professionalInfo: {
+        ...validProfessionalInfo,
+        clinicName: 'ABC Veterinary Clinic',
+        speciesTreated: ['Dogs', 'Cats', 'Birds'],
+      },
+    });
+    expect(error).toBeUndefined();
+    expect(value.professionalInfo.clinicName).toBe('ABC Veterinary Clinic');
+    expect(value.professionalInfo.speciesTreated).toEqual(['Dogs', 'Cats', 'Birds']);
+  });
+
+  it('accepts either on its own as an update', () => {
+    expect(updateProfessionalInfoSchema.validate({
+      professionalInfo: { clinicName: 'ABC Veterinary Clinic' },
+    }).error).toBeUndefined();
+    expect(updateProfessionalInfoSchema.validate({
+      professionalInfo: { speciesTreated: ['Rabbits'] },
+    }).error).toBeUndefined();
+  });
+
+  it('allows clearing the clinic name', () => {
+    expect(updateProfessionalInfoSchema.validate({
+      professionalInfo: { clinicName: '' },
+    }).error).toBeUndefined();
+  });
+
+  it('rejects an over-long clinic name', () => {
+    expect(updateProfessionalInfoSchema.validate({
+      professionalInfo: { clinicName: 'x'.repeat(121) },
+    }).error).toBeDefined();
+  });
+
+  it('rejects a non-array species list', () => {
+    expect(updateProfessionalInfoSchema.validate({
+      professionalInfo: { speciesTreated: 'Dogs' },
+    }).error).toBeDefined();
+  });
+
+  it('stays optional — payloads without them still validate', () => {
+    const { error } = createProfessionalSchema.validate({
+      ...base, professionalInfo: validProfessionalInfo,
+    });
+    expect(error).toBeUndefined();
+  });
+});

@@ -69,6 +69,19 @@ const userSchema = new mongoose.Schema(
           return this.role !== 'customer' && this.role !== 'admin';
         },
       },
+      // Practice the professional works out of. Not a separate Clinic entity —
+      // one string is all the vet cards and profile page need today.
+      clinicName: {
+        type: String,
+        trim: true,
+        maxlength: 120,
+      },
+      // Free-form so admins are not boxed in (Dogs, Cats, Birds, Rabbits,
+      // Exotics…); the UI maps known values to icons and shows the rest as text.
+      speciesTreated: {
+        type: [String],
+        default: [],
+      },
       qualifications: {
         type: [String],
         default: [],

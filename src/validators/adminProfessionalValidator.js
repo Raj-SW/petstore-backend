@@ -39,6 +39,8 @@ const profileImageSchema = Joi.object({
 // Full professionalInfo — used on create (specialization + experience required).
 const professionalInfoCreate = Joi.object({
   specialization: Joi.string().trim().min(2).max(100).required(),
+  clinicName: Joi.string().trim().max(120).allow('').optional(),
+  speciesTreated: Joi.array().items(Joi.string().trim()).optional(),
   experience: Joi.number().min(0).max(50).required(),
   qualifications: Joi.array().items(Joi.string().trim()).optional(),
   bio: Joi.string().trim().max(5000).allow('').optional(),
@@ -50,6 +52,8 @@ const professionalInfoCreate = Joi.object({
 // Partial professionalInfo — used on edit (every field optional).
 const professionalInfoUpdate = Joi.object({
   specialization: Joi.string().trim().min(2).max(100).optional(),
+  clinicName: Joi.string().trim().max(120).allow('').optional(),
+  speciesTreated: Joi.array().items(Joi.string().trim()).optional(),
   experience: Joi.number().min(0).max(50).optional(),
   qualifications: Joi.array().items(Joi.string().trim()).optional(),
   bio: Joi.string().trim().max(5000).allow('').optional(),
