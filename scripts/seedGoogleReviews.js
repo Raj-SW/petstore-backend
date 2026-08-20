@@ -20,6 +20,7 @@ module.exports = { seedGoogleReviews };
 // Self-run: `node scripts/seedGoogleReviews.js`
 if (require.main === module) {
   (async () => {
+    require('dotenv').config();
     const Feedback = require('../src/models/feedback.model');
     await mongoose.connect(process.env.MONGODB_URI);
     const res = await seedGoogleReviews(Feedback);

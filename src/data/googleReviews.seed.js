@@ -25,6 +25,6 @@ const GOOGLE_REVIEWS_SEED = [
 ];
 
 // Known seeded/test junk to remove from the collection.
-const TEST_ENTRY_NAMES = ["TestUser", "Moisa"];
+const TEST_ENTRY_NAMES = ["TestUser", "Moisa", "Moisa Rajesh", "feedback test"];
 
 module.exports = { GOOGLE_REVIEWS_SEED, TEST_ENTRY_NAMES };
