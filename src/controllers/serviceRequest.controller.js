@@ -6,6 +6,11 @@ const { uploadToCloudinary } = require('../utils/cloudinary');
 const { AppError } = require('../middlewares/errorHandler');
 const logger = require('../utils/logger');
 const { toSafeString } = require('../utils/sanitize');
+const {
+  sendWhatsApp,
+  buildAppointmentMessage,
+  buildMobileVetMessage,
+} = require('../utils/whatsapp');
 
 // The two request types differ in payload but share an identical admin
 // lifecycle, so list/update/note are generated once per model.
@@ -98,11 +103,20 @@ const adminHandlers = (Model, label) => ({
 const appointmentAdmin = adminHandlers(AppointmentRequest, 'Appointment request');
 const mobileVetAdmin = adminHandlers(MobileVetRequest, 'Mobile vet request');
 
+// Detached so a slow or failing provider never delays the HTTP response.
+const notify = (message) => {
+  sendWhatsApp(message).catch((error) =>
+    logger.error('WhatsApp notification threw', { message: error.message })
+  );
+};
+
 // POST /api/requests/appointments — public
 exports.createAppointmentRequest = async (req, res, next) => {
   try {
     const item = await AppointmentRequest.create(req.body);
     logger.info('Appointment request received', { id: item._id });
+    // Fire-and-forget: a WhatsApp outage must never fail the customer's booking.
+    notify(buildAppointmentMessage(item));
     return res.status(201).json({ success: true, data: item });
   } catch (error) {
     return next(error);
@@ -119,6 +133,8 @@ exports.createMobileVetRequest = async (req, res, next) => {
 
     const item = await MobileVetRequest.create(payload);
     logger.info('Mobile vet request received', { id: item._id, emergency: item.isEmergency });
+    // Fire-and-forget: a WhatsApp outage must never fail the customer's request.
+    notify(buildMobileVetMessage(item));
     return res.status(201).json({ success: true, data: item });
   } catch (error) {
     return next(error);
