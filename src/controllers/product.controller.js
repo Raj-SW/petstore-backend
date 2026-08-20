@@ -15,6 +15,7 @@ const {
 } = require('../utils/productVariants');
 const { predictDemand, productCoverage } = require('../services/subscription.analytics.service');
 const { escapeRegExp, toSafeString } = require('../utils/sanitize');
+const { attachReviewStats } = require('../utils/reviewStats');
 
 // Parse a JSON field that may arrive as a string (FormData) or be absent.
 function parseJsonField(value, fallback) {
@@ -166,7 +167,7 @@ exports.getProducts = async (req, res, next) => {
 
     return res.status(200).json({
       success: true,
-      data: products,
+      data: await attachReviewStats(products),
       pagination: {
         total,
         page: Number(page),
