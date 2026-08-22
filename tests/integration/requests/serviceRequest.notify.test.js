@@ -64,7 +64,7 @@ describe('Booking notifications', () => {
 
     expect(sendWhatsApp).toHaveBeenCalledTimes(1);
     const msg = sendWhatsApp.mock.calls[0][0];
-    expect(msg).toContain('MOBILE VET REQUEST');
+    expect(msg).toContain('mobile vet request');
     expect(msg).toContain('Jane Doe');
     expect(msg).toContain('12 Royal Road, Piton');
   });

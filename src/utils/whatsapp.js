@@ -20,6 +20,10 @@ const logger = require('./logger');
 
 const API_URL = 'https://api.callmebot.com/whatsapp.php';
 const TIMEOUT_MS = 8000;
+const NL = String.fromCharCode(10);
+const RETRIES = 1;
+// Overridable so tests do not sit through the real back-off.
+const RETRY_DELAY_MS = Number(process.env.WHATSAPP_RETRY_DELAY_MS ?? 65000);
 
 const PET_LABELS = { dog: 'Dog', cat: 'Cat', bird: 'Bird', rabbit: 'Rabbit', other: 'Other' };
 
@@ -36,6 +40,13 @@ const petLabel = (type) => PET_LABELS[type] || humanize(type);
 const lines = (entries) =>
   entries.filter(([, v]) => v !== undefined && v !== null && String(v).trim() !== '')
     .map(([label, v]) => (label ? `${label}: ${v}` : String(v)));
+
+// Long free-text notes are the main thing that blows the message up.
+const truncate = (v, max) => {
+  const t = String(v || '').trim();
+  if (!t) return '';
+  return t.length > max ? `${t.slice(0, max - 1)}…` : t;
+};
 
 const formatDate = (d) => {
   if (!d) return '';
@@ -63,25 +74,20 @@ function buildAppointmentMessage(req) {
 }
 
 function buildMobileVetMessage(req) {
-  const mapLink =
-    req.coords && req.coords.lat !== undefined && req.coords.lng !== undefined
-      ? `https://maps.google.com/?q=${req.coords.lat},${req.coords.lng}`
-      : '';
-  const body = lines([
-    ['Owner', req.ownerName],
-    ['Phone', req.phone],
-    ['Pet', petSummary(req)],
-    ['Reason', humanize(req.reason)],
-    ['Location', req.address],
-    ['Map', mapLink],
-    ['Preferred', preferred(formatDate(req.preferredDate), req.preferredTime)],
-    ['Notes', req.additionalNotes],
-    ['Photo', req.photo && req.photo.url],
-  ]);
+  // Kept short on purpose. CallMeBot's free endpoint rejects longer requests
+  // with an opaque Apache 403 — a compact alert delivers reliably, and the
+  // full record (photo, map pin, notes, breed/age/weight) is in the admin
+  // panel. The alert only has to get someone to open it.
   const heading = req.isEmergency
-    ? '🚨 EMERGENCY — MOBILE VET REQUEST'
-    : '🚐 NEW MOBILE VET REQUEST';
-  return [heading, '', ...body, '', `Ref: ${req._id}`].join('\n');
+    ? '🚨 EMERGENCY mobile vet request'
+    : '🚐 New mobile vet request';
+  const body = lines([
+    [null, [req.ownerName, req.phone].filter(Boolean).join('  ')],
+    [null, [req.petName, petLabel(req.petType), humanize(req.reason)].filter(Boolean).join('  ')],
+    [null, truncate(req.address, 60)],
+    [null, preferred(formatDate(req.preferredDate), req.preferredTime)],
+  ]);
+  return [heading, ...body, `Ref: ${String(req._id).slice(-8)}`].join(NL);
 }
 
 const isConfigured = () =>
@@ -91,6 +97,19 @@ const isConfigured = () =>
  * Fire-and-forget: resolves false rather than throwing, so a provider outage
  * can never fail the customer's booking.
  */
+const attempt = async (url) => {
+  const res = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS) });
+  if (res.ok) return { ok: true };
+  // Capture the body: a bare status made a live failure impossible to diagnose.
+  let body = '';
+  try {
+    body = (await res.text()).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 200);
+  } catch {
+    body = '(unreadable)';
+  }
+  return { ok: false, status: res.status, body };
+};
+
 async function sendWhatsApp(text) {
   if (!isConfigured()) {
     logger.warn('WhatsApp notification skipped — CALLMEBOT_PHONE/CALLMEBOT_APIKEY not set');
@@ -100,18 +119,25 @@ async function sendWhatsApp(text) {
     `${API_URL}?phone=${encodeURIComponent(process.env.CALLMEBOT_PHONE)}` +
     `&apikey=${encodeURIComponent(process.env.CALLMEBOT_APIKEY)}` +
     `&text=${encodeURIComponent(text)}`;
-  try {
-    const res = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS) });
-    if (!res.ok) {
-      logger.error('WhatsApp notification failed', { status: res.status });
-      return false;
+
+  for (let i = 0; i <= RETRIES; i += 1) {
+    try {
+      const r = await attempt(url);
+      if (r.ok) {
+        logger.info('WhatsApp notification sent', i > 0 ? { attempt: i + 1 } : {});
+        return true;
+      }
+      logger.error('WhatsApp notification failed', {
+        status: r.status, body: r.body, attempt: i + 1,
+      });
+      // CallMeBot answers a burst with an Apache 403; a pause usually clears it.
+      if (i < RETRIES) await new Promise((res) => setTimeout(res, RETRY_DELAY_MS));
+    } catch (error) {
+      logger.error('WhatsApp notification error', { message: error.message, attempt: i + 1 });
+      if (i < RETRIES) await new Promise((res) => setTimeout(res, RETRY_DELAY_MS));
     }
-    logger.info('WhatsApp notification sent');
-    return true;
-  } catch (error) {
-    logger.error('WhatsApp notification error', { message: error.message });
-    return false;
   }
+  return false;
 }
 
 module.exports = {

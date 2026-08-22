@@ -36,16 +36,19 @@ describe('whatsapp message builders', () => {
     expect(urgent).toMatch(/EMERGENCY/);
   });
 
-  it('includes location, map link and photo when present', () => {
+  it('keeps the alert compact: who, what, where, and a ref', () => {
     const msg = buildMobileVetMessage({
       _id: 'm1', ownerName: 'A', phone: '1', petName: 'P', petType: 'dog', reason: 'sick',
       address: '12 Royal Road', coords: { lat: -20.16, lng: 57.5 },
       photo: { url: 'https://cdn/x.jpg' }, additionalNotes: 'gate is blue',
     });
     expect(msg).toContain('12 Royal Road');
-    expect(msg).toContain('-20.16');
-    expect(msg).toContain('https://cdn/x.jpg');
-    expect(msg).toContain('gate is blue');
+    // Map pin, photo and free-text notes deliberately live in the admin panel:
+    // CallMeBot rejects longer messages with an opaque 403.
+    expect(msg).not.toContain('maps.google.com');
+    expect(msg).not.toContain('cdn/x.jpg');
+    expect(msg).toContain('m1'.slice(-8));
+    expect(msg.length).toBeLessThan(200);
   });
 
   it('never emits undefined for a sparse mobile vet request', () => {
@@ -59,6 +62,7 @@ describe('sendWhatsApp', () => {
   beforeEach(() => {
     jest.resetModules();
     process.env = { ...OLD_ENV };
+    process.env.WHATSAPP_RETRY_DELAY_MS = '0';
     global.fetch = jest.fn();
   });
   afterAll(() => { process.env = OLD_ENV; });
@@ -89,6 +93,8 @@ describe('sendWhatsApp', () => {
     global.fetch.mockRejectedValue(new Error('network down'));
     const { sendWhatsApp } = require('./whatsapp');
     await expect(sendWhatsApp('x')).resolves.toBe(false);
+    // One retry: a throttled alert is worth a second attempt, not a silent drop.
+    expect(global.fetch).toHaveBeenCalledTimes(2);
   });
 
   it('resolves false on a non-ok response', async () => {
@@ -97,5 +103,17 @@ describe('sendWhatsApp', () => {
     global.fetch.mockResolvedValue({ ok: false, status: 403, text: async () => 'bad key' });
     const { sendWhatsApp } = require('./whatsapp');
     await expect(sendWhatsApp('x')).resolves.toBe(false);
+    expect(global.fetch).toHaveBeenCalledTimes(2);
+  });
+
+  it('succeeds when the retry lands after a throttled first attempt', async () => {
+    process.env.CALLMEBOT_PHONE = '23057580480';
+    process.env.CALLMEBOT_APIKEY = 'key123';
+    global.fetch
+      .mockResolvedValueOnce({ ok: false, status: 403, text: async () => 'Forbidden' })
+      .mockResolvedValueOnce({ ok: true, status: 200, text: async () => 'queued' });
+    const { sendWhatsApp } = require('./whatsapp');
+    await expect(sendWhatsApp('x')).resolves.toBe(true);
+    expect(global.fetch).toHaveBeenCalledTimes(2);
   });
 });
