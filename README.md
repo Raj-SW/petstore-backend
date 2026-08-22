@@ -79,6 +79,15 @@ SMTP_PORT=587
 SMTP_USER=<your Gmail address>
 SMTP_PASS=<Gmail app password>
 
+# WhatsApp booking alerts (CallMeBot)
+# The admin phone messages CallMeBot once to opt in and receive an API key:
+# https://www.callmebot.com/blog/free-api-whatsapp-messages/
+# Leave unset to disable — bookings are still saved, just not announced.
+# Digits only, no + or spaces. This is the phone that RECEIVES the alerts and
+# must be the one that completed the CallMeBot opt-in — the key is tied to it.
+CALLMEBOT_PHONE=<admin phone, e.g. 23059007948>
+CALLMEBOT_APIKEY=<key CallMeBot replied with>
+
 # Stripe
 STRIPE_SECRET_KEY=sk_test_...
 STRIPE_WEBHOOK_SECRET=whsec_...

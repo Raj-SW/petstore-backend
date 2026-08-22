@@ -24,6 +24,17 @@ exports.submitFeedback = async (req, res, next) => {
   }
 };
 
+// POST /api/feedback/admin — admin creates an approved review (e.g. a Google review)
+exports.createFeedbackAdmin = async (req, res, next) => {
+  try {
+    const feedback = await Feedback.create({ ...req.body, approved: true });
+    logger.info('Admin feedback created', { feedbackId: feedback._id, source: feedback.source });
+    return res.status(201).json({ success: true, data: feedback });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 // POST /api/feedback/upload-image — admin, single image -> { url, publicId }
 exports.uploadFeedbackImage = async (req, res, next) => {
   try {
@@ -41,6 +52,25 @@ exports.getFeedback = async (req, res, next) => {
     const limit = Math.min(50, Math.max(1, Number.parseInt(req.query.limit, 10) || 12));
     const feedback = await Feedback.find({ approved: true }).sort('-createdAt').limit(limit);
     return res.status(200).json({ success: true, count: feedback.length, data: feedback });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+// GET /api/feedback/stats — public counts for the homepage strip
+exports.getFeedbackStats = async (req, res, next) => {
+  try {
+    const [googleApproved, ratingAgg] = await Promise.all([
+      Feedback.countDocuments({ source: 'google', approved: true }),
+      Feedback.aggregate([
+        { $match: { approved: true } },
+        { $group: { _id: null, avg: { $avg: '$rating' } } },
+      ]),
+    ]);
+    const avgRating = ratingAgg.length
+      ? Math.round(ratingAgg[0].avg * 10) / 10
+      : null;
+    return res.status(200).json({ success: true, data: { googleApproved, avgRating } });
   } catch (error) {
     return next(error);
   }

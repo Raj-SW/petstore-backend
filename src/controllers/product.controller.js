@@ -15,6 +15,7 @@ const {
 } = require('../utils/productVariants');
 const { predictDemand, productCoverage } = require('../services/subscription.analytics.service');
 const { escapeRegExp, toSafeString } = require('../utils/sanitize');
+const { attachReviewStats } = require('../utils/reviewStats');
 
 // Parse a JSON field that may arrive as a string (FormData) or be absent.
 function parseJsonField(value, fallback) {
@@ -132,13 +133,16 @@ function sanitizeProductSort(sort) {
 function buildProductFilter(q) {
   const {
     categories, minPrice, maxPrice, colors, genders, search,
-    isActive: isActiveRaw = 'true', isFeatured, vetRecommended,
+    isActive: isActiveRaw = 'true', isFeatured, vetRecommended, bestSeller,
   } = q;
   const query = {};
 
   if (isActiveRaw !== 'all') query.isActive = isActiveRaw !== 'false';
   if (isFeatured !== undefined) query.isFeatured = isFeatured === 'true' || isFeatured === true;
   if (vetRecommended !== undefined) query.vetRecommended = vetRecommended === 'true' || vetRecommended === true;
+  // Settable on a product but previously not filterable — ?bestSeller=true was
+  // silently ignored and returned the whole catalogue.
+  if (bestSeller !== undefined) query.bestSeller = bestSeller === 'true' || bestSeller === true;
   if (categories) query.categories = buildCategoryFilter(categories);
   if (minPrice || maxPrice) query.price = buildPriceFilter(minPrice, maxPrice);
   if (colors) query.colors = { $in: (Array.isArray(colors) ? colors : [colors]).map(toSafeString).filter(Boolean) };
@@ -166,7 +170,7 @@ exports.getProducts = async (req, res, next) => {
 
     return res.status(200).json({
       success: true,
-      data: products,
+      data: await attachReviewStats(products),
       pagination: {
         total,
         page: Number(page),
