@@ -133,6 +133,25 @@ const GLOSSARY = {
   'Message': 'Message',
   'Coming soon': 'Bientôt disponible',
 
+  // ── Accessibility labels and placeholders ──
+  // Short, repeated on every page, and read aloud by screen readers. Keeping
+  // them here means a French visitor on assistive technology gets French
+  // without spending provider quota on the same dozen strings forever.
+  'Open cart': 'Ouvrir le panier',
+  'Open menu': 'Ouvrir le menu',
+  'Close menu': 'Fermer le menu',
+  'Mobile navigation': 'Navigation mobile',
+  'Trust indicators': 'Indicateurs de confiance',
+  'View details': 'Voir le détail',
+  'Decrease quantity': 'Diminuer la quantité',
+  'Increase quantity': 'Augmenter la quantité',
+  'Add to cart': 'Ajouter au panier',
+  'Remove from cart': 'Retirer du panier',
+  'Search': 'Rechercher',
+  'Your email address': 'Votre adresse e-mail',
+  'How can we help you and your furry friend?':
+    'Comment pouvons-nous vous aider, vous et votre compagnon ?',
+
   // ── Section headings ──
   'What Our Clients Say': 'Ce que disent nos clients',
   'Frequently Asked Questions': 'Questions fréquentes',

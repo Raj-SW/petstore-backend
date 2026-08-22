@@ -41,11 +41,28 @@ async function main() {
     (r) => !ENTITY.test(r.text || '') && glossaryHashes.has(r.hash),
   );
 
-  const doomed = [...entityRows, ...supersededRows];
+  // Rows whose SOURCE is itself French output. The periodic sweep used to
+  // re-walk the page and treat already-translated text as new English, so
+  // "Soins" (from "Care") was sent back and cached as "privé.". The client
+  // no longer sends its own output, but the junk rows persist.
+  const frenchValues = new Set(Object.values(GLOSSARY).map((v) => v.trim()));
+  const doubleTranslated = all.filter(
+    (r) => frenchValues.has((r.source || '').trim()) && !glossaryHashes.has(r.hash),
+  );
+
+  const seenIds = new Set();
+  const doomed = [...entityRows, ...supersededRows, ...doubleTranslated]
+    .filter((r) => {
+      const id = String(r._id);
+      if (seenIds.has(id)) return false;
+      seenIds.add(id);
+      return true;
+    });
 
   console.log(`scanned            : ${all.length} unreviewed rows`);
   console.log(`entity garbage     : ${entityRows.length}`);
   console.log(`superseded by gloss: ${supersededRows.length}`);
+  console.log(`double-translated   : ${doubleTranslated.length}`);
   console.log(`to delete          : ${doomed.length}`);
   console.log('');
   doomed.slice(0, 15).forEach((r) => {

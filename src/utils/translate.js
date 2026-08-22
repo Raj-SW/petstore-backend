@@ -144,10 +144,24 @@ async function translateTexts(TranslationModel, texts, { from = 'en', to = 'fr' 
       }
     } else {
       // MyMemory translates one string per call.
+      let done = 0;
       for (const src of missing) {
         const out = await translateOneMyMemory(src, from, to);
-        if (!out) break; // quota hit — stop hammering, serve what we have
+        if (!out) {
+          // Almost always the daily character quota (~5k anonymous). Serve
+          // what we have rather than hammering a provider that is refusing.
+          // Logged because the symptom otherwise looks like a bug: the page
+          // silently stays half-English with no error anywhere.
+          logger.warn('Translation provider stopped returning results', {
+            provider: 'mymemory',
+            translated: done,
+            remaining: missing.length - done,
+            hint: 'daily quota likely exhausted — set DEEPL_API_KEY for 500k chars/month',
+          });
+          break;
+        }
         byHash.set(hashText(src), out);
+        done += 1;
       }
     }
 
