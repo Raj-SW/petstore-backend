@@ -75,6 +75,24 @@ const parseMyMemory = (payload) => {
 
 const isDeepL = () => Boolean(process.env.DEEPL_API_KEY);
 
+/**
+ * Whether to call a machine provider at all.
+ *
+ * Off by default. The French on this site is hand-written in frGlossary.js,
+ * and machine output is exactly what we removed: "Care" as "Entretien",
+ * "Shop" as "Acheter", "VitalPaws" as "Vital Pattes". A string with no
+ * glossary entry falls back to English, which is correct-but-untranslated —
+ * strictly better than confidently wrong French.
+ *
+ * Set TRANSLATION_PROVIDER=mymemory, or provide DEEPL_API_KEY, to re-enable.
+ */
+const providerEnabled = () => {
+  const mode = (process.env.TRANSLATION_PROVIDER || '').toLowerCase();
+  if (mode === 'none') return false;
+  if (mode === 'mymemory' || mode === 'deepl') return true;
+  return isDeepL();
+};
+
 async function translateOneMyMemory(text, from, to) {
   const res = await fetch(buildMyMemoryUrl(text, from, to), {
     signal: AbortSignal.timeout(TIMEOUT_MS),
@@ -133,7 +151,9 @@ async function translateTexts(TranslationModel, texts, { from = 'en', to = 'fr' 
   }).lean();
   cached.forEach((c) => byHash.set(c.hash, c.text));
 
-  const missing = needsProvider.filter((t) => !byHash.has(hashText(t)));
+  const missing = providerEnabled()
+    ? needsProvider.filter((t) => !byHash.has(hashText(t)))
+    : [];
 
   if (missing.length > 0) {
     if (isDeepL()) {
@@ -202,4 +222,5 @@ module.exports = {
   buildMyMemoryUrl,
   parseMyMemory,
   decodeEntities,
+  providerEnabled,
 };

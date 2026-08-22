@@ -91,3 +91,33 @@ describe('French glossary', () => {
     expect(GLOSSARY['Skin & Coat']).toBe('Peau et pelage');
   });
 });
+
+describe('providerEnabled', () => {
+  const { providerEnabled } = require('./translate');
+  const saved = { ...process.env };
+  afterEach(() => { process.env = { ...saved }; });
+
+  it('is off by default — the French is hand-written', () => {
+    delete process.env.TRANSLATION_PROVIDER;
+    delete process.env.DEEPL_API_KEY;
+    expect(providerEnabled()).toBe(false);
+  });
+
+  it('turns on when a DeepL key is present', () => {
+    delete process.env.TRANSLATION_PROVIDER;
+    process.env.DEEPL_API_KEY = 'x';
+    expect(providerEnabled()).toBe(true);
+  });
+
+  it('can be forced on for MyMemory', () => {
+    process.env.TRANSLATION_PROVIDER = 'mymemory';
+    delete process.env.DEEPL_API_KEY;
+    expect(providerEnabled()).toBe(true);
+  });
+
+  it('an explicit "none" beats a present DeepL key', () => {
+    process.env.TRANSLATION_PROVIDER = 'none';
+    process.env.DEEPL_API_KEY = 'x';
+    expect(providerEnabled()).toBe(false);
+  });
+});
