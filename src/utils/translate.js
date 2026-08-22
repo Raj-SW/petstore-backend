@@ -14,6 +14,7 @@
  */
 const crypto = require('crypto');
 const logger = require('./logger');
+const { GLOSSARY } = require('../data/frGlossary');
 
 const MYMEMORY_URL = 'https://api.mymemory.translated.net/get';
 const DEEPL_URL = 'https://api-free.deepl.com/v2/translate';
@@ -48,12 +49,28 @@ const chunkTexts = (texts, maxChars = MAX_BATCH_CHARS) => {
 const buildMyMemoryUrl = (text, from, to) =>
   `${MYMEMORY_URL}?q=${encodeURIComponent(text)}&langpair=${encodeURIComponent(`${from}|${to}`)}`;
 
+/**
+ * MyMemory HTML-escapes its output, so "Subscribe" came back as "S&#39;abonner"
+ * and a trailing newline as "&#10;" — both rendered as literal garbage in the
+ * DOM, since we insert the result as text, not as HTML.
+ */
+const decodeEntities = (s) =>
+  String(s)
+    .replace(/&#(\d+);/g, (_, d) => String.fromCharCode(Number(d)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCharCode(parseInt(h, 16)))
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    // Ampersand last, so "&amp;#10;" cannot decode twice into a real newline.
+    .replace(/&amp;/g, '&');
+
 /** MyMemory reports quota problems inside the translated text, not the status. */
 const parseMyMemory = (payload) => {
   const t = payload && payload.responseData && payload.responseData.translatedText;
   if (!t || typeof t !== 'string') return null;
   if (/MYMEMORY WARNING|QUERY LENGTH LIMIT|INVALID/i.test(t)) return null;
-  return t;
+  return decodeEntities(t);
 };
 
 const isDeepL = () => Boolean(process.env.DEEPL_API_KEY);
@@ -97,11 +114,26 @@ async function translateTexts(TranslationModel, texts, { from = 'en', to = 'fr' 
   const unique = [...new Set(texts.filter((t) => typeof t === 'string' && t.trim()))];
   if (unique.length === 0) return texts.map((t) => t);
 
-  const hashes = unique.map(hashText);
-  const cached = await TranslationModel.find({ hash: { $in: hashes }, target: to }).lean();
-  const byHash = new Map(cached.map((c) => [c.hash, c.text]));
+  const byHash = new Map();
 
-  const missing = unique.filter((t) => !byHash.has(hashText(t)));
+  // The hand-written glossary wins over both the cache and the provider: it is
+  // what keeps nav labels inside their width budget and the brand un-mangled.
+  // Only French has one; any other target falls straight through.
+  const glossary = to === 'fr' ? GLOSSARY : {};
+  const needsProvider = [];
+  for (const t of unique) {
+    const hit = glossary[t.trim()];
+    if (hit !== undefined) byHash.set(hashText(t), hit);
+    else needsProvider.push(t);
+  }
+
+  const cached = await TranslationModel.find({
+    hash: { $in: needsProvider.map(hashText) },
+    target: to,
+  }).lean();
+  cached.forEach((c) => byHash.set(c.hash, c.text));
+
+  const missing = needsProvider.filter((t) => !byHash.has(hashText(t)));
 
   if (missing.length > 0) {
     if (isDeepL()) {
@@ -155,4 +187,5 @@ module.exports = {
   hashText,
   buildMyMemoryUrl,
   parseMyMemory,
+  decodeEntities,
 };

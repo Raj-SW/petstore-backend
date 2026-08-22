@@ -37,3 +37,57 @@ describe('translate helpers', () => {
     expect(parseMyMemory({ responseData: { translatedText: 'MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS' } })).toBeNull();
   });
 });
+
+describe('decodeEntities', () => {
+  const { decodeEntities } = require('./translate');
+
+  it('decodes the numeric entities MyMemory returns', () => {
+    // Observed live: the footer rendered a literal "S'abonner&#10;".
+    expect(decodeEntities('S&#39;abonner&#10;')).toBe("S'abonner\n");
+  });
+
+  it('decodes named entities', () => {
+    expect(decodeEntities('Peau &amp; pelage')).toBe('Peau & pelage');
+    expect(decodeEntities('&quot;Bonjour&quot;')).toBe('"Bonjour"');
+  });
+
+  it('does not double-decode an escaped ampersand into a real newline', () => {
+    expect(decodeEntities('&amp;#10;')).toBe('&#10;');
+  });
+
+  it('leaves plain text untouched', () => {
+    expect(decodeEntities('Prendre rendez-vous')).toBe('Prendre rendez-vous');
+  });
+});
+
+describe('parseMyMemory entity handling', () => {
+  const { parseMyMemory } = require('./translate');
+
+  it('returns decoded text, not the raw escaped payload', () => {
+    const payload = { responseData: { translatedText: 'S&#39;abonner' } };
+    expect(parseMyMemory(payload)).toBe("S'abonner");
+  });
+});
+
+describe('French glossary', () => {
+  const { GLOSSARY } = require('../data/frGlossary');
+
+  it('keeps nav labels short enough for the navbar width budget', () => {
+    // "Pet Care Tips" machine-translated to 42 chars and overflowed the page.
+    for (const label of ['Home', 'Care', 'Shop', 'Pet Travel', 'Pet Care Tips', 'Our Clinic']) {
+      expect(GLOSSARY[label]).toBeDefined();
+      expect(GLOSSARY[label].length).toBeLessThanOrEqual(17);
+    }
+  });
+
+  it('protects the brand from being translated', () => {
+    // The provider turned "VitalPaws" into "Vital Pattes".
+    expect(GLOSSARY.VitalPaws).toBe('VitalPaws');
+    expect(GLOSSARY.Paws).toBe('Paws');
+    expect(GLOSSARY.WhatsApp).toBe('WhatsApp');
+  });
+
+  it('uses the animal sense of "coat", not the garment', () => {
+    expect(GLOSSARY['Skin & Coat']).toBe('Peau et pelage');
+  });
+});
